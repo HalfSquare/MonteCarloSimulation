@@ -31,7 +31,7 @@ deploy:
   allow_failure: true
   
 pages:
-  stage: deploy
+  stage: Deploy
   script:
   - mkdir .public
   - cp -r * .public
