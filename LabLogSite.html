@@ -183,8 +183,8 @@
 	 			for (i = contentArray.length-1; i > 0; i--) {
  					var lineStr = contentArray[i].toLowerCase();
  					if (lineStr.includes("lab session")) {
- 						let session = lineStr.split(" ");
- 						let sessionNumber = parseInt(session[session.length-1]);
+ 						let session = lineStr.match(/(\d+)/);
+ 						let sessionNumber = parseInt(session[0]);
  						let contentLength = contentArray.length;
  						contentArray[contentLength] = "#### Group Lab Session "+(sessionNumber+1);
  						contentArray[contentLength+1] = "| Lab date | Lab time (morning/afternoon) | Person | Arrive time | Departure time |";
