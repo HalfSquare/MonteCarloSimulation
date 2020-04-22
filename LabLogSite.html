@@ -14,7 +14,18 @@
 	 		let password = document.getElementById("password").value
 	 		var x = 'grant_type=password&username=' + username + '&password=' + password;
 	 		var table;
-	 		// However to make it work, we are going to use the cors-anywhere free service to bypass this
+	 		var body = document.getElementsByTagName("body")[0];
+
+	 		var projectsPageNumber = 1;
+
+	 		var label = document.createElement("label");
+			label.id = "label";
+			label.innerHTML = "Logging into gitlab...";
+		   	if (body.children.length == 1) {
+				body.appendChild(label);
+			}	
+
+	 		// Use cors-anywhere free service to bypass cross-origin requests
 			var proxy = 'https://cors-anywhere.herokuapp.com/';
 	 		var Url = "https://gitlab.ecs.vuw.ac.nz/oauth/token";
 	 		var xhr = new XMLHttpRequest();
@@ -28,6 +39,7 @@
 			xhr.onreadystatechange = processRequest;
 			 
 			function processRequest(e) {
+
 				if (xhr.readyState == 4 && xhr.status == 200) {
 					var response1 = JSON.parse(xhr.responseText);
 					token = response1.access_token;
@@ -38,14 +50,21 @@
 					xhr2.onreadystatechange = userInfo;
 					var button = document.createElement("button");
 					button.innerHTML = "Log lab arrival";
-					var body = document.getElementsByTagName("body")[0];
-					body.appendChild(button);
+					button.style.width = '200px';
+					button.style.height = '100px';
+					if (body.children.length == 2) {
+						body.appendChild(button);
+					}
 					button.addEventListener ("click", function() {
 						labLogPageAddLog();
 					});
 					var button2 = document.createElement("button");
 					button2.innerHTML = "Log lab leave";
-					body.appendChild(button2);
+					button2.style.width = '200px';
+					button2.style.height = '100px';
+					if (body.children.length == 3) {
+						body.appendChild(button2);
+					}
 					button2.addEventListener ("click", function() {
 						labLogLeave();
 					});
@@ -54,6 +73,7 @@
 
 	 		function userInfo() {
 	 			if (xhr2.readyState == 4 && xhr2.status == 200) {
+	 				label.innerHTML = "Retrieving lab log table for your group...";
 		 			const data = JSON.parse(xhr2.responseText);
 		 			let id = data[0].id
 		 			name = data[0].name;
@@ -66,12 +86,26 @@
 				}
 	 		}
 
+	 		function getProjectsNextPage() {
+	 			let projectsUrl = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects?page="+projectsPageNumber;
+	 			xhr3.open('GET', projectsUrl, true);
+				xhr3.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+				xhr3.setRequestHeader("Authorization", "Bearer " + token);
+				xhr3.send();
+				xhr3.onreadystatechange = allProjects;
+	 		}
+
 	 		function allProjects() {
 	 			if (xhr3.readyState == 4 && xhr3.status == 200) {
 	 				const data = JSON.parse(xhr3.responseText);
 	 				var newArray = data.filter(function (el) {
-  						return el["namespace"].parent_id == 2988; 
+  						return el["namespace"].parent_id == 2988;
   					})
+  					if (newArray.length == 0) {
+  						projectsPageNumber += 1;
+  						getProjectsNextPage();
+  						return;
+  					}
 					projectID = newArray[0]["id"];
 					let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
 					xhr4.open('GET', wikiURL, true);
@@ -101,27 +135,32 @@
 						var cell = row.insertCell(0);
 						cell.innerHTML = contentArray[i];
 	 				}
+	 				document.documentElement.scrollTo({
+					  left: 0,
+					  top: document.documentElement.scrollHeight - document.documentElement.clientHeight,
+					  behavior: 'smooth'
+					});
+	 				label.innerHTML = "";
 	 			}
 	 		}
 
 	 		function labLogPageAddLog() {
-	 			let content = contentArray;
+	 			let sessionNumber = 0;
+	 			label.innerHTML = "Adding new lab log to your groups wiki page...";
 	 			//Checks if space is available for new log
-	 			if (content[content.length-1].replace(/ /g, '') == "||||||") {
+	 			if ((contentArray[contentArray.length-1].replace(/ /g, '') == "||||||") ||
+	 					(contentArray[contentArray.length-2].replace(/ /g, '') == "||||||")) {
 	 				var firstName = name.split(" ")[0];
 	 				var sessionIndex;
 	 				var emptyIndex;
 	 				var i; 
-	 				for (i = content.length-1; i > 0; i--) {
-	 					var lineStr = content[i].toLowerCase();
-	 					if (lineStr.includes("lab session")) {
-	 						session = i;
-	 						break;
+	 				for (i = contentArray.length-1; i > 0; i--) {
+	 					var lineStr = contentArray[i].toLowerCase();
+	 					if (lineStr.includes(firstName.toLowerCase())) {
+	 						addNewSession();
+	 						return;
 	 					}
-	 					else if (lineStr.includes(firstName.toLowerCase())) {
-	 						return; //TODO: Add new lab session
-	 					}
-	 					else if (!lineStr.includes("-: |") && !lineStr.includes("| lab date |")) {
+	 					else if (lineStr.replace(/ /g, '') == "||||||") {
 	 						emptyIndex = i;
 	 					}
 	 				}
@@ -130,15 +169,44 @@
 	 				let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
 	 				let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
 	 				let arrivalTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-	 				content[emptyIndex] = "| "+labDate+" | "+labTime+" | "+firstName+" | "+arrivalTime+" | |";
-	 				publishWikiPageEdit(content.join("\n"));
+	 				contentArray[emptyIndex] = "| "+labDate+" | "+labTime+" | "+firstName+" | "+arrivalTime+" | |";
+	 				publishWikiPageEdit(contentArray.join("\n"));
 	 			}
 	 			else {
-	 				// TODO: Add new lab session
+	 				addNewSession();
 	 			}
 	 		}
 
+	 		function addNewSession() {
+	 			for (i = contentArray.length-1; i > 0; i--) {
+ 					var lineStr = contentArray[i].toLowerCase();
+ 					if (lineStr.includes("lab session")) {
+ 						let session = lineStr.split(" ");
+ 						let sessionNumber = parseInt(session[session.length-1]);
+ 						let contentLength = contentArray.length;
+ 						contentArray[contentLength+1] = "#### Group Lab Session "+(sessionNumber+1);
+ 						contentArray[contentLength+2] = "| Lab date | Lab time (morning/afternoon) | Person | Arrive time | Departure time |";
+ 						contentArray[contentLength+3] = "| -------- | :--------------------------: | -----: | ----------- | -------------- |";
+ 						contentLength += 3;
+ 						for (index=1; index <=6; index++) {
+ 							contentArray[contentLength+index] = "||||||";
+ 						}
+ 						contentArray[contentLength+7] = "";
+ 						var firstName = name.split(" ")[0];
+ 						var date = new Date();
+		 				let month = (date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
+		 				let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+		 				let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
+		 				let arrivalTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+		 				contentArray[contentLength+1] = "| "+labDate+" | "+labTime+" | "+firstName+" | "+arrivalTime+" | |";
+		 				publishWikiPageEdit(contentArray.join("\n"));
+ 						break;
+ 					}
+	 			}	
+	 		}
+
 	 		function labLogLeave() {
+	 			label.innerHTML = "Adding time left lab to your groups wiki page...";
 	 			var index;
 	 			var firstName = name.split(" ")[0];
 	 			for (i = contentArray.length-1; i > 0; i--) {
@@ -159,7 +227,7 @@
  				publishWikiPageEdit(contentArray.join("\n"));
 	 		}
 
-	 	function publishWikiPageEdit(content) {
+	 		function publishWikiPageEdit(content) {
 	 			let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis/" + encodeURIComponent(pageSlug, "UTF-8");
 				xhr5.open('PUT', wikiURL, true);
 				xhr5.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
@@ -167,6 +235,7 @@
 				xhr5.send("content="+content);
 				xhr5.onreadystatechange = function(){
 					if (xhr5.readyState == 4 && xhr5.status == 200) {
+						label.innerHTML = "";
 						let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
 						xhr4.open('GET', wikiURL, true);
 						xhr4.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
@@ -175,16 +244,20 @@
 						xhr4.onreadystatechange = wikiPages;
 						var button = document.createElement("button");
 						button.innerHTML = "Undo";
+						button.style.width = '200px';
+						button.style.height = '100px';
 						var body = document.getElementsByTagName("body")[0];
-						if (body.childElementCount == 3) {
+						if (body.childElementCount == 4) {
 							body.appendChild(button);
 						}
 						button.addEventListener ("click", function() {
+							label.innerHTML = "Reverting back to oringinal...";
 							publishWikiPageEdit(originalContent);
 						});
 					}
 				}
 	 		}
+
 	 	}
 	}
 	</script>
