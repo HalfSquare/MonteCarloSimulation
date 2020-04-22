@@ -98,8 +98,9 @@
 	 		function allProjects() {
 	 			if (xhr3.readyState == 4 && xhr3.status == 200) {
 	 				const data = JSON.parse(xhr3.responseText);
+	 				console.log(data)
 	 				var newArray = data.filter(function (el) {
-  						return el["namespace"].parent_id == 2988;
+  						return el["namespace"].full_path.includes("engr300");
   					})
   					if (newArray.length == 0) {
   						projectsPageNumber += 1;
