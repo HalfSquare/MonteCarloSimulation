@@ -120,8 +120,9 @@
 	 		function wikiPages() {
 	 			if (xhr4.readyState == 4 && xhr4.status == 200) {
 	 				const data = JSON.parse(xhr4.responseText);
+	 				console.log(data);
 	 				var newArray = data.filter(function (el) {
-  						return el["slug"].includes("Lab-time-log");
+  						return el["title"].toLowerCase().includes("lab time log");
   					})
   					pageSlug = newArray[0].slug;
 	 				let content = newArray[0].content;
