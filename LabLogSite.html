@@ -184,10 +184,10 @@
  						let session = lineStr.split(" ");
  						let sessionNumber = parseInt(session[session.length-1]);
  						let contentLength = contentArray.length;
- 						contentArray[contentLength+1] = "#### Group Lab Session "+(sessionNumber+1);
- 						contentArray[contentLength+2] = "| Lab date | Lab time (morning/afternoon) | Person | Arrive time | Departure time |";
- 						contentArray[contentLength+3] = "| -------- | :--------------------------: | -----: | ----------- | -------------- |";
- 						contentLength += 3;
+ 						contentArray[contentLength] = "#### Group Lab Session "+(sessionNumber+1);
+ 						contentArray[contentLength+1] = "| Lab date | Lab time (morning/afternoon) | Person | Arrive time | Departure time |";
+ 						contentArray[contentLength+2] = "| -------- | :--------------------------: | -----: | ----------- | -------------- |";
+ 						contentLength += 2;
  						for (index=1; index <=6; index++) {
  							contentArray[contentLength+index] = "||||||";
  						}
