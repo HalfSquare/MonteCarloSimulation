@@ -122,7 +122,7 @@
 	 				const data = JSON.parse(xhr4.responseText);
 	 				console.log(data);
 	 				var newArray = data.filter(function (el) {
-  						return el["title"].toLowerCase().includes("log");
+  						return el["title"].toLowerCase().includes("time log");
   					})
   					pageSlug = newArray[0].slug;
 	 				let content = newArray[0].content;
@@ -253,7 +253,7 @@
 							body.appendChild(button);
 						}
 						button.addEventListener ("click", function() {
-							label.innerHTML = "Reverting back to original...";
+							label.innerHTML = "Reverting back to oringinal...";
 							publishWikiPageEdit(originalContent);
 						});
 					}
