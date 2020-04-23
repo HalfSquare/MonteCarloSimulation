@@ -149,34 +149,34 @@
 	 		function labLogPageAddLog() {
 	 			let sessionNumber = 0;
 	 			label.innerHTML = "Adding new lab log to your groups wiki page...";
+	 			var firstName = name.split(" ")[0];
+	 			var emptyIndex;
+	 			var index;
 	 			//Checks if space is available for new log
-	 			if ((contentArray[contentArray.length-1].replace(/ /g, '') == "||||||") ||
-	 					(contentArray[contentArray.length-2].replace(/ /g, '') == "||||||")) {
-	 				var firstName = name.split(" ")[0];
-	 				var sessionIndex;
-	 				var emptyIndex;
-	 				var i; 
-	 				for (i = contentArray.length-1; i > 0; i--) {
-	 					var lineStr = contentArray[i].toLowerCase();
-	 					if (lineStr.includes(firstName.toLowerCase())) {
+	 			for(index = contentArray.length-1; index > 0; index--) {
+	 				var lineStr = contentArray[index].toLowerCase();
+	 				if (lineStr.includes("--: |")) {
+	 					if (emptyIndex == null) {
 	 						addNewSession();
 	 						return;
 	 					}
-	 					else if (lineStr.replace(/ /g, '') == "||||||") {
-	 						emptyIndex = i;
-	 					}
+	 					break;
 	 				}
-	 				var date = new Date();
-	 				let month = (date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
-	 				let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
-	 				let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
-	 				let arrivalTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-	 				contentArray[emptyIndex] = "| "+labDate+" | "+labTime+" | "+firstName+" | "+arrivalTime+" | |";
-	 				publishWikiPageEdit(contentArray.join("\n"));
+	 				else if (lineStr.includes(firstName.toLowerCase())) {
+	 					addNewSession();
+	 					return;
+	 				}
+	 				else if (lineStr.replace(/ /g, '') == "||||||") {
+	 					emptyIndex = index;
+	 				}
 	 			}
-	 			else {
-	 				addNewSession();
-	 			}
+ 				var date = new Date();
+ 				let month = (date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
+ 				let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+ 				let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
+ 				let arrivalTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+ 				contentArray[emptyIndex] = "| "+labDate+" | "+labTime+" | "+firstName+" | "+arrivalTime+" | |";
+ 				publishWikiPageEdit(contentArray.join("\n"));
 	 		}
 
 	 		function addNewSession() {
