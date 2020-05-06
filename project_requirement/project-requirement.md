@@ -255,11 +255,45 @@ A one page statement of contributions, including a list of each member of the gr
 
 | Section | Contributors |
 | :---: | :------- |
-| 1 Introduction | |
+| 1. Introduction | Justina, Jacqui |
 | 1.1 Purpose | |
 | 1.2 Scope | Michael, Alex |
 | 1.3 Product overview | |
 | 1.3.1 Product perspective | |
+| 1.3.2 Product functions | |
+| 1.3.3 User characteristics | |
+| 1.3.4 Limitations | |
+| 2. References | |
+| 3. Specific requirements | |
+| 3.1 External interfaces | |
+| 3.2 Functions | |
+| 3.3 Usability Requirements | |
+| 3.4 Performance requirements | |
+| 3.5 Logical database requirements | |
+| 3.6 Design constraints | |
+| 3.7 Nonfunctional system attributes | |
+| 3.8 Physical and Environmental Requirements | |
+| 3.9 Supporting information | |
+| 4. Verification | |
+| 5. Development schedule. | |
+| 5.1 Schedule | |
+| 5.2 Budget | |
+| 5.3 Risks | Max, Georgia |
+| 5.4 Health and Safety | |
+| 5.4.1 Safety Plans | |
+| 6. Appendices | |
+| 6.1 Assumptions and dependencies | |
+| 6.2 Acronyms and abbreviations | |
+| 7. Contributions | Michael, Alex |
+
+| Contributor | Sections |
+| :---: | :------- |
+| Michael | 7. Contributions, 1.2 Scope |
+| Alex | 7. Contributions, 1.2 Scope |
+| Georgia | 5.3 Risks |
+| Max | 5.3 Risks |
+| Justina | 1. Introduction |
+| Jacqui | 1. Introduction |
 
 ---
 
