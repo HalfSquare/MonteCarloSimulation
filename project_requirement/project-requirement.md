@@ -253,6 +253,14 @@ One page glossary _as required_.
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
+| Section | Contributors |
+| :---: | :------- |
+| 1 Introduction | |
+| 1.1 Purpose | |
+| 1.2 Scope | Michael, Alex |
+| 1.3 Product overview | |
+| 1.3.1 Product perspective | |
+
 ---
 
 ## Formatting Rules 
