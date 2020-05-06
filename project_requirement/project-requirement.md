@@ -27,11 +27,15 @@ One page overall introduction including sections 1.1 and 1.2.
 
 ### 1.1 Purpose
 
+*One sentence describing the purpose of the system (9.5.1)*
+
 Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hobby rocket.
 
 ### 1.2 Scope
 
-One paragraph describing the scope of the system (9.5.2)
+*One paragraph describing the scope of the system (9.5.2)*
+
+
 
 ### 1.3 Product overview 
 #### 1.3.1 Product perspective
@@ -163,21 +167,46 @@ see 9.5.19.
 
 Identify dates for key project deliverables: 
 
-1. architectural prototype
-1. minimum viable product
-1. further releases
+| architectural prototype | |
+| minimum viable product | |
+| further releases | |
+| final release | November 2020 tbc |
 
 (1 page).
 
 ### 5.2 Budget
 
-Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). 
+*Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). *
+
+As all developers are unpaid, OpenRocket is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
 
 ### 5.3 Risks 
 
 Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
+| Risk | Likelihood *(Low, Moderate, High)* | Impact *(Insignificant, Tolerable, Serious, Catastrophic)* | Mitigation |
+|------|-------|-------|-----|
+
+| A sickness of team member reducing their productivity and leading to deadlines not being met | High | Tolerable ||
+
+| Personal equipment fails | Low-Moderate | Serious ||
+
+| changes to requirement requiring minor reworks | Moderate | Tolerable ||
+
+| Organisaional restructures - staff change | High | Insignificant ||
+
+| External tools failing to provide expected functionality (e.g. openRocket) | Moderate | Serious ||
+
+| development Time underestimated | High | Serious ||
+
+| Team members other comitments => not enough time for project | Low |  ||
+
+| Team members not having required skills ||||
+
+| Changes to team members ||||
+
+| Updates to external tools causing issues ||||
 
 ### 5.4 Health and Safety
 
@@ -223,14 +252,6 @@ One page glossary _as required_.
 ## 7. Contributions
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
-
-| Section | Contributors |
-| :---: | :------- |
-| Introduction | |
-| 1.1 Purpose | |
-| 1.2 Scope | Michael, Alex |
-| 1.3 Product overview | |
-| 1.3.1 Product perspective | |
 
 ---
 
