@@ -188,25 +188,25 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 | Risk | Likelihood *(Low, Moderate, High)* | Impact *(Insignificant, Tolerable, Serious, Catastrophic)* | Mitigation |
 |------|-------|-------|-----|
 
-| A sickness of team member reducing their productivity and leading to deadlines not being met | High | Tolerable ||
+| Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High | Tolerable ||
 
-| Personal equipment fails | Low-Moderate | Serious ||
+| The personal equipment of a team member failing (e.g. computers/internet) | Moderate | Serious ||
 
-| changes to requirement requiring minor reworks | Moderate | Tolerable ||
+| Changes to the project requirements requiring minor reworks of the system | Moderate | Tolerable ||
 
-| Organisaional restructures - staff change | High | Insignificant ||
+| Organizational restructures resulting in upper management staff changes | High | Insignificant ||
 
 | External tools failing to provide expected functionality (e.g. openRocket) | Moderate | Serious ||
 
-| development Time underestimated | High | Serious ||
+| The time required to develop the software is underestimated | High | Serious ||
 
-| Team members other comitments => not enough time for project | Low |  ||
+| Team members have other commitments come up leading to not having enough time to commit to working on the project | Moderate | Tolerable ||
 
-| Team members not having required skills ||||
+| A skill is required for the project that no team member can provide | Low | Catastrophic ||
 
-| Changes to team members ||||
+| New team members or team members leaving the project | Low | Tolerable ||
 
-| Updates to external tools causing issues ||||
+| Updates to external tools causing issues with the project | Low | Serious ||
 
 ### 5.4 Health and Safety
 
