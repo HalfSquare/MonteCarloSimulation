@@ -185,27 +185,18 @@ As all developers are unpaid, OpenRocket is open-source software and we will be 
 Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
 
 If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
+
 | Risk | Likelihood *(Low, Moderate, High)* | Impact *(Insignificant, Tolerable, Serious, Catastrophic)* | Mitigation |
 |------|-------|-------|-----|
-
 | Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High | Tolerable ||
-
 | The personal equipment of a team member failing (e.g. computers/internet) | Moderate | Serious ||
-
 | Changes to the project requirements requiring minor reworks of the system | Moderate | Tolerable ||
-
 | Organizational restructures resulting in upper management staff changes | High | Insignificant ||
-
 | External tools failing to provide expected functionality (e.g. openRocket) | Moderate | Serious ||
-
 | The time required to develop the software is underestimated | High | Serious ||
-
 | Team members have other commitments come up leading to not having enough time to commit to working on the project | Moderate | Tolerable ||
-
 | A skill is required for the project that no team member can provide | Low | Catastrophic ||
-
 | New team members or team members leaving the project | Low | Tolerable ||
-
 | Updates to external tools causing issues with the project | Low | Serious ||
 
 ### 5.4 Health and Safety
