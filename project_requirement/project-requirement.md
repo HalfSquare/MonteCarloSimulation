@@ -27,14 +27,11 @@ One page overall introduction including sections 1.1 and 1.2.
 
 ### 1.1 Purpose
 
-*One sentence describing the purpose of the system (9.5.1)*
-
 Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hobby rocket.
 
 ### 1.2 Scope
 
 *One paragraph describing the scope of the system (9.5.2)*
-
 
 
 ### 1.3 Product overview 
@@ -45,11 +42,17 @@ One page defining the system's relationship to other related products
 
 > **9.5.3 Product perspective** <br>
 > Define the system's relationship to other related products. 
-> 
+
+The Monte Carlo simulation will be working in conjunction with Hobby Rocketry.
+--> Ask: if it also means with other teams as well 
 > If the product is an element of a larger system, then relate the requirements of that larger system to the functionality of the product covered by the software requirements specification.
-> 
+
+Our group project is to design a rocket-launch simuation to help facilitate the design and building of a real-life rocket. Namely, our project should be compatible with other teams who are in charge of the physical design and software of rockets. 
+
 > If the product is an element of a larger system, then identify the interfaces between the product covered by the software requirements specification and the larger system of which the product is an element. 
->
+
+The system that would be used in order to bridge the gap between the Monte Carlo simulations and the larger system is 
+
 > A block diagram showing the major elements of the larger system, interconnections, and external interfaces can be helpful.
 > 
 > Describe how the software operates within the following constraints:  
