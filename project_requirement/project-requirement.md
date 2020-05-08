@@ -203,11 +203,16 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 
 Document here project requirements for Health and Safety. All teams must state in this section:
 
-1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc.  
+1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc. 
+All team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.)
+
+We wil ensure deadlines are realistic and allow time to take breaks. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss how to accomplish this. 
 
 2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received. 
+All work will be done remotely at each team member's place of residence.
 
 3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
+The project will not require any human or animal experimentation.
 
 Also document in this section any additional discussions with the School Safety Officer regarding Health and Safety risks. Give any further information on relevant health and safety regulations, risks, and mitigations, etc.
 
