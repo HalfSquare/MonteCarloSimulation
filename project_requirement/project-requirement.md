@@ -34,7 +34,8 @@ Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hob
 ### 1.2 Scope
 
 *One paragraph describing the scope of the system (9.5.2)*
-A plugin for OpenRocket that utilises pre-existing framework to run simulations according to the Monte Carlo method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
+
+A plugin for OpenRocket that utilises pre-existing frameworks to run simulations according to the Monte Carlo method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
 
 ### 1.3 Product overview 
 #### 1.3.1 Product perspective
