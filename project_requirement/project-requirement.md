@@ -254,6 +254,15 @@ One page glossary _as required_.
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
+| Contributor | Sections |
+| :---: | :------- |
+| Michael | 1.2 Scope, 7. Contributions |
+| Alex | 1.2 Scope, 7. Contributions |
+| Georgia | 5.3 Risks |
+| Max | 5.3 Risks |
+| Justina | 1. Introduction |
+| Jacqui | 1. Introduction |
+
 ---
 
 ## Formatting Rules 
