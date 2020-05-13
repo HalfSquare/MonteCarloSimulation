@@ -87,8 +87,15 @@ References to other documents or standards. Follow the IEEE Citation  Reference 
 See 9.5.10. for most systems this will be around one page. 
 
 ### 3.2 Functions
+*This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.*
 
-This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.
+##### Persona scale
+Tipical users scale from experianced with model rocket use to people just starting. They also scale in their confidence in computer usage.
+
+##### Use Cases
+| Persona/User | Use Case | Agreed Time Estimate |
+|-|---|-|
+|x|x|1|
 
 ### 3.3 Usability Requirements
 
