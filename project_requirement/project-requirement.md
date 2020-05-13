@@ -166,6 +166,8 @@ see 9.5.19.
 ### 5.1 Schedule
 
 Key project deliverables: 
+
+| Deliverable: | Date: |
 |------|-------|
 | Architectural Prototype | |
 | Minimum Viable Product | |
@@ -176,7 +178,7 @@ Key project deliverables:
 
 ### 5.2 Budget
 
-*Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). *
+*Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall).*
 
 As all developers are unpaid, OpenRocket is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
 
@@ -237,7 +239,7 @@ The project will not require any human or animal experimentation.
 
 _If the project is purely software and requires no contact risks involving physical harm, then state "Project requirements do not involve risk of death, serious harm, harm or injury." in this section._
 
-If the project is purely software and requires no contact risks involving physical harm, then state "Project requirements do not involve risk of death, serious harm, harm or injury.
+The project is purely software, therefore project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies 
