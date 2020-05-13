@@ -165,12 +165,12 @@ see 9.5.19.
 
 ### 5.1 Schedule
 
-Identify dates for key project deliverables: 
-
-| architectural prototype | |
-| minimum viable product | |
-| further releases | |
-| final release | November 2020 tbc |
+Key project deliverables: 
+|------|-------|
+| Architectural Prototype | |
+| Minimum Viable Product | |
+| Further Releases | |
+| Final Release | November 2020 tbc |
 
 (1 page).
 
@@ -182,9 +182,9 @@ As all developers are unpaid, OpenRocket is open-source software and we will be 
 
 ### 5.3 Risks 
 
-Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
+*Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).*
 
-If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
+*If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.*
 
 | Risk | Likelihood *(Low, Moderate, High)* | Impact *(Insignificant, Tolerable, Serious, Catastrophic)* | Mitigation |
 |------|-------|-------|-----|
@@ -201,40 +201,43 @@ If the project will involve any work outside the ECS laboratories, i.e. off-camp
 
 ### 5.4 Health and Safety
 
-Document here project requirements for Health and Safety. All teams must state in this section:
+*Document here project requirements for Health and Safety. All teams must state in this section:*
 
 1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc. 
-All team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.)
 
-We wil ensure deadlines are realistic and allow time to take breaks. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss how to accomplish this. 
+All team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.)
+We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. 
 
 2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received. 
+
 All work will be done remotely at each team member's place of residence.
 
 3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
+
 The project will not require any human or animal experimentation.
 
-Also document in this section any additional discussions with the School Safety Officer regarding Health and Safety risks. Give any further information on relevant health and safety regulations, risks, and mitigations, etc.
+* Also document in this section any additional discussions with the School Safety Officer regarding Health and Safety risks. Give any further information on relevant health and safety regulations, risks, and mitigations, etc.
 
 
 #### 5.4.1 Safety Plans
 
-Safety Plans may be required for some projects, depending on project requirements. Safety Plan templates are available on the course Health & Safety page. Two questions all teams must answer are:
+*Safety Plans may be required for some projects, depending on project requirements. Safety Plan templates are available on the course Health & Safety page. Two questions all teams must answer are:*
 
 **Do project requirements involve anything that can cause serious harm or death?**  
-Examples: building/modifying devices using voltages > 60 V, chemicals, large moving machinery, flying devices, bodies of water.
+*Examples: building/modifying devices using voltages > 60 V, chemicals, large moving machinery, flying devices, bodies of water.*
 
-If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving serious harm or death, you must first contact the School Safety Officer and Course Coordinator first to discuss the Safety Plan and project requirements.
+*If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving serious harm or death, you must first contact the School Safety Officer and Course Coordinator first to discuss the Safety Plan and project requirements.*
 
 **Do project requirements involve anything that can cause harm or injury?**  
-Examples: building/modifying things with voltages <= 60V, small moving machinery, wearable devices.
+*Examples: building/modifying things with voltages <= 60V, small moving machinery, wearable devices.*
 
-If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving harm or injury, you should write a draft of the Safety Plan before contacting the School Safety Officer and Course Coordinator to discuss the Safety Plan and project requirements.
+*If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving harm or injury, you should write a draft of the Safety Plan before contacting the School Safety Officer and Course Coordinator to discuss the Safety Plan and project requirements.*
 
-If a safety plan is required, list in this section the date the School Safety officer accepted your Health and Safety plan (if accepted by submission date).
+*If a safety plan is required, list in this section the date the School Safety officer accepted your Health and Safety plan (if accepted by submission date).*
 
 _If the project is purely software and requires no contact risks involving physical harm, then state "Project requirements do not involve risk of death, serious harm, harm or injury." in this section._
 
+If the project is purely software and requires no contact risks involving physical harm, then state "Project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies 
