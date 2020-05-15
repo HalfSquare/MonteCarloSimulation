@@ -17,7 +17,7 @@ All team members are expected to contribute equally to the document and list the
 
 ## 1. Introduction
 
-One page overall introduction including sections 1.1 and 1.2.
+This project involves the creation, programming and testing of rockets. 
 
 ### Client
 
