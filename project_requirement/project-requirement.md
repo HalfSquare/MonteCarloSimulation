@@ -155,6 +155,32 @@ Tipical users scale from experianced with model rocket use to people just starti
 | | Finish simulation |
 | | Show the data graphically |
 
+*Discuss with mission control group*
+| Persona/User | System Response |
+|---|---|
+| User selects mission control options ||
+| | Show settings for controling rocket |
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation |
+| | User selected controller adjusts the angle of rocket |
+| | Finish simulation |
+| | Show the data graphically |
+
+| Persona/User | System Response |
+|---|---|
+| User selects mission control options ||
+| | Show settings for controling rocket |
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation |
+| | User selected controller adjusts the angle of rocket |
+| | Finish simulation |
+| | Show the data graphically |
+| Re run simulation with different controller options | |
+| | Run simulation |
+| | User selected controller adjusts the angle of rocket |
+| | Finish simulation |
+| | Show the comparison data graphically |
+
 ### 3.3 Usability Requirements
 
 See 9.5.12. for most systems this will be around one page.
