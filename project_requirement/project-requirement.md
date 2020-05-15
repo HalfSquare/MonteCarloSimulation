@@ -97,33 +97,63 @@ Tipical users scale from experianced with model rocket use to people just starti
 |---|---|
 | User checks 'Save To File' option | |
 | User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation and show the data graphically |
+| | Run simulation |
+| | Finish simulation |
+| | Show the data graphically |
 | | Simulation data is saved to a file |
-| User clicks 'Re-Run Simulation' button | |
+| User selects 'Re-Run Simulation' | |
 | | Run simulation again and show the new data graphically |
 | | Simulation data is saved to a file |
 
 | Persona/User | System Response |
 |---|---|
 | User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation and show the data graphically |
-| User clicks 'Re-Run Simulation' button | |
+| | Run simulation |
+| | Finish simulation |
+| | Show the data graphically |
+| User selects 'Re-Run Simulation' | |
 | | Run simulation again and show the new data graphically |
 
 | Persona/User | System Response |
 |---|---|
 | User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation and show the data graphically |
-| User clicks 'Save to File' button | |
+| | Run simulation |
+| | Finish simulation |
+| | Show the data graphically |
+| User selects 'Save to File' | |
 | | Simulation data is saved to a file |
 
 | Persona/User | System Response |
 |---|---|
 | User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation and show the data graphically |
+| | Run simulation |
+| | Finish simulation |
+| | Show the data graphically |
 
+| Persona/User | System Response |
+|---|---|
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation |
+| User finishes simulation early ||
+| | Finish simulation early |
+| | Show the data graphically |
 
+| Persona/User | System Response |
+|---|---|
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation |
+| User aborts simulation ||
+| | Abort simulation |
+| | Throw away data |
 
+| Persona/User | System Response |
+|---|---|
+| User selects 'help' ||
+| | Show help info screen |
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation |
+| | Finish simulation |
+| | Show the data graphically |
 
 ### 3.3 Usability Requirements
 
