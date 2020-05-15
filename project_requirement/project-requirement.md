@@ -93,9 +93,37 @@ See 9.5.10. for most systems this will be around one page.
 Tipical users scale from experianced with model rocket use to people just starting. They also scale in their confidence in computer usage.
 
 ##### Use Cases
-| Persona/User | Use Case | Agreed Time Estimate |
-|-|---|-|
-|x|x|1|
+| Persona/User | System Response |
+|---|---|
+| User checks 'Save To File' option | |
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation and show the data graphically |
+| | Simulation data is saved to a file |
+| User clicks 'Re-Run Simulation' button | |
+| | Run simulation again and show the new data graphically |
+| | Simulation data is saved to a file |
+
+| Persona/User | System Response |
+|---|---|
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation and show the data graphically |
+| User clicks 'Re-Run Simulation' button | |
+| | Run simulation again and show the new data graphically |
+
+| Persona/User | System Response |
+|---|---|
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation and show the data graphically |
+| User clicks 'Save to File' button | |
+| | Simulation data is saved to a file |
+
+| Persona/User | System Response |
+|---|---|
+| User starts a simulation with the 'Monte Carlo' option | |
+| | Run simulation and show the data graphically |
+
+
+
 
 ### 3.3 Usability Requirements
 
