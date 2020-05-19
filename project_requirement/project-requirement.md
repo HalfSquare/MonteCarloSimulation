@@ -38,6 +38,7 @@ Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hob
 
 *One paragraph describing the scope of the system (9.5.2)*
 
+A plugin for OpenRocket that utilises pre-existing frameworks to run simulations according to the Monte Carlo method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
 
 ### 1.3 Product overview 
 #### 1.3.1 Product perspective
@@ -173,80 +174,81 @@ see 9.5.19.
 
 ### 5.1 Schedule
 
-Identify dates for key project deliverables: 
+Key project deliverables: 
 
-| architectural prototype | |
-| minimum viable product | |
-| further releases | |
-| final release | November 2020 tbc |
+| Deliverable: | Date: |
+|------|-------|
+| Architectural Prototype | |
+| Minimum Viable Product | |
+| Further Releases | |
+| Final Release | November 2020 tbc |
 
 (1 page).
 
 ### 5.2 Budget
 
-*Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall). *
+*Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall).*
 
 As all developers are unpaid, OpenRocket is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
 
 ### 5.3 Risks 
 
-Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).
+*Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).*
 
-If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.
+*If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.*
+
 | Risk | Likelihood *(Low, Moderate, High)* | Impact *(Insignificant, Tolerable, Serious, Catastrophic)* | Mitigation |
 |------|-------|-------|-----|
-
-| A sickness of team member reducing their productivity and leading to deadlines not being met | High | Tolerable ||
-
-| Personal equipment fails | Low-Moderate | Serious ||
-
-| changes to requirement requiring minor reworks | Moderate | Tolerable ||
-
-| Organisaional restructures - staff change | High | Insignificant ||
-
-| External tools failing to provide expected functionality (e.g. openRocket) | Moderate | Serious ||
-
-| development Time underestimated | High | Serious ||
-
-| Team members other comitments => not enough time for project | Low |  ||
-
-| Team members not having required skills ||||
-
-| Changes to team members ||||
-
-| Updates to external tools causing issues ||||
+| Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High | Tolerable | As we are already at home in quarantine, we are already used to working remotely, and do not need to worry about spreading any sickness. In the case that a team member is too sick to work, we should be able to rearrange duties to cover the workload as it is a team of 6 developers, and it is likely that another team member has the skills required to cover the work. We will also make an effort to keep documentation of what has been done and what is being worked on, along with having weekly stand-up meetings to discuss what is being worked on, and to keep all team members updated of the current situation. |
+| The personal equipment of a team member failing (e.g. computers/internet/power loss) | Moderate | Serious | As we are all working remotely, if a team member's personal equipment fails (such as desktop/laptop), we will have to work without them until repairs can be made. As a team of 6, we should be able to reassign duties to cover the workload between the remaining members. If a more uncontrollable event happens, such as a powercut/loss of power, or loss of internet, to mitigate the loss of work, we will make sure to commit often so that all completed work is accessible to team members. |
+| Changes to the project requirements requiring minor reworks of the system | Moderate | Tolerable | We will maintain regular contact with the customer to ensure that we are aware and understand the customer’s needs and requirements, to avoid misunderstanding the project requirements. We will keep our program as flexible as possible, to ensure that changes to the requirements do not require large changes to our system. |
+| Improper use of computer equipment resulting in injury | High | Serious | We will ensure that all group members take regular breaks to stretch, walk around, and rest their eyes, to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI). |
+| External tools failing to provide expected functionality (e.g. openRocket) | Moderate | Serious | Before beginning to use any tool, the team will do research into the tool to ensure that it will provide the functionality we need, and that we understand the capabilities provided by the tool. |
+| The time required to develop the software is underestimated | High | Serious | The team will regularly review the progress we have made at each weekly meeting to ensure that we are making sufficient progress on the project according to our estimates. If we have underestimated the tiem requirement, this will become clear and we will be able to compensate accordingly  |
+| Team members have other commitments come up leading to not having enough time to commit to working on the project | Moderate | Tolerable | The team will keep open communication about outside commitments, so that only a reasonable time commitment is expected of each member per week. If necessary, we will adjust the duties of overburdened members to keep the workload reasonable. |
+| A skill is required for the project that no team member can provide | Low | Catastrophic | The team will keep communication open so that we are aware of each member's skills and abilities, along with their skill level in certain areas. This will mean we are able to effectively choose certain tools and languages for the project that complement our skills. |
+| New team members or team members leaving the project | Low | Tolerable | The team will commit work regulary and keep clear documentation of progress, so that team member changes mean duties can be picked up smoothly, and that no work is lost. |
+| Updates to external tools causing issues with the project | Low | Serious | The team will keep up-to-date with any changes made to tools, and if neccesary, change tools to somethinhg that will be compatible with the project.  |
 
 ### 5.4 Health and Safety
 
-Document here project requirements for Health and Safety. All teams must state in this section:
+*Document here project requirements for Health and Safety. All teams must state in this section:*
 
-1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc.  
+1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc. 
+
+All team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.)
+We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. 
 
 2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received. 
 
+All work will be done remotely at each team member's place of residence.
+
 3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
 
-Also document in this section any additional discussions with the School Safety Officer regarding Health and Safety risks. Give any further information on relevant health and safety regulations, risks, and mitigations, etc.
+The project will not require any human or animal experimentation.
+
+* Also document in this section any additional discussions with the School Safety Officer regarding Health and Safety risks. Give any further information on relevant health and safety regulations, risks, and mitigations, etc.
 
 
 #### 5.4.1 Safety Plans
 
-Safety Plans may be required for some projects, depending on project requirements. Safety Plan templates are available on the course Health & Safety page. Two questions all teams must answer are:
+*Safety Plans may be required for some projects, depending on project requirements. Safety Plan templates are available on the course Health & Safety page. Two questions all teams must answer are:*
 
 **Do project requirements involve anything that can cause serious harm or death?**  
-Examples: building/modifying devices using voltages > 60 V, chemicals, large moving machinery, flying devices, bodies of water.
+*Examples: building/modifying devices using voltages > 60 V, chemicals, large moving machinery, flying devices, bodies of water.*
 
-If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving serious harm or death, you must first contact the School Safety Officer and Course Coordinator first to discuss the Safety Plan and project requirements.
+*If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving serious harm or death, you must first contact the School Safety Officer and Course Coordinator first to discuss the Safety Plan and project requirements.*
 
 **Do project requirements involve anything that can cause harm or injury?**  
-Examples: building/modifying things with voltages <= 60V, small moving machinery, wearable devices.
+*Examples: building/modifying things with voltages <= 60V, small moving machinery, wearable devices.*
 
-If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving harm or injury, you should write a draft of the Safety Plan before contacting the School Safety Officer and Course Coordinator to discuss the Safety Plan and project requirements.
+*If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving harm or injury, you should write a draft of the Safety Plan before contacting the School Safety Officer and Course Coordinator to discuss the Safety Plan and project requirements.*
 
-If a safety plan is required, list in this section the date the School Safety officer accepted your Health and Safety plan (if accepted by submission date).
+*If a safety plan is required, list in this section the date the School Safety officer accepted your Health and Safety plan (if accepted by submission date).*
 
 _If the project is purely software and requires no contact risks involving physical harm, then state "Project requirements do not involve risk of death, serious harm, harm or injury." in this section._
 
+The project is purely software, therefore project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
 ### 6.1 Assumptions and dependencies 
@@ -260,6 +262,15 @@ One page glossary _as required_.
 ## 7. Contributions
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
+
+| Contributor | Sections |
+| :---: | :------- |
+| Michael | 1.2 Scope, 7. Contributions |
+| Alex | 1.2 Scope, 7. Contributions |
+| Georgia | 5.3 Risks |
+| Max | 5.3 Risks |
+| Justina | 1. Introduction |
+| Jacqui | 1. Introduction |
 
 ---
 

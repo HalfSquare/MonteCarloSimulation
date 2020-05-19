@@ -6,28 +6,28 @@ stages:
 build:
   stage: Build
   tags:
-    - Shell
+    - shell
   script:
     - echo "static analysis"
-    - exit 1
+    - exit 0
   allow_failure: true
 
 unittest:
   stage: Test
   tags:
-    - Shell
+    - shell
   script:
     - echo "test"
-    - exit 1
+    - exit 0
   allow_failure: true
 
 deploy:
   stage: Deploy
   tags:
-    - Shell
+    - shell
   script:
     - echo "deploy"
-    - exit 1
+    - exit 0
   allow_failure: true
   
 pages:
