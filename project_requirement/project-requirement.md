@@ -17,7 +17,12 @@ All team members are expected to contribute equally to the document and list the
 
 ## 1. Introduction
 
-One page overall introduction including sections 1.1 and 1.2.
+Throughout the World, rockets are used for a plethora of reasons: to launch satellites, human spaceflight and space exploration to name a few. The process of building and launching rockets is incredibly expensive, and so it is paramount to factor in all possible conditions and outcomes that could occur when launching a rocket. 
+
+The project designed by the Course Coordinator is triadic: the first part involves the actual building of the rocket, the second part involves the programming of the rocket, and the third part involves the use of external software to test the predictability and likelihood of success of the rocket. While these subprojects are primarily designed to be carried out individually, ultimately, communication is to occur between the three groups to create a wholly, and successfully functioning rocket. 
+
+Our group project predominantly focuses on the use of Monte Carlo simulations to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction and weather conditions. 
+
 
 ### Client
 
@@ -26,8 +31,6 @@ One page overall introduction including sections 1.1 and 1.2.
 | Mattermost tag | @geldenan |
 
 ### 1.1 Purpose
-
-*One sentence describing the purpose of the system (9.5.1)*
 
 Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hobby rocket.
 
@@ -45,11 +48,17 @@ One page defining the system's relationship to other related products
 
 > **9.5.3 Product perspective** <br>
 > Define the system's relationship to other related products. 
-> 
+
+The Monte Carlo simulation will be working in conjunction with Hobby Rocketry.
+--> Ask: if it also means with other teams as well 
 > If the product is an element of a larger system, then relate the requirements of that larger system to the functionality of the product covered by the software requirements specification.
-> 
+
+Our group project is to design a rocket-launch simuation to help facilitate the design and building of a real-life rocket. Namely, our project should be compatible with other teams who are in charge of the physical design and software of rockets. 
+
 > If the product is an element of a larger system, then identify the interfaces between the product covered by the software requirements specification and the larger system of which the product is an element. 
->
+
+The system that would be used in order to bridge the gap between the Monte Carlo simulations and the larger system is 
+
 > A block diagram showing the major elements of the larger system, interconnections, and external interfaces can be helpful.
 > 
 > Describe how the software operates within the following constraints:  
