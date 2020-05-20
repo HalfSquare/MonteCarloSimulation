@@ -81,7 +81,9 @@ The main function of the PID controller is to simulate the controller and determ
 
 #### 1.3.3 User characteristics   
 
-One page identifying the main classes of users and their characteristics (9.5.5) 
+*One page identifying the main classes of users and their characteristics (9.5.5)*
+
+This project will be all open source and as such will need to use open source tools to make it accessible to the community, such as OpenRocket. OpenRocket is a program for all model-rocketeers who intend to estimate their rocket's performance before physically building and flying it. The user should have a general understanding on how to use this software, however there are no educational requirements as this is an open source project. This system may have users with or without OpenRocket experience. Technical expertise will be required while installing and understanding the functions within the system. Users should be familiar with Monte Carlo simulations and PID controllers as well as understanding how they work.
 
 #### 1.3.4 Limitations
 
