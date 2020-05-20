@@ -35,8 +35,9 @@ The project designed by the Course Coordinator is triadic: the first part involv
 Our group project predominantly focuses on the use of Monte Carlo simulations to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction and weather conditions.
 
 ### Client
-|--|--|
-| Andre Geldenhuis | |
+| | |
+|---|---|
+| Client | Andre Geldenhuis |
 | Email | andre.geldenhuis@vuw.ac.nz |
 | Mattermost tag | @geldenan |
 
