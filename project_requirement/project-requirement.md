@@ -291,7 +291,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Contributor | Sections |
 | :---: | :------- |
 | Michael | 1.2 Scope, 7. Contributions |
-| Alex | 1.2 Scope, 7. Contributions |
+| Alex | 1.2 Scope, 7. Contributions, Monte Carlo wiki page |
 | Georgia | 5.3 Risks |
 | Max | 5.3 Risks |
 | Justina | 1. Introduction |
