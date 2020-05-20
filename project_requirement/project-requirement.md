@@ -26,6 +26,8 @@ Our group project predominantly focuses on the use of Monte Carlo simulations to
 
 ### Client
 
+Andre Geldenhuis is our client for this project.
+
 | | |
 |---|---|
 | Client | Andre Geldenhuis |
