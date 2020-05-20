@@ -90,9 +90,10 @@ See 9.5.10. for most systems this will be around one page.
 *This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.*
 
 ##### Persona scale
-Tipical users scale from experianced with model rocket use to people just starting. They also scale in their confidence in computer usage.
+Typical users scale from experienced with model rocket use to people just starting. They also scale in their confidence in computer usage.
 
 ##### Use Cases
+User runs and re-runs simulation with data saved to file
 | Persona/User | System Response |
 |---|---|
 | User checks 'Save To File' option | |
@@ -105,6 +106,7 @@ Tipical users scale from experianced with model rocket use to people just starti
 | | Run simulation again and show the new data graphically |
 | | Simulation data is saved to a file |
 
+User runs and re-runs simulation
 | Persona/User | System Response |
 |---|---|
 | User starts a simulation with the 'Monte Carlo' option | |
@@ -114,6 +116,7 @@ Tipical users scale from experianced with model rocket use to people just starti
 | User selects 'Re-Run Simulation' | |
 | | Run simulation again and show the new data graphically |
 
+User runs simulation and saves to file
 | Persona/User | System Response |
 |---|---|
 | User starts a simulation with the 'Monte Carlo' option | |
@@ -123,6 +126,7 @@ Tipical users scale from experianced with model rocket use to people just starti
 | User selects 'Save to File' | |
 | | Simulation data is saved to a file |
 
+User runs simulation
 | Persona/User | System Response |
 |---|---|
 | User starts a simulation with the 'Monte Carlo' option | |
@@ -130,6 +134,7 @@ Tipical users scale from experianced with model rocket use to people just starti
 | | Finish simulation |
 | | Show the data graphically |
 
+User finishes simulation early
 | Persona/User | System Response |
 |---|---|
 | User starts a simulation with the 'Monte Carlo' option | |
@@ -138,6 +143,7 @@ Tipical users scale from experianced with model rocket use to people just starti
 | | Finish simulation early |
 | | Show the data graphically |
 
+User aborts simulation
 | Persona/User | System Response |
 |---|---|
 | User starts a simulation with the 'Monte Carlo' option | |
@@ -146,6 +152,7 @@ Tipical users scale from experianced with model rocket use to people just starti
 | | Abort simulation |
 | | Throw away data |
 
+User gets help
 | Persona/User | System Response |
 |---|---|
 | User selects 'help' ||
@@ -155,21 +162,39 @@ Tipical users scale from experianced with model rocket use to people just starti
 | | Finish simulation |
 | | Show the data graphically |
 
+User adds topographical data
+| Persona/User | System Response |
+|---|---|
+| User selects 'add topographical data' ||
+||Prompt for launch site location|
+| User enters launch site location||
+|User selects 'continue'||
+||Save topographical data to working simulation file|
+
+User adds weather data
+| Persona/User | System Response |
+|---|---|
+| User selects 'add weather data' ||
+|User selects 'continue'||
+||Save weather data to working simulation file|
+
 *Discuss with mission control group*
+User integrates mission control
 | Persona/User | System Response |
 |---|---|
 | User selects mission control options ||
-| | Show settings for controling rocket |
+| | Show settings for controlling rocket |
 | User starts a simulation with the 'Monte Carlo' option | |
 | | Run simulation |
 | | User selected controller adjusts the angle of rocket |
 | | Finish simulation |
 | | Show the data graphically |
 
+User integrates multiple mission control options across multiple simulations
 | Persona/User | System Response |
 |---|---|
 | User selects mission control options ||
-| | Show settings for controling rocket |
+| | Show settings for controlling rocket |
 | User starts a simulation with the 'Monte Carlo' option | |
 | | Run simulation |
 | | User selected controller adjusts the angle of rocket |
@@ -180,6 +205,7 @@ Tipical users scale from experianced with model rocket use to people just starti
 | | User selected controller adjusts the angle of rocket |
 | | Finish simulation |
 | | Show the comparison data graphically |
+
 
 ### 3.3 Usability Requirements
 
