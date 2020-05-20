@@ -208,6 +208,24 @@ Key project deliverables:
 | Further Releases | |
 | Final Release | November 2020 tbc |
 
+Sprint schedule:
+
+*Goals are just a broad, rough plan and should be tweaked and updated to include sprint planning.*
+
+| Week:      | Sprint No:              | Goal:                                                  |
+|------------|-------------------------|--------------------------------------------------------|
+| T1 Week 7     | Sprint 1                | Push to complete the bulk of the documentation             |
+| T1 Week 8-9   | Sprint 2                | Finishing documentation and beginning programming      |
+| T1 Week 10-11 | Sprint 3                | Transitioning from documentation to solely programming |
+| T1 Week 12    | No sprint  (terms test) |                                                        |
+| -BREAK-    | No sprint               |                                                        |
+| T2 Week 1-2   | Sprint 4                | Picking up from before the break, reorienting goals    |
+| T2 Week 3-4   | Sprint 5                | Working on extension and adding features               |
+| T2 Week 5-6   | Sprint 6                | Working on extension and adding features               |
+| T2 Week 7-8   | Sprint 7                | Working on extension and adding features               |
+| T2 Week 9-10  | Sprint 8                | Pushing to complete features from project requirement  |
+| T2 Week 11-12 | Sprint 9                | Readying project for deployment                        |
+
 (1 page).
 
 ### 5.2 Budget
