@@ -44,6 +44,7 @@ Design Monte Carlo simulation software which will statistically predict the rock
 
 A plugin for OpenRocket that utilises pre-existing frameworks to run simulations according to the Monte Carlo method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
 
+
 ### 1.3 Product overview 
 
 The product overview defines the product perspective, functions, user characteristics and limitation of the system we are designing.
@@ -67,7 +68,9 @@ In order to generate the correct variables for the PID motor controller, we will
 
 The main functions of the product are range safety and site selection through Monte Carlo simulation methodologies, in conjunction with incorporating a PID controller to allow for control tuning and design in the simulation.
 
-The main function of the Monte Carlo simulation is to simulate the rocket in OpenRocket to create a graphical output of predicted landing locations, by varying parameters. These parameters will include basic weather data, parachute ejection time, launch angle and motor performance. By automatically generating and optimizing these parameters, the safety and performance of each simulated flight can be determined from the graphical output. This allows the optimal combination of parameters to be established prior to the launch of the physical rocket.
+The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios which consider all the possible factors in order to determine a landing spot for the rocket. 
+
+We will simulate the rocket in OpenRocket to create a graphical output of predicted landing locations, by varying parameters. These parameters will include basic weather data, parachute ejection time, launch angle and motor performance. By automatically generating and optimizing these parameters, the safety and performance of each simulated flight can be determined from the graphical output. This allows the optimal combination of parameters to be established prior to the launch of the physical rocket.
 
 To meet the requirements of the minimum viable product, the Monte Carlo simulation will:
 - Automatically generate various parameters for the rocket simulation.
@@ -85,21 +88,21 @@ To meet the requirements of the minimum viable product, the PID controller will:
 
 This project will be all open source and as such will need to use open source tools to make it accessible to the community, such as OpenRocket. OpenRocket is a program for all model-rocketeers who intend to estimate their rocket's performance before physically building and flying it. The user should have a general understanding on how to use this software, however there are no educational requirements as this is an open source project. This system may have users with or without OpenRocket experience. Technical expertise will be required while installing and understanding the functions within the system. Users should be familiar with Monte Carlo simulations and PID controllers as well as understanding how they work.
 
+
 #### 1.3.4 Limitations
 
-One page on the limitations on the product (9.5.6)
+*One page on the limitations on the product (9.5.6)*
+
 There are very many possible limitations of the product. 
-<br>
+
 Firstly, there are a few limitations that may occur with the overall project. These are listed below:
 - We are supposed to work in conjunction with other groups. However, due to the recent pandemic, it will be significantly harder to be able to collaborate and share our code with other groups, particularly those that are working with physical hardware. 
 - There is a limited time-frame to the creation of the product. While time-frames are also expected in a real world situation, our time-frame is significantly shorter than given if this were to be carried out with a real rocket. This means that there will be significant cuts needed to be made over what we will be able to include in the product. 
-<br>
 
 Secondly, there are limitations with the _Monte Carlo_simulations. Such examples of these limitations are listed below:
 - Monte Carlo simulations can be complex, and if a proper understanding of the way the program works is not developed, then that can result in incorrect implementation of the program, and therefore incorrect estimates.
 - Values produced by the Monte Carlo simulations are _estimates_. They are not exact values. We need to be able to account for this fact when using the Monte Carlo values.
 
-<br>
 There are also possible limitations of the final product:
 - During the launch of the rocket, the rocket will be sending real-time data back from its current location to the computer used to launch it. This means that it is likely to result in a time-delay between what is currently being picked up by the rocket, and the time that the computer receives this information. 
 - Additionally, there is the possibility of interference being picked up as the data is being transmitted / the data being lost. 
