@@ -107,21 +107,6 @@ One page identifying the main classes of users and their characteristics (9.5.5)
 #### 1.3.4 Limitations
 
 One page on the limitations on the product (9.5.6)
-There are very many possible limitations of the product. 
-<br>
-Firstly, there are a few limitations that may occur with the overall project. These are listed below:
-- We are supposed to work in conjunction with other groups. However, due to the recent pandemic, it will be significantly harder to be able to collaborate and share our code with other groups, particularly those that are working with physical hardware. 
-- There is a limited time-frame to the creation of the product. While time-frames are also expected in a real world situation, our time-frame is significantly shorter than given if this were to be carried out with a real rocket. This means that there will be significant cuts needed to be made over what we will be able to include in the product. 
-<br>
-
-Secondly, there are limitations with the _Monte Carlo_simulations. Such examples of these limitations are listed below:
-- Monte Carlo simulations can be complex, and if a proper understanding of the way the program works is not developed, then that can result in incorrect implementation of the program, and therefore incorrect estimates.
-- Values produced by the Monte Carlo simulations are _estimates_. They are not exact values. We need to be able to account for this fact when using the Monte Carlo values.
-
-<br>
-There are also possible limitations of the final product:
-- During the launch of the rocket, the rocket will be sending real-time data back from its current location to the computer used to launch it. This means that it is likely to result in a time-delay between what is currently being picked up by the rocket, and the time that the computer receives this information. 
-- Additionally, there is the possibility of interference being picked up as the data is being transmitted / the data being lost. 
 
 
 ## 2. References
