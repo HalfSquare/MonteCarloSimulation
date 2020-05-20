@@ -36,7 +36,7 @@ Andre Geldenhuis is our client for this project.
 
 ### 1.1 Purpose
 
-Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hobby rocket.
+Design Monte Carlo simulation software which will statistically predict the rocket's flight and landing performance, and automatically generate the control parameters for the avionics to aid in launching a hobby rocket.
 
 ### 1.2 Scope
 
@@ -64,20 +64,18 @@ In order to generate the correct variables for the PID motor controller, we will
 #### 1.3.2 Product functions
 
 *One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.*
-<br>
+
 The main functions of the product are range safety and site selection through Monte Carlo simulation methodologies, in conjunction with incorporating a PID controller to allow for control tuning and design in the simulation.
-<br>
+
 The main function of the Monte Carlo simulation is to simulate the rocket in OpenRocket to create a graphical output of predicted landing locations, by varying parameters. These parameters will include basic weather data, parachute ejection time, launch angle and motor performance. By automatically generating and optimizing these parameters, the safety and performance of each simulated flight can be determined from the graphical output. This allows the optimal combination of parameters to be established prior to the launch of the physical rocket.
-<br>
+
 To meet the requirements of the minimum viable product, the Monte Carlo simulation will:
 - Automatically generate various parameters for the rocket simulation.
 - Create a graphical output of predicted landing locations from the various parameters generated.
 
-<br>
-
 The main function of the PID controller is to simulate the controller and determine estimates for the controller parameters. This is achieved in OpenRocket through the use of simulation listeners. 
-<br>
-- To meet the requirements of the minimum viable product, the PID controller will:
+
+To meet the requirements of the minimum viable product, the PID controller will:
 - Determine estimates for the PID controller parameters through simulation listeners.
 
 
