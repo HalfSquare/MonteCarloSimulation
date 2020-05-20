@@ -26,7 +26,9 @@ Our group project predominantly focuses on the use of Monte Carlo simulations to
 
 ### Client
 
-| Andre Geldenhuis | 
+| | |
+|---|---|
+| Client | Andre Geldenhuis |
 | Email | andre.geldenhuis@vuw.ac.nz |
 | Mattermost tag | @geldenan |
 
