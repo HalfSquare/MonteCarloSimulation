@@ -46,7 +46,7 @@ Andre Geldenhuis is a staff member at Victoria University of Wellington. He enjo
 ### 1.1 Purpose
 
 *One sentence describing the purpose of the system.*
-Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hobby rocket.
+The purpose of the system is to create use _Monte Carlo_ simulations to most accuratelypredict the trajectory of the rocket and consequently, where the rocket will land.
 
 ### 1.2 Scope
 
