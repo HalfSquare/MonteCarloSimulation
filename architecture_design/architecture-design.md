@@ -41,6 +41,8 @@ Our group project predominantly focuses on the use of Monte Carlo simulations to
 | Email | andre.geldenhuis@vuw.ac.nz |
 | Mattermost tag | @geldenan |
 
+Andre Geldenhuis is a staff member at Victoria University of Wellington. He enjoys loves rockets and is part of the New Zealand Rocketry Association. 
+
 ### 1.1 Purpose
 
 *One sentence describing the purpose of the system.*
