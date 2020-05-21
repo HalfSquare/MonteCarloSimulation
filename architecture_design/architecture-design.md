@@ -25,7 +25,7 @@ All team members are expected to contribute equally to the document and list the
 
 # ENGR 301 Project *NN* Architectural Design and Proof-of-Concept
 
-**Authors:** a comma-separated list of the names of each member of the team.
+**Authors:** Georgia Strongman, Justina Koh
 
 ## 1. Introduction
 
