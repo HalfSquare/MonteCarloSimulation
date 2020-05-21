@@ -104,6 +104,7 @@ Each architectural view should include at least one architectural model. If arch
 
 ### 4.1 Logical
 
+### 4.2 Development
 #### 4.2.1 Roles and Responsibilities:
 
 This section has been addede to show who is involved in the project and what role they take. 
@@ -120,9 +121,6 @@ This section has been addede to show who is involved in the project and what rol
 | Justina Koh | Software Engineer |
 | Max McMurray | Software Engineer |
 | Michael Behan | Software Engineer |
-
-### 4.2 Development
-...
 
 ### 4.3 Process
 ...
