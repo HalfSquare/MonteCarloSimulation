@@ -236,29 +236,21 @@ SimulationData "1" -- WeatherData
 SimulationData "1" -- TopographicalData
 @enduml
 ```
-##### Brief description of the responsibilities of each class in the model
+##### Responsibilities of each class in the model
 
-**Main** - Runs the overall system.
-
-**GUI** - Allows the user to navigate through the system.
-
-**MonteCarloSimulation** - Runs the Monte Carlo Simulation.
-
-**MissionControlSettings** - Holds the information for the Mission Control Settings.
-
-**GraphData** - Creates the graphical output of the Monte Carlo Simulation.
-
-**SimulationData** - Contains all of the data for the Monte Carlo Simulation.
-
-**WeatherData** - Type of Simulation Data.
-
-**WindData** - Type of Weather Data.
-
-**AtmosphericData** - Type of Weather Data.
-
-**TopographicalData** - Type of Simulation Data.
-
-**MountainData** - Type of Topographical Data.
+| Class | Brief description |
+|---|---|
+| Main | Runs the overall system.|
+| GUI | Allows the user to navigate through the system. |
+| MonteCarloSimulation | Runs the Monte Carlo Simulation. |
+| MissionControlSettings | Holds the information for the Mission Control Settings. |
+| GraphData | Creates the graphical output of the Monte Carlo Simulation. |
+| SimulationData | Contains all of the data for the Monte Carlo Simulation. |
+| WeatherData | Type of Simulation Data. |
+| WindData | Type of Weather Data. |
+| AtmosphericData | Type of Weather Data. |
+| TopographicalData | Type of Simulation Data. |
+| MountainData | Type of Topographical Data. |
 
 ### 3.6 Design constraints
 
