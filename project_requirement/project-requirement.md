@@ -371,7 +371,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Georgia | 5.3 Risks |
 | Max | 5.3 Risks |
 | Justina | 1. Introduction |
-| Jacqui | 1. Introduction |
+| Jacqui | 1. Introduction, 3.5 UML Diagram |
 
 ---
 
