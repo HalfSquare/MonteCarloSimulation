@@ -244,7 +244,7 @@ SimulationData "1" -- TopographicalData
 | GUI | Allows the user to navigate through the system. |
 | MonteCarloSimulation | Runs the Monte Carlo Simulation. |
 | MissionControlSettings | Holds the information for the Mission Control Settings. |
-| GraphData | Creates the graphical output of the Monte Carlo Simulation. |
+| GraphData | Creates, displays and compares the graphical output of the Monte Carlo Simulation. |
 | SimulationData | Contains all of the data for the Monte Carlo Simulation. |
 | WeatherData | Type of Simulation Data. |
 | WindData | Type of Weather Data. |
