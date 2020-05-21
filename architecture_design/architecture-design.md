@@ -41,12 +41,12 @@ Our group project predominantly focuses on the use of Monte Carlo simulations to
 | Email | andre.geldenhuis@vuw.ac.nz |
 | Mattermost tag | @geldenan |
 
+Andre Geldenhuis is a staff member at Victoria University of Wellington. He enjoys loves rockets and is part of the New Zealand Rocketry Association. 
 
 ### 1.1 Purpose
 
 *One sentence describing the purpose of the system.*
-
-
+The purpose of the system is to create use _Monte Carlo_ simulations to most accuratelypredict the trajectory of the rocket and consequently, where the rocket will land.
 ### 1.2 Scope
 
 *One paragraph describing the scope of the system.*
