@@ -390,7 +390,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Georgia | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, Safe Computing Wiki (for H&S) |
 | Max | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2 |
 | Justina | 1.0, 1.1, 1. Introduction |
-| Jacqui | 1.0, 1.1, 1. Introduction |
+| Jacqui | 1.0, 1.1, 1. Introduction, 3.5 UML Diagram |
 
 ---
 
