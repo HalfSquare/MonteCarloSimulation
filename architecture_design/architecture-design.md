@@ -132,6 +132,11 @@ The details of our sprint such as issues, tasks etc. will be recorded on board o
 
 In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute taker the week. 
 
+#### 4.2.3 Project Development Standards
+
+In order to ensure that all work being produced is of good quality and free from errors, we will be doing the following:
+1. 
+
 ### 4.3 Process
 ...
 
