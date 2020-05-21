@@ -12,8 +12,10 @@ All team members are expected to contribute equally to the document and list the
 
 <div style="page-break-after: always;"></div>
 
-# ENGR 301 Project *NN* Project Proposal and Requirements Document
+# ENGR 301 Project 15 Project Proposal and Requirements Document
 #### Author list, a comma-separated list of the names of each member of the team.
+
+Max McMurray, Georgia Strongman, Michael Behan, Alexander Pace, Jacqueline Dong, Justina Koh
 
 ## 1. Introduction
 
@@ -383,12 +385,12 @@ A one page statement of contributions, including a list of each member of the gr
 
 | Contributor | Sections |
 | :---: | :------- |
-| Michael | 1.2 Scope, 7. Contributions |
-| Alex | 1.2 Scope, 7. Contributions, Monte Carlo wiki page |
-| Georgia | 5.3 Risks |
-| Max | 5.3 Risks |
-| Justina | 1. Introduction |
-| Jacqui | 1. Introduction, 3.5 UML Diagram |
+| Michael | 1.0, 1.1, 1.2, 7. Contributions, 3.2 |
+| Alex | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.2 |
+| Georgia | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, Safe Computing Wiki (for H&S) |
+| Max | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2 |
+| Justina | 1.0, 1.1, 1. Introduction |
+| Jacqui | 1.0, 1.1, 1. Introduction |
 
 ---
 
