@@ -157,9 +157,102 @@ See 9.5.13. for most systems this will be around one page. Hardware projects als
 
 ### 3.5 Logical database requirements
 
-See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).
+*See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).*
 
-You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).
+*You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).*
+
+##### Overview Domain Model
+
+```plantuml
+@startuml
+
+class Main{
++ newGUI()
+}
+
+class GUI{
++ helpInfo()
++ newMonteCarloSimulation()
++ MissionControlSettings()
+}
+
+class MonteCarloSimulation{
+- currentData : SimulationData
++ runSimulation()
++ stopSimulation()
++ saveSimulation()
+}
+
+class MissionControlSettings{
+- rocketAngle : double
++ displaySettings()
++ changeSettings()
+}
+
+class GraphData{
++ createGraph()
++ displayGraph()
++ compareGraph()
+}
+
+class SimulationData{
+- weatherList : List<WeatherData>
+- topographicalList : List<TopographicalData>
++ addTopographicalData()
++ addWeatherData()
++ loadDataFile()
+}
+
+class WeatherData extends SimulationData {
+- windDataList : List
+- atmosphericDataList : List
++ addWindData()
++ addAtmosphericData()
+}
+
+class WindData extends WeatherData{
+- windDirection : String
+- gust : String
+}
+
+class AtmosphericData extends WeatherData{
+- clouds : Double
+}
+
+class TopographicalData extends SimulationData {
+- MountainDataList : List
++ addMountainData()
+}
+
+class MountainData extends TopographicalData{
+- xcoordinate : double
+}
+
+
+Main "1..*" --  "1" GUI
+GUI "1" -- "1" MonteCarloSimulation
+GUI "1" -- "1" MissionControlSettings
+MonteCarloSimulation "1" -- SimulationData
+MonteCarloSimulation "1" -- GraphData
+SimulationData "1" -- WeatherData
+SimulationData "1" -- TopographicalData
+@enduml
+```
+##### Responsibilities of each class in the model
+
+| Class | Brief description |
+|---|---|
+| Main | Runs the overall system.|
+| GUI | Allows the user to navigate through the system. |
+| MonteCarloSimulation | Runs the Monte Carlo Simulation. |
+| MissionControlSettings | Holds the information for the Mission Control Settings. |
+| GraphData | Creates, displays and compares the graphical output of the Monte Carlo Simulation. |
+| SimulationData | Contains all of the data for the Monte Carlo Simulation. |
+| WeatherData | Type of Simulation Data. |
+| WindData | Type of Weather Data. |
+| AtmosphericData | Type of Weather Data. |
+| TopographicalData | Type of Simulation Data. |
+| MountainData | Type of Topographical Data. |
 
 ### 3.6 Design constraints
 
