@@ -122,6 +122,16 @@ This section has been addede to show who is involved in the project and what rol
 | Max McMurray | Software Engineer |
 | Michael Behan | Software Engineer |
 
+#### 4.2.2 Project Management Development technique 
+
+We will be using the _Agile method_ in order to develop our product. In particular, we will be using the Scrum methodology of Agile, and will assign a new Scrum master to each sprint. Our sprints will be one week long, and we will also conduct a weekly retrospective with our senior manager. 
+
+At each meeting we will also be taking minutes. This will be recorded in (insert link here) and there will also be a weekly rotation for who takes these.
+
+The details of our sprint such as issues, tasks etc. will be recorded on board on gitlab (insert link here). 
+
+In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute taker the week. 
+
 ### 4.3 Process
 ...
 
