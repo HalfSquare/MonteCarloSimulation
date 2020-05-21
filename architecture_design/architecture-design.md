@@ -25,7 +25,7 @@ All team members are expected to contribute equally to the document and list the
 
 # ENGR 301 Project *NN* Architectural Design and Proof-of-Concept
 
-**Authors:** 
+**Authors:** Justina Koh, Jacqui Dong, Georgia Strongman 
 
 ## 1. Introduction
 
@@ -103,7 +103,23 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
-...
+
+#### 4.2.1 Roles and Responsibilities:
+
+This section has been addede to show who is involved in the project and what role they take. 
+
+| Name | Role |
+| ------ | ------ |
+| Andre Geldenhuis | Client |
+| Craig Anslow | Course coordinator |
+| Benjamin Secker | Senior Manager |
+| ------ | ------ |
+| Alex Pace | Software Engineer |
+| Georgie Strongman | Software Engineer |
+| Jacqui Dong | Software Engineer |
+| Justina Koh | Software Engineer |
+| Max McMurray | Software Engineer |
+| Michael Behan | Software Engineer |
 
 ### 4.2 Development
 ...
