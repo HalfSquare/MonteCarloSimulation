@@ -135,7 +135,7 @@ Typical users scale from experienced with model rocket use to people just starti
 
 ##### Use Cases
 
-User runs and re-runs simulation with data saved to file
+**User runs and re-runs simulation with data saved to file**
 
 | Persona/User | System Response |
 |---|---|
@@ -149,7 +149,7 @@ User runs and re-runs simulation with data saved to file
 | | Run simulation again and show the new data graphically |
 | | Simulation data is saved to a file |
 
-User runs and re-runs simulation
+**User runs and re-runs simulation**
 
 | Persona/User | System Response |
 |---|---|
@@ -160,7 +160,7 @@ User runs and re-runs simulation
 | User selects 'Re-Run Simulation' | |
 | | Run simulation again and show the new data graphically |
 
-User runs simulation and saves to file
+**User runs simulation and saves to file**
 
 | Persona/User | System Response |
 |---|---|
@@ -171,7 +171,7 @@ User runs simulation and saves to file
 | User selects 'Save to File' | |
 | | Simulation data is saved to a file |
 
-User runs simulation
+**User runs simulation**
 
 | Persona/User | System Response |
 |---|---|
@@ -180,7 +180,7 @@ User runs simulation
 | | Finish simulation |
 | | Show the data graphically |
 
-User finishes simulation early
+**User finishes simulation early**
 
 | Persona/User | System Response |
 |---|---|
@@ -190,7 +190,7 @@ User finishes simulation early
 | | Finish simulation early |
 | | Show the data graphically |
 
-User aborts simulation
+**User aborts simulation**
 
 | Persona/User | System Response |
 |---|---|
@@ -200,7 +200,7 @@ User aborts simulation
 | | Abort simulation |
 | | Throw away data |
 
-User gets help
+**User gets help**
 
 | Persona/User | System Response |
 |---|---|
@@ -211,7 +211,7 @@ User gets help
 | | Finish simulation |
 | | Show the data graphically |
 
-User adds topographical data
+**User adds topographical data**
 
 | Persona/User | System Response |
 |---|---|
@@ -221,7 +221,7 @@ User adds topographical data
 |User selects 'continue'||
 ||Save topographical data to working simulation file|
 
-User adds weather data
+**User adds weather data**
 
 | Persona/User | System Response |
 |---|---|
@@ -231,7 +231,7 @@ User adds weather data
 
 *Discuss with mission control group*
 
-User integrates mission control
+**User integrates mission control**
 
 | Persona/User | System Response |
 |---|---|
@@ -243,7 +243,7 @@ User integrates mission control
 | | Finish simulation |
 | | Show the data graphically |
 
-User integrates multiple mission control options across multiple simulations
+**User integrates multiple mission control options across multiple simulations**
 
 | Persona/User | System Response |
 |---|---|
