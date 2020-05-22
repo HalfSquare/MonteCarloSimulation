@@ -23,12 +23,12 @@ Throughout the World, rockets are used for a plethora of reasons: to launch sate
 
 The project designed by the Course Coordinator is triadic: the first part involves the actual building of the rocket, the second part involves the programming of the rocket, and the third part involves the use of external software to test the predictability and likelihood of success of the rocket. While these subprojects are primarily designed to be carried out individually, ultimately, communication is to occur between the three groups to create a wholly, and successfully functioning rocket. 
 
-Our group project predominantly focuses on the use of Monte Carlo simulations to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction and weather conditions. 
+Our group project predominantly focuses on the use of Monte Carlo simulations [1] to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction and weather conditions. 
 
 
 ### Client
 
-Andre Geldenhuis is our client for this project.
+Andre Geldenhuis is our client for this project [2].
 
 | | |
 |---|---|
@@ -38,13 +38,11 @@ Andre Geldenhuis is our client for this project.
 
 ### 1.1 Purpose
 
-Design Monte Carlo simulation software which will statistically predict the rocket's flight and landing performance, and automatically generate the control parameters for the avionics to aid in launching a hobby rocket.
+Design Monte Carlo simulation [1] software which will statistically predict the rocket's flight and landing performance, and automatically generate the control parameters for the avionics to aid in launching a hobby rocket [2].
 
 ### 1.2 Scope
 
-*One paragraph describing the scope of the system (9.5.2)*
-
-A plugin for OpenRocket that utilises pre-existing frameworks to run simulations according to the Monte Carlo method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
+A plugin for OpenRocket [3] that utilises pre-existing frameworks to run simulations according to the Monte Carlo [1] method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
 
 
 ### 1.3 Product overview 
@@ -59,7 +57,7 @@ The system that we are designing is a subelement of the larger system, and it ha
 
 Rockets are incredibly costly and require a lot of time and manpower in order to create. Additionally, a failing rocket can have disastrous consequences, and therefore when building a rocket it is essential that all possible variables and factors are considered to prevent any sort of failure. To help prevent rocket failure, we have been assigned a project which will help determine two things, where the rocket will land after being launched, and the estimates required for the PID controller in the motor.
 
-The first part uses _Monte Carlo_ simulations to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find correct variables for the PID motor in the rocket. 
+The first part uses _Monte Carlo_ simulations [1] to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find correct variables for the PID motor in the rocket. 
 
 In order to generate the correct variables for the PID motor controller, we will need to work in collaboration with the Mission Control teams and integrate our simulation software with their software. The success of the rocket flight simulations will be dependent on design and union of both software systems. 
 
@@ -68,13 +66,13 @@ In order to generate the correct variables for the PID motor controller, we will
 
 *One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.*
 
-The main functions of the product are range safety and site selection through Monte Carlo simulation methodologies, in conjunction with incorporating a PID controller to allow for control tuning and design in the simulation.
+The main functions of the product are range safety and site selection through Monte Carlo simulation [1] methodologies, in conjunction with incorporating a PID controller to allow for control tuning and design in the simulation.
 
 The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios which consider all the possible factors in order to determine a landing spot for the rocket. 
 
-We will simulate the rocket in OpenRocket to create a graphical output of predicted landing locations, by varying parameters. These parameters will include basic weather data, parachute ejection time, launch angle and motor performance. By automatically generating and optimizing these parameters, the safety and performance of each simulated flight can be determined from the graphical output. This allows the optimal combination of parameters to be established prior to the launch of the physical rocket.
+We will simulate the rocket in OpenRocket [3] to create a graphical output of predicted landing locations, by varying parameters. These parameters will include basic weather data, parachute ejection time, launch angle and motor performance. By automatically generating and optimizing these parameters, the safety and performance of each simulated flight can be determined from the graphical output. This allows the optimal combination of parameters to be established prior to the launch of the physical rocket.
 
-To meet the requirements of the minimum viable product, the Monte Carlo simulation will:
+To meet the requirements of the minimum viable product, the Monte Carlo simulation [1] will:
 - Automatically generate various parameters for the rocket simulation.
 - Create a graphical output of predicted landing locations from the various parameters generated.
 
@@ -88,7 +86,7 @@ To meet the requirements of the minimum viable product, the PID controller will:
 
 *One page identifying the main classes of users and their characteristics (9.5.5)*
 
-This project will be all open source and as such will need to use open source tools to make it accessible to the community, such as OpenRocket. OpenRocket is a program for all model-rocketeers who intend to estimate their rocket's performance before physically building and flying it. The user should have a general understanding on how to use this software, however there are no educational requirements as this is an open source project. This system may have users with or without OpenRocket experience. Technical expertise will be required while installing and understanding the functions within the system. Users should be familiar with Monte Carlo simulations and PID controllers as well as understanding how they work.
+This project will be all open source and as such will need to use open source tools to make it accessible to the community, such as OpenRocket [3]. OpenRocket is a program for all model-rocketeers who intend to estimate their rocket's performance before physically building and flying it. The user should have a general understanding on how to use this software, however there are no educational requirements as this is an open source project. This system may have users with or without OpenRocket experience. Technical expertise will be required while installing and understanding the functions within the system. Users should be familiar with Monte Carlo simulations and PID controllers as well as understanding how they work.
 
 
 #### 1.3.4 Limitations
@@ -101,7 +99,7 @@ Firstly, there are a few limitations that may occur with the overall project. Th
 - We are supposed to work in conjunction with other groups. However, due to the recent pandemic, it will be significantly harder to be able to collaborate and share our code with other groups, particularly those that are working with physical hardware. 
 - There is a limited time-frame to the creation of the product. While time-frames are also expected in a real world situation, our time-frame is significantly shorter than given if this were to be carried out with a real rocket. This means that there will be significant cuts needed to be made over what we will be able to include in the product. 
 
-Secondly, there are limitations with the _Monte Carlo_simulations. Such examples of these limitations are listed below:
+Secondly, there are limitations with the _Monte Carlo_simulations [1]. Such examples of these limitations are listed below:
 - Monte Carlo simulations can be complex, and if a proper understanding of the way the program works is not developed, then that can result in incorrect implementation of the program, and therefore incorrect estimates.
 - Values produced by the Monte Carlo simulations are _estimates_. They are not exact values. We need to be able to account for this fact when using the Monte Carlo values.
 
@@ -112,7 +110,14 @@ There are also possible limitations of the final product:
 
 ## 2. References
 
-References to other documents or standards. Follow the IEEE Citation  Reference scheme, available from the [IEEE website](https://www.ieee.org/) (please use the search box). (1 page, longer if required)
+[1] A. Pace, "Monte Carlo Simulation", May, 2020. [Online]. Available: https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/Monte-Carlo-Simulation. [Accessed May. 20, 2020].
+
+[2] A. Geldenhuis, "Rocket Project Intro", Date unknown. [Online]. Available: https://andre-geldenhuis.github.io/rocket-intro-2020-slides/index.html. [Accessed May. 20, 2020].
+
+[3] M. Behan, "OpenRocket - Extending OpenRocket", May, 2020. [Online]. Available: https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/OpenRocket. [Accessed May. 20, 2020].
+
+[4] G. Strongman, "Ergonomics and Safe Computer Usage", May, 2020. [Online]. Available: https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Other/Ergonomics-and-Safe-Computer-Usage. [Accessed May. 20, 2020]
+
 
 ## 3. Specific requirements  
 
@@ -309,7 +314,7 @@ Key project deliverables:
 
 *Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall).*
 
-As all developers are unpaid, OpenRocket is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
+As all developers are unpaid, OpenRocket [3] is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
 
 ### 5.3 Risks 
 
