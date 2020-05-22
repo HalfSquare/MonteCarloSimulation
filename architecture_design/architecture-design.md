@@ -116,11 +116,13 @@ This section has been addede to show who is involved in the project and what rol
 | Benjamin Secker | Senior Manager |
 | ------ | ------ |
 | Alex Pace | Software Engineer |
-| Georgie Strongman | Software Engineer |
-| Jacqui Dong | Software Engineer |
-| Justina Koh | Software Engineer |
-| Max McMurray | Software Engineer |
-| Michael Behan | Software Engineer |
+| Georgie Strongman | Software Developer |
+| Jacqui Dong | Software Developer |
+| Justina Koh | Software Developer |
+| Max McMurray | Software Developer |
+| Michael Behan | Software Developer |
+
+As this is a team project, we decided that is was most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one it taking charge of the project as a whole. 
 
 #### 4.2.2 Project Management Development technique 
 
@@ -131,6 +133,9 @@ At each meeting we will also be taking minutes. This will be recorded in (insert
 The details of our sprint such as issues, tasks etc. will be recorded on board on gitlab (insert link here). 
 
 In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute taker the week. 
+
+Link:
+* [Timetable for minutes, scrum master and project](Project/Minute-and-Scrum-Master-Timetable)
 
 #### 4.2.3 Project Development Standards
 
