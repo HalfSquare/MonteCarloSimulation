@@ -122,25 +122,24 @@ This section has been addede to show who is involved in the project and what rol
 | Max McMurray | Software Developer |
 | Michael Behan | Software Developer |
 
-As this is a team project, we decided that is was most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one it taking charge of the project as a whole. 
+As this is a team project, we decided that is was most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one it taking charge of the project as a whole. Instead we will have a rotation which will allow each team member to be a scrum master and minute taker for at least one sprint. (Please read 4.2.2 - Project Management Development Technique for more details.)
 
 #### 4.2.2 Project Management Development technique 
 
-We will be using the _Agile method_ in order to develop our product. In particular, we will be using the Scrum methodology of Agile, and will assign a new Scrum master to each sprint. Our sprints will be one week long, and we will also conduct a weekly retrospective with our senior manager. 
+We will be using the _Agile method_ in order to develop our product. In particular, we will be using the Scrum methodology of Agile, and will assign a new Scrum master to each new sprint. Our sprints will be two weeks long, and we will also conduct a bi-weekly retrospective discussing what went wrong/right in the previous sprint, and a bi-weekly meeting with senior manager. 
 
-At each meeting we will also be taking minutes. This will be recorded in (insert link here) and there will also be a weekly rotation for who takes these.
-
-The details of our sprint such as issues, tasks etc. will be recorded on board on gitlab (insert link here). 
+At each meeting we will also be taking minutes. This will be recorded in the 'timetable for miiuntes, scrum master and project' and the minute taker will be rotated between the group members in-coordination with our sprints.
 
 In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute taker the week. 
 
-Link:
 * [Timetable for minutes, scrum master and project](Project/Minute-and-Scrum-Master-Timetable)
 
 #### 4.2.3 Project Development Standards
 
 In order to ensure that all work being produced is of good quality and free from errors, we will be doing the following:
-1. 
+1. We will branch before editing code or documents.
+2. We will submit a merge request which must be approved by a minimum of one other person in the team who did not work on that branch. 
+...
 
 ### 4.3 Process
 ...
