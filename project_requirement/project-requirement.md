@@ -36,6 +36,7 @@ Andre Geldenhuis is our client for this project [2].
 | Email | andre.geldenhuis@vuw.ac.nz |
 | Mattermost tag | @geldenan |
 
+
 ### 1.1 Purpose
 
 Design Monte Carlo simulation [1] software which will statistically predict the rocket's flight and landing performance, and automatically generate the control parameters for the avionics to aid in launching a hobby rocket [2].
@@ -43,7 +44,6 @@ Design Monte Carlo simulation [1] software which will statistically predict the 
 ### 1.2 Scope
 
 A plugin for OpenRocket [3] that utilises pre-existing frameworks to run simulations according to the Monte Carlo [1] method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
-
 
 ### 1.3 Product overview 
 The part that we are designing is a subelement of an overall project, and it has been created so that it has the ability to work in conjunction with a larger rocket system which other groups are working on. The overbranching theme of the project is to be able to create a rocket which is able to successfully launch outside with the given conditions. <br>
@@ -56,8 +56,6 @@ The product overview defines the product perspective, functions, user characteri
 
 #### 1.3.1 Product perspective
 
-*One page defining the system's relationship to other related products (9.5.3. but not the subsections in the standard.)*
-
 The system that we are designing is a subelement of the larger system, and it has been created so that it has the ability to work in conjunction with a larger rocket system which other groups are working on. The overbranching theme of the project is to be able to create a rocket which is able to successfully launch outside with the given conditions. The simulation software we are designing will statistically predict the rocket's flight and help design the control parameters for the avionics. 
 
 Rockets are incredibly costly and require a lot of time and manpower in order to create. Additionally, a failing rocket can have disastrous consequences, and therefore when building a rocket it is essential that all possible variables and factors are considered to prevent any sort of failure. To help prevent rocket failure, we have been assigned a project which will help determine two things, where the rocket will land after being launched, and the estimates required for the PID controller in the motor.
@@ -66,10 +64,7 @@ The first part uses _Monte Carlo_ simulations [1] to factor in all possible vari
 
 In order to generate the correct variables for the PID motor controller, we will need to work in collaboration with the Mission Control teams and integrate our simulation software with their software. The success of the rocket flight simulations will be dependent on design and union of both software systems. 
 
-
 #### 1.3.2 Product functions
-
-*One page summary of the main functions of the product (9.5.4), briefly characterising the minimum viable product.*
 
 The main functions of the product are range safety and site selection through Monte Carlo simulation [1] methodologies, in conjunction with incorporating a PID controller to allow for control tuning and design in the simulation.
 
@@ -89,14 +84,10 @@ To meet the requirements of the minimum viable product, the PID controller will:
 
 #### 1.3.3 User characteristics   
 
-*One page identifying the main classes of users and their characteristics (9.5.5)*
-
 This project will be all open source and as such will need to use open source tools to make it accessible to the community, such as OpenRocket [3]. OpenRocket is a program for all model-rocketeers who intend to estimate their rocket's performance before physically building and flying it. The user should have a general understanding on how to use this software, however there are no educational requirements as this is an open source project. This system may have users with or without OpenRocket experience. Technical expertise will be required while installing and understanding the functions within the system. Users should be familiar with Monte Carlo simulations and PID controllers as well as understanding how they work.
 
 
 #### 1.3.4 Limitations
-
-*One page on the limitations on the product (9.5.6)*
 
 There are very many possible limitations of the product. 
 
@@ -135,7 +126,6 @@ There are also possible limitations of the final product:
 See 9.5.10. for most systems this will be around one page. 
 
 ### 3.2 Functions
-*This is typically the longest subsection in the document. List up to fifty use cases (in order of priority for development), and for at least top ten focal use cases, write a short goal statement and use case body (up to seven pages).  Identify the use cases that comprise a minimum viable product.*
 
 ##### Persona scale
 Typical users scale from experienced with model rocket use to people just starting. They also scale in their confidence in computer usage.
@@ -298,10 +288,6 @@ See 9.5.13. for most systems this will be around one page. Hardware projects als
 
 
 ### 3.5 Logical database requirements
-
-*See 9.5.14. for most systems, a focus on d) and e) is appropriate, such as an object-oriented domain analysis. You should provide an overview domain model (e.g.  a UML class diagram of approximately ten classes) and write a brief description of the responsibilities of each class in the model (3 pages).*
-
-*You should use right tools, preferabley PlantUML, to draw your URL diagrams which can be easily embedded into a Mardown file (PlantUML is also supported by GitLab and Foswiki).*
 
 ##### Overview Domain Model
 
@@ -466,8 +452,6 @@ Sprint schedule:
 (1 page).
 
 ### 5.2 Budget
-
-*Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall).*
 
 As all developers are unpaid, OpenRocket [3] is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
 We will ensure that any design and software choices take into account the lack of budget. 
