@@ -29,19 +29,27 @@ All team members are expected to contribute equally to the document and list the
 
 ## 1. Introduction
 
-One page overall introduction including sections 1.1 and 1.2 (ISO/IEC/IEEE 42010:2011(E) clause 5.2)
+*One page overall introduction including sections 1.1 and 1.2 (ISO/IEC/IEEE 42010:2011(E) clause 5.2)*
+Throughout the World, rockets are used for a plethora of reasons: to launch satellites, human spaceflight and space exploration to name a few. The process of building and launching rockets is incredibly expensive, and so it is paramount to factor in all possible conditions and outcomes that could occur when launching a rocket.
+The project designed by the Course Coordinator is triadic: the first part involves the actual building of the rocket, the second part involves the programming of the rocket, and the third part involves the use of external software to test the predictability and likelihood of success of the rocket. While these subprojects are primarily designed to be carried out individually, ultimately, communication is to occur between the three groups to create a wholly, and successfully functioning rocket.
+Our group project predominantly focuses on the use of Monte Carlo simulations to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction and weather conditions.
 
 ### Client
-
-Identify the client and their contact details.
+| | |
+|---|---|
+| Client | Andre Geldenhuis |
+| Email | andre.geldenhuis@vuw.ac.nz |
+| Mattermost tag | @geldenan |
 
 ### 1.1 Purpose
 
-One sentence describing the purpose of the system.
+*One sentence describing the purpose of the system.*
+Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hobby rocket.
 
 ### 1.2 Scope
 
-One paragraph describing the scope of the system.
+*One paragraph describing the scope of the system.*
+A plugin for OpenRocket that utilises pre-existing frameworks to run simulations according to the Monte Carlo method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
 
 ### 1.3 Changes to requirements
 
@@ -116,19 +124,29 @@ Schedules must be justified and supported by evidences; they must be either dire
 
 ### 5.1 Schedule
 
-Identify dates for key project deliverables:
+*Identify dates for key project deliverables:*
 
-1. prototype(s).
-1. first deployment to the client.
-1. further improvements required or specified by the client.
+*1. prototype(s).*
+*1. first deployment to the client.*
+*1. further improvements required or specified by the client.*
 
-(1 page).
+Key project deliverables: 
+
+| Deliverable: | Date: |
+|------|-------|
+| Architectural Prototype | |
+| Minimum Viable Product | |
+| Further Releases | |
+| Final Release | November 2020 tbc |
+
 
 ### 5.2 Budget and Procurement
 
 #### 5.2.1 Budget
 
-Present a budget for the project (as a table), showing the amount of expenditure the project requires and the date(s) on which it will be incurred. Substantiate each budget item by reference to fulfilment of project goals (one paragraph per item).
+*Present a budget for the project (as a table), showing the amount of expenditure the project requires and the date(s) on which it will be incurred. Substantiate each budget item by reference to fulfilment of project goals (one paragraph per item).*
+
+As all developers are unpaid, OpenRocket is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
 
 (1 page). 
 
@@ -139,16 +157,43 @@ Present a table of goods or services that will be required to deliver project go
 
 ### 5.3 Risks 
 
-Identify the ten most important project risks: their type, likelihood, impact, and mitigation strategies (3 pages).
+*Identify the ten most important project risks: their type, likelihood, impact, and mitigation strategies (3 pages).*
+
+| Risk | Likelihood | Impact | Mitigation |
+|------|-------|-------|-----|
+| Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High | Tolerable | As we are already at home in quarantine, we are already used to working remotely, and do not need to worry about spreading any sickness. In the case that a team member is too sick to work, we should be able to rearrange duties to cover the workload as it is a team of 6 developers, and it is likely that another team member has the skills required to cover the work. We will also make an effort to keep documentation of what has been done and what is being worked on, along with having weekly stand-up meetings to discuss what is being worked on, and to keep all team members updated of the current situation. |
+| The personal equipment of a team member failing (e.g. computers/internet/power loss) | Moderate | Serious | As we are all working remotely, if a team member's personal equipment fails (such as desktop/laptop), we will have to work without them until repairs can be made. As a team of 6, we should be able to reassign duties to cover the workload between the remaining members. If a more uncontrollable event happens, such as a powercut/loss of power, or loss of internet, to mitigate the loss of work, we will make sure to commit often so that all completed work is accessible to team members. |
+| Changes to the project requirements requiring minor reworks of the system | Moderate | Tolerable | We will maintain regular contact with the customer to ensure that we are aware and understand the customer’s needs and requirements, to avoid misunderstanding the project requirements. We will keep our program as flexible as possible, to ensure that changes to the requirements do not require large changes to our system. |
+| Improper use of computer equipment resulting in injury | High | Serious | We will ensure that all group members take regular breaks to stretch, walk around, and rest their eyes, to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI). |
+| External tools failing to provide expected functionality (e.g. openRocket) | Moderate | Serious | Before beginning to use any tool, the team will do research into the tool to ensure that it will provide the functionality we need, and that we understand the capabilities provided by the tool. |
+| The time required to develop the software is underestimated | High | Serious | The team will regularly review the progress we have made at each weekly meeting to ensure that we are making sufficient progress on the project according to our estimates. If we have underestimated the tiem requirement, this will become clear and we will be able to compensate accordingly  |
+| Team members have other commitments come up leading to not having enough time to commit to working on the project | Moderate | Tolerable | The team will keep open communication about outside commitments, so that only a reasonable time commitment is expected of each member per week. If necessary, we will adjust the duties of overburdened members to keep the workload reasonable. |
+| A skill is required for the project that no team member can provide | Low | Catastrophic | The team will keep communication open so that we are aware of each member's skills and abilities, along with their skill level in certain areas. This will mean we are able to effectively choose certain tools and languages for the project that complement our skills. |
+| New team members or team members leaving the project | Low | Tolerable | The team will commit work regulary and keep clear documentation of progress, so that team member changes mean duties can be picked up smoothly, and that no work is lost. |
+| Updates to external tools causing issues with the project | Low | Serious | The team will keep up-to-date with any changes made to tools, and if neccesary, change tools to somethinhg that will be compatible with the project.  |
 
 ### 5.4 Health and Safety
 
-Document here project requirements for Health and Safety.
+
+1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc. 
+
+All team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.)
+We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. 
+
+2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received. 
+
+All work will be done remotely at each team member's place of residence.
+
+3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
+
+The project will not require any human or animal experimentation.
+
 
 #### 5.4.1 Safety Plans
 
-Safety Plans may be required for some projects, depending on project requirements.
+*Safety Plans may be required for some projects, depending on project requirements.*
 
+The project is purely software, therefore project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
 
@@ -163,6 +208,15 @@ One page glossary as required
 ## 7. Contributions
 
 An one page statement of contributions, including a list of each member of the group and what they contributed to this document.
+
+| Contributor | Sections |
+| :---: | :------- |
+| Michael | |
+| Alex | |
+| Georgia | |
+| Max | |
+| Justina | |
+|Jacqui | |
 
 ---
 
