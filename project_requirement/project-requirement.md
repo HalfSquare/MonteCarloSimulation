@@ -438,6 +438,24 @@ Key project deliverables:
 | Further Releases | |
 | Final Release | November 2020 tbc |
 
+Sprint schedule:
+
+*Goals are just a broad, rough plan and should be tweaked and updated to include sprint planning.*
+
+| Week:      | Sprint No:              | Goal:                                                  |
+|------------|-------------------------|--------------------------------------------------------|
+| T1 Week 7     | Sprint 1                | Push to complete the bulk of the documentation             |
+| T1 Week 8-9   | Sprint 2                | Finishing documentation and beginning programming      |
+| T1 Week 10-11 | Sprint 3                | Transitioning from documentation to solely programming |
+| T1 Week 12    | No sprint  (terms test) |                                                        |
+| -BREAK-    | No sprint               |                                                        |
+| T2 Week 1-2   | Sprint 4                | Picking up from before the break, reorienting goals    |
+| T2 Week 3-4   | Sprint 5                | Working on extension and adding features               |
+| T2 Week 5-6   | Sprint 6                | Working on extension and adding features               |
+| T2 Week 7-8   | Sprint 7                | Working on extension and adding features               |
+| T2 Week 9-10  | Sprint 8                | Pushing to complete features from project requirement  |
+| T2 Week 11-12 | Sprint 9                | Readying project for deployment                        |
+
 (1 page).
 
 ### 5.2 Budget
@@ -448,11 +466,7 @@ As all developers are unpaid, OpenRocket [3] is open-source software and we will
 
 ### 5.3 Risks 
 
-*Identify the ten most important project risks to achieving project goals: their type, likelihood, impact, and mitigation strategies (3 pages).*
-
-*If the project will involve any work outside the ECS laboratories, i.e. off-campus activities, these should be included in the following section.*
-
-| Risk | Likelihood *(Low, Moderate, High)* | Impact *(Insignificant, Tolerable, Serious, Catastrophic)* | Mitigation |
+| Risk | Likelihood | Impact | Mitigation |
 |------|-------|-------|-----|
 | Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High | Tolerable | As we are already at home in quarantine, we are already used to working remotely, and do not need to worry about spreading any sickness. In the case that a team member is too sick to work, we should be able to rearrange duties to cover the workload as it is a team of 6 developers, and it is likely that another team member has the skills required to cover the work. We will also make an effort to keep documentation of what has been done and what is being worked on, along with having weekly stand-up meetings to discuss what is being worked on, and to keep all team members updated of the current situation. |
 | The personal equipment of a team member failing (e.g. computers/internet/power loss) | Moderate | Serious | As we are all working remotely, if a team member's personal equipment fails (such as desktop/laptop), we will have to work without them until repairs can be made. As a team of 6, we should be able to reassign duties to cover the workload between the remaining members. If a more uncontrollable event happens, such as a powercut/loss of power, or loss of internet, to mitigate the loss of work, we will make sure to commit often so that all completed work is accessible to team members. |
@@ -467,45 +481,20 @@ As all developers are unpaid, OpenRocket [3] is open-source software and we will
 
 ### 5.4 Health and Safety
 
-*Document here project requirements for Health and Safety. All teams must state in this section:*
+To manage computer-related risks, all team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.), to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI).
+We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. One such resource is the Wiki page 'Ergonomics and Safe Computer Usage', available in the Other section of the project Wikis.
 
-1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc. 
-
-All team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.)
-We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. 
-
-2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received. 
-
-All work will be done remotely at each team member's place of residence.
-
-3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
+All work will be done remotely at each team member's place of residence. The project will not require work at any external workplaces/sites, and so will not require any Health and Safety inductions. 
 
 The project will not require any human or animal experimentation.
-
-* Also document in this section any additional discussions with the School Safety Officer regarding Health and Safety risks. Give any further information on relevant health and safety regulations, risks, and mitigations, etc.
 
 
 #### 5.4.1 Safety Plans
 
-*Safety Plans may be required for some projects, depending on project requirements. Safety Plan templates are available on the course Health & Safety page. Two questions all teams must answer are:*
-
-**Do project requirements involve anything that can cause serious harm or death?**  
-*Examples: building/modifying devices using voltages > 60 V, chemicals, large moving machinery, flying devices, bodies of water.*
-
-*If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving serious harm or death, you must first contact the School Safety Officer and Course Coordinator first to discuss the Safety Plan and project requirements.*
-
-**Do project requirements involve anything that can cause harm or injury?**  
-*Examples: building/modifying things with voltages <= 60V, small moving machinery, wearable devices.*
-
-*If so, you will have to write a separate Safety Plan as part of project requirements, and the Safety Plan must be referenced in this section. For health and safety risks involving harm or injury, you should write a draft of the Safety Plan before contacting the School Safety Officer and Course Coordinator to discuss the Safety Plan and project requirements.*
-
-*If a safety plan is required, list in this section the date the School Safety officer accepted your Health and Safety plan (if accepted by submission date).*
-
-_If the project is purely software and requires no contact risks involving physical harm, then state "Project requirements do not involve risk of death, serious harm, harm or injury." in this section._
-
 The project is purely software, therefore project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
+
 ### 6.1 Assumptions and dependencies 
 
 One page on assumptions and dependencies (9.5.7).
