@@ -422,7 +422,7 @@ Write a short natural language description of the top nonfunctional requirements
 
 ### 3.8 Physical and Environmental Requirements 
 
-For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
+This is a purely software project, and so there are no physical or environmental requirements. 
 
 ### 3.9 Supporting information
 
