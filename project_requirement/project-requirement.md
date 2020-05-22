@@ -390,7 +390,7 @@ A one page statement of contributions, including a list of each member of the gr
 
 | Contributor | Sections |
 | :---: | :------- |
-| Michael | 1.0, 1.1, 1.2, 7. Contributions, 3.2 |
+| Michael | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2 |
 | Alex | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.2 |
 | Georgia | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, Safe Computing Wiki (for H&S) |
 | Max | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2 |
