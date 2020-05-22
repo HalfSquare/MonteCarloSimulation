@@ -25,7 +25,7 @@ All team members are expected to contribute equally to the document and list the
 
 # ENGR 301 Project *NN* Architectural Design and Proof-of-Concept
 
-**Authors:** a comma-separated list of the names of each member of the team.
+**Authors:** Justina Koh, Jacqui Dong, Georgia Strongman 
 
 ## 1. Introduction
 
@@ -41,11 +41,12 @@ Our group project predominantly focuses on the use of Monte Carlo simulations to
 | Email | andre.geldenhuis@vuw.ac.nz |
 | Mattermost tag | @geldenan |
 
+Andre Geldenhuis is a staff member at Victoria University of Wellington. He enjoys loves rockets and is part of the New Zealand Rocketry Association. 
+
 ### 1.1 Purpose
 
 *One sentence describing the purpose of the system.*
-Provide Monte Carlo simulations of a rocket trajectory to aid in launching a hobby rocket.
-
+The purpose of the system is to create use _Monte Carlo_ simulations to most accuratelypredict the trajectory of the rocket and consequently, where the rocket will land.
 ### 1.2 Scope
 
 *One paragraph describing the scope of the system.*
@@ -102,10 +103,44 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
-...
 
 ### 4.2 Development
-...
+#### 4.2.1 Roles and Responsibilities:
+
+This section has been addede to show who is involved in the project and what role they take. 
+
+| Name | Role |
+| ------ | ------ |
+| Andre Geldenhuis | Client |
+| Craig Anslow | Course coordinator |
+| Benjamin Secker | Senior Manager |
+| ------ | ------ |
+| Alex Pace | Software Engineer |
+| Georgie Strongman | Software Developer |
+| Jacqui Dong | Software Developer |
+| Justina Koh | Software Developer |
+| Max McMurray | Software Developer |
+| Michael Behan | Software Developer |
+
+As this is a team project, we decided that is was most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one it taking charge of the project as a whole. 
+
+#### 4.2.2 Project Management Development technique 
+
+We will be using the _Agile method_ in order to develop our product. In particular, we will be using the Scrum methodology of Agile, and will assign a new Scrum master to each sprint. Our sprints will be one week long, and we will also conduct a weekly retrospective with our senior manager. 
+
+At each meeting we will also be taking minutes. This will be recorded in (insert link here) and there will also be a weekly rotation for who takes these.
+
+The details of our sprint such as issues, tasks etc. will be recorded on board on gitlab (insert link here). 
+
+In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute taker the week. 
+
+Link:
+* [Timetable for minutes, scrum master and project](Project/Minute-and-Scrum-Master-Timetable)
+
+#### 4.2.3 Project Development Standards
+
+In order to ensure that all work being produced is of good quality and free from errors, we will be doing the following:
+1. 
 
 ### 4.3 Process
 ...
