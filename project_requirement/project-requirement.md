@@ -463,6 +463,7 @@ Sprint schedule:
 *Present a budget for the project (table), and justify each budget item (one paragraph per item, one page overall).*
 
 As all developers are unpaid, OpenRocket [3] is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
+We will ensure that any design and software choices take into account the lack of budget. 
 
 ### 5.3 Risks 
 
