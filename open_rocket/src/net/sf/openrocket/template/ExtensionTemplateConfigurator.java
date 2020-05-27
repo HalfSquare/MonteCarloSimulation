@@ -5,15 +5,20 @@ import net.sf.openrocket.plugin.Plugin;
 import net.sf.openrocket.simulation.extension.AbstractSwingSimulationExtensionConfigurator;
 import javax.swing.*;
 
+/**
+ * Configuration dialog for the extension.
+ * Can create a component GUI that can adjust extension options.
+ */
 @Plugin
 public class ExtensionTemplateConfigurator extends AbstractSwingSimulationExtensionConfigurator<ExtensionTemplate> {
 
-	protected ExtensionTemplateConfigurator(Class<ExtensionTemplate> extensionClass) {
-		super(extensionClass);
+	public ExtensionTemplateConfigurator() {
+		super(ExtensionTemplate.class);
 	}
 
 	@Override
 	protected JComponent getConfigurationComponent(ExtensionTemplate extensionTemplate, Simulation simulation, JPanel jPanel) {
-		return null;
+		jPanel.add(new JLabel("Template:"));
+		return jPanel;
 	}
 }
