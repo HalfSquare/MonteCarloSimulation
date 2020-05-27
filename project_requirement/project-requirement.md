@@ -386,6 +386,10 @@ SimulationData "1" -- TopographicalData
 
 see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 
+Check: https://ieeexplore-ieee-org.helicon.vuw.ac.nz/stamp/stamp.jsp?tp=&arnumber=8559686
+For details on how to do this.
+
+
 > 9.5.15 Design constraints<br>
 > Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations.
 > 
