@@ -427,6 +427,14 @@ see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 * Portability
 * Efficiency
 
+**Compatibility**
+
+This project (creating Monte Carlo simulations) is one of three projects with an overarching goal of launching a hobby rocket. As such, one of the top nonfunctional requrirements is that our program must be compatible with the other two projects.
+
+Our progam must be compatible, and must coexist, with the avionics and mission control projects. Specifically, we must be able to read in rocket data from the avionics team, and we must be able to read in weather condition data from the mission control team, and use these data sets to construct a realistic simulation to be used to judge whether the rocket's flight path and subsequent landing zone is considered safe.
+
+This will involve exchanging information with these project groups, and using that information in our project. Therefore, compatibility is an important systemic attribute to this project.
+
 ### 3.8 Physical and Environmental Requirements 
 
 For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
