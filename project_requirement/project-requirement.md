@@ -448,8 +448,8 @@ Sprint schedule:
 | T2 Week 9-10  | Sprint 8                | Pushing to complete additional features from project requirement  |
 | T2 Week 11-12 | Sprint 9                | Readying project for deployment and final release |
 
-A more detailed version of the sprint schedule can be found in the following link. This includes the list of Scrum masters and minute takers for the each sprint. 
-* [Timetable for minutes, scrum master and project](Project/Minute-and-Scrum-Master-Timetable)
+A more detailed version of the sprint schedule can be found in the following link. This includes the list of scrum masters and minute takers for the each sprint. 
+* https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Project/Minute-and-Scrum-Master-Timetable
 
 (1 page).
 
