@@ -186,8 +186,13 @@ As all developers are unpaid, OpenRocket is open-source software and we will be 
 
 #### 5.2.2 Procurement
 
-Present a table of goods or services that will be required to deliver project goals and specify how they are to be procured (e.g. from the School or from an external organisation). These may be software applications, libraries, training or other infrastructure, including open source software. Justify and substantiate procurement with reference to fulfilment of project goals, one paragraph per item.
-(1 page).
+*Present a table of goods or services that will be required to deliver project goals and specify how they are to be procured (e.g. from the School or from an external organisation). These may be software applications, libraries, training or other infrastructure, including open source software. Justify and substantiate procurement with reference to fulfilment of project goals, one paragraph per item.
+(1 page).*
+
+| Good or Service | Procurement |
+|-----------------|-------------|
+| Repository | The university has provided the team with a Gitlab repository that can be used throughout development. The Gitlab site has tools that allow for management of sprints and issues that will be used. |
+| OpenRocket Code | The openRocket code is required to deliver the project goals due to the goal being orientated around the software. OpenRocket is open-source meaning it can be procured from the repository and used freely. The code can easily be put in a folder in the project's repository for easy access. |
 
 ### 5.3 Risks 
 
