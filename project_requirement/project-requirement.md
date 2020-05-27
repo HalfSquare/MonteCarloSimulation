@@ -451,8 +451,6 @@ Sprint schedule:
 A more detailed version of the sprint schedule can be found in the following link. This includes the list of scrum masters and minute takers for the each sprint. 
 * https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Project/Minute-and-Scrum-Master-Timetable
 
-(1 page).
-
 ### 5.2 Budget
 
 As all developers are unpaid, OpenRocket [3] is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
