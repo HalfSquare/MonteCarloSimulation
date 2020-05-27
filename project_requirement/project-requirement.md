@@ -389,10 +389,20 @@ see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 Check: https://ieeexplore-ieee-org.helicon.vuw.ac.nz/stamp/stamp.jsp?tp=&arnumber=8559686
 For details on how to do this.
 
-
 > 9.5.15 Design constraints<br>
 > Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations.
-> 
+
+There are many possible constraints that will impose on the project. These can be broken down into three main sections: constraints imposed by external standards, constraints imposed by regulatory requirements and constraints imposed by project limitations.
+
+
+Constraint imposed by regulatory requirements:
+
+
+Constraints imposed by project limitations:
+- Time constraint: Our project has a very limited time frame in which it can run for. This means that decisions must be made in order to maintain the integrity and completion of the project before the second semester is finished.
+- Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budgetless.
+
+
 > 9.5.16 Standards compliance<br>
 > Specify the requirements derived from existing standards or regulations, including:
 > 
