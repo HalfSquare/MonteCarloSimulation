@@ -72,9 +72,25 @@ This means that you should refer to information (e.g. risks, requirements, model
 
 ### 3.1 Stakeholders
 
-See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).
+*See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).*
 
-For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.
+*For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.*
+
+#### Stakeholders for this project are: 
+- Users testing rocket designs
+- Users tetsing rocket control software
+- The team developing the system
+- The customer requesting the system
+- The university coordinators in charge of the project (Managers)
+
+| Stakeholder | Concern |
+|---------|-------------|
+| Rocket design user |  |
+| Rocket control user ||
+| Developers ||
+| Customer ||
+| Managers ||
+
 
 ### 3.2 Architectural Viewpoints
 (1 page, 42010 5.4) 
