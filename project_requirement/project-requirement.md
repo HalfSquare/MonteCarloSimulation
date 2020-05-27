@@ -413,10 +413,19 @@ see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 
 ### 3.7 Nonfunctional system attributes
 
-Present the systemic (aka nonfunctional) requirements of the product (see ISO/IEC 25010).
-List up to twenty systemic requirements / attributes.
-Write a short natural language description of the top nonfunctional requirements (approx. five pages).
+*Present the systemic (aka nonfunctional) requirements of the product (see ISO/IEC 25010).*
+*List up to twenty systemic requirements / attributes.*
+*Write a short natural language description of the top nonfunctional requirements (approx. five pages).*
 
+* Compatibility (with avionics / mission control) - coexistance and interoperability
+* Usability (appropriate to needs, easy to operate, protects against user error)
+* Reliability (recoverability(eg timeout), availability)
+* Security
+* Maintainibility
+* Testability
+* Resuability
+* Portability
+* Efficiency
 
 ### 3.8 Physical and Environmental Requirements 
 
