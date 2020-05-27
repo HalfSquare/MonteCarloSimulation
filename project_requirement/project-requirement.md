@@ -424,30 +424,29 @@ see 9.5.19.
 
 Key project deliverables: 
 
-| Deliverable: | Date: |
+| Deliverable: | Goal Timeline: |
 |------|-------|
-| Architectural Prototype | |
-| Minimum Viable Product | |
-| Further Releases | |
-| Final Release | November 2020 tbc |
+| Architectural Prototype | T2 Weeks 3-4 (Sprint 5) |
+| Minimum Viable Product | T2 Week 7-8 (Sprint 7) |
+| Final Release | T2 Week 11-12 (Sprint 9 - final sprint) |
 
 Sprint schedule:
 
-*Goals are just a broad, rough plan and should be tweaked and updated to include sprint planning.*
+*Goals are just a rough, overarching plan and are likely to change as the year goes on.*
 
-| Week:      | Sprint No:              | Goal:                                                  |
+| Week:      | Sprint No:              | Goal/Progress:                                                  |
 |------------|-------------------------|--------------------------------------------------------|
 | T1 Week 7     | Sprint 1                | Push to complete the bulk of the documentation             |
 | T1 Week 8-9   | Sprint 2                | Finishing documentation and beginning programming      |
 | T1 Week 10-11 | Sprint 3                | Transitioning from documentation to solely programming |
 | T1 Week 12    | No sprint  (terms test) |                                                        |
 | -BREAK-    | No sprint               |                                                        |
-| T2 Week 1-2   | Sprint 4                | Picking up from before the break, reorienting goals    |
-| T2 Week 3-4   | Sprint 5                | Working on extension and adding features               |
-| T2 Week 5-6   | Sprint 6                | Working on extension and adding features               |
-| T2 Week 7-8   | Sprint 7                | Working on extension and adding features               |
-| T2 Week 9-10  | Sprint 8                | Pushing to complete features from project requirement  |
-| T2 Week 11-12 | Sprint 9                | Readying project for deployment                        |
+| T2 Week 1-2   | Sprint 4                | Picking up from before the break, reorienting and settling into the project again    |
+| T2 Week 3-4   | Sprint 5                | Working on extension architecture - architectural prototype should be ready |
+| T2 Week 5-6   | Sprint 6                | Working on extension and adding features |
+| T2 Week 7-8   | Sprint 7                | Working on extension and adding features - minimum viable product should be ready |
+| T2 Week 9-10  | Sprint 8                | Pushing to complete additional features from project requirement  |
+| T2 Week 11-12 | Sprint 9                | Readying project for deployment and final release |
 
 A more detailed version of the sprint schedule can be found in the following link. This includes the list of Scrum masters and minute takers for the each sprint. 
 * [Timetable for minutes, scrum master and project](Project/Minute-and-Scrum-Master-Timetable)
