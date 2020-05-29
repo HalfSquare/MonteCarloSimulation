@@ -77,19 +77,18 @@ This means that you should refer to information (e.g. risks, requirements, model
 *For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.*
 
 #### Stakeholders for this project are: 
-- Users testing rocket designs
-- Users tetsing rocket control software
-- The team developing the system
-- The customer requesting the system
-- The university coordinators in charge of the project (Managers)
+
+- 
+- 
+- 
+- 
 
 | Stakeholder | Concern |
 |---------|-------------|
-| Rocket design user |  |
-| Rocket control user ||
-| Developers ||
-| Customer ||
-| Managers ||
+| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. |  |
+| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace and Georgia Strongman. ||
+| The customer requesting the system to be made. This will be Andre Geldenhuis ||
+| The university coordinators in charge of the project. These include Aaron Chen and Craig Anslow. ||
 
 
 ### 3.2 Architectural Viewpoints
