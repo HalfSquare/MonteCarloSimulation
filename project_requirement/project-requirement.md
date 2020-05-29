@@ -435,6 +435,19 @@ Our progam must be compatible, and must coexist, with the avionics and mission c
 
 This will involve exchanging information with these project groups, and using that information in our project. Therefore, compatibility is an important systemic attribute to this project.
 
+
+**Usability**
+
+As the client (and therefore one of the main users), of this project is a hobby rocketeer, and the program is designed to be used by a variety of users with varying skill levels, the program must be user-friendly. 
+To be more specific, this program must be designed in a way that it is easy to operate and control, and users are able to efficiently and effectively learn and understand how to use it. 
+It should also protect against simple user errors, such as invalid inputs (negative values for example).
+
+The program should have a user interface that is accessible to most users, and is understandable and reasonably intuitive to use. 
+
+As the program has one main overall function (Monte Carlo simulations of **hobby** rockets), users should be able to quickly realize/recognize whether this program is appropriate for their needs. 
+It should be made obvious that this is designed for hobby rockets only.
+
+
 ### 3.8 Physical and Environmental Requirements 
 
 For systems with hardware components, identify the physical characteristics of that hardware (9.4.10) and environment conditions in which it must operate (9.4.11).  Depending on the project, this section may be from one page up to 5 pages.
