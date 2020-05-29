@@ -436,7 +436,6 @@ Our progam must be compatible, and must coexist, with the avionics and mission c
 This will involve exchanging information with these project groups, and using that information in our project. Therefore, compatibility is an important systemic attribute to this project.
 
 
-
 **Usability**
 
 As the client (and therefore one of the main users), of this project is a hobby rocketeer, and the program is designed to be used by a variety of users with varying skill levels, the program must be user-friendly. 
@@ -447,6 +446,36 @@ The program should have a user interface that is accessible to most users, and i
 
 As the program has one main overall function (Monte Carlo simulations of **hobby** rockets), users should be able to quickly realize/recognize whether this program is appropriate for their needs. 
 It should be made obvious that this program is designed for simulating hobby rockets only.
+
+
+**Reliability**
+
+The program must be able to reliably perform consecutive Monte Carlo simulations until the amount of times specified is reached. 
+Specifically, the program must reliably complete this task successfully without crashing or encountering issues. 
+
+The program should be widely available to use.
+
+The program should, in the event of an interruption or failure, be able to recover and store the usable data in a way that benefits the user (for example, store the data so that it can be displayed to the user graphically even if the simulations have not all finished).
+
+
+**Security**
+
+The program should never handle user information, as it would be unnecessary to do so, which means that user information could never be stolen from our program. 
+
+The program should have integrity, meaning it should be protected against tampering and/or modification. 
+
+
+**Maintainability**
+
+The program should be modular when possible, so that changes to the program have minimised impact. 
+The program should also be written in a way that code can be reused when possible, to avoid redundancy. 
+
+The program should be efficient and effective to analyse, so that failures/deficiencies can be found and fixed efficiently, and so that modifications can be made with ease. 
+It is likely that modifications will need to be made, in the case of requirements changing, or having more time to implement additional features).
+
+The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met, and that our program works accurately.
+
+
 
 
 ### 3.8 Physical and Environmental Requirements 
