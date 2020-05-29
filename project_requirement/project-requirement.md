@@ -476,6 +476,29 @@ It is likely that modifications will need to be made, in the case of requirement
 The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met, and that our program works accurately.
 
 
+**Portability**
+
+The program should be efficient and intuitive for the user to install and have working, there should be instructions available for any steps that may not be clear to the user.
+
+The program should be adaptable, and should not require major refactoring for small changes. 
+
+The program should be clear about the performance requirements of the machine it is running on, as Monte Carlo simulations are resource intensive.
+
+
+**Open Source**
+
+The program should be open source and free to use, meaning that all software, tools, and equipment used to build and create the program should not conflict with this. 
+
+All software, tools, and equipment should also be open source, so that the program is free to use for hobby rocketeers and any other user who the program is appropriate for.
+
+
+**Performance Efficiency**
+
+The program must be designed with efficiency in mind. 
+As Monte Carlo simulations are resource intensive and computationally stressful, the program must not use resources inefficiently, and must make the best effort to reduce stress on the machine it is running on where possible. 
+
+The program should be clear to the user about the performance requirements of the machine it should be running on, as Monte Carlo simulations are resource intensive.
+
 
 
 ### 3.8 Physical and Environmental Requirements 
