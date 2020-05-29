@@ -413,19 +413,14 @@ see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 
 ### 3.7 Nonfunctional system attributes
 
-*Present the systemic (aka nonfunctional) requirements of the product (see ISO/IEC 25010).*
-*List up to twenty systemic requirements / attributes.*
-*Write a short natural language description of the top nonfunctional requirements (approx. five pages).*
-
-* Compatibility (with avionics / mission control) - coexistance and interoperability
-* Usability (appropriate to needs, easy to operate, protects against user error)
-* Reliability (recoverability(eg timeout), availability)
+* Compatibility
+* Usability
+* Reliability
 * Security
 * Maintainibility
-* Testability
-* Resuability
 * Portability
-* Efficiency
+* Open Source
+* Performance Efficiency
 
 **Compatibility**
 
@@ -434,7 +429,6 @@ This project (creating Monte Carlo simulations) is one of three projects with an
 Our progam must be compatible, and must coexist, with the avionics and mission control projects. Specifically, we must be able to read in rocket data from the avionics team, and we must be able to read in weather condition data from the mission control team, and use these data sets to construct a realistic simulation to be used to judge whether the rocket's flight path and subsequent landing zone is considered safe.
 
 This will involve exchanging information with these project groups, and using that information in our project. Therefore, compatibility is an important systemic attribute to this project.
-
 
 **Usability**
 
@@ -447,7 +441,6 @@ The program should have a user interface that is accessible to most users, and i
 As the program has one main overall function (Monte Carlo simulations of **hobby** rockets), users should be able to quickly realize/recognize whether this program is appropriate for their needs. 
 It should be made obvious that this program is designed for simulating hobby rockets only.
 
-
 **Reliability**
 
 The program must be able to reliably perform consecutive Monte Carlo simulations until the amount of times specified is reached. 
@@ -457,13 +450,11 @@ The program should be widely available to use.
 
 The program should, in the event of an interruption or failure, be able to recover and store the usable data in a way that benefits the user (for example, store the data so that it can be displayed to the user graphically even if the simulations have not all finished).
 
-
 **Security**
 
 The program should never handle user information, as it would be unnecessary to do so, which means that user information could never be stolen from our program. 
 
 The program should have integrity, meaning it should be protected against tampering and/or modification. 
-
 
 **Maintainability**
 
@@ -475,7 +466,6 @@ It is likely that modifications will need to be made, in the case of requirement
 
 The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met, and that our program works accurately.
 
-
 **Portability**
 
 The program should be efficient and intuitive for the user to install and have working, there should be instructions available for any steps that may not be clear to the user.
@@ -484,13 +474,11 @@ The program should be adaptable, and should not require major refactoring for sm
 
 The program should be clear about the performance requirements of the machine it is running on, as Monte Carlo simulations are resource intensive.
 
-
 **Open Source**
 
 The program should be open source and free to use, meaning that all software, tools, and equipment used to build and create the program should not conflict with this. 
 
 All software, tools, and equipment should also be open source, so that the program is free to use for hobby rocketeers and any other user who the program is appropriate for.
-
 
 **Performance Efficiency**
 
@@ -498,7 +486,6 @@ The program must be designed with efficiency in mind.
 As Monte Carlo simulations are resource intensive and computationally stressful, the program must not use resources inefficiently, and must make the best effort to reduce stress on the machine it is running on where possible. 
 
 The program should be clear to the user about the performance requirements of the machine it should be running on, as Monte Carlo simulations are resource intensive.
-
 
 
 ### 3.8 Physical and Environmental Requirements 
