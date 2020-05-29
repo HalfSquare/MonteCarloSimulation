@@ -76,19 +76,12 @@ This means that you should refer to information (e.g. risks, requirements, model
 
 *For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.*
 
-#### Stakeholders for this project are: 
-
-- 
-- 
-- 
-- 
-
 | Stakeholder | Concern |
 |---------|-------------|
-| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. |  |
-| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace and Georgia Strongman. ||
-| The customer requesting the system to be made. This will be Andre Geldenhuis ||
-| The university coordinators in charge of the project. These include Aaron Chen and Craig Anslow. ||
+| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. | The users will be concerened with the functionality of the system, its purpose and its suitability for the purpose. |
+| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace and Georgia Strongman. | feasibility, suitability, maintainability  |
+| The customer requesting the system to be made. This will be Andre Geldenhuis | purpose, suitability, evolvability   |
+| The university coordinators in charge of the project. These include Aaron Chen and Craig Anslow. |feasibility, suitability, evolvability   |
 
 
 ### 3.2 Architectural Viewpoints
