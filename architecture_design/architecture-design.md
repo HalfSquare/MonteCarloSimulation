@@ -81,6 +81,27 @@ For most systems this will be about 2 pages, including a table mapping concerns 
 
 Identify the architectural viewpoints you will use to present your system's architecture. Write one sentence to outline each viewpoint. Show which viewpoint frames which architectural concern.
 
+#### Logical
+The logical viewpoint corresponds to the functionality of the system it provides to end-users; the system is divided into a set of key abstractions and are expressed through UML state and class diagrams.
+
+#### Development
+The development viewpoint describes the architecture for the software management processes involved in the system, expressed through UML component diagrams.
+
+#### Process
+The process viewpoint captures the non-functional requirements of the system, including behaviour, concurrency, performance and availability, and how the main abstractions from the logical view fit within the process architecture.
+
+#### Physical
+The physical viewpoint represents the infrastructure of an application, which describes the mapping of software to hardware.
+
+#### Scenarios
+The scenario viewpoint captures a small set of use-cases describing the interaction between users or processes, which illustrate and validate the architecture and form the initial starting-point for architectual prototype tests.
+
+#### Circuit Architecture
+The circuit architecture viewpoint defines how the physical system is put together and outlines any problems which may interfere with the physical system.
+
+#### Hardware Architecture
+The hardware architecture viewpoint outlines purposes for which the software and systems interact with the hardware, primarily focusing on how the hardware enables the overall system to function.
+
 ### 4. Architectural Views
 
 (5 sub-sections of 2 pages each sub-section, per 42010, 5.5, 5.6, with reference to Annex F of both 12207 and 15288) 
