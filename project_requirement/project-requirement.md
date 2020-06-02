@@ -488,6 +488,18 @@ see 9.5.19.
 
 3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
 
+We need to make sure that we are *building the product right* - i.e. according to the details outlined in this requirements document. The structure of this section mirrors this outline:
+ - (3.1) External Interfaces
+ - (3.2) Functions
+ - (3.3) Usability Requirements
+ - (3.4) Performance Requirements
+ - (3.5) Logical Database Requirements
+ - (3.6) Design Constraints
+ - (3.7) Nonfunctional System Attributes
+ - (3.8) Physical and Environmental Requirements
+
+The verification only covers the "most important system requirements", and so not all of these sections will be necessarily covered, or covered in depth. If the requirements of each section is deemed important, methods for testing that requirement and the standard of testing/test passing will be detailed.
+
 ## 5. Development schedule.
 
 ### 5.1 Schedule
