@@ -124,9 +124,15 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
-In this system, from a logical viewpoint, the user should be able to run simulations of the rocket in OpenRocket, which predict the trajectory of the rocket and where the rocket will land. There are four states the Simulation Software can be in; Idle, Load, Simulation and Output. The diagram which represents the logical view is the UML class diagram. The UML diagram in the Project Requirements document, section 3.5 shows the relationship between the modules, functions and classes.
+In this system, from a logical viewpoint, the user should be able to run simulations of the rocket in OpenRocket, which predict the trajectory of the rocket and where the rocket will land. There are four states the Simulation Software can be in; Idle, Load, Simulation and Output. The diagram which represents the logical view is the UML class diagram. The UML diagram in the [Project Requirements]() document, section 3.5 shows the relationship between the modules, functions and classes. 
+
+*Fix up UML Class diagram*
+
+*Add notes about classes once diagram is finalised*
 
 ### 4.2 Development
+The development view covers the software management of the project. This includes the roles and responsibilities, project management development technique, project development standards, project development testing and project development monitoring. A range of problems can arise within the development viewpoint due to uneven allocation of work to team, not planning tasks efficiently or insufficient progress monitoring for the project, which will lead to an inadequate system.
+
 #### 4.2.1 Roles and Responsibilities:
 
 This section has been added to show who is involved in the project and what role they take. 
