@@ -128,7 +128,7 @@ Each architectural view should include at least one architectural model. If arch
 ### 4.2 Development
 #### 4.2.1 Roles and Responsibilities:
 
-This section has been addede to show who is involved in the project and what role they take. 
+This section has been added to show who is involved in the project and what role they take. 
 
 | Name | Role |
 | ------ | ------ |
@@ -137,7 +137,7 @@ This section has been addede to show who is involved in the project and what rol
 | Benjamin Secker | Senior Manager |
 | ------ | ------ |
 | Alex Pace | Software Engineer |
-| Georgie Strongman | Software Developer |
+| Georgia Strongman | Software Developer |
 | Jacqui Dong | Software Developer |
 | Justina Koh | Software Developer |
 | Max McMurray | Software Developer |
