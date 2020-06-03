@@ -94,7 +94,7 @@ The process viewpoint captures the non-functional requirements of the system, in
 The physical viewpoint represents the infrastructure of an application, which describes the mapping of software to hardware.
 
 #### Scenarios
-The scenario viewpoint captures a small set of use-cases describing the interaction between users or processes, which illustrate and validate the architecture and form the initial starting-point for architectual prototype tests.
+The scenario viewpoint captures a small set of use-cases describing the interaction between users or processes, which illustrate and validate the architecture and form the initial starting-point for architectural prototype tests.
 
 #### Circuit Architecture
 The circuit architecture viewpoint defines how the physical system is put together and outlines any problems which may interfere with the physical system.
