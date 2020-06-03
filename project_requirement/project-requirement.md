@@ -487,19 +487,60 @@ see 9.5.19.
 
 ## 4. Verification
 
-3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
+This section details how we verify our product meets the requirements laid out here in this document in section 3. These verification methods will include testable acceptance criteria.
+### External Interfaces (3.1)
+This requirement will be verified by being able to operate the product using only a monitor, mouse, and keyboard as external interfaces, with no other interfaces needed.
 
-We need to make sure that we are *building the product right* - i.e. according to the details outlined in this requirements document. The structure of this section mirrors this outline:
- - (3.1) External Interfaces
- - (3.2) Functions
- - (3.3) Usability Requirements
- - (3.4) Performance Requirements
- - (3.5) Logical Database Requirements
- - (3.6) Design Constraints
- - (3.7) Nonfunctional System Attributes
- - (3.8) Physical and Environmental Requirements
+### Functions (3.2)
+This requirement will be verified by being able to perform all of the use cases, following all of the steps in the order presented without product failure and with successful results. It can be tested by a manual walkthrough of the product.
 
-The verification only covers the "most important system requirements", and so not all of these sections will be necessarily covered, or covered in depth. If the requirements of each section is deemed important, methods for testing that requirement and the standard of testing/test passing will be detailed.
+### Usability Requirements (3.3)
+This requirement will be verified by
+
+### Performance Requirements (3.4)
+This requirement will be verified by
+
+### Logical Database Requirements (3.5)
+This requirement will be verified by an analysis of the product source code to identify class structure and associations between classes. Verification will be achieved if the structure and associations mostly resemble the UML diagram presented in section 3.5. Minor deviations from the diagram are permitted as the need arises during development.
+
+### Design Constraints (3.6)
+This requirement will be verified by
+
+### Nonfunctional System Attributes (3.7)
+**Compatibility**
+This requirement will be verified by the ability of the program to integrate necessary data from the avionics and mission control products. Verification will be achieved if necessary rocket data is able to be read in from the avionics product and necessary weather condition data is able to be read in from the mission control product.
+
+**Usability**
+This requirement will be verified by being user-friendly and accessible. Verification will be achieved if:
+ - User testing indicates the product is relatively easy to use at the skill level of the user personas.
+ - User testing indicates the product is intuitive based on the experience of the user personas.
+ - User testing indicates the product doesn't have a steep learning curve, i.e. the learning process is efficient and does not contain any major barriers.
+ - User testing indicates the ability to quickly recognise whether the product is appropriate for their needs.
+ - Invalid input protections are in place, preventing the user from passing out-of-bounds or inapplicable inputs to the product. These can include things like negative values and large/small values where they are not expected.
+ - The product's interface is accessible to most users and contains basic accessibility options like font size adjustment, colour-blindness support, and keyboard shortcuts.
+
+**Reliability**
+This requirement will be verified by mitigating the causes of program failure and being easily obtained. Verification will be achieved if:
+ - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable, but is expected to be between or larger than 5,000 - 20,000 times [6].
+ - The product is widely available to use. It should be downloadable from an easily accessible website.
+ - The product does not lose data from the current batch of simulations in the event of failure. Data collected up to the point of failure should be stored in a usable fashion that allows it to be read and displayed.
+
+**Security**
+This requirement will be verified by the product only collecting the minimum necessary user data and employing mechanisms to maintain its integrity. Verification will be achieved if:
+ - An analysis and review of the user data collected by the product is able to justify the data collected as being essential to the operation of the product or essential to the user's experience of the product.
+ - The product has introduced methods to protect against tampering and modification without the user's consent.
+
+**Maintainability**
+This requirement will be verified by
+
+**Portability**
+This requirement will be verified by
+
+**Open Source**
+This requirement will be verified by
+
+**Performance Efficiency**
+This requirement will be verified by
 
 ## 5. Development schedule.
 
