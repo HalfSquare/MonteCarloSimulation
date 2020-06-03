@@ -116,6 +116,7 @@ There are also possible limitations of the final product:
 
 [5] Victoria University of Wellington, "Project Management - Health and Safety", 2020. [Online]. Available: https://ecs.wgtn.ac.nz/Courses/ENGR301_2020T1/HealthAndSafety. [Accessed May. 22, 2020].
 
+[6] Quinlan, B., 2015. Dimensional Analysis: How Many Monte Carlo Simulations Should I Run? Part 2. [online] Blog.3dcs.com. Available at: <https://blog.3dcs.com/dimensional-analysis-how-many-monte-carlo-simulations-should-i-run> [Accessed 3 June 2020].
 
 ## 3. Specific requirements  
 
