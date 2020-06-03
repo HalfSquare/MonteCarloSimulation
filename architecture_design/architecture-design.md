@@ -46,7 +46,7 @@ Andre Geldenhuis is a staff member at Victoria University of Wellington. He enjo
 ### 1.1 Purpose
 
 *One sentence describing the purpose of the system.*
-The purpose of the system is to create use _Monte Carlo_ simulations to most accuratelypredict the trajectory of the rocket and consequently, where the rocket will land.
+The purpose of the system is to create use _Monte Carlo_ simulations to most accurately predict the trajectory of the rocket and consequently, where the rocket will land.
 ### 1.2 Scope
 
 *One paragraph describing the scope of the system.*
@@ -124,6 +124,7 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
+In this system, from a logical viewpoint, the user should be able to run simulations of the rocket in OpenRocket, which predict the trajectory of the rocket and where the rocket will land. There are four states the Simulation Software can be in; Idle, Load, Simulation and Output. The diagram which represents the logical view is the UML class diagram. The UML diagram in the Project Requirements document, section 3.5 shows the relationship between the modules, functions and classes.
 
 ### 4.2 Development
 #### 4.2.1 Roles and Responsibilities:
