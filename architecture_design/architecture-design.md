@@ -233,12 +233,22 @@ Key project deliverables:
 ### 5.2 Budget and Procurement
 
 #### 5.2.1 Budget
+The budget for this project is: __$0.00__
 
-*Present a budget for the project (as a table), showing the amount of expenditure the project requires and the date(s) on which it will be incurred. Substantiate each budget item by reference to fulfilment of project goals (one paragraph per item).*
+A table has been made below to show the equipment, software and technology required and the corresponding costs:
 
-As all developers are unpaid, OpenRocket is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
+| Particular needed | Cost |
+| ------ | ------ |
+| Laptop for software development | $0.00 |
+| OpenRocket Software | $0.00 | 
+| IDEs for software development | $0.00 | 
+| GitLab for version-control | $0.00 | 
 
-(1 page). 
+This is due to the following reasons:
+* All the developers are unpaid
+* OpenRocket is an open-source software
+* Open-source IDEs will be used by the developers
+* All additionally development tools used for the project are provided at no cost by the university
 
 #### 5.2.2 Procurement
 
