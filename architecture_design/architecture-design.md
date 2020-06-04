@@ -167,7 +167,22 @@ In order to focus our intentions and be very clear about our main goal for the w
 In order to ensure that all work being produced is of good quality and free from errors, we will be doing the following:
 1. We will branch before editing code or documents.
 2. We will submit a merge request which must be approved by a minimum of one other person in the team who did not work on that branch. 
-...
+3. When writing documentation and other text-based content for the project, we will use the markdown format to do so.
+
+
+When adding a _commit message_ it should follow the design as listed below:
+* A short header no longer than a sentence, briefly stating what was done in the commit
+* A body which contains a more detailed account of what was changed in the commit
+* Tag(s) listing all other team members who worked on the commit 
+
+When adding a _merge request_ it should follow the design as listed below:
+_discuss this with the team_
+
+When _approving_ a _merge request_ the following must be listed below:
+* Before pushing to the main branch, a merge request must be made and reviewed by a minimum of one other person.
+* The reviewer must review the code thoroughly, and check for all possible mistakes, including, but not limited to: syntax errors, spelling mistakes, bad formatting.
+* If the reviewer identifies some mistakes, a comment must be made acknowledging this and the merge request will not be approved until all issues are resolved. 
+
 
 ### 4.3 Process
 ...
