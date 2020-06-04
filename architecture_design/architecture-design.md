@@ -196,7 +196,12 @@ For each issue created in the sprint, we will add the level of difficulty we est
 ...
 
 ### 4.4 Physical 
-...
+For our project, the topology consists of only of one physical component. This component is a:
+* Field Laptop
+
+The field laptop will contain software which we will use in order to run our simulations. 
+
+
 
 ### 4.5 Scenarios
 ...
