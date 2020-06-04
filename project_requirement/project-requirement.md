@@ -396,6 +396,7 @@ There are many possible constraints that can be imposed on the project. These ca
 
 
 Constraint imposed by regulatory requirements:
+- Health and safety contraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
 
 
 Constraints imposed by project limitations:
@@ -403,6 +404,9 @@ Constraints imposed by project limitations:
 - Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budgetless.
 - Knowledge contraint: There is also a knowledge due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
 - Technical constraint: While our project is solely software based, we have a lack of access to professional and industry standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
+- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
+
+Constraints imposed by external standards:
 - COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person grou meetings and stand ups, as well as groip work. 
 
 
