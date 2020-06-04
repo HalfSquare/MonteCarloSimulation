@@ -123,7 +123,10 @@ There are also possible limitations of the final product:
 
 ### 3.1 External interfaces
 
-See 9.5.10. for most systems this will be around one page. 
+OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to large variation in specification. They interfaces are:
+ - **Monitor**: At least standard definition, likely high definition or above.
+ - **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
+ - **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement. 
 
 ### 3.2 Functions
 
