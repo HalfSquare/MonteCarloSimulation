@@ -392,7 +392,7 @@ For details on how to do this.
 > 9.5.15 Design constraints<br>
 > Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations.
 
-There are many possible constraints that will impose on the project. These can be broken down into three main sections: constraints imposed by external standards, constraints imposed by regulatory requirements and constraints imposed by project limitations.
+There are many possible constraints that can be imposed on the project. These can be broken down into three main sections: constraints imposed by external standards, constraints imposed by regulatory requirements and constraints imposed by project limitations.
 
 
 Constraint imposed by regulatory requirements:
@@ -401,6 +401,9 @@ Constraint imposed by regulatory requirements:
 Constraints imposed by project limitations:
 - Time constraint: Our project has a very limited time frame in which it can run for. This means that decisions must be made in order to maintain the integrity and completion of the project before the second semester is finished.
 - Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budgetless.
+- Knowledge contraint: There is also a knowledge due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
+- Technical constraint: While our project is solely software based, we have a lack of access to professional and industry standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
+- 
 
 
 > 9.5.16 Standards compliance<br>
