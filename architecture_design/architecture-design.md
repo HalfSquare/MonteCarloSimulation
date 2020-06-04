@@ -183,6 +183,10 @@ When _approving_ a _merge request_ the following must be listed below:
 * The reviewer must review the code thoroughly, and check for all possible mistakes, including, but not limited to: syntax errors, spelling mistakes, bad formatting.
 * If the reviewer identifies some mistakes, a comment must be made acknowledging this and the merge request will not be approved until all issues are resolved. 
 
+#### 4.2.4 Work logs
+In order to ensure that all team members are contributing an equal amount to the project, we will be logging whether each member is at each assigned lab slot. This will be recorded on the [Lab Time Log](https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Lab-time-log).
+
+Each member can also use the [Lab Time Log Website](https://course-work.glp.ecs.vuw.ac.nz/engr300/2020/group15/group-15/LabLogSite.html) which will automatically generate the times that people enter and leave the labs. 
 
 ### 4.3 Process
 ...
