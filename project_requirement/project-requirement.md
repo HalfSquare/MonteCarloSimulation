@@ -495,7 +495,7 @@ This requirement will be verified by being able to operate the product using onl
 This requirement will be verified by being able to perform all of the use cases, following all of the steps in the order presented without product failure and with successful results. It can be tested by a manual walkthrough of the product.
 
 ### Usability Requirements (3.3)
-This requirement will be verified by
+This requirement will be verified mostly by the successful verification of many of the other sections, namely parts of this section relating to sections 3.2, 3.4, and 3.7. Overall verification for this section can be achieved through team review, user testing, and customer testing.
 
 ### Performance Requirements (3.4)
 This requirement will be verified by meeting the specifics detailed in section 3.3. Static attributes like those in the *Capacity* and *Information Handling* sections can be verified through manual analysis. The attribute in the *Dynamic Requirements* section can be verified through automated unit testing.
