@@ -498,13 +498,13 @@ This requirement will be verified by being able to perform all of the use cases,
 This requirement will be verified by
 
 ### Performance Requirements (3.4)
-This requirement will be verified by
+This requirement will be verified by meeting the specifics detailed in section 3.3. Static attributes like those in the *Capacity* and *Information Handling* sections can be verified through manual analysis. The attribute in the *Dynamic Requirements* section can be verified through automated unit testing.
 
 ### Logical Database Requirements (3.5)
 This requirement will be verified by an analysis of the product source code to identify class structure and associations between classes. Verification will be achieved if the structure and associations mostly resemble the UML diagram presented in section 3.5. Minor deviations from the diagram are permitted as the need arises during development.
 
 ### Design Constraints (3.6)
-This requirement will be verified by
+This requirement will be verified by a retrospective analysis of the team's actions and decisions. Team members could be reviewed individually, or a special meeting could be held to identify any breaches of the stated limitations.
 
 ### Nonfunctional System Attributes (3.7)
 **Compatibility**
