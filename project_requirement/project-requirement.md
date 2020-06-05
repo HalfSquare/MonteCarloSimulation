@@ -262,24 +262,21 @@ Typical users scale from experienced with model rocket use to people just starti
 
 See 9.5.12. for most systems this will be around one page.
 
-> **9.5.12 Usability requirements**<br>
-> Define usability (quality in use) requirements. Usability requirements and objectives for the software system include measurable effectiveness, efficiency, and satisfaction criteria in specific contexts of use.
-
 ##### Objective
 We want to create an extension to the OpenRocket application, this extension will be accessible to the rocket community due to the extension's code being open source.
 This extension will be able to be applied to any rocket design the user imports. 
 
 ##### Measurable effectiveness
 The extension should run at the same time the OpenRocket simulation runs without a delay. 
-When the Monte Carlo simulation is run over a long period of time it is expected that the program will finish without crashing and would have run without any errors.
+When the Monte Carlo simulation is run over a long period of time it is expected that the program will finish without crashing and would have run without any errors. We can measure the effectiveness by simulating the rocket and displaying the data and seeing if the results match up with the real launch.
 
 ##### Efficiency
-It is expected that the program should run the simulations as fast as possible with the only limitation being the speed of the hardware used to run the simulations. 
+It is expected that the program should run the simulations as fast as possible with the only limitation being the speed of the hardware. 
 After each simulation is run in the Monte Carlo process, the data will be stored and only until the Monte Carlo simulation has finished the data will be displayed graphically this is to avoid taking up resources that should be used for running each simulation at its maximum speed.
 
-##### Use context
-// TODO: satisfaction criteria in specific contexts of use
-
+##### Satisfaction criteria
+For the system to meet satisfaction it needs meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where the their rocket will end up for the current weather conditions. 
+The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the amount of specified. 
 
 ### 3.4 Performance requirements
 
