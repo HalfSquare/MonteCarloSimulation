@@ -386,6 +386,9 @@ SimulationData "1" -- TopographicalData
 There are many possible constraints that can be imposed on the project. These can be broken down into three main sections: _constraints imposed by external standards_, _constraints imposed by regulatory requirements_ and _constraints imposed by project limitations_.
 
 
+__Constraints imposed by external standards:__
+- COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person group meetings and stand ups, as well as groip work. 
+
 __Constraint imposed by regulatory requirements:__
 - Health and safety contraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
 
@@ -396,9 +399,6 @@ __Constraints imposed by project limitations:__
 - Knowledge contraint: There is also a knowledge due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
 - Technical constraint: While our project is solely software based, we have a lack of access to professional and industry standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
 - Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
-
-__Constraints imposed by external standards:__
-- COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person group meetings and stand ups, as well as groip work. 
 
 
 > 9.5.16 Standards compliance<br>
