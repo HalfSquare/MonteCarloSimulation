@@ -116,6 +116,7 @@ There are also possible limitations of the final product:
 
 [5] Victoria University of Wellington, "Project Management - Health and Safety", 2020. [Online]. Available: https://ecs.wgtn.ac.nz/Courses/ENGR301_2020T1/HealthAndSafety. [Accessed May. 22, 2020].
 
+[6] Quinlan, B., 2015. Dimensional Analysis: How Many Monte Carlo Simulations Should I Run? Part 2. [online] Blog.3dcs.com. Available at: <https://blog.3dcs.com/dimensional-analysis-how-many-monte-carlo-simulations-should-i-run> [Accessed 3 June 2020].
 
 ## 3. Specific requirements  
 
@@ -123,7 +124,10 @@ There are also possible limitations of the final product:
 
 ### 3.1 External interfaces
 
-See 9.5.10. for most systems this will be around one page. 
+OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to large variation in specification. They interfaces are:
+ - **Monitor**: At least standard definition, likely high definition or above.
+ - **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
+ - **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement. 
 
 ### 3.2 Functions
 
@@ -262,29 +266,60 @@ Typical users scale from experienced with model rocket use to people just starti
 
 See 9.5.12. for most systems this will be around one page.
 
-> **9.5.12 Usability requirements**<br>
-> Define usability (quality in use) requirements. Usability requirements and objectives for the software system include measurable effectiveness, efficiency, and satisfaction criteria in specific contexts of use.
+##### Objective
+We want to create an extension to the OpenRocket application, this extension will be accessible to the rocket community due to the extension's code being open source.
+This extension will be able to be applied to any rocket design the user imports. 
+
+##### Measurable effectiveness
+The extension should run at the same time the OpenRocket simulation runs without a delay. 
+When the Monte Carlo simulation is run over a long period of time it is expected that the program will finish without crashing and would have run without any errors. We can measure the effectiveness by simulating the rocket and displaying the data and seeing if the results match up with the real launch.
+
+##### Efficiency
+It is expected that the program should run the simulations as fast as possible with the only limitation being the speed of the hardware. 
+After each simulation is run in the Monte Carlo process, the data will be stored and only until the Monte Carlo simulation has finished the data will be displayed graphically this is to avoid taking up resources that should be used for running each simulation at its maximum speed.
+
+##### Satisfaction criteria
+For the system to meet satisfaction it needs to meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where their rocket will end up for the current weather conditions. 
+The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the amount of times specified. 
 
 ### 3.4 Performance requirements
 
-See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
 
-> **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole. 
-> 
-> Static numerical requirements may include the following:
-> 
-> a) The number of terminals to be supported;  
-> b) The number of simultaneous users to be supported;  
-> c) Amount and type of information to be handled.
-> 
-> Static numerical requirements are sometimes identified under a separate section entitled Capacity.
-> 
-> Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
-> 
->  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
-> 
-> NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
+**Capacity**
+
+The system being created will be downloaded and installed to the plugins directory of OpenRocket on the user’s device. As such, the system will support 1 terminal per installation of the software, as in the terminal that the software is installed on. 
+
+The system will handle 1 simultaneous user per installation (1 simultaneous user per terminal).
+
+The system will run on Windows, Mac, and Linux devices. 
+
+
+**Information Handling**
+
+The system will handle the user’s rocket information, including details about the rocket to be simulated to pass to OpenRocket.
+
+The system will handle PID values/control software, to properly simulate how the rocket is likely to act in flight with this PID software controlling the gimballing. This will allow avionics to understand how the PID controller parameters should be constructed on the rocket.
+
+The system will handle mission control data, including weather conditions. Primarily, wind information will be handled as this is the most influential to the simulations.
+
+The system will handle the simulation data from OpenRocket across all the Monte Carlo simulations. This will then be converted to graphical data, to be stored for the user and displayed graphically for ease of understanding. The simulation data should be saved regularly, so in the case of crashing, early termination, or other issues, the information gathered to that point is preserved for the user. 
+
+
+**Dynamic Requirements**
+
+The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000 (one million), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand). 
+
+*This requirement is subject to change when we begin creating the program, as it is a broad estimate.*
+The system should run/process each simulation in approximately 10 seconds. This will mean that 6 simulations can be run in a minute.
+Refer to the table below for a range of time estimates for different Monte Carlo simulation sizes. 
+
+| Simulation Length (Numerical) | Simulation Length  | Time Estimate (Seconds) | Time Estimate (Hours) |
+|-------------------------------|--------------------|-------------------------|-----------------------|
+| 1                             | One                | 10                      | -                     |
+| 100                           | One hundred        | 1,000                   | 0.278                 |
+| 1,000                         | One thousand       | 10,000                  | 2.778                 |
+| 10,000                        | Ten thousand       | 100,000                 | 27.778                |
+| 1,000,000                     | One million        | 10,000,000              | 277.778               |
 
 
 ### 3.5 Logical database requirements
@@ -413,9 +448,79 @@ __Constraints imposed by project limitations:__
 
 ### 3.7 Nonfunctional system attributes
 
-Present the systemic (aka nonfunctional) requirements of the product (see ISO/IEC 25010).
-List up to twenty systemic requirements / attributes.
-Write a short natural language description of the top nonfunctional requirements (approx. five pages).
+* Compatibility
+* Usability
+* Reliability
+* Security
+* Maintainibility
+* Portability
+* Open Source
+* Performance Efficiency
+
+**Compatibility**
+
+This project (creating Monte Carlo simulations) is one of three projects with an overarching goal of launching a hobby rocket. As such, one of the top nonfunctional requrirements is that our program must be compatible with the other two projects.
+
+Our progam must be compatible, and must coexist, with the avionics and mission control projects. Specifically, we must be able to read in rocket data from the avionics team, and we must be able to read in weather condition data from the mission control team, and use these data sets to construct a realistic simulation to be used to judge whether the rocket's flight path and subsequent landing zone is considered safe.
+
+This will involve exchanging information with these project groups, and using that information in our project. Therefore, compatibility is an important systemic attribute to this project.
+
+**Usability**
+
+As the client (and therefore one of the main users), of this project is a hobby rocketeer, and the program is designed to be used by a variety of users with varying skill levels, the program must be user-friendly. 
+To be more specific, this program must be designed in a way that it is easy to operate and control, and users are able to efficiently and effectively learn and understand how to use it. 
+It should also protect against simple user errors, such as invalid inputs (negative values for example).
+
+The program should have a user interface that is accessible to most users, and is understandable and reasonably intuitive to use. 
+
+As the program has one main overall function (Monte Carlo simulations of **hobby** rockets), users should be able to quickly realize/recognize whether this program is appropriate for their needs. 
+It should be made obvious that this program is designed for simulating hobby rockets only.
+
+**Reliability**
+
+The program must be able to reliably perform consecutive Monte Carlo simulations until the amount of times specified is reached. 
+Specifically, the program must reliably complete this task successfully without crashing or encountering issues. 
+
+The program should be widely available to use.
+
+The program should, in the event of an interruption or failure, be able to recover and store the usable data in a way that benefits the user (for example, store the data so that it can be displayed to the user graphically even if the simulations have not all finished).
+
+**Security**
+
+The program should never handle user information, as it would be unnecessary to do so, which means that user information could never be stolen from our program. 
+
+The program should have integrity, meaning it should be protected against tampering and/or modification. 
+
+**Maintainability**
+
+The program should be modular when possible, so that changes to the program have minimised impact. 
+The program should also be written in a way that code can be reused when possible, to avoid redundancy. 
+
+The program should be efficient and effective to analyse, so that failures/deficiencies can be found and fixed efficiently, and so that modifications can be made with ease. 
+It is likely that modifications will need to be made, in the case of requirements changing, or having more time to implement additional features).
+
+The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met, and that our program works accurately.
+
+**Portability**
+
+The program should be efficient and intuitive for the user to install and have working, there should be instructions available for any steps that may not be clear to the user.
+
+The program should be adaptable, and should not require major refactoring for small changes. 
+
+The program should be clear about the performance requirements of the machine it is running on, as Monte Carlo simulations are resource intensive.
+
+**Open Source**
+
+The program should be open source and free to use, meaning that all software, tools, and equipment used to build and create the program should not conflict with this. 
+
+All software, tools, and equipment should also be open source, so that the program is free to use for hobby rocketeers and any other user who the program is appropriate for.
+
+**Performance Efficiency**
+
+The program must be designed with efficiency in mind. 
+As Monte Carlo simulations are resource intensive and computationally stressful, the program must not use resources inefficiently, and must make the best effort to reduce stress on the machine it is running on where possible. 
+
+The program should be clear to the user about the performance requirements of the machine it should be running on, as Monte Carlo simulations are resource intensive.
 
 
 ### 3.8 Physical and Environmental Requirements 
@@ -428,7 +533,65 @@ see 9.5.19.
 
 ## 4. Verification
 
-3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
+This section details how we verify our product meets the requirements laid out here in this document in section 3. These verification methods will include testable acceptance criteria.
+### External Interfaces (3.1)
+This requirement will be verified by being able to operate the product using only a monitor, mouse, and keyboard as external interfaces, with no other interfaces needed.
+
+### Functions (3.2)
+This requirement will be verified by being able to perform all of the use cases, following all of the steps in the order presented without product failure and with successful results. It can be tested by a manual walkthrough of the product.
+
+### Usability Requirements (3.3)
+This requirement will be verified mostly by the successful verification of many of the other sections, namely parts of this section relating to sections 3.2, 3.4, and 3.7. Overall verification for this section can be achieved through team review, user testing, and customer testing.
+
+### Performance Requirements (3.4)
+This requirement will be verified by meeting the specifics detailed in section 3.3. Static attributes like those in the *Capacity* and *Information Handling* sections can be verified through manual analysis. The attribute in the *Dynamic Requirements* section can be verified through automated unit testing.
+
+### Logical Database Requirements (3.5)
+This requirement will be verified by an analysis of the product source code to identify class structure and associations between classes. Verification will be achieved if the structure and associations mostly resemble the UML diagram presented in section 3.5. Minor deviations from the diagram are permitted as the need arises during development.
+
+### Design Constraints (3.6)
+This requirement will be verified by a retrospective analysis of the team's actions and decisions. Team members could be reviewed individually, or a special meeting could be held to identify any breaches of the stated limitations.
+
+### Nonfunctional System Attributes (3.7)
+**Compatibility**
+This requirement will be verified by the ability of the program to integrate necessary data from the avionics and mission control products. Verification will be achieved if necessary rocket data is able to be read in from the avionics product and necessary weather condition data is able to be read in from the mission control product. This can be tested with unit testing.
+
+**Usability**
+This requirement will be verified by being user-friendly and accessible. Verification will be achieved if:
+ - User testing indicates the product is relatively easy to use at the skill level of the user personas.
+ - User testing indicates the product is intuitive based on the experience of the user personas.
+ - User testing indicates the product doesn't have a steep learning curve, i.e. the learning process is efficient and does not contain any major barriers.
+ - User testing indicates the ability to quickly recognise whether the product is appropriate for their needs.
+ - Invalid input protections are in place, preventing the user from passing out-of-bounds or inapplicable inputs to the product. These can include things like negative values and large/small values where they are not expected. This can be tested with automated testing.
+ - The product's interface is accessible to most users and contains basic accessibility options like font size adjustment, colour-blindness support, and keyboard shortcuts.
+
+**Reliability**
+This requirement will be verified by mitigating the causes of program failure and being easily obtained. Verification will be achieved if:
+ - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable, but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
+ - The product is widely available to use. It should be downloadable from an easily accessible website.
+ - The product does not lose data from the current batch of simulations in the event of failure. Data collected up to the point of failure should be stored in a usable fashion that allows it to be read and displayed.
+
+**Security**
+This requirement will be verified by the product only collecting the minimum necessary user data and employing mechanisms to maintain its integrity. Verification will be achieved if:
+ - An analysis and review of the user data collected by the product is able to justify the data collected as being essential to the operation of the product or essential to the user's experience of the product.
+ - The product has introduced methods to protect against tampering and modification without the user's consent.
+
+**Maintainability**
+This requirement will be verified by a codebase that is modular, clear, easy to read, and employs encapsulation well. Verification will be achieved if:
+ - An analysis of the code shows good use of encapsulation.
+ - Code conforms to a chosen standard (i.e. Google standard). This can be enforced with a style checker IDE plugin. For verification to be complete, no warnings from this plugin must be present.
+ - JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and manual review of the codebase.
+ - Code not written in Java is accurately documented.
+ - Code is commented where needed.
+
+**Portability**
+As the product is a Java plugin and ostensibly faces no porting during its life cycle, this requirement's verification is fulfilled by the Maintainability section above.
+
+**Open Source**
+This requirement will be verified by the ability to change any part of the product's codebase with freely available tools. The product should comply with applicable open source standards, and make its codebase available on a freely accessible online platform (like GitLab or GitHub).
+
+**Performance Efficiency**
+This requirement will be verified by a subjective analysis of several sample machines running the product in a normal scenario. The sample machines should be consistent with those used by the user personas. The product should also perform within a timeframe acceptable to the user personas, within the context of the personas being informed of the resource-intensive nature of Monte Carlo simulations. 
 
 ## 5. Development schedule.
 
@@ -515,12 +678,12 @@ A one page statement of contributions, including a list of each member of the gr
 
 | Contributor | Sections |
 | :---: | :------- |
-| Michael | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2 |
-| Alex | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.2 |
-| Georgia | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, Safe Computing Wiki (for H&S) |
+| Michael | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2, 3.3 |
+| Alex | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.1, 3.2, Section 4 |
+| Georgia | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, 3.4, 3.7, 3.8, 5.1, Safe Computing Wiki (for H&S) |
 | Max | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2 |
 | Justina | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.6 |
-| Jacqui | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.5 |
+| Jacqui | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.5, 3.2 |
 
 ---
 
