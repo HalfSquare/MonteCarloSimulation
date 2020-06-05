@@ -270,24 +270,42 @@ See 9.5.12. for most systems this will be around one page.
 
 ### 3.4 Performance requirements
 
-See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
 
-> **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole. 
-> 
-> Static numerical requirements may include the following:
-> 
-> a) The number of terminals to be supported;  
-> b) The number of simultaneous users to be supported;  
-> c) Amount and type of information to be handled.
-> 
-> Static numerical requirements are sometimes identified under a separate section entitled Capacity.
-> 
-> Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
-> 
->  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
-> 
-> NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
+**Capacity**
+
+The system being created will be downloaded and installed to the plugins directory of OpenRocket on the user’s device. As such, the system will support 1 terminal per installation of the software, as in the terminal that the software is installed on. 
+
+The system will handle 1 simultaneous user per installation (1 simultaneous user per terminal).
+
+The system will run on Windows, Mac, and Linux devices. 
+
+
+**Information Handling**
+
+The system will handle the user’s rocket information, including details about the rocket to be simulated to pass to OpenRocket.
+
+The system will handle PID values/control software, to properly simulate how the rocket is likely to act in flight with this PID software controlling the gimballing. This will allow avionics to understand how the PID controller parameters should be constructed on the rocket.
+
+The system will handle mission control data, including weather conditions. Primarily, wind information will be handled as this is the most influential to the simulations.
+
+The system will handle the simulation data from OpenRocket across all the Monte Carlo simulations. This will then be converted to graphical data, to be stored for the user and displayed graphically for ease of understanding. The simulation data should be saved regularly, so in the case of crashing, early termination, or other issues, the information gathered to that point is preserved for the user. 
+
+
+**Dynamic Requirements**
+
+The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000 (one million), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand). 
+
+*This requirement is subject to change when we begin creating the program, as it is a broad estimate.*
+The system should run/process each simulation in approximately 10 seconds. This will mean that 6 simulations can be run in a minute.
+Refer to the table below for a range of time estimates for different Monte Carlo simulation sizes. 
+
+| Simulation Length (Numerical) | Simulation Length  | Time Estimate (Seconds) | Time Estimate (Hours) |
+|-------------------------------|--------------------|-------------------------|-----------------------|
+| 1                             | One                | 10                      | -                     |
+| 100                           | One hundred        | 1,000                   | 0.278                 |
+| 1,000                         | One thousand       | 10,000                  | 2.778                 |
+| 10,000                        | Ten thousand       | 100,000                 | 27.778                |
+| 1,000,000                     | One million        | 10,000,000              | 277.778               |
 
 
 ### 3.5 Logical database requirements
