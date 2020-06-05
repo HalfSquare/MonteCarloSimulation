@@ -273,7 +273,7 @@ An one page statement of contributions, including a list of each member of the g
 | Michael | |
 | Alex | |
 | Georgia | Section 5 (5.1, 5.2.1, 5.2, 5.2.2, 5.3, 5.4, 5.4.1) |
-| Max | |
+| Max | 5.2.2, 3.1 |
 | Justina | |
 |Jacqui | |
 
