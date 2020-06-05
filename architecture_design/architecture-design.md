@@ -282,7 +282,7 @@ An one page statement of contributions, including a list of each member of the g
 | Michael | |
 | Alex | |
 | Georgia | |
-| Max | |
+| Max | 5.2.2, 3.1 |
 | Justina | |
 |Jacqui | |
 
