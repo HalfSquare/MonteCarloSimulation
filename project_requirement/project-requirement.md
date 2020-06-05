@@ -418,12 +418,24 @@ SimulationData "1" -- TopographicalData
 | MountainData | Type of Topographical Data. |
 
 ### 3.6 Design constraints
+There are many possible constraints that can be imposed on the project. These can be broken down into three main sections: _constraints imposed by external standards_, _constraints imposed by regulatory requirements_ and _constraints imposed by project limitations_.
 
-see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 
-> 9.5.15 Design constraints<br>
-> Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations.
-> 
+__Constraints imposed by external standards:__
+- COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person group meetings and stand ups, as well as group work. 
+
+__Constraint imposed by regulatory requirements:__
+- Health and safety contraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
+
+
+__Constraints imposed by project limitations:__
+- Time constraint: Our project has a very limited time frame in which it can run for. This means that decisions must be made in order to maintain the integrity and completion of the project before the second semester is finished. Additionally, during the length of this project, our team members still have other papers to work on, and therefore we are also limited by the number of hours that our team members are able to put in each week. 
+- Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budgetless.
+- Knowledge contraint: There is also a knowledge constraint due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
+- Technical constraint: While our project is solely software based, we have a lack of access to professional and industry standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
+- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
+
+
 > 9.5.16 Standards compliance<br>
 > Specify the requirements derived from existing standards or regulations, including:
 > 
