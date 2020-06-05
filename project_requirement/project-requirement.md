@@ -116,6 +116,7 @@ There are also possible limitations of the final product:
 
 [5] Victoria University of Wellington, "Project Management - Health and Safety", 2020. [Online]. Available: https://ecs.wgtn.ac.nz/Courses/ENGR301_2020T1/HealthAndSafety. [Accessed May. 22, 2020].
 
+[6] Quinlan, B., 2015. Dimensional Analysis: How Many Monte Carlo Simulations Should I Run? Part 2. [online] Blog.3dcs.com. Available at: <https://blog.3dcs.com/dimensional-analysis-how-many-monte-carlo-simulations-should-i-run> [Accessed 3 June 2020].
 
 ## 3. Specific requirements  
 
@@ -507,7 +508,65 @@ see 9.5.19.
 
 ## 4. Verification
 
-3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
+This section details how we verify our product meets the requirements laid out here in this document in section 3. These verification methods will include testable acceptance criteria.
+### External Interfaces (3.1)
+This requirement will be verified by being able to operate the product using only a monitor, mouse, and keyboard as external interfaces, with no other interfaces needed.
+
+### Functions (3.2)
+This requirement will be verified by being able to perform all of the use cases, following all of the steps in the order presented without product failure and with successful results. It can be tested by a manual walkthrough of the product.
+
+### Usability Requirements (3.3)
+This requirement will be verified mostly by the successful verification of many of the other sections, namely parts of this section relating to sections 3.2, 3.4, and 3.7. Overall verification for this section can be achieved through team review, user testing, and customer testing.
+
+### Performance Requirements (3.4)
+This requirement will be verified by meeting the specifics detailed in section 3.3. Static attributes like those in the *Capacity* and *Information Handling* sections can be verified through manual analysis. The attribute in the *Dynamic Requirements* section can be verified through automated unit testing.
+
+### Logical Database Requirements (3.5)
+This requirement will be verified by an analysis of the product source code to identify class structure and associations between classes. Verification will be achieved if the structure and associations mostly resemble the UML diagram presented in section 3.5. Minor deviations from the diagram are permitted as the need arises during development.
+
+### Design Constraints (3.6)
+This requirement will be verified by a retrospective analysis of the team's actions and decisions. Team members could be reviewed individually, or a special meeting could be held to identify any breaches of the stated limitations.
+
+### Nonfunctional System Attributes (3.7)
+**Compatibility**
+This requirement will be verified by the ability of the program to integrate necessary data from the avionics and mission control products. Verification will be achieved if necessary rocket data is able to be read in from the avionics product and necessary weather condition data is able to be read in from the mission control product. This can be tested with unit testing.
+
+**Usability**
+This requirement will be verified by being user-friendly and accessible. Verification will be achieved if:
+ - User testing indicates the product is relatively easy to use at the skill level of the user personas.
+ - User testing indicates the product is intuitive based on the experience of the user personas.
+ - User testing indicates the product doesn't have a steep learning curve, i.e. the learning process is efficient and does not contain any major barriers.
+ - User testing indicates the ability to quickly recognise whether the product is appropriate for their needs.
+ - Invalid input protections are in place, preventing the user from passing out-of-bounds or inapplicable inputs to the product. These can include things like negative values and large/small values where they are not expected. This can be tested with automated testing.
+ - The product's interface is accessible to most users and contains basic accessibility options like font size adjustment, colour-blindness support, and keyboard shortcuts.
+
+**Reliability**
+This requirement will be verified by mitigating the causes of program failure and being easily obtained. Verification will be achieved if:
+ - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable, but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
+ - The product is widely available to use. It should be downloadable from an easily accessible website.
+ - The product does not lose data from the current batch of simulations in the event of failure. Data collected up to the point of failure should be stored in a usable fashion that allows it to be read and displayed.
+
+**Security**
+This requirement will be verified by the product only collecting the minimum necessary user data and employing mechanisms to maintain its integrity. Verification will be achieved if:
+ - An analysis and review of the user data collected by the product is able to justify the data collected as being essential to the operation of the product or essential to the user's experience of the product.
+ - The product has introduced methods to protect against tampering and modification without the user's consent.
+
+**Maintainability**
+This requirement will be verified by a codebase that is modular, clear, easy to read, and employs encapsulation well. Verification will be achieved if:
+ - An analysis of the code shows good use of encapsulation.
+ - Code conforms to a chosen standard (i.e. Google standard). This can be enforced with a style checker IDE plugin. For verification to be complete, no warnings from this plugin must be present.
+ - JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and manual review of the codebase.
+ - Code not written in Java is accurately documented.
+ - Code is commented where needed.
+
+**Portability**
+As the product is a Java plugin and ostensibly faces no porting during its life cycle, this requirement's verification is fulfilled by the Maintainability section above.
+
+**Open Source**
+This requirement will be verified by the ability to change any part of the product's codebase with freely available tools. The product should comply with applicable open source standards, and make its codebase available on a freely accessible online platform (like GitLab or GitHub).
+
+**Performance Efficiency**
+This requirement will be verified by a subjective analysis of several sample machines running the product in a normal scenario. The sample machines should be consistent with those used by the user personas. The product should also perform within a timeframe acceptable to the user personas, within the context of the personas being informed of the resource-intensive nature of Monte Carlo simulations. 
 
 ## 5. Development schedule.
 
