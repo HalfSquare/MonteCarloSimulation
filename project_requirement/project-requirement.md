@@ -275,8 +275,8 @@ It is expected that the program should run the simulations as fast as possible w
 After each simulation is run in the Monte Carlo process, the data will be stored and only until the Monte Carlo simulation has finished the data will be displayed graphically this is to avoid taking up resources that should be used for running each simulation at its maximum speed.
 
 ##### Satisfaction criteria
-For the system to meet satisfaction it needs meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where the their rocket will end up for the current weather conditions. 
-The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the amount of specified. 
+For the system to meet satisfaction it needs to meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where their rocket will end up for the current weather conditions. 
+The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the amount of times specified. 
 
 ### 3.4 Performance requirements
 
