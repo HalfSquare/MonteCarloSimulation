@@ -286,7 +286,7 @@ See 9.5.13. for most systems this will be around one page. Hardware projects als
 > 
 > NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
 
-**Terminal support**
+**Capacity**
 
 The system being created will be downloaded and installed to the plugins directory of OpenRocket on the user’s device. As such, the system will support 1 terminal per installation of the software, as in the terminal that the software is installed on. 
 
@@ -302,6 +302,15 @@ The system will handle the user’s rocket information, including details about 
 The system will handle PID values/control software, to properly simulate how the rocket is likely to act in flight with this PID software controlling the gimballing. This will allow avionics to understand how the PID controller parameters should be constructed on the rocket.
 
 The system will handle mission control data, including weather conditions. Primarily, wind information will be handled as this is the most influential to the simulations.
+
+The system will handle the simulation data from OpenRocket across all the Monte Carlo simulations. This will then be converted to graphical data, to be stored for the user and displayed graphically for ease of understanding. The simulation data should be saved regularly, so in the case of crashing, early termination, or other issues, the information gathered to that point is preserved for the user. 
+
+
+**Dynamic Requirements**
+
+The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000,000 (1 billion), and a lower limit of 1,000 (1 thousand). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000,000 (1 million). 
+
+The system should run/process each simulation in approximately 10 seconds. This will mean that 6 simulations can be run in a minute.
 
 
 
