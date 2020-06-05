@@ -387,7 +387,7 @@ There are many possible constraints that can be imposed on the project. These ca
 
 
 __Constraints imposed by external standards:__
-- COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person group meetings and stand ups, as well as groip work. 
+- COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person group meetings and stand ups, as well as group work. 
 
 __Constraint imposed by regulatory requirements:__
 - Health and safety contraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
