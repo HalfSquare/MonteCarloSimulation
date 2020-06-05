@@ -195,7 +195,7 @@ For each issue created in the sprint, we will add the level of difficulty we est
 ### 4.3 Process
 The process viewpoint identifies the individual processes that are interacting to complete the scenarios.The process architecture can control they deployment, starting, recovery, reconfiguration and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
 
-The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. The concurrency of this system will be controlled 
+The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. The concurrency of this system will be controlled...
 
 *can new inputs be added when the simulation is running*
 
