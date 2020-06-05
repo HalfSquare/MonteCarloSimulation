@@ -143,7 +143,7 @@ This section has been added to show who is involved in the project and what role
 | Craig Anslow | Course coordinator |
 | Benjamin Secker | Senior Manager |
 | ------ | ------ |
-| Alex Pace | Software Engineer |
+| Alex Pace | Software Developer |
 | Georgia Strongman | Software Developer |
 | Jacqui Dong | Software Developer |
 | Justina Koh | Software Developer |
