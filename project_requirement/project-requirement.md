@@ -308,10 +308,18 @@ The system will handle the simulation data from OpenRocket across all the Monte 
 
 **Dynamic Requirements**
 
-The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000,000 (1 billion), and a lower limit of 1,000 (1 thousand). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000,000 (1 million). 
+The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000 (one million), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand). 
 
 The system should run/process each simulation in approximately 10 seconds. This will mean that 6 simulations can be run in a minute.
+Refer to the table below for a range of time estimates for different Monte Carlo simulation sizes. 
 
+| Simulation Length (Numerical) | Simulation Length  | Time Estimate (Seconds) | Time Estimate (Hours) |
+|-------------------------------|--------------------|-------------------------|-----------------------|
+| 1                             | One                | 10                      | -                     |
+| 100                           | One hundred        | 1,000                   | 0.278                 |
+| 1,000                         | One thousand       | 10,000                  | 2.778                 |
+| 10,000                        | Ten thousand       | 100,000                 | 27.778                |
+| 1,000,000                     | One million        | 10,000,000              | 277.778               |
 
 
 ### 3.5 Logical database requirements
