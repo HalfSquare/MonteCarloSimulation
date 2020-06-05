@@ -267,24 +267,6 @@ See 9.5.12. for most systems this will be around one page.
 
 ### 3.4 Performance requirements
 
-See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
-
-> **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole. 
-> 
-> Static numerical requirements may include the following:
-> 
-> a) The number of terminals to be supported;  
-> b) The number of simultaneous users to be supported;  
-> c) Amount and type of information to be handled.
-> 
-> Static numerical requirements are sometimes identified under a separate section entitled Capacity.
-> 
-> Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
-> 
->  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
-> 
-> NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
 
 **Capacity**
 
@@ -310,6 +292,7 @@ The system will handle the simulation data from OpenRocket across all the Monte 
 
 The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000 (one million), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand). 
 
+*This requirement is subject to change when we begin creating the program, as it is a broad estimate.*
 The system should run/process each simulation in approximately 10 seconds. This will mean that 6 simulations can be run in a minute.
 Refer to the table below for a range of time estimates for different Monte Carlo simulation sizes. 
 
