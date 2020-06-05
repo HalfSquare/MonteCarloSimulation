@@ -78,10 +78,10 @@ This means that you should refer to information (e.g. risks, requirements, model
 
 | Stakeholder | Concern |
 |---------|-------------|
-| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. | The users will be concerened with the functionality of the system, its purpose and its suitability for the purpose. |
-| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace and Georgia Strongman. | The developers will be concered with the feasibility, suitability, maintainability of the project. |
-| The customer requesting the system to be made. This will be Andre Geldenhuis | The customer is be concered with the purpose, suitability, evolvability of the system.  |
-| The university coordinators in charge of the project. These include Aaron Chen and Craig Anslow. | The managers are concerened with the feasibility, suitability, evolvability of the system. |
+| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. | The users will be concerned with the functionality of the system, its purpose and its suitability for the purpose. |
+| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace and Georgia Strongman. | The developers will be concerned with the feasibility, suitability, maintainability of the project. |
+| The customer requesting the system to be made. This will be Andre Geldenhuis | The customer is be concerned with the purpose, suitability, evolvability of the system.  |
+| The university coordinators in charge of the project. These include Aaron Chen and Craig Anslow. | The managers are concerned with the feasibility, suitability, evolvability of the system. |
 
 
 ### 3.2 Architectural Viewpoints
