@@ -72,9 +72,17 @@ This means that you should refer to information (e.g. risks, requirements, model
 
 ### 3.1 Stakeholders
 
-See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).
+*See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).*
 
-For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.
+*For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.*
+
+| Stakeholder | Concern |
+|---------|-------------|
+| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. | The users will be concerned with the functionality of the system, its purpose and its suitability for the purpose. |
+| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace and Georgia Strongman. | The developers will be concerned with the feasibility, suitability, maintainability of the project. |
+| The customer requesting the system to be made. This will be Andre Geldenhuis | The customer is be concerned with the purpose, suitability, evolvability of the system.  |
+| The university coordinators in charge of the project. These include Aaron Chen and Craig Anslow. | The managers are concerned with the feasibility, suitability, evolvability of the system. |
+
 
 ### 3.2 Architectural Viewpoints
 (1 page, 42010 5.4) 
