@@ -1,11 +1,12 @@
-## What does this Merge Request do?
+## Summary of Merge Request
 
-<!-- What does this do to your issue? i.e. Fixes / Completes -->: #<!-- issue number. Make sure there is no space between the '#' and issue number-->
-<br>
 <!-- BREIFLY describe what this MR is about. Bullet points are okay -->
+<br>
+<!-- What does this do to your issue? i.e. Fixes / Completes -->: #<!-- issue number. Make sure there is no space between the '#' and issue number-->
 
 ## Author's checklist 
 This is a checklist for the author(s) to ensure that the changes are of good quality and appropriate. All of the points must be ticked before the merge request can be submitted.
+- [ ] Apply the ~documentation label
 - [ ] All other teammates are aware and have mutually agreed that the following changes can be made to the documentation
 - [ ] Follow our [Documentation Guidelines](LINK) and [Style Guide for code ](LINK).
 - [ ] Have the correct Sprint selected in the Milestone section
@@ -25,6 +26,7 @@ Co-authored-by: <!-- Author's full name followed by a space and their correspndi
 
 ## Reviewer's checklist
  This checklist is for the reviewer. The reviewer should check it off once they are satified with the merge request and are happy for the user to have their branch merged. 
-* [ ] I have checked this merge request for clarity, spelling and grammar errors and it follows the [Documentation Guidelines](LINK)
+* [ ] I have checked this merge request for clarity, spelling and grammar errors
+* [ ] The following changes to the documentation follows the [Documentation Guidelines](LINK)
 * [ ] The changes made in this request has been mutually agreed upon by the rest of the teammates
 
