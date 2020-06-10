@@ -22,7 +22,7 @@ class LandingPoints(list):
             
             # Run num simulations and add to self
             for p in range(num):
-                print 'Running simulation ', p
+                print('Running simulation ', p)
                 
                 opts.setLaunchRodAngle(math.radians( gauss(45, 5) ))    # 45 +- 5 deg in direction
                 opts.setLaunchRodDirection(math.radians( gauss(0, 5) )) # 0 +- 5 deg in direction
@@ -43,8 +43,8 @@ class LandingPoints(list):
         ranges = [p.range for p in self]
         bearings = [p.bearing for p in self]
         
-        print 'Rocket landing zone %3.2f m +- %3.2f m bearing %3.2f deg +- %3.4f deg from launch site. Based on %i simulations.' % \
-            (np.mean(ranges), np.std(ranges), np.degrees(np.mean(bearings)), np.degrees(np.std(bearings)), len(self) )
+        print('Rocket landing zone %3.2f m +- %3.2f m bearing %3.2f deg +- %3.4f deg from launch site. Based on %i simulations.' % \
+            (np.mean(ranges), np.std(ranges), np.degrees(np.mean(bearings)), np.degrees(np.std(bearings)), len(self) ))
 
 class LandingPoint(orhelper.AbstractSimulationListener):
 
