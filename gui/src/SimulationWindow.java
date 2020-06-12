@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class SimulationWindow {
   private JProgressBar progressBar1;
