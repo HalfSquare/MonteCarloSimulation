@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 
 public class GraphWindow {
-  private JComboBox comboBox1;
+  private JComboBox graphTypeComboBox;
   private JButton saveToFileButton;
   private JPanel rootPanel;
   private JButton exitButton;
@@ -22,6 +22,8 @@ public class GraphWindow {
   public void setReRunButtonListener(ActionListener listener) {
     this.reRunButton.addActionListener(listener);
   }
+
+  public void
 
   public void setVisible(boolean flag) {
     rootPanel.setVisible(flag);

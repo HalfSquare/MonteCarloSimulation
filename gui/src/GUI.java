@@ -15,6 +15,10 @@ public class GUI extends JFrame {
   public static final String SIMULATION = "SIMULATION";
   public static final String GRAPH = "GRAPH";
 
+  public enum GraphType{
+    CIRCLE, SQUARE, ROCKET
+  }
+
   private Timer timer;
 
   public GUI() {
@@ -69,6 +73,9 @@ public class GUI extends JFrame {
   }
 
   private void startGraph() {
+    GraphType graphType = GraphType.CIRCLE;
+    //graphWindow.
+
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(new ActionListener() {
       @Override
