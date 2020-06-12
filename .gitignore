@@ -71,3 +71,4 @@ _minted*
 
 ## Log file
 # *.log
+/bin/
