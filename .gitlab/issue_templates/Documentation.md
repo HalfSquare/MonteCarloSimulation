@@ -1,30 +1,23 @@
-### Problem to solve
-
-<!-- Include the following detail as necessary:
-* What product or feature(s) affected?
-* What docs or doc section affected? Include links or paths.
-* Is there a problem with a specific document, or a feature/process that's not addressed sufficiently in docs?
-* Any other ideas or requests?
--->
-
-### Further details
-
-<!--
-* Any concepts, procedures, reference info we could add to make it easier to successfully use GitLab?
-* Include use cases, benefits, and/or goals for this work.
-* If adding content: What audience is it intended for? (What roles and scenarios?)
-  For ideas, see personas at https://design.gitlab.com/research/personas or the persona labels at
-  https://gitlab.com/groups/gitlab-org/-/labels?utf8=%E2%9C%93&subscribed=&search=persona%3A
--->
-
-### Proposal
-
-<!-- Further specifics for how can we solve the problem. -->
+#### __Content__
+Title: (Title of the Documentation task)
+<br>
+Description: (Summarise what is to be done concisely)
 
 
+#### __Extra Information about the Documentation Task:__
+<!-- Take this  out if not relevant.-->
 
-### Other links/references
+### Relevant logs, links and/or screenshots
 
-<!-- E.g. related GitLab issues/MRs -->
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's tough to read otherwise.)
+
+### Possible fixes 
+<!-- Take this section out if not relevant -->
+(If you can, link to the line of code that might be responsible for the problem)
+
+#### People
+Authors:
+Assignees(s):
 
 /label ~documentation
