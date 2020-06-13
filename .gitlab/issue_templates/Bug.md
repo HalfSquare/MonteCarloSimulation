@@ -1,18 +1,15 @@
-### Summary
+#### __Content__
+Title: (Title of the bug)
+<br>
+Description: (Summarize the bug encountered concisely)
 
-(Summarize the bug encountered concisely)
 
-### Steps to reproduce
-
-(How one can reproduce the issue)
-
-### What is the current *bug* behavior?
-
-(What actually happens)
-
-### What is the expected *correct* behavior?
-
-(What you should see instead)
+#### __Information about the bug:__
+__Steps to reproduce the bug:__ (Put in list form)
+<br>
+__What is the current *bug* behaviour:__ (What actually happens)
+<br>
+__What is the expected *correct* behavior:__ (What you should see instead)
 
 ### Relevant logs and/or screenshots
 
@@ -22,5 +19,9 @@ logs, and code as it's tough to read otherwise.)
 ### Possible fixes
 
 (If you can, link to the line of code that might be responsible for the problem)
+
+#### People
+Authors:
+Assignees(s):
 
 /label ~bug
