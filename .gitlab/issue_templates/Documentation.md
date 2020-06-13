@@ -8,7 +8,7 @@ Description: (Summarise what is to be done concisely)
 #### __Extra Information about the Documentation Task:__
 <!-- Take this  out if not relevant.-->
 
-### Relevant logs, links and/or screenshots
+#### Relevant logs, links and/or screenshots
 
 (Paste any relevant logs - please use code blocks (```) to format console output,
 logs, and code as it's tough to read otherwise.)
@@ -21,5 +21,5 @@ logs, and code as it's tough to read otherwise.)
 Authors:
 Assignees(s):
 
-/label ~documentation
-/label ~bug
+/label ~documentation <br>
+/label ~bug  <!--Take this label out if it is not a bug-->
