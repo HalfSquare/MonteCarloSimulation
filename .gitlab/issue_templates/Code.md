@@ -1,30 +1,23 @@
-### Problem to solve
-
-<!-- Include the following detail as necessary:
-* What product or feature(s) affected?
-* What docs or doc section affected? Include links or paths.
-* Is there a problem with a specific document, or a feature/process that's not addressed sufficiently in docs?
-* Any other ideas or requests?
--->
-
-### Further details
-
-<!--
-* Any concepts, procedures, reference info we could add to make it easier to successfully use GitLab?
-* Include use cases, benefits, and/or goals for this work.
-* If adding content: What audience is it intended for? (What roles and scenarios?)
-  For ideas, see personas at https://design.gitlab.com/research/personas or the persona labels at
-  https://gitlab.com/groups/gitlab-org/-/labels?utf8=%E2%9C%93&subscribed=&search=persona%3A
--->
-
-### Proposal
-
-<!-- Further specifics for how can we solve the problem. -->
+#### __Content__
+Title: (Title of the bug)
+<br>
+Description: (Summarise what is needed to be done with the code)
 
 
+#### __Information about the task:__
+__What is the final expected output / product after this code is implemented:__ (One sentence. Can put in list form)
+<br>
+__What is the code currently doing:__ (What actually happens)
 
-### Other links/references
 
-<!-- E.g. related GitLab issues/MRs -->
+### Relevant logs and/or screenshots
+
+(Paste any relevant logs - please use code blocks (```) to format console output,
+logs, and code as it's tough to read otherwise.)
+
+
+#### People
+Authors:
+Assignees(s):
 
 /label ~documentation
