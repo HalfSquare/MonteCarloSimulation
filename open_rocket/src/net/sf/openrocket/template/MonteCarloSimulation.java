@@ -12,7 +12,8 @@ import java.util.Random;
 public class MonteCarloSimulation {
 
     /**
-     * Runs a specified amount of simulations
+     * Runs a specified amount of Monte Carlo simulations
+	 * Currently takes about 10 seconds to run 1,000 simulations
      * @param num   Number of simulations to run
      */
     public void runSimulations(int num) throws RocketLoadException {
@@ -40,7 +41,7 @@ public class MonteCarloSimulation {
         for (int simNum = 1; simNum <= num; simNum++) {
             System.out.println("Running simulation number: "+simNum);
 
-            //TODO: randomise the simulation conditions eg. wind speed, launch rod angle (Gaussian function)
+            //TODO: find which variables we want to take in from user, and which variables should be randomized
 
 			// Randomize some launch conditions with Gaussian distribution
 			simulationOptions.setWindSpeedAverage(rand.nextGaussian()+2);
@@ -54,8 +55,10 @@ public class MonteCarloSimulation {
 
     public MonteCarloSimulation() {
         // runs 20 simulations can throw Rocket load exception if .ork document cant be loaded
+
+		//TODO: allow user to choose to import their rocket/.ork file - should this tie into GUI?
         try {
-            runSimulations(20);
+            runSimulations(1000);
         } catch (RocketLoadException e) {
             e.printStackTrace();
         }
@@ -63,6 +66,8 @@ public class MonteCarloSimulation {
 
     public static void main(String[] args) throws Exception {
         //TODO: Needs to start up openrocket to load motor investigate methods to load motor programmatically (Check Startup2 class)
+
+		//TODO: Investigate whether there is a way to open OpenRocket in headless/noGUI mode, or close OpenRocket automatically
         Startup.main(args);
         new MonteCarloSimulation();
     }
