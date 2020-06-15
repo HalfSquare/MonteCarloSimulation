@@ -28,6 +28,9 @@ public class MonteCarloSimulation {
 
         Rocket rocket = simulation.getRocket();
 
+		// Random has a built in Gaussian distribution function (below) which could be suitable
+		Random rand = new Random();
+
         // Change simulation options
         SimulationOptions simulationOptions = simulation.getOptions();
         simulationOptions.setWindSpeedAverage(2);
@@ -38,11 +41,13 @@ public class MonteCarloSimulation {
             System.out.println("Running simulation number: "+simNum);
 
             //TODO: randomise the simulation conditions eg. wind speed, launch rod angle (Gaussian function)
-            //Random has a built in Gaussian distribution function (below) which could be suitable
-            Random r = new Random();
-            System.out.println("Gaussian: " + r.nextGaussian() + r.nextGaussian());
 
-            helper.runSimulation(simulation, new MonteCarloSimulationExtensionListener());
+			// Randomize some launch conditions with Gaussian distribution
+			simulationOptions.setWindSpeedAverage(rand.nextGaussian()+2);
+			simulationOptions.setLaunchRodAngle(rand.nextGaussian()*45);
+			simulationOptions.setLaunchTemperature(rand.nextGaussian()+30);
+
+			helper.runSimulation(simulation, new MonteCarloSimulationExtensionListener());
 
         }
     }
