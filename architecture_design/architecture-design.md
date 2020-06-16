@@ -285,9 +285,9 @@ The concurrency present in the system can be associated with reading data used f
 For our project, the topology consists of only of one physical component. This component is a:
 * Field Laptop
 
-The field laptop will contain software which we will use in order to run our simulations. 
+The field laptop will contain software which we will use in order to run our simulations. The software on the field laptop will read the data, customise data, run the simulations and create a graphical output. 
 
-
+![Deployment Diagram](Deployment_Diagram.png)
 
 ### 4.5 Scenarios
 
