@@ -20,9 +20,6 @@ This is a checklist for the author(s) to ensure that the changes are of good qua
 Co-authored-by: <!-- Author's full name followed by a space and their correspnding username tag-->
 <!-- Please keep the name of your co-author: Alexander Pace, Georgia Strongman, Jacqui Dong, Justina Koh, Maz McMurray, Michael Behan-->
 <!-- Please keep the tag of your co-author: @pacealex @stronggeor @dongjacq @kohjust @stronggeor @behanmich -->
-Co-authored-by: <!-- Author's full name followed by a space and their correspnding username tag-->
-<!-- Please keep the name of your co-author: Alexander Pace, Georgia Strongman, Jacqui Dong, Justina Koh, Maz McMurray, Michael Behan-->
-<!-- Please keep the tag of your co-author: @pacealex @stronggeor @dongjacq @kohjust @stronggeor @behanmich -->
 
 ## Reviewer's checklist
  This checklist is for the reviewer. The reviewer should check it off once they are satified with the merge request and are happy for the user to have their branch merged. 
