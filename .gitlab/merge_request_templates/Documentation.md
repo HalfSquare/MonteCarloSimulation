@@ -7,6 +7,7 @@
 ## Author's checklist 
 This is a checklist for the author(s) to ensure that the changes are of good quality and appropriate. All of the points must be ticked before the merge request can be submitted.
 - [ ] Apply the ~documentation label
+- [ ] Have the correct overall Epic applied
 - [ ] All other teammates are aware and have mutually agreed that the following changes can be made to the documentation
 - [ ] Follow our [Documentation Guidelines](LINK) and [Style Guide for code ](LINK).
 - [ ] Have the correct Sprint selected in the Milestone section
@@ -17,9 +18,6 @@ This is a checklist for the author(s) to ensure that the changes are of good qua
 
 #### Authors
 <!-- If you do not have any co-authors, change 'Co-author' to 'Author' and put in your details. Otherwise keep the names and tags of your coauthors and delete all the comments-->
-Co-authored-by: <!-- Author's full name followed by a space and their correspnding username tag-->
-<!-- Please keep the name of your co-author: Alexander Pace, Georgia Strongman, Jacqui Dong, Justina Koh, Maz McMurray, Michael Behan-->
-<!-- Please keep the tag of your co-author: @pacealex @stronggeor @dongjacq @kohjust @stronggeor @behanmich -->
 Co-authored-by: <!-- Author's full name followed by a space and their correspnding username tag-->
 <!-- Please keep the name of your co-author: Alexander Pace, Georgia Strongman, Jacqui Dong, Justina Koh, Maz McMurray, Michael Behan-->
 <!-- Please keep the tag of your co-author: @pacealex @stronggeor @dongjacq @kohjust @stronggeor @behanmich -->
