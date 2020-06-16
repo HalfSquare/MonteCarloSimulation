@@ -287,7 +287,7 @@ For our project, the topology consists of only of one physical component. This c
 
 The field laptop will contain software which we will use in order to run our simulations. The software on the field laptop will read the data, customise data, run the simulations and create a graphical output. 
 
-![Deployment Diagram](Deployment_Diagram.png)
+![Deployment Diagram](assets/Deployment_Diagram.png)
 
 ### 4.5 Scenarios
 
