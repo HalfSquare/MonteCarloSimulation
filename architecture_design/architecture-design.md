@@ -126,9 +126,97 @@ Each architectural view should include at least one architectural model. If arch
 ### 4.1 Logical
 In this system, from a logical viewpoint, the user should be able to run simulations of the rocket in OpenRocket, which predict the trajectory of the rocket and where the rocket will land. There are four states the Simulation Software can be in; Idle, Load, Simulation and Output. The diagram which represents the logical view is the UML class diagram. The UML diagram in the [Project Requirements]() document, section 3.5 shows the relationship between the modules, functions and classes. 
 
-*Fix up UML Class diagram*
 
-*Add notes about classes once diagram is finalised*
+```plantuml
+@startuml
+
+class Main{
++ newGUI()
+}
+
+class GUI{
++ helpInfo()
++ newMonteCarloSimulation()
++ MissionControlSettings()
+}
+
+class MonteCarloSimulation{
+- currentData : SimulationData
++ runSimulation()
++ stopSimulation()
++ saveSimulation()
+}
+
+class MissionControlSettings{
+- rocketAngle : double
++ displaySettings()
++ changeSettings()
+}
+
+class GraphData{
++ createGraph()
++ displayGraph()
++ compareGraph()
+}
+
+class SimulationData{
+- weatherList : List<WeatherData>
+- topographicalList : List<TopographicalData>
++ addTopographicalData()
++ addWeatherData()
++ loadDataFile()
+}
+
+class WeatherData extends SimulationData {
+- windDataList : List
+- atmosphericDataList : List
++ addWindData()
++ addAtmosphericData()
+}
+
+class WindData extends WeatherData{
+- windDirection : String
+- gust : String
+}
+
+class AtmosphericData extends WeatherData{
+- clouds : Double
+}
+
+class TopographicalData extends SimulationData {
+- MountainDataList : List
++ addMountainData()
+}
+
+class MountainData extends TopographicalData{
+- xcoordinate : double
+}
+
+
+Main "1..*" --  "1" GUI
+GUI "1" -- "1" MonteCarloSimulation
+GUI "1" -- "1" MissionControlSettings
+MonteCarloSimulation "1" -- SimulationData
+MonteCarloSimulation "1" -- GraphData
+SimulationData "1" -- WeatherData
+SimulationData "1" -- TopographicalData
+@enduml
+```
+##### Responsibilities of each class in the model
+
+| Class | Brief description |
+|---|---|
+| Main | Runs the overall system.|
+| GUI | Allows the user to navigate through the system. |
+| MonteCarloSimulation | Runs the Monte Carlo Simulation. |
+| MissionControlSettings | Holds the information for the Mission Control Settings. |
+| GraphData | Creates, displays and compares the graphical output of the Monte Carlo Simulation. |
+| SimulationData | Contains all of the data for the Monte Carlo Simulation. |
+| WeatherData | Type of Simulation Data. |
+| WindData | Type of Weather Data. |
+| AtmosphericData | Type of Weather Data. |
+| TopographicalData | Type of Simulation Data. |
+| MountainData | Type of Topographical Data. |
 
 ### 4.2 Development
 The development view covers the software management of the project. This includes the roles and responsibilities, project management development technique, project development standards, project development testing and project development monitoring. A range of problems can arise within the development viewpoint due to uneven allocation of work to team, not planning tasks efficiently or insufficient progress monitoring for the project, which will lead to an inadequate system.
@@ -208,7 +296,61 @@ The field laptop will contain software which we will use in order to run our sim
 
 
 ### 4.5 Scenarios
-...
+
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor user
+actor rocket
+rectangle simulations {
+    user -- (Runs simulation)
+        (Save to file) <- (Graph data)
+        (Graph data) <- (Runs simulation)
+        (Runs simulation) <- rocket
+}
+@enduml
+```
+
+*Running the simulations and saving the data*
+One of the main purpose of our simulations is to be able to graphically view the predicted landings of the rocket simulations. Once the simulations are finished, the user can save the graph data.
+
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor user
+actor rocket
+rectangle simulations {
+    user -- (Adds topographical data)
+        (Adds topographical data) -> (Enter launch site location)
+        (Enter launch site location) -> (Saves data to working simulation file)
+        (Saves data to working simulation file) <- rocket
+}
+@enduml
+```
+*Adding topographical data*
+The user is able to add topographical or weather data to the working simulation file to change the environmental conditions during the rocket simulations. This allows the graphical output created to be more accurate depending on the launch and journey of the rocket.
+
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor user
+actor rocket
+rectangle simulations {
+    user -- (Selects mission control options)
+        (Selects mission control options) -> (Starts simulation)
+        (Starts simulation) -> (adjusts the angle of rocket)
+        (adjusts the angle of rocket) -> (Finish simulation)
+        (Finish simulation) -> (output graphical data)
+        (Starts simulation) <- rocket
+        
+        
+}
+@enduml
+```
+Another main purpose of our simulation is to be able to run the simulations with mission control software. This means the user is able to adjust rocket settings to change the simulation graphical data output.
 
 ## 5. Development Schedule
 
