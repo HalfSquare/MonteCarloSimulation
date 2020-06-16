@@ -202,21 +202,17 @@ SimulationData "1" -- WeatherData
 SimulationData "1" -- TopographicalData
 @enduml
 ```
-##### Responsibilities of each class in the model
 
-| Class | Brief description |
-|---|---|
-| Main | Runs the overall system.|
-| GUI | Allows the user to navigate through the system. |
-| MonteCarloSimulation | Runs the Monte Carlo Simulation. |
-| MissionControlSettings | Holds the information for the Mission Control Settings. |
-| GraphData | Creates, displays and compares the graphical output of the Monte Carlo Simulation. |
-| SimulationData | Contains all of the data for the Monte Carlo Simulation. |
-| WeatherData | Type of Simulation Data. |
-| WindData | Type of Weather Data. |
-| AtmosphericData | Type of Weather Data. |
-| TopographicalData | Type of Simulation Data. |
-| MountainData | Type of Topographical Data. |
+##### The main classes in this UML State diagram are:
+
+MonteCarloSimulation - This class allows the Monte Carlo Simulations to be run.
+
+SimulationData- This class contains all of the data for the Monte Carlo Simulation. Users are able to customise the simulation data to reflect the different environmental conditions such as Weather Data, Topographical Data or Atmospheric Data.
+
+MissionControlSettings - This class holds the information for the Mission Control Settings which can alter the performance and overall flight of the rocket.
+
+Graph Data - One of the main purposes of this system is to output the predicted landing spots of the rocket in a graphical output. This class converts the data from the simulation into a user readable graph.
+
 
 ### 4.2 Development
 The development view covers the software management of the project. This includes the roles and responsibilities, project management development technique, project development standards, project development testing and project development monitoring. A range of problems can arise within the development viewpoint due to uneven allocation of work to team, not planning tasks efficiently or insufficient progress monitoring for the project, which will lead to an inadequate system.
@@ -283,9 +279,7 @@ For each issue created in the sprint, we will add the level of difficulty we est
 ### 4.3 Process
 The process viewpoint identifies the individual processes that are interacting to complete the scenarios.The process architecture can control they deployment, starting, recovery, reconfiguration and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
 
-The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. The concurrency of this system will be controlled...
-
-*can new inputs be added when the simulation is running*
+The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. 
 
 ### 4.4 Physical 
 For our project, the topology consists of only of one physical component. This component is a:
