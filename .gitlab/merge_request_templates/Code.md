@@ -7,7 +7,8 @@
 ## Author's checklist 
 This is a checklist for the author(s) to ensure that the changes are of good quality and appropriate. All of the points must be ticked before the merge request can be submitted.
 - [ ] Apply the ~Development label
-- [ ] All other teammates are aware and have mutually agreed that the following changes can be made to the documentation
+- [ ] Apply the appropriate epic
+- [ ] All other teammates are aware and have mutually agreed that the following changes can be made to the code
 - [ ] Follow our [Style Guide for code](LINK).
 - [ ] Have the correct Sprint selected in the Milestone section
 - [ ] Have appropriate labels selected in the Labels section
