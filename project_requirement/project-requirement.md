@@ -1,29 +1,21 @@
 # ENGR 301: Project Requirements Document
 
-The aim of this document is to specify the requirements of the system your group is to build. The focus of a requirements document is the problem you are attempting to solve:  not a first attempt at a solution to that problem. This document should communicate clearly to the supervisor, client and course coordinator what the system you build is going to do, and what constraints it must meet while doing so.
-
-The document should also demonstrate your understanding of the main analysis principles and quality guidelines, and applicable standards, using tools and notations as necessary to communicate the requirements precisely, unambiguously and clearly in a written technical document. Page specifications below are *limits not targets* and refer to the pages in the PDF generated from the markdown. Because the size of your document is necessarily limited, you should ensure that you focus your efforts on those requirements that are most important to completing a successful system: if sections are at their page limit, indicate how many items would be expected in a complete specification. 
-
-The ENGR 301 project proposal and requirements document should be based on the standard ISO/IEC/IEEE 29148:2011(E), primarily sections 8.4 and 9.5, plus section 9.4 for projects involving hardware and ISO 25010 SQuaRE for systemic requirements. While excerpts from the standard have been quoted within the template, to understand what is required it will be necessary to read earlier sections of the standards themselves. A supplementary treatment of requirements gathering in engineering projects may be found in [Requirements in Engineering Projects](https://victoria.rl.talis.com/items/F166DA94-DAD8-FBDB-0785-7A63C9BA3603.html?referrer=%2Flists%2F5886F297-2506-1F17-45D9-7F04CEE284EE.html%23item-F166DA94-DAD8-FBDB-0785-7A63C9BA3603) (Talis). The requirements document should contain the sections listed below, and conform to the formatting rules listed at the end of this brief. 
-
-All team members are expected to contribute equally to the document and list their contributions in section 6 of the document. You should work on your document in your team's GitLab repository. While collective contributions are expected to be the exception rather than the rule, if more than one team member has contributed to a particular commit then all those team member IDs should be included in the first line of the git commit message. `git blame`, `git diff`, file histories, etc. will be tools used to assess individual contributions, so everyone is encouraged to contribute individually, commit early and commit often. Any team wishing to separate individually contributed sections into a single file before collation into the single proposal document for submission is welcome to do so.
-
 ---
 
 <div style="page-break-after: always;"></div>
 
 # ENGR 301 Project 15 Project Proposal and Requirements Document
-#### Author list, a comma-separated list of the names of each member of the team.
+#### Authors:
 
 Max McMurray, Georgia Strongman, Michael Behan, Alexander Pace, Jacqueline Dong, Justina Koh
 
 ## 1. Introduction
 
-Throughout the World, rockets are used for a plethora of reasons: to launch satellites, human spaceflight and space exploration to name a few. The process of building and launching rockets is incredibly expensive, and so it is paramount to factor in all possible conditions and outcomes that could occur when launching a rocket. 
+Throughout the World, rockets are used for a plethora of reasons: to launch satellites, human spaceflight, and space exploration to name a few. The process of building and launching rockets is incredibly expensive, and so it is paramount to factor in all possible conditions and outcomes that could occur when launching a rocket. 
 
 The project designed by the Course Coordinator is triadic: the first part involves the actual building of the rocket, the second part involves the programming of the rocket, and the third part involves the use of external software to test the predictability and likelihood of success of the rocket. While these subprojects are primarily designed to be carried out individually, ultimately, communication is to occur between the three groups to create a wholly, and successfully functioning rocket. 
 
-Our group project predominantly focuses on the use of Monte Carlo simulations [1] to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction and weather conditions. 
+Our group project predominantly focuses on the use of Monte Carlo simulations [1] to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction, and weather conditions. 
 
 
 ### Client
@@ -43,34 +35,34 @@ Design Monte Carlo simulation [1] software which will statistically predict the 
 
 ### 1.2 Scope
 
-A plugin for OpenRocket [3] that utilises pre-existing frameworks to run simulations according to the Monte Carlo [1] method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualised within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
+A plugin for OpenRocket [3] that utilizes pre-existing frameworks to run simulations according to the Monte Carlo [1] method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualized  within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
 
 ### 1.3 Product overview 
-The part that we are designing is a subelement of an overall project, and it has been created so that it has the ability to work in conjunction with a larger rocket system which other groups are working on. The overbranching theme of the project is to be able to create a rocket which is able to successfully launch outside with the given conditions. <br>
-Rockets are incredibly costly and require a lot of time and manpower in order to create. Additionally, a failing rocket can have disastrous consequences, and therefore when building a rocket it is essential that all possible variables and factors are considered to prevent any sort of failure. To help prevent rocket failure, we have been assigned a projec which will help determine two things, where the rocket will land after being launched, and the estimates required for the PID controller in the motor. The first part uses _Monte Carlo_ simulations to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find correct variables for the PID motor in the rocket. <br>
-The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios which consider all the possible factors in order to determine a landing spot for the rocket. This information can then be used to determine the power of which the motors should be running at for a successful rocket launch. 
+The part that we are designing is a subelement of an overall project, and it has been created so that it has the ability to work in conjunction with a larger rocket system that other groups are working on. The over branching theme of the project is to be able to create a rocket that is able to successfully launch outside with the given conditions. <br>
+Rockets are incredibly costly and require a lot of time and manpower in order to create. Additionally, a failing rocket can have disastrous consequences, and therefore when building a rocket it is essential that all possible variables and factors are considered to prevent any sort of failure. To help prevent rocket failure, we have been assigned a project which will help determine two things, where the rocket will land after being launched, and the estimates required for the PID controller in the motor. The first part uses _Monte Carlo_ simulations to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find the correct variables for the PID motor in the rocket. <br>
+The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real-life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed, etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios which consider all the possible factors in order to determine a landing spot for the rocket. This information can then be used to determine the power of which the motors should be running for a successful rocket launch. 
 
 #### 1.3.1 Product perspective
 
-The product overview defines the product perspective, functions, user characteristics and limitation of the system we are designing.
+The product overview defines the product perspective, functions, user characteristics, and limitations of the system we are designing.
 
 #### 1.3.1 Product perspective
 
-The system that we are designing is a subelement of the larger system, and it has been created so that it has the ability to work in conjunction with a larger rocket system which other groups are working on. The overbranching theme of the project is to be able to create a rocket which is able to successfully launch outside with the given conditions. The simulation software we are designing will statistically predict the rocket's flight and help design the control parameters for the avionics. 
+The system that we are designing is a subelement of the larger system, and it has been created so that it has the ability to work in conjunction with a larger rocket system that other groups are working on. The over branching theme of the project is to be able to create a rocket that is able to successfully launch outside with the given conditions. The simulation software we are designing will statistically predict the rocket's flight and help design the control parameters for the avionics. 
 
 Rockets are incredibly costly and require a lot of time and manpower in order to create. Additionally, a failing rocket can have disastrous consequences, and therefore when building a rocket it is essential that all possible variables and factors are considered to prevent any sort of failure. To help prevent rocket failure, we have been assigned a project which will help determine two things, where the rocket will land after being launched, and the estimates required for the PID controller in the motor.
 
-The first part uses _Monte Carlo_ simulations [1] to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find correct variables for the PID motor in the rocket. 
+The first part uses _Monte Carlo_ simulations [1] to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find the correct variables for the PID motor in the rocket. 
 
-In order to generate the correct variables for the PID motor controller, we will need to work in collaboration with the Mission Control teams and integrate our simulation software with their software. The success of the rocket flight simulations will be dependent on design and union of both software systems. 
+In order to generate the correct variables for the PID motor controller, we will need to work in collaboration with the Mission Control teams and integrate our simulation software with their software. The success of the rocket flight simulations will be dependent on the design and union of both software systems. 
 
 #### 1.3.2 Product functions
 
 The main functions of the product are range safety and site selection through Monte Carlo simulation [1] methodologies, in conjunction with incorporating a PID controller to allow for control tuning and design in the simulation.
 
-The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios which consider all the possible factors in order to determine a landing spot for the rocket. 
+The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real-life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed, etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios that consider all the possible factors in order to determine a landing spot for the rocket. 
 
-We will simulate the rocket in OpenRocket [3] to create a graphical output of predicted landing locations, by varying parameters. These parameters will include basic weather data, parachute ejection time, launch angle and motor performance. By automatically generating and optimizing these parameters, the safety and performance of each simulated flight can be determined from the graphical output. This allows the optimal combination of parameters to be established prior to the launch of the physical rocket.
+We will simulate the rocket in OpenRocket [3] to create a graphical output of predicted landing locations, by varying parameters. These parameters will include basic weather data, parachute ejection time, launch angle, and motor performance. By automatically generating and optimizing these parameters, the safety and performance of each simulated flight can be determined from the graphical output. This allows the optimal combination of parameters to be established prior to the launch of the physical rocket.
 
 To meet the requirements of the minimum viable product, the Monte Carlo simulation [1] will:
 - Automatically generate various parameters for the rocket simulation.
@@ -84,7 +76,7 @@ To meet the requirements of the minimum viable product, the PID controller will:
 
 #### 1.3.3 User characteristics   
 
-This project will be all open source and as such will need to use open source tools to make it accessible to the community, such as OpenRocket [3]. OpenRocket is a program for all model-rocketeers who intend to estimate their rocket's performance before physically building and flying it. The user should have a general understanding on how to use this software, however there are no educational requirements as this is an open source project. This system may have users with or without OpenRocket experience. Technical expertise will be required while installing and understanding the functions within the system. Users should be familiar with Monte Carlo simulations and PID controllers as well as understanding how they work.
+This project will be all open source and as such will need to use open source tools to make it accessible to the community, such as OpenRocket [3]. OpenRocket is a program for all model-rocketeers who intend to estimate their rocket's performance before physically building and flying it. The user should have a general understanding of how to use this software, however, there are no educational requirements as this is an open-source project. This system may have users with or without OpenRocket experience. Technical expertise will be required while installing and understanding the functions within the system. Users should be familiar with Monte Carlo simulations and PID controllers as well as understanding how they work.
 
 
 #### 1.3.4 Limitations
@@ -93,10 +85,10 @@ There are very many possible limitations of the product.
 
 Firstly, there are a few limitations that may occur with the overall project. These are listed below:
 - We are supposed to work in conjunction with other groups. However, due to the recent pandemic, it will be significantly harder to be able to collaborate and share our code with other groups, particularly those that are working with physical hardware. 
-- There is a limited time-frame to the creation of the product. While time-frames are also expected in a real world situation, our time-frame is significantly shorter than given if this were to be carried out with a real rocket. This means that there will be significant cuts needed to be made over what we will be able to include in the product. 
+- There is a limited time-frame for the creation of the product. While time-frames are also expected in a real-world situation, our time-frame is significantly shorter than given if this were to be carried out with a real rocket. This means that there will be significant cuts needed to be made over what we will be able to include in the product. 
 
 Secondly, there are limitations with the _Monte Carlo_simulations [1]. Such examples of these limitations are listed below:
-- Monte Carlo simulations can be complex, and if a proper understanding of the way the program works is not developed, then that can result in incorrect implementation of the program, and therefore incorrect estimates.
+- Monte Carlo simulations can be complex, and if a proper understanding of the way the program works is not developed, then that can result in an incorrect implementation of the program, and therefore incorrect estimates.
 - Values produced by the Monte Carlo simulations are _estimates_. They are not exact values. We need to be able to account for this fact when using the Monte Carlo values.
 
 There are also possible limitations of the final product:
@@ -124,7 +116,7 @@ There are also possible limitations of the final product:
 
 ### 3.1 External interfaces
 
-OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to large variation in specification. They interfaces are:
+OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to a large variation in specifications. The interfaces are:
  - **Monitor**: At least standard definition, likely high definition or above.
  - **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
  - **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement. 
@@ -264,8 +256,6 @@ Typical users scale from experienced with model rocket use to people just starti
 
 ### 3.3 Usability Requirements
 
-See 9.5.12. for most systems this will be around one page.
-
 ##### Objective
 We want to create an extension to the OpenRocket application, this extension will be accessible to the rocket community due to the extension's code being open source.
 This extension will be able to be applied to any rocket design the user imports. 
@@ -280,7 +270,7 @@ After each simulation is run in the Monte Carlo process, the data will be stored
 
 ##### Satisfaction criteria
 For the system to meet satisfaction it needs to meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where their rocket will end up for the current weather conditions. 
-The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the amount of times specified. 
+The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the number of times specified. 
 
 ### 3.4 Performance requirements
 
@@ -418,33 +408,22 @@ SimulationData "1" -- TopographicalData
 | MountainData | Type of Topographical Data. |
 
 ### 3.6 Design constraints
-There are many possible constraints that can be imposed on the project. These can be broken down into three main sections: _constraints imposed by external standards_, _constraints imposed by regulatory requirements_ and _constraints imposed by project limitations_.
+Many possible constraints can be imposed on the project. These can be broken down into three main sections: _constraints imposed by external standards_, _constraints imposed by regulatory requirements_ and _constraints imposed by project limitations_.
 
 
 __Constraints imposed by external standards:__
-- COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person group meetings and stand ups, as well as group work. 
+- COVID-19 constraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also constrained by our inability to carry out in-person group meetings and stand-ups, as well as group work. 
 
 __Constraint imposed by regulatory requirements:__
-- Health and safety contraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
+- Health and safety constraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
 
 
 __Constraints imposed by project limitations:__
-- Time constraint: Our project has a very limited time frame in which it can run for. This means that decisions must be made in order to maintain the integrity and completion of the project before the second semester is finished. Additionally, during the length of this project, our team members still have other papers to work on, and therefore we are also limited by the number of hours that our team members are able to put in each week. 
+- Time constraint: Our project has a very limited time frame in which it can run. This means that decisions must be made to maintain the integrity and completion of the project before the second semester is finished. Additionally, during the length of this project, our team members still have other papers to work on, and therefore we are also limited by the number of hours that our team members can put in each week. 
 - Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budgetless.
-- Knowledge contraint: There is also a knowledge constraint due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
-- Technical constraint: While our project is solely software based, we have a lack of access to professional and industry standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
-- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
-
-
-> 9.5.16 Standards compliance<br>
-> Specify the requirements derived from existing standards or regulations, including:
-> 
-> a) Report format;<br>
-> b) Data naming;<br>
-> c) Accounting procedures;<br>
-> d) Audit tracing.
-> 
-> For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database shall be recorded in a trace file with before and after values.
+- Knowledge constraint: There is also a knowledge constraint due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
+- Technical constraint: While our project is solely software-based, we have a lack of access to professional and industry-standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
+- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such as the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
 
 ### 3.7 Nonfunctional system attributes
 
@@ -452,26 +431,26 @@ __Constraints imposed by project limitations:__
 * Usability
 * Reliability
 * Security
-* Maintainibility
+* Maintainability
 * Portability
 * Open Source
 * Performance Efficiency
 
 **Compatibility**
 
-This project (creating Monte Carlo simulations) is one of three projects with an overarching goal of launching a hobby rocket. As such, one of the top nonfunctional requrirements is that our program must be compatible with the other two projects.
+This project (creating Monte Carlo simulations) is one of three projects with an overarching goal of launching a hobby rocket. As such, one of the top nonfunctional requirements is that our program must be compatible with the other two projects.
 
-Our progam must be compatible, and must coexist, with the avionics and mission control projects. Specifically, we must be able to read in rocket data from the avionics team, and we must be able to read in weather condition data from the mission control team, and use these data sets to construct a realistic simulation to be used to judge whether the rocket's flight path and subsequent landing zone is considered safe.
+Our program must be compatible and must coexist with the avionics and mission control projects. Specifically, we must be able to read in rocket data from the avionics team, and we must be able to read in weather condition data from the mission control team and use these data sets to construct a realistic simulation to be used to judge whether the rocket's flight path and subsequent landing zone are considered safe.
 
 This will involve exchanging information with these project groups, and using that information in our project. Therefore, compatibility is an important systemic attribute to this project.
 
 **Usability**
 
 As the client (and therefore one of the main users), of this project is a hobby rocketeer, and the program is designed to be used by a variety of users with varying skill levels, the program must be user-friendly. 
-To be more specific, this program must be designed in a way that it is easy to operate and control, and users are able to efficiently and effectively learn and understand how to use it. 
+To be more specific, this program must be designed in a way that is easy to operate and control, and users can efficiently and effectively learn and understand how to use it. 
 It should also protect against simple user errors, such as invalid inputs (negative values for example).
 
-The program should have a user interface that is accessible to most users, and is understandable and reasonably intuitive to use. 
+The program should have a user interface that is accessible to most users and is understandable and reasonably intuitive to use. 
 
 As the program has one main overall function (Monte Carlo simulations of **hobby** rockets), users should be able to quickly realize/recognize whether this program is appropriate for their needs. 
 It should be made obvious that this program is designed for simulating hobby rockets only.
@@ -493,13 +472,13 @@ The program should have integrity, meaning it should be protected against tamper
 
 **Maintainability**
 
-The program should be modular when possible, so that changes to the program have minimised impact. 
+The program should be modular when possible so that changes to the program have a minimized impact. 
 The program should also be written in a way that code can be reused when possible, to avoid redundancy. 
 
-The program should be efficient and effective to analyse, so that failures/deficiencies can be found and fixed efficiently, and so that modifications can be made with ease. 
+The program should be efficient and effective to analyze so that failures/deficiencies can be found and fixed efficiently, and so that modifications can be made with ease. 
 It is likely that modifications will need to be made, in the case of requirements changing, or having more time to implement additional features).
 
-The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met, and that our program works accurately.
+The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met and that our program works accurately.
 
 **Portability**
 
@@ -507,25 +486,24 @@ The program should be efficient and intuitive for the user to install and have w
 
 The program should be adaptable, and should not require major refactoring for small changes. 
 
-The program should be clear about the performance requirements of the machine it is running on, as Monte Carlo simulations are resource intensive.
+The program should be clear about the performance requirements of the machine it is running on, as Monte Carlo simulations are resource-intensive.
 
 **Open Source**
 
 The program should be open source and free to use, meaning that all software, tools, and equipment used to build and create the program should not conflict with this. 
 
-All software, tools, and equipment should also be open source, so that the program is free to use for hobby rocketeers and any other user who the program is appropriate for.
+All software, tools, and equipment should also be open-source so that the program is free to use for hobby rocketeers and any other user who the program is appropriate for.
 
 **Performance Efficiency**
 
 The program must be designed with efficiency in mind. 
-As Monte Carlo simulations are resource intensive and computationally stressful, the program must not use resources inefficiently, and must make the best effort to reduce stress on the machine it is running on where possible. 
+As Monte Carlo simulations are resource-intensive and computationally stressful, the program must not use resources inefficiently and must make the best effort to reduce stress on the machine it is running on where possible. 
 
-The program should be clear to the user about the performance requirements of the machine it should be running on, as Monte Carlo simulations are resource intensive.
-
+The program should be clear to the user about the performance requirements of the machine it should be running on, as Monte Carlo simulations are resource-intensive.
 
 ### 3.8 Physical and Environmental Requirements 
 
-This is a purely software project, and so there are no physical or environmental requirements. 
+This is a pure software project, and so there are no physical or environmental requirements. 
 
 ### 3.9 Supporting information
 
@@ -561,13 +539,13 @@ This requirement will be verified by being user-friendly and accessible. Verific
  - User testing indicates the product is relatively easy to use at the skill level of the user personas.
  - User testing indicates the product is intuitive based on the experience of the user personas.
  - User testing indicates the product doesn't have a steep learning curve, i.e. the learning process is efficient and does not contain any major barriers.
- - User testing indicates the ability to quickly recognise whether the product is appropriate for their needs.
+ - User testing indicates the ability to quickly recognize whether the product is appropriate for their needs.
  - Invalid input protections are in place, preventing the user from passing out-of-bounds or inapplicable inputs to the product. These can include things like negative values and large/small values where they are not expected. This can be tested with automated testing.
  - The product's interface is accessible to most users and contains basic accessibility options like font size adjustment, colour-blindness support, and keyboard shortcuts.
 
 **Reliability**
 This requirement will be verified by mitigating the causes of program failure and being easily obtained. Verification will be achieved if:
- - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable, but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
+ - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
  - The product is widely available to use. It should be downloadable from an easily accessible website.
  - The product does not lose data from the current batch of simulations in the event of failure. Data collected up to the point of failure should be stored in a usable fashion that allows it to be read and displayed.
 
@@ -580,9 +558,9 @@ This requirement will be verified by the product only collecting the minimum nec
 This requirement will be verified by a codebase that is modular, clear, easy to read, and employs encapsulation well. Verification will be achieved if:
  - An analysis of the code shows good use of encapsulation.
  - Code conforms to a chosen standard (i.e. Google standard). This can be enforced with a style checker IDE plugin. For verification to be complete, no warnings from this plugin must be present.
- - JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and manual review of the codebase.
- - Code not written in Java is accurately documented.
- - Code is commented where needed.
+ - JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and a manual review of the codebase.
+ - The code not written in Java is accurately documented.
+ - The code is commented on where needed.
 
 **Portability**
 As the product is a Java plugin and ostensibly faces no porting during its life cycle, this requirement's verification is fulfilled by the Maintainability section above.
@@ -607,8 +585,6 @@ Key project deliverables:
 
 Sprint schedule:
 
-*Goals are just a rough, overarching plan and are likely to change as the year goes on.*
-
 | Week:      | Sprint No:              | Goal/Progress:                                                  |
 |------------|-------------------------|--------------------------------------------------------|
 | T1 Week 7     | Sprint 1                | Push to complete the bulk of the documentation             |
@@ -623,7 +599,7 @@ Sprint schedule:
 | T2 Week 9-10  | Sprint 8                | Pushing to complete additional features from project requirement  |
 | T2 Week 11-12 | Sprint 9                | Readying project for deployment and final release |
 
-A more detailed version of the sprint schedule can be found in the following link. This includes the list of scrum masters and minute takers for the each sprint. 
+A more detailed version of the sprint schedule can be found in the following link. This includes the list of scrum masters and minute takers for each sprint. 
 * https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Project/Minute-and-Scrum-Master-Timetable
 
 ### 5.2 Budget
@@ -635,42 +611,42 @@ We will ensure that any design and software choices take into account the lack o
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-------|-------|-----|
-| Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High | Tolerable | As we are already at home in quarantine, we are already used to working remotely, and do not need to worry about spreading any sickness. In the case that a team member is too sick to work, we should be able to rearrange duties to cover the workload as it is a team of 6 developers, and it is likely that another team member has the skills required to cover the work. We will also make an effort to keep documentation of what has been done and what is being worked on, along with having weekly stand-up meetings to discuss what is being worked on, and to keep all team members updated of the current situation. |
+| Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High | Tolerable | As we are already at home in quarantine, we are already used to working remotely, and do not need to worry about spreading any sickness. In the case that a team member is too sick to work, we should be able to rearrange duties to cover the workload as it is a team of 6 developers, and it is likely that another team member has the skills required to cover the work. We will also make an effort to keep documentation of what has been done and what is being worked on, along with having weekly stand-up meetings to discuss what is being worked on, and to keep all team members updated on the current situation. |
 | The personal equipment of a team member failing (e.g. computers/internet/power loss) | Moderate | Serious | As we are all working remotely, if a team member's personal equipment fails (such as desktop/laptop), we will have to work without them until repairs can be made. As a team of 6, we should be able to reassign duties to cover the workload between the remaining members. If a more uncontrollable event happens, such as a powercut/loss of power, or loss of internet, to mitigate the loss of work, we will make sure to commit often so that all completed work is accessible to team members. |
 | Changes to the project requirements requiring minor reworks of the system | Moderate | Tolerable | We will maintain regular contact with the customer to ensure that we are aware and understand the customer’s needs and requirements, to avoid misunderstanding the project requirements. We will keep our program as flexible as possible, to ensure that changes to the requirements do not require large changes to our system. |
 | Improper use of computer equipment resulting in injury | High | Serious | We will ensure that all group members take regular breaks to stretch, walk around, and rest their eyes, to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI). |
-| External tools failing to provide expected functionality (e.g. openRocket) | Moderate | Serious | Before beginning to use any tool, the team will do research into the tool to ensure that it will provide the functionality we need, and that we understand the capabilities provided by the tool. |
-| The time required to develop the software is underestimated | High | Serious | The team will regularly review the progress we have made at each weekly meeting to ensure that we are making sufficient progress on the project according to our estimates. If we have underestimated the tiem requirement, this will become clear and we will be able to compensate accordingly  |
-| Team members have other commitments come up leading to not having enough time to commit to working on the project | Moderate | Tolerable | The team will keep open communication about outside commitments, so that only a reasonable time commitment is expected of each member per week. If necessary, we will adjust the duties of overburdened members to keep the workload reasonable. |
+| External tools failing to provide expected functionality (e.g. OpenRocket) | Moderate | Serious | Before beginning to use any tool, the team will research the tool to ensure that it will provide the functionality we need and that we understand the capabilities provided by the tool. |
+| The time required to develop the software is underestimated | High | Serious | The team will regularly review the progress we have made at each weekly meeting to ensure that we are making sufficient progress on the project according to our estimates. If we have underestimated the time requirement, this will become clear and we will be able to compensate accordingly  |
+| Team members have other commitments come up leading to not having enough time to commit to working on the project | Moderate | Tolerable | The team will keep open communication about outside commitments so that only a reasonable time commitment is expected of each member per week. If necessary, we will adjust the duties of overburdened members to keep the workload reasonable. |
 | A skill is required for the project that no team member can provide | Low | Catastrophic | The team will keep communication open so that we are aware of each member's skills and abilities, along with their skill level in certain areas. This will mean we are able to effectively choose certain tools and languages for the project that complement our skills. |
-| New team members or team members leaving the project | Low | Tolerable | The team will commit work regulary and keep clear documentation of progress, so that team member changes mean duties can be picked up smoothly, and that no work is lost. |
-| Updates to external tools causing issues with the project | Low | Serious | The team will keep up-to-date with any changes made to tools, and if neccesary, change tools to somethinhg that will be compatible with the project.  |
+| New team members or team members leaving the project | Low | Tolerable | The team will commit work regularly and keep clear documentation of progress, so that team member changes mean duties can be picked up smoothly, and that no work is lost. |
+| Updates to external tools causing issues with the project | Low | Serious | The team will keep up-to-date with any changes made to tools, and if necessary, change tools to something that will be compatible with the project.  |
 
 ### 5.4 Health and Safety
 
-To manage computer-related risks, all team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.), to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI).
+To manage computer-related risks, all team members will take regular breaks (standing up, walking around, stretching, resting eyes, etc.), to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI).
 We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. One such resource is the Wiki page 'Ergonomics and Safe Computer Usage' [4], available in the Other section of the project Wikis.
 
 All work will be done remotely at each team member's place of residence. The project will not require work at any external workplaces/sites, and so will not require any Health and Safety inductions. 
 
 The project will not require any human or animal experimentation.
 
-Any incidents will be reported to the Victoria University of Wellington Safety Officer (Roger Cliffe - ecs-safety@ecs.vuw.ac.nz), Head of School Stuart Marshall and Course Coordinator Aaron Chen in accordance with the Project Management Health and Safety Guide [5].
+Any incidents will be reported to the Victoria University of Wellington Safety Officer (Roger Cliffe - ecs-safety@ecs.vuw.ac.nz), Head of School Stuart Marshall, and Course Coordinator Aaron Chen in accordance with the Project Management Health and Safety Guide [5].
 
 
 #### 5.4.1 Safety Plans
 
-The project is purely software, therefore project requirements do not involve risk of death, serious harm, harm or injury.
+The project is purely software, therefore project requirements do not involve risk of death, serious harm, harm, or injury.
 
 ## 6. Appendices
 
 ### 6.1 Assumptions and dependencies 
 
-One page on assumptions and dependencies (9.5.7).
-
 ### 6.2 Acronyms and abbreviations
 
-One page glossary _as required_.
+OpenRocket [3] - a rocket simulation software.
+
+Monte Carlo [1] - a method of simulation.
 
 ## 7. Contributions
 
@@ -684,23 +660,5 @@ A one page statement of contributions, including a list of each member of the gr
 | Max | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2 |
 | Justina | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.6 |
 | Jacqui | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.5, 3.2 |
-
----
-
-## Formatting Rules 
-
- * Write your document using [Markdown](https://gitlab.ecs.vuw.ac.nz/help/user/markdown#gitlab-flavored-markdown-gfm) and ensure you commit your work to your team's GitLab repository.
- * Major sections should be separated by a horizontal rule.
-
-
-## Assessment  
-
-The goal of a requirements document is the problem you are attempting to solve:  not a first attempt at a solution to that problem. The most important factor in the assessmernt of the document is how will it meet that goal. The document will be assessed for both presentation and content. 
-
-The presentation will be based on how easy it is to read, correct spelling, grammar, punctuation, clear diagrams, and so on.
-
-The content will be assessed according to its clarity, consistency, relevance, critical engagement and a demonstrated understanding of the material in the course. We look for evidence these traits are represented and assess the level of performance against these traits. While being comprehensive and easy to understand, this document must be reasonably concise too. You will be affected negatively by writing a report with too many pages (far more than what has been suggested for each section above).
-
-We aim to evaluate ENGR301 documents and projects as if they were real projects rather than academic exercises &mdash; especially as they are real projects with real clients. The best way to get a good mark in a document is to do the right thing for your project, your client, and your team. We encourage you to raise questions with your tutor or course staff, as soon as possible, so you can incorporate their feedback into your work.
 
 ---
