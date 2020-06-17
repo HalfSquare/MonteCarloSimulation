@@ -215,7 +215,17 @@ Graph Data - One of the main purposes of this system is to output the predicted 
 
 
 ### 4.2 Development
-The development view covers the software management of the project. This includes the roles and responsibilities, project management development technique, project development standards, project development testing and project development monitoring. A range of problems can arise within the development viewpoint due to uneven allocation of work to team, not planning tasks efficiently or insufficient progress monitoring for the project, which will lead to an inadequate system.
+This section foccusses on the development aspect of the project. It follows the Krutchen's 4 + 1 architectural view model. 
+
+The development section covers the software management aspects of the project. This includes the following subsections:
+* 4.2.1 Roles and responsibilities
+* 4.2.2 Project Management Development Technique
+* 4.2.3 Project Development Standards
+* 4.2.4 Work logs
+* 4.2.5 Project development testing
+* 4.2.6 Project development monitoring
+
+This section must be taken into consideration when developing and project as a range of problems can arise due to uneven allocation of work between the team members, not having tasks planned (efficiently), or insufficient progress monitoring for the project.
 
 #### 4.2.1 Roles and Responsibilities:
 
