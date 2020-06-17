@@ -287,6 +287,8 @@ For each sprint a new board will be created and this will be filled with issues 
 
 For each issue created in the sprint, we will add the level of difficulty we estimate it to be. This should provide us with some assistance as to how long each issue should take, and how many issues we will be able to finish in the sprint. We will also use the burn-down chart to ensure that each team-member is being assigned and completing an even amount of work.
 
+Additionally, we will assigning tickets to Epics and will be using Epics to help monitor the progress that our team is making.  
+
 #### 4.2.5 Project Development Testing
 All documentation produced for this project will not need to be tested. The documnetation will go under rigorous inspection while being written as well as during merge requests. 
 
