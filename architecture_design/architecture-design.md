@@ -288,6 +288,7 @@ We will also test our code on different operating systems once a week to ensure 
 The process viewpoint identifies the individual processes that are interacting to complete the scenarios. The process architecture can control the deployment, starting, recovery, reconfiguration, and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
  
 The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. 
+![Process Diagram](assets/Process_diagram.png)
 
 ### 4.4 Physical 
 For our project, the topology consists of only one physical component. This component is a:
