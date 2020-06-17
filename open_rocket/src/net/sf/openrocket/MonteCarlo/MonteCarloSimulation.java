@@ -7,6 +7,7 @@ import net.sf.openrocket.rocketcomponent.Rocket;
 import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.OpenRocketHelper;
+import net.sf.openrocket.startup.Startup2;
 
 import java.util.Random;
 
@@ -65,11 +66,10 @@ public class MonteCarloSimulation {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-
-		//TODO: Investigate whether there is a way to open OpenRocket in headless/noGUI mode, or close OpenRocket automatically (Check Startup2 class)
-
-        Startup.main(args);
+    public static void main(String[] args) {
+        Startup.initializeLogging();
+        Startup.initializeL10n();
+        Startup2.loadMotor();
         new MonteCarloSimulation();
     }
 
