@@ -112,8 +112,6 @@ The hardware architecture viewpoint outlines purposes for which the software and
 
 ### 4. Architectural Views
 
-(5 sub-sections of 2 pages each sub-section, per 42010, 5.5, 5.6, with reference to Annex F of both 12207 and 15288) 
-
 Describe your system's architecture in a series of architectural views, each view corresponding to one viewpoint.
 
 You should include views from the following viewpoints (from Kruchten's 4+1 model):
@@ -212,18 +210,18 @@ SimulationData "1" -- TopographicalData
 ```
 
 ##### The main classes in this UML State diagram are:
-
+ 
 MonteCarloSimulation - This class allows the Monte Carlo Simulations to be run.
-
-SimulationData- This class contains all of the data for the Monte Carlo Simulation. Users are able to customise the simulation data to reflect the different environmental conditions such as Weather Data, Topographical Data or Atmospheric Data.
-
+ 
+SimulationData- This class contains all of the data for the Monte Carlo Simulation. Users are able to customize the simulation data to reflect the different environmental conditions such as Weather Data, Topographical Data, or Atmospheric Data.
+ 
 MissionControlSettings - This class holds the information for the Mission Control Settings which can alter the performance and overall flight of the rocket.
-
-Graph Data - One of the main purposes of this system is to output the predicted landing spots of the rocket in a graphical output. This class converts the data from the simulation into a user readable graph.
+ 
+Graph Data - One of the main purposes of this system is to output the predicted landing spots of the rocket to a graphical output. This class converts the data from the simulation into a user-readable graph.
 
 
 ### 4.2 Development
-This section foccusses on the development aspect of the project. It follows the Krutchen's 4 + 1 architectural view model. 
+This section focusses on the development aspect of the project. It follows the Krutchen's 4 + 1 architectural view model. 
 
 The development section covers the software management aspects of the project. This includes the following subsections:
 * 4.2.1 Roles and responsibilities
@@ -252,15 +250,15 @@ This section has been added to show who is involved in the project and what role
 | Max McMurray | Software Developer |
 | Michael Behan | Software Developer |
 
-As this is a team project, we decided that is was most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one it taking charge of the project as a whole. Instead we will have a rotation which will allow each team member to be a scrum master and minute taker for at least one sprint. (Please read 4.2.2 - Project Management Development Technique for more details.)
+As this is a team project, we decided that is was most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one it taking charge of the project as a whole. Instead, we will have a rotation that will allow each team member to be a scrum master and minute taker for at least one sprint.
 
 #### 4.2.2 Project Management Development technique 
 
-We will be using the _Agile method_ in order to develop our product. In particular, we will be using the Scrum methodology of Agile, and will assign a new Scrum master to each new sprint. Our sprints will be two weeks long, and we will also conduct a bi-weekly retrospective discussing what went wrong/right in the previous sprint, and a bi-weekly meeting with senior manager. 
+We will be using the _Agile method_ in order to develop our product. In particular, we will be using the Scrum methodology of Agile and will assign a new Scrum master to each new sprint. Our sprints will be two weeks long, and we will also conduct a bi-weekly retrospective discussing what went wrong/right in the previous sprint, and a weekly meeting with our senior manager. 
 
-At each meeting we will also be taking minutes. This will be recorded in the 'timetable for miiuntes, scrum master and project' and the minute taker will be rotated between the group members in-coordination with our sprints.
+At each meeting, we will also be taking minutes. This will be recorded in the 'timetable for minutes, scrum master and project' and the minute taker will be rotated between the group members’ in-coordination with our sprints.
 
-In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute taker the week. 
+In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute-taker the week. 
 
 * [Timetable for minutes, scrum master and project](Project/Minute-and-Scrum-Master-Timetable)
 
@@ -279,7 +277,7 @@ When adding a _commit message_ it should follow the design as listed below:
 
 When adding a _merge request_ it should follow the design as listed below:
 * The merge request should follow the template(s) provided in the <!--Add link in once the branch has been merged-->
-* All code that put in a merge request shoud be free from errors and pass all pipelines
+* All code that put in a merge request should be free from errors and pass all pipelines
 
 When _approving_ a _merge request_ the following must be listed below:
 * Before pushing to the main branch, a merge request must be made and reviewed by a minimum of one other person.
@@ -291,14 +289,14 @@ In order to ensure that all team members are contributing an equal amount to the
 
 Each member can also use the [Lab Time Log Website](https://course-work.glp.ecs.vuw.ac.nz/engr300/2020/group15/group-15/LabLogSite.html) which will automatically generate the times that people enter and leave the labs. 
 
-For each sprint a new board will be created and this will be filled with issues that we believe will be relevant for the sprint. Each team member is assigned 2-3 tickets per sprint. 
+For each sprint, a new board will be created and this will be filled with issues that we believe will be relevant for the sprint. Each team member is assigned 2-3 tickets per sprint. 
 
-For each issue created in the sprint, we will add the level of difficulty we estimate it to be. This should provide us with some assistance as to how long each issue should take, and how many issues we will be able to finish in the sprint. We will also use the burn-down chart to ensure that each team-member is being assigned and completing an even amount of work.
+For each issue created in the sprint, we will add the level of difficulty we estimate it to be. This should provide us with some assistance as to how long each issue should take, and how many issues we will be able to finish in the sprint. We will also use the burn-down chart to ensure that each team member is being assigned and completing an even amount of work.
 
-Additionally, we will assigning tickets to Epics and will be using Epics to help monitor the progress that our team is making.  
+Additionally, we will assign tickets to Epics and will be using Epics to help monitor the progress that our team is making.  
 
 #### 4.2.5 Project Development Testing
-All documentation produced for this project will not need to be tested. The documnetation will go under rigorous inspection while being written as well as during merge requests. 
+All documentation produced for this project will not need to be tested. The documentation will go under rigorous inspection while being written as well as during merge requests. 
 
 All code will need to have tests written for it. We should achieve high coverage with these unit tests - a minimum of at least 90% coverage. To ensure that the code is of good quality, we will have different members of the team review it. 
 
@@ -307,15 +305,15 @@ All merge requests for code will be tested. We will be using CI / CD pipelines t
 We will also test our code on different operating systems once a week to ensure that our code is not just compatible with just one laptop / OS. 
 
 ### 4.3 Process
-The process viewpoint identifies the individual processes that are interacting to complete the scenarios.The process architecture can control they deployment, starting, recovery, reconfiguration and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
-
+The process viewpoint identifies the individual processes that are interacting to complete the scenarios. The process architecture can control the deployment, starting, recovery, reconfiguration, and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
+ 
 The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. 
 
 ### 4.4 Physical 
-For our project, the topology consists of only of one physical component. This component is a:
+For our project, the topology consists of only one physical component. This component is a:
 * Field Laptop
-
-The field laptop will contain software which we will use in order to run our simulations. The software on the field laptop will read the data, customise data, run the simulations and create a graphical output. 
+ 
+The field laptop will contain software which we will use in order to run our simulations. The software on the field laptop will read the data, customize data, run the simulations, and create a graphical output. 
 
 ![Deployment Diagram](assets/Deployment_Diagram.png)
 
@@ -337,7 +335,7 @@ rectangle simulations {
 ```
 
 *Running the simulations and saving the data*
-One of the main purpose of our simulations is to be able to graphically view the predicted landings of the rocket simulations. Once the simulations are finished, the user can save the graph data.
+One of the main purposes of our simulations is to be able to graphically view the predicted landings of the rocket simulations. Once the simulations are finished, the user can save the graph data.
 
 ```plantuml
 @startuml
