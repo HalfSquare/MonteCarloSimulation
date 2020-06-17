@@ -296,6 +296,8 @@ All code will need to have tests written for it. We should achieve high coverage
 
 All merge requests for code will be tested. We will be using CI / CD pipelines to do so. The pipelines will ensure that the code is free from errors, does not contain build failures, and that all unit tests written will pass. 
 
+We will also test our code on different operating systems once a week to ensure that our code is not just compatible with just one laptop / OS. 
+
 ### 4.3 Process
 The process viewpoint identifies the individual processes that are interacting to complete the scenarios.The process architecture can control they deployment, starting, recovery, reconfiguration and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
 
