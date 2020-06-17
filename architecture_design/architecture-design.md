@@ -1,30 +1,5 @@
 # ENGR 301: Architectural Design and Proof-of-Concept
 
-## Proof-of-Concept
-
-The aim of an architectural proof-of-concept (spike or walking skeleton) is to demonstrate the technical feasibility of your chosen architecture, to mitigate technical and project risks, and to plan and validate your technical and team processes (e.g., build systems, story breakdown, Kanban boards, acceptance testing, deployment).
-
-A walking skeleton is an initial technical attempt that will form the architectural foundation of your product. Since a walking skeleton is expected to be carried into your product, it must be completed to the quality standards expected for your final product. A walking skeleton should demonstrate all the technologies your program will rely on "end-to-end" &mdash; from the user interface down to the hardware.
-
-In the context of ENGR 301, a walking skeleton does not need to deliver any business value to your project: the aim is technical validation and risk mitigation.
-
-
-## Document
-
-The aim of the architectural design document is to describe the architecture and high-level design of the system your group is to build, to identify any critical technical issues with your design, and to explain how you have addressed the highest rated technical and architectural risks. The architecture document should also demonstrate your understanding of architectural techniques and architectural quality, using tools and associated notations as necessary to communicate the architecture precisely, unambiguously and clearly in a written technical document.
-
-Page specifications below are *limits not targets* and refer to the pages in the PDF generated from the markdown. Because the size of your document is necessarily limited, you should ensure that you focus your efforts on those architectural concerns that are most important to completing a successful system: if sections are at their page limit, indicate how many items would be expected in a complete specification.
-
-The ENGR 301 project architecture design document should be based on the standard ISO/IEC/IEEE 42010:2011(E) _Systems and software engineering &mdash; Architecture description_, plus appropriate sections from ISO/IEC/IEEE 29148:2018(E) _Systems and software engineering &mdash; Life cycle processes &mdash; Requirements engineering_; ISO/IEC/IEEE 15289:2017 _Systems and software engineering &mdash; Content of life-cycle information items (documentation)_; ISO/IEC/IEEE 15288:2015 _Systems and software engineering &mdash; System life-cycle processes_; ISO/IEC/IEEE 12207:2017 _Systems and software engineering &mdash; Software life cycle processes_ and ISO 25010 SQuaRE; with notations from ISO/ISE 19501 (UML). In particular, Annex F of ISO/IEC/IEEE 15288 and Annex F of ISO/IEC/IEEE 12207. These standards are available through the Victoria University Library subscription to the [IEEE Xplore Digital Library](https://ieeexplore.ieee.org/) (e.g., by visiting IEEE Xplore from a computer connected to the University network).
-
-The document should contain the sections listed below, and conform to the formatting rules listed at the end of this brief.
-
-All team members are expected to contribute equally to the document and list their contributions in the last section of the document (please make sure that your continued contribution to this document can be traced in GitLab). You should work on your document in your team's GitLab repository in a directory called "M2_Architecture". If more than one team member has contributed to a particular commit, all those team member IDs should be included in the first line of the git commit message. ``git blame``, ``git diff``, file histories, etc. will be tools used to assess individual contributions, so everyone is encouraged to contribute individually (your contribution should be made to many sections of the document, rather than focusing on just a single section), commit early and commit often.
-
----
-
-# ENGR 301 Project *NN* Architectural Design and Proof-of-Concept
-
 **Authors:** Justina Koh, Jacqui Dong, Georgia Strongman 
 
 ## 1. Introduction
@@ -111,8 +86,6 @@ The circuit architecture viewpoint defines how the physical system is put togeth
 The hardware architecture viewpoint outlines purposes for which the software and systems interact with the hardware, primarily focusing on how the hardware enables the overall system to function.
 
 ### 4. Architectural Views
-
-(5 sub-sections of 2 pages each sub-section, per 42010, 5.5, 5.6, with reference to Annex F of both 12207 and 15288) 
 
 Describe your system's architecture in a series of architectural views, each view corresponding to one viewpoint.
 
@@ -212,18 +185,18 @@ SimulationData "1" -- TopographicalData
 ```
 
 ##### The main classes in this UML State diagram are:
-
+ 
 MonteCarloSimulation - This class allows the Monte Carlo Simulations to be run.
-
-SimulationData- This class contains all of the data for the Monte Carlo Simulation. Users are able to customise the simulation data to reflect the different environmental conditions such as Weather Data, Topographical Data or Atmospheric Data.
-
+ 
+SimulationData- This class contains all of the data for the Monte Carlo Simulation. Users are able to customize the simulation data to reflect the different environmental conditions such as Weather Data, Topographical Data, or Atmospheric Data.
+ 
 MissionControlSettings - This class holds the information for the Mission Control Settings which can alter the performance and overall flight of the rocket.
-
-Graph Data - One of the main purposes of this system is to output the predicted landing spots of the rocket in a graphical output. This class converts the data from the simulation into a user readable graph.
+ 
+Graph Data - One of the main purposes of this system is to output the predicted landing spots of the rocket to a graphical output. This class converts the data from the simulation into a user-readable graph.
 
 
 ### 4.2 Development
-This section foccusses on the development aspect of the project. It follows the Krutchen's 4 + 1 architectural view model. 
+This section focusses on the development aspect of the project. It follows the Krutchen's 4 + 1 architectural view model. 
 
 The development section covers the software management aspects of the project. This includes the following subsections:
 * 4.2.1 Roles and responsibilities
@@ -242,25 +215,25 @@ This section has been added to show who is involved in the project and what role
 | Name | Role |
 | ------ | ------ |
 | Andre Geldenhuis | Client |
-| Craig Anslow | Course coordinator |
+| Craig Anslow | Course Coordinator |
 | Benjamin Secker | Senior Manager |
 | ------ | ------ |
 | Alex Pace | Software Developer |
-| Georgie Strongman | Software Developer |
+| Georgia Strongman | Software Developer |
 | Jacqui Dong | Software Developer |
 | Justina Koh | Software Developer |
 | Max McMurray | Software Developer |
 | Michael Behan | Software Developer |
 
-As this is a team project, we decided that is was most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one it taking charge of the project as a whole. Instead we will have a rotation which will allow each team member to be a scrum master and minute taker for at least one sprint. (Please read 4.2.2 - Project Management Development Technique for more details.)
+As this is a team project, we decided that it was the most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one is taking charge of the project as a whole. Instead, we will have a rotation that will allow each team member to be a scrum master and minute taker for at least one sprint.
 
 #### 4.2.2 Project Management Development technique 
 
-We will be using the _Agile method_ in order to develop our product. In particular, we will be using the Scrum methodology of Agile, and will assign a new Scrum master to each new sprint. Our sprints will be two weeks long, and we will also conduct a bi-weekly retrospective discussing what went wrong/right in the previous sprint, and a bi-weekly meeting with senior manager. 
+We will be using the _Agile method_ in order to develop our product. In particular, we will be using the Scrum methodology of Agile and will assign a new Scrum master to each new sprint. Our sprints will be two weeks long, and we will also conduct a bi-weekly retrospective discussing what went wrong/right in the previous sprint, and a weekly meeting with our senior manager. 
 
-At each meeting we will also be taking minutes. This will be recorded in the 'timetable for miiuntes, scrum master and project' and the minute taker will be rotated between the group members in-coordination with our sprints.
+At each meeting, we will also be taking minutes. This will be recorded in the 'timetable for minutes, scrum master and project' and the minute taker will be rotated between the group members’ in-coordination with our sprints.
 
-In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute taker the week. 
+In order to focus our intentions and be very clear about our main goal for the week, we will be recording this on a wiki page as well. This page also contains a timetable which details who is the scrum master and minute-taker the week. 
 
 * [Timetable for minutes, scrum master and project](Project/Minute-and-Scrum-Master-Timetable)
 
@@ -279,7 +252,7 @@ When adding a _commit message_ it should follow the design as listed below:
 
 When adding a _merge request_ it should follow the design as listed below:
 * The merge request should follow the template(s) provided in the <!--Add link in once the branch has been merged-->
-* All code that put in a merge request shoud be free from errors and pass all pipelines
+* All code that put in a merge request should be free from errors and pass all pipelines
 
 When _approving_ a _merge request_ the following must be listed below:
 * Before pushing to the main branch, a merge request must be made and reviewed by a minimum of one other person.
@@ -291,14 +264,14 @@ In order to ensure that all team members are contributing an equal amount to the
 
 Each member can also use the [Lab Time Log Website](https://course-work.glp.ecs.vuw.ac.nz/engr300/2020/group15/group-15/LabLogSite.html) which will automatically generate the times that people enter and leave the labs. 
 
-For each sprint a new board will be created and this will be filled with issues that we believe will be relevant for the sprint. Each team member is assigned 2-3 tickets per sprint. 
+For each sprint, a new board will be created and this will be filled with issues that we believe will be relevant for the sprint. Each team member is assigned 2-3 tickets per sprint. 
 
-For each issue created in the sprint, we will add the level of difficulty we estimate it to be. This should provide us with some assistance as to how long each issue should take, and how many issues we will be able to finish in the sprint. We will also use the burn-down chart to ensure that each team-member is being assigned and completing an even amount of work.
+For each issue created in the sprint, we will add the level of difficulty we estimate it to be. This should provide us with some assistance as to how long each issue should take, and how many issues we will be able to finish in the sprint. We will also use the burn-down chart to ensure that each team member is being assigned and completing an even amount of work.
 
-Additionally, we will assigning tickets to Epics and will be using Epics to help monitor the progress that our team is making.  
+Additionally, we will assign tickets to Epics and will be using Epics to help monitor the progress that our team is making.  
 
 #### 4.2.5 Project Development Testing
-All documentation produced for this project will not need to be tested. The documnetation will go under rigorous inspection while being written as well as during merge requests. 
+All documentation produced for this project will not need to be tested. The documentation will go under rigorous inspection while being written as well as during merge requests. 
 
 All code will need to have tests written for it. We should achieve high coverage with these unit tests - a minimum of at least 90% coverage. To ensure that the code is of good quality, we will have different members of the team review it. 
 
@@ -307,15 +280,15 @@ All merge requests for code will be tested. We will be using CI / CD pipelines t
 We will also test our code on different operating systems once a week to ensure that our code is not just compatible with just one laptop / OS. 
 
 ### 4.3 Process
-The process viewpoint identifies the individual processes that are interacting to complete the scenarios.The process architecture can control they deployment, starting, recovery, reconfiguration and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
-
+The process viewpoint identifies the individual processes that are interacting to complete the scenarios. The process architecture can control the deployment, starting, recovery, reconfiguration, and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
+ 
 The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. 
 
 ### 4.4 Physical 
-For our project, the topology consists of only of one physical component. This component is a:
+For our project, the topology consists of only one physical component. This component is a:
 * Field Laptop
-
-The field laptop will contain software which we will use in order to run our simulations. The software on the field laptop will read the data, customise data, run the simulations and create a graphical output. 
+ 
+The field laptop will contain software which we will use in order to run our simulations. The software on the field laptop will read the data, customize data, run the simulations, and create a graphical output. 
 
 ![Deployment Diagram](assets/Deployment_Diagram.png)
 
@@ -337,7 +310,8 @@ rectangle simulations {
 ```
 
 *Running the simulations and saving the data*
-One of the main purpose of our simulations is to be able to graphically view the predicted landings of the rocket simulations. Once the simulations are finished, the user can save the graph data.
+
+One of the main purposes of our simulations is to be able to graphically view the predicted landings of the rocket simulations. Once the simulations are finished, the user can save the graph data.
 
 ```plantuml
 @startuml
@@ -354,6 +328,7 @@ rectangle simulations {
 @enduml
 ```
 *Adding topographical data*
+
 The user is able to add topographical or weather data to the working simulation file to change the environmental conditions during the rocket simulations. This allows the graphical output created to be more accurate depending on the launch and journey of the rocket.
 
 ```plantuml
@@ -374,21 +349,13 @@ rectangle simulations {
 }
 @enduml
 ```
+*Changing rocket settings*
+
 Another main purpose of our simulation is to be able to run the simulations with mission control software. This means the user is able to adjust rocket settings to change the simulation graphical data output.
 
 ## 5. Development Schedule
 
-_For each subsection, make clear what (if anything) has changed from the requirements document._ If unchanged, these sections should be copied over from the requirements document, not simply cross-referenced.
-
-Schedules must be justified and supported by evidences; they must be either direct client requirements or direct consequences of client requirements. If the requirements document did not contain justifications or supporting evidences, then both must be provided here.
-
 ### 5.1 Schedule
-
-*Identify dates for key project deliverables:*
-
-*1. prototype(s).*
-*1. first deployment to the client.*
-*1. further improvements required or specified by the client.*
 
 Key project deliverables: 
 
@@ -421,17 +388,12 @@ This is due to the following reasons:
 
 #### 5.2.2 Procurement
 
-*Present a table of goods or services that will be required to deliver project goals and specify how they are to be procured (e.g. from the School or from an external organisation). These may be software applications, libraries, training or other infrastructure, including open source software. Justify and substantiate procurement with reference to fulfilment of project goals, one paragraph per item.
-(1 page).*
-
 | Good or Service | Procurement |
 |-----------------|-------------|
 | Repository | The university has provided the team with a Gitlab repository that can be used throughout development. The Gitlab site has tools that allow for management of sprints and issues that will be used. |
 | OpenRocket Code | The openRocket code is required to deliver the project goals due to the goal being orientated around the software. OpenRocket is open-source meaning it can be procured from the repository and used freely. The code can easily be put in a folder in the project's repository for easy access. |
 
 ### 5.3 Risks 
-
-*Identify the ten most important project risks: their type, likelihood, impact, and mitigation strategies (3 pages).*
 
 | Risk | Likelihood | Impact | Mitigation |
 |------|-------|-------|-----|
@@ -440,11 +402,11 @@ This is due to the following reasons:
 | Changes to the project requirements requiring minor reworks of the system | Moderate | Tolerable | We will maintain regular contact with the customer to ensure that we are aware and understand the customer’s needs and requirements, to avoid misunderstanding the project requirements. We will keep our program as flexible as possible, to ensure that changes to the requirements do not require large changes to our system. |
 | Improper use of computer equipment resulting in injury | High | Serious | We will ensure that all group members take regular breaks to stretch, walk around, and rest their eyes, to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI). |
 | External tools failing to provide expected functionality (e.g. openRocket) | Moderate | Serious | Before beginning to use any tool, the team will do research into the tool to ensure that it will provide the functionality we need, and that we understand the capabilities provided by the tool. |
-| The time required to develop the software is underestimated | High | Serious | The team will regularly review the progress we have made at each weekly meeting to ensure that we are making sufficient progress on the project according to our estimates. If we have underestimated the tiem requirement, this will become clear and we will be able to compensate accordingly  |
+| The time required to develop the software is underestimated | High | Serious | The team will regularly review the progress we have made at each weekly meeting to ensure that we are making sufficient progress on the project according to our estimates. If we have underestimated the time requirement, this will become clear and we will be able to compensate accordingly  |
 | Team members have other commitments come up leading to not having enough time to commit to working on the project | Moderate | Tolerable | The team will keep open communication about outside commitments, so that only a reasonable time commitment is expected of each member per week. If necessary, we will adjust the duties of overburdened members to keep the workload reasonable. |
 | A skill is required for the project that no team member can provide | Low | Catastrophic | The team will keep communication open so that we are aware of each member's skills and abilities, along with their skill level in certain areas. This will mean we are able to effectively choose certain tools and languages for the project that complement our skills. |
-| New team members or team members leaving the project | Low | Tolerable | The team will commit work regulary and keep clear documentation of progress, so that team member changes mean duties can be picked up smoothly, and that no work is lost. |
-| Updates to external tools causing issues with the project | Low | Serious | The team will keep up-to-date with any changes made to tools, and if neccesary, change tools to somethinhg that will be compatible with the project.  |
+| New team members or team members leaving the project | Low | Tolerable | The team will commit work regularly and keep clear documentation of progress, so that team member changes mean duties can be picked up smoothly, and that no work is lost. |
+| Updates to external tools causing issues with the project | Low | Serious | The team will keep up-to-date with any changes made to tools, and if necessary, change tools to something that will be compatible with the project.  |
 
 ### 5.4 Health and Safety
 
@@ -460,23 +422,18 @@ Any incidents will be reported to the Victoria University of Wellington Safety O
 
 #### 5.4.1 Safety Plans
 
-*Safety Plans may be required for some projects, depending on project requirements.*
-
 The project is purely software, therefore project requirements do not involve risk of death, serious harm, harm or injury.
 
 ## 6. Appendices
 
 ### 6.1 Assumptions and dependencies 
 
-One page on assumptions and dependencies (9.5.7) 
-
 ### 6.2 Acronyms and abbreviations
 
-One page glossary as required 
+OpenRocket - a rocket simulation software.
+Monte Carlo - a method of simulation.
 
 ## 7. Contributions
-
-An one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
 | Contributor | Sections |
 | :---: | :------- |
@@ -486,25 +443,5 @@ An one page statement of contributions, including a list of each member of the g
 | Max | 5.2.2, 3.1 |
 | Justina | |
 |Jacqui | |
-
----
-
-## Formatting Rules 
-
- * Write your document using [Markdown](https://gitlab.ecs.vuw.ac.nz/help/user/markdown#gitlab-flavored-markdown-gfm) in your team's GitLab repository.
- * Major sections should be separated by a horizontal rule.
-
-
-## Assessment 
-
-This document will be weighted at 20% on the architectural proof-of-concept(s), and 80% on the architecture design.
-
-The proof-of-concept will be assessed for coverage (does it demonstrate all the technologies needed to build your project?) and quality (with an emphasis on simplicity, modularity, and modifiability).
-
-The document will be assessed by considering both presentation and content. Group and individual group members will be assessed by identical criteria, the group mark for the finished PDF and the individual mark on the contributions visible through `git blame`, `git diff`, file histories, etc. 
-
-The presentation will be based on how easy it is to read, correct spelling, grammar, punctuation, clear diagrams, and so on.
-
-The content will be assessed according to its clarity, consistency, relevance, critical engagement and a demonstrated understanding of the material in the course. We look for evidence these traits are represented and assess the level of performance against these traits. Inspection of the GitLab Group is the essential form of assessing this document. While being comprehensive and easy to understand, this document must be reasonably concise too. You will be affected negatively by writing a report with too many pages (far more than what has been suggested for each section above).
 
 ---
