@@ -116,6 +116,7 @@ There are also possible limitations of the final product:
 
 [5] Victoria University of Wellington, "Project Management - Health and Safety", 2020. [Online]. Available: https://ecs.wgtn.ac.nz/Courses/ENGR301_2020T1/HealthAndSafety. [Accessed May. 22, 2020].
 
+[6] Quinlan, B., 2015. Dimensional Analysis: How Many Monte Carlo Simulations Should I Run? Part 2. [online] Blog.3dcs.com. Available at: <https://blog.3dcs.com/dimensional-analysis-how-many-monte-carlo-simulations-should-i-run> [Accessed 3 June 2020].
 
 ## 3. Specific requirements  
 
@@ -123,7 +124,10 @@ There are also possible limitations of the final product:
 
 ### 3.1 External interfaces
 
-See 9.5.10. for most systems this will be around one page. 
+OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to large variation in specification. They interfaces are:
+ - **Monitor**: At least standard definition, likely high definition or above.
+ - **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
+ - **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement. 
 
 ### 3.2 Functions
 
@@ -262,29 +266,60 @@ Typical users scale from experienced with model rocket use to people just starti
 
 See 9.5.12. for most systems this will be around one page.
 
-> **9.5.12 Usability requirements**<br>
-> Define usability (quality in use) requirements. Usability requirements and objectives for the software system include measurable effectiveness, efficiency, and satisfaction criteria in specific contexts of use.
+##### Objective
+We want to create an extension to the OpenRocket application, this extension will be accessible to the rocket community due to the extension's code being open source.
+This extension will be able to be applied to any rocket design the user imports. 
+
+##### Measurable effectiveness
+The extension should run at the same time the OpenRocket simulation runs without a delay. 
+When the Monte Carlo simulation is run over a long period of time it is expected that the program will finish without crashing and would have run without any errors. We can measure the effectiveness by simulating the rocket and displaying the data and seeing if the results match up with the real launch.
+
+##### Efficiency
+It is expected that the program should run the simulations as fast as possible with the only limitation being the speed of the hardware. 
+After each simulation is run in the Monte Carlo process, the data will be stored and only until the Monte Carlo simulation has finished the data will be displayed graphically this is to avoid taking up resources that should be used for running each simulation at its maximum speed.
+
+##### Satisfaction criteria
+For the system to meet satisfaction it needs to meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where their rocket will end up for the current weather conditions. 
+The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the amount of times specified. 
 
 ### 3.4 Performance requirements
 
-See 9.5.13. for most systems this will be around one page. Hardware projects also see section 9.4.6.
 
-> **9.5.13 Performance requirements** <br>
-> Specify both the static and the dynamic numerical requirements placed on the software or on human interaction with the software as a whole. 
-> 
-> Static numerical requirements may include the following:
-> 
-> a) The number of terminals to be supported;  
-> b) The number of simultaneous users to be supported;  
-> c) Amount and type of information to be handled.
-> 
-> Static numerical requirements are sometimes identified under a separate section entitled Capacity.
-> 
-> Dynamic numerical requirements may include, for example, the numbers of transactions and tasks and the amount of data to be processed within certain time periods for both normal and peak workload conditions. The performance requirements should be stated in measurable terms.
-> 
->  For example, "_95 % of the transactions shall be processed in less than 1 second._" rather than, "An operator shall not have to wait for the transaction to complete."
-> 
-> NOTE Numerical limits applied to one specific function are normally specified as part of the processing subparagraph description of that function.
+**Capacity**
+
+The system being created will be downloaded and installed to the plugins directory of OpenRocket on the user’s device. As such, the system will support 1 terminal per installation of the software, as in the terminal that the software is installed on. 
+
+The system will handle 1 simultaneous user per installation (1 simultaneous user per terminal).
+
+The system will run on Windows, Mac, and Linux devices. 
+
+
+**Information Handling**
+
+The system will handle the user’s rocket information, including details about the rocket to be simulated to pass to OpenRocket.
+
+The system will handle PID values/control software, to properly simulate how the rocket is likely to act in flight with this PID software controlling the gimballing. This will allow avionics to understand how the PID controller parameters should be constructed on the rocket.
+
+The system will handle mission control data, including weather conditions. Primarily, wind information will be handled as this is the most influential to the simulations.
+
+The system will handle the simulation data from OpenRocket across all the Monte Carlo simulations. This will then be converted to graphical data, to be stored for the user and displayed graphically for ease of understanding. The simulation data should be saved regularly, so in the case of crashing, early termination, or other issues, the information gathered to that point is preserved for the user. 
+
+
+**Dynamic Requirements**
+
+The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000 (one million), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand). 
+
+*This requirement is subject to change when we begin creating the program, as it is a broad estimate.*
+The system should run/process each simulation in approximately 10 seconds. This will mean that 6 simulations can be run in a minute.
+Refer to the table below for a range of time estimates for different Monte Carlo simulation sizes. 
+
+| Simulation Length (Numerical) | Simulation Length  | Time Estimate (Seconds) | Time Estimate (Hours) |
+|-------------------------------|--------------------|-------------------------|-----------------------|
+| 1                             | One                | 10                      | -                     |
+| 100                           | One hundred        | 1,000                   | 0.278                 |
+| 1,000                         | One thousand       | 10,000                  | 2.778                 |
+| 10,000                        | Ten thousand       | 100,000                 | 27.778                |
+| 1,000,000                     | One million        | 10,000,000              | 277.778               |
 
 
 ### 3.5 Logical database requirements
@@ -383,12 +418,24 @@ SimulationData "1" -- TopographicalData
 | MountainData | Type of Topographical Data. |
 
 ### 3.6 Design constraints
+There are many possible constraints that can be imposed on the project. These can be broken down into three main sections: _constraints imposed by external standards_, _constraints imposed by regulatory requirements_ and _constraints imposed by project limitations_.
 
-see 9.5.15 and 9.5.16. for most systems, this will be around one page.
 
-> 9.5.15 Design constraints<br>
-> Specify constraints on the system design imposed by external standards, regulatory requirements, or project limitations.
-> 
+__Constraints imposed by external standards:__
+- COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person group meetings and stand ups, as well as group work. 
+
+__Constraint imposed by regulatory requirements:__
+- Health and safety contraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
+
+
+__Constraints imposed by project limitations:__
+- Time constraint: Our project has a very limited time frame in which it can run for. This means that decisions must be made in order to maintain the integrity and completion of the project before the second semester is finished. Additionally, during the length of this project, our team members still have other papers to work on, and therefore we are also limited by the number of hours that our team members are able to put in each week. 
+- Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budgetless.
+- Knowledge contraint: There is also a knowledge constraint due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
+- Technical constraint: While our project is solely software based, we have a lack of access to professional and industry standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
+- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
+
+
 > 9.5.16 Standards compliance<br>
 > Specify the requirements derived from existing standards or regulations, including:
 > 
@@ -486,7 +533,65 @@ see 9.5.19.
 
 ## 4. Verification
 
-3 pages outlining how you will verify that the product meets the most important specific requirements. The format of this section should parallel section 3 of your document (see 9.5.18). Wherever possible (especially systemic requirements) you should indicate testable acceptance criteria.
+This section details how we verify our product meets the requirements laid out here in this document in section 3. These verification methods will include testable acceptance criteria.
+### External Interfaces (3.1)
+This requirement will be verified by being able to operate the product using only a monitor, mouse, and keyboard as external interfaces, with no other interfaces needed.
+
+### Functions (3.2)
+This requirement will be verified by being able to perform all of the use cases, following all of the steps in the order presented without product failure and with successful results. It can be tested by a manual walkthrough of the product.
+
+### Usability Requirements (3.3)
+This requirement will be verified mostly by the successful verification of many of the other sections, namely parts of this section relating to sections 3.2, 3.4, and 3.7. Overall verification for this section can be achieved through team review, user testing, and customer testing.
+
+### Performance Requirements (3.4)
+This requirement will be verified by meeting the specifics detailed in section 3.3. Static attributes like those in the *Capacity* and *Information Handling* sections can be verified through manual analysis. The attribute in the *Dynamic Requirements* section can be verified through automated unit testing.
+
+### Logical Database Requirements (3.5)
+This requirement will be verified by an analysis of the product source code to identify class structure and associations between classes. Verification will be achieved if the structure and associations mostly resemble the UML diagram presented in section 3.5. Minor deviations from the diagram are permitted as the need arises during development.
+
+### Design Constraints (3.6)
+This requirement will be verified by a retrospective analysis of the team's actions and decisions. Team members could be reviewed individually, or a special meeting could be held to identify any breaches of the stated limitations.
+
+### Nonfunctional System Attributes (3.7)
+**Compatibility**
+This requirement will be verified by the ability of the program to integrate necessary data from the avionics and mission control products. Verification will be achieved if necessary rocket data is able to be read in from the avionics product and necessary weather condition data is able to be read in from the mission control product. This can be tested with unit testing.
+
+**Usability**
+This requirement will be verified by being user-friendly and accessible. Verification will be achieved if:
+ - User testing indicates the product is relatively easy to use at the skill level of the user personas.
+ - User testing indicates the product is intuitive based on the experience of the user personas.
+ - User testing indicates the product doesn't have a steep learning curve, i.e. the learning process is efficient and does not contain any major barriers.
+ - User testing indicates the ability to quickly recognise whether the product is appropriate for their needs.
+ - Invalid input protections are in place, preventing the user from passing out-of-bounds or inapplicable inputs to the product. These can include things like negative values and large/small values where they are not expected. This can be tested with automated testing.
+ - The product's interface is accessible to most users and contains basic accessibility options like font size adjustment, colour-blindness support, and keyboard shortcuts.
+
+**Reliability**
+This requirement will be verified by mitigating the causes of program failure and being easily obtained. Verification will be achieved if:
+ - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable, but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
+ - The product is widely available to use. It should be downloadable from an easily accessible website.
+ - The product does not lose data from the current batch of simulations in the event of failure. Data collected up to the point of failure should be stored in a usable fashion that allows it to be read and displayed.
+
+**Security**
+This requirement will be verified by the product only collecting the minimum necessary user data and employing mechanisms to maintain its integrity. Verification will be achieved if:
+ - An analysis and review of the user data collected by the product is able to justify the data collected as being essential to the operation of the product or essential to the user's experience of the product.
+ - The product has introduced methods to protect against tampering and modification without the user's consent.
+
+**Maintainability**
+This requirement will be verified by a codebase that is modular, clear, easy to read, and employs encapsulation well. Verification will be achieved if:
+ - An analysis of the code shows good use of encapsulation.
+ - Code conforms to a chosen standard (i.e. Google standard). This can be enforced with a style checker IDE plugin. For verification to be complete, no warnings from this plugin must be present.
+ - JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and manual review of the codebase.
+ - Code not written in Java is accurately documented.
+ - Code is commented where needed.
+
+**Portability**
+As the product is a Java plugin and ostensibly faces no porting during its life cycle, this requirement's verification is fulfilled by the Maintainability section above.
+
+**Open Source**
+This requirement will be verified by the ability to change any part of the product's codebase with freely available tools. The product should comply with applicable open source standards, and make its codebase available on a freely accessible online platform (like GitLab or GitHub).
+
+**Performance Efficiency**
+This requirement will be verified by a subjective analysis of several sample machines running the product in a normal scenario. The sample machines should be consistent with those used by the user personas. The product should also perform within a timeframe acceptable to the user personas, within the context of the personas being informed of the resource-intensive nature of Monte Carlo simulations. 
 
 ## 5. Development schedule.
 
@@ -573,12 +678,12 @@ A one page statement of contributions, including a list of each member of the gr
 
 | Contributor | Sections |
 | :---: | :------- |
-| Michael | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2 |
-| Alex | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.2 |
-| Georgia | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, Safe Computing Wiki (for H&S) |
+| Michael | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2, 3.3 |
+| Alex | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.1, 3.2, Section 4 |
+| Georgia | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, 3.4, 3.7, 3.8, 5.1, Safe Computing Wiki (for H&S) |
 | Max | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2 |
-| Justina | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4) |
-| Jacqui | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.5 |
+| Justina | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.6 |
+| Jacqui | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.5, 3.2 |
 
 ---
 

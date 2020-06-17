@@ -62,7 +62,7 @@ _minted*
 *.ear
 *.gz
 *.iso
-*.jar
+# *.jar
 *.rar
 *.tar
 *.tar.gz

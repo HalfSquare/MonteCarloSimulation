@@ -72,9 +72,17 @@ This means that you should refer to information (e.g. risks, requirements, model
 
 ### 3.1 Stakeholders
 
-See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).
+*See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).*
 
-For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.
+*For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.*
+
+| Stakeholder | Concern |
+|---------|-------------|
+| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. | The users will be concerned with the functionality of the system, its purpose and its suitability for the purpose. |
+| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace and Georgia Strongman. | The developers will be concerned with the feasibility, suitability, maintainability of the project. |
+| The customer requesting the system to be made. This will be Andre Geldenhuis | The customer is be concerned with the purpose, suitability, evolvability of the system.  |
+| The university coordinators in charge of the project. These include Aaron Chen and Craig Anslow. | The managers are concerned with the feasibility, suitability, evolvability of the system. |
+
 
 ### 3.2 Architectural Viewpoints
 (1 page, 42010 5.4) 
@@ -238,7 +246,7 @@ This section has been added to show who is involved in the project and what role
 | Benjamin Secker | Senior Manager |
 | ------ | ------ |
 | Alex Pace | Software Developer |
-| Georgia Strongman | Software Developer |
+| Georgie Strongman | Software Developer |
 | Jacqui Dong | Software Developer |
 | Justina Koh | Software Developer |
 | Max McMurray | Software Developer |
@@ -386,10 +394,9 @@ Key project deliverables:
 
 | Deliverable: | Date: |
 |------|-------|
-| Architectural Prototype | |
-| Minimum Viable Product | |
-| Further Releases | |
-| Final Release | November 2020 tbc |
+| Architectural Prototype | T2 Weeks 3-4 (Sprint 5) |
+| Minimum Viable Product | T2 Week 7-8 (Sprint 7) |
+| Final Release | T2 Week 11-12 (Sprint 9 - final sprint) |
 
 
 ### 5.2 Budget and Procurement
@@ -441,19 +448,14 @@ This is due to the following reasons:
 
 ### 5.4 Health and Safety
 
+To manage computer-related risks, all team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.), to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI).
+We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. One such resource is the Wiki page 'Ergonomics and Safe Computer Usage', available in the Other section of the project Wikis.
 
-1. How teams will manage computer-related risks such as Occupational Over Use, Cable management, etc. 
-
-All team members will take regular breaks (standing up, walking around, stretching, resting eyes etc.)
-We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. 
-
-2. Whether project work requires work or testing at any external (off-campus) workplaces/sites. If so, state the team's plans for receiving a Health and Safety induction for the external workplaces/sites. If the team has already received such an induction, state the date it was received. 
-
-All work will be done remotely at each team member's place of residence.
-
-3. Whether project work requires the team test with human or animal subjects? If so, explain why there is no option but for the team to perform this testing, and state the team's plans for receiving Ethics Approval _prior_ to testing.
+All work will be done remotely at each team member's place of residence. The project will not require work at any external workplaces/sites, and so will not require any Health and Safety inductions.
 
 The project will not require any human or animal experimentation.
+
+Any incidents will be reported to the Victoria University of Wellington Safety Officer (Roger Cliffe - ecs-safety@ecs.vuw.ac.nz), Head of School Stuart Marshall and Course Coordinator Aaron Chen in accordance with the Project Management Health and Safety Guide.
 
 
 #### 5.4.1 Safety Plans
@@ -480,8 +482,8 @@ An one page statement of contributions, including a list of each member of the g
 | :---: | :------- |
 | Michael | |
 | Alex | |
-| Georgia | |
-| Max | |
+| Georgia | Section 5 (5.1, 5.2.1, 5.2, 5.2.2, 5.3, 5.4, 5.4.1) |
+| Max | 5.2.2, 3.1 |
 | Justina | |
 |Jacqui | |
 
