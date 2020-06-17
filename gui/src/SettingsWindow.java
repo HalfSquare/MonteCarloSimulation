@@ -8,7 +8,7 @@ public class SettingsWindow {
   private JTextField textField2;
   private JButton startButton;
   private JButton cancelButton;
-  private JFormattedTextField a0FormattedTextField;
+  private JFormattedTextField cMyDocsNoFormattedTextField;
   private JFormattedTextField formattedTextField1;
   private JFormattedTextField formattedTextField2;
   private JFormattedTextField formattedTextField3;

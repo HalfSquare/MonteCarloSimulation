@@ -1,3 +1,4 @@
+import net.sf.openrocket.MonteCarlo.MonteCarloSimulation;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
@@ -53,6 +54,8 @@ public class GUI extends JFrame {
       simulationWindow.bar(0);
 
       // Simulation stuff
+
+
       timer = new Timer(1, null);
       ActionListener updateBar = new ActionListener() {
         private int bar = 1;
@@ -62,7 +65,6 @@ public class GUI extends JFrame {
           if (bar <= 500) {
             simulationWindow.bar(bar++);
           } else {
-            //System.out.println("Timer done"); //shhh
             timer.stop();
             setState(GRAPH);
           }
@@ -100,6 +102,7 @@ public class GUI extends JFrame {
         simulationWindow.setVisible(true);
         break;
       case GRAPH:
+        MonteCarloSimulation.main(null);
         startGraph();
         graphWindow.setVisible(true);
         break;

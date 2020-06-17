@@ -8,13 +8,19 @@ import java.io.File;
 
 import net.sf.openrocket.simulation.listeners.*;
 
+/**
+ * An OpenRocket Helper
+ *
+ * @author Michael, Georgia
+ */
 public class OpenRocketHelper {
 
     public OpenRocketHelper() {
     }
 
     /**
-     * Load .ork document
+     * Load .ork document.
+     *
      * @param fileName  Name of file to load
      */
     public OpenRocketDocument loadORDocument(String fileName) throws RocketLoadException {
@@ -24,7 +30,8 @@ public class OpenRocketHelper {
     }
 
     /**
-     * Runs a single simulation
+     * Runs a single simulation.
+     *
      * @param simulation    Simulation object to run
      * @param listener      Listener to add to simulation
      */
