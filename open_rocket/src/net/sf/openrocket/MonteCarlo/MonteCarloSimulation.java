@@ -36,7 +36,7 @@ public class MonteCarloSimulation {
 
         // Change simulation options
         SimulationOptions simulationOptions = simulation.getOptions();
-        simulationOptions.setWindSpeedAverage(2);
+
         // Time between simulation steps (A smaller time step results in a more accurate but slower simulation)
         simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
