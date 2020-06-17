@@ -547,13 +547,13 @@ This requirement will be verified by being user-friendly and accessible. Verific
  - User testing indicates the product is relatively easy to use at the skill level of the user personas.
  - User testing indicates the product is intuitive based on the experience of the user personas.
  - User testing indicates the product doesn't have a steep learning curve, i.e. the learning process is efficient and does not contain any major barriers.
- - User testing indicates the ability to quickly recognise whether the product is appropriate for their needs.
+ - User testing indicates the ability to quickly recognize whether the product is appropriate for their needs.
  - Invalid input protections are in place, preventing the user from passing out-of-bounds or inapplicable inputs to the product. These can include things like negative values and large/small values where they are not expected. This can be tested with automated testing.
  - The product's interface is accessible to most users and contains basic accessibility options like font size adjustment, colour-blindness support, and keyboard shortcuts.
 
 **Reliability**
 This requirement will be verified by mitigating the causes of program failure and being easily obtained. Verification will be achieved if:
- - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable, but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
+ - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
  - The product is widely available to use. It should be downloadable from an easily accessible website.
  - The product does not lose data from the current batch of simulations in the event of failure. Data collected up to the point of failure should be stored in a usable fashion that allows it to be read and displayed.
 
@@ -566,9 +566,9 @@ This requirement will be verified by the product only collecting the minimum nec
 This requirement will be verified by a codebase that is modular, clear, easy to read, and employs encapsulation well. Verification will be achieved if:
  - An analysis of the code shows good use of encapsulation.
  - Code conforms to a chosen standard (i.e. Google standard). This can be enforced with a style checker IDE plugin. For verification to be complete, no warnings from this plugin must be present.
- - JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and manual review of the codebase.
- - Code not written in Java is accurately documented.
- - Code is commented where needed.
+ - JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and a manual review of the codebase.
+ - The code not written in Java is accurately documented.
+ - The code is commented on where needed.
 
 **Portability**
 As the product is a Java plugin and ostensibly faces no porting during its life cycle, this requirement's verification is fulfilled by the Maintainability section above.
