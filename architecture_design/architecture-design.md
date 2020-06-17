@@ -132,11 +132,112 @@ As appropriate you should include the following viewpoints:
 Each architectural view should include at least one architectural model. If architectural models are shared across views, refer back to the first occurrence of that model in your document, rather than including a separate section for the architectural models.
 
 ### 4.1 Logical
+In this system, from a logical viewpoint, the user should be able to run simulations of the rocket in OpenRocket, which predict the trajectory of the rocket and where the rocket will land. There are four states the Simulation Software can be in; Idle, Load, Simulation and Output. The diagram which represents the logical view is the UML class diagram. The UML diagram in the [Project Requirements]() document, section 3.5 shows the relationship between the modules, functions and classes. 
+
+
+```plantuml
+@startuml
+
+class Main{
++ newGUI()
+}
+
+class GUI{
++ helpInfo()
++ newMonteCarloSimulation()
++ MissionControlSettings()
+}
+
+class MonteCarloSimulation{
+- currentData : SimulationData
++ runSimulation()
++ stopSimulation()
++ saveSimulation()
+}
+
+class MissionControlSettings{
+- rocketAngle : double
++ displaySettings()
++ changeSettings()
+}
+
+class GraphData{
++ createGraph()
++ displayGraph()
++ compareGraph()
+}
+
+class SimulationData{
+- weatherList : List<WeatherData>
+- topographicalList : List<TopographicalData>
++ addTopographicalData()
++ addWeatherData()
++ loadDataFile()
+}
+
+class WeatherData extends SimulationData {
+- windDataList : List
+- atmosphericDataList : List
++ addWindData()
++ addAtmosphericData()
+}
+
+class WindData extends WeatherData{
+- windDirection : String
+- gust : String
+}
+
+class AtmosphericData extends WeatherData{
+- clouds : Double
+}
+
+class TopographicalData extends SimulationData {
+- MountainDataList : List
++ addMountainData()
+}
+
+class MountainData extends TopographicalData{
+- xcoordinate : double
+}
+
+
+Main "1..*" --  "1" GUI
+GUI "1" -- "1" MonteCarloSimulation
+GUI "1" -- "1" MissionControlSettings
+MonteCarloSimulation "1" -- SimulationData
+MonteCarloSimulation "1" -- GraphData
+SimulationData "1" -- WeatherData
+SimulationData "1" -- TopographicalData
+@enduml
+```
+
+##### The main classes in this UML State diagram are:
+
+MonteCarloSimulation - This class allows the Monte Carlo Simulations to be run.
+
+SimulationData- This class contains all of the data for the Monte Carlo Simulation. Users are able to customise the simulation data to reflect the different environmental conditions such as Weather Data, Topographical Data or Atmospheric Data.
+
+MissionControlSettings - This class holds the information for the Mission Control Settings which can alter the performance and overall flight of the rocket.
+
+Graph Data - One of the main purposes of this system is to output the predicted landing spots of the rocket in a graphical output. This class converts the data from the simulation into a user readable graph.
+
 
 ### 4.2 Development
+This section foccusses on the development aspect of the project. It follows the Krutchen's 4 + 1 architectural view model. 
+
+The development section covers the software management aspects of the project. This includes the following subsections:
+* 4.2.1 Roles and responsibilities
+* 4.2.2 Project Management Development Technique
+* 4.2.3 Project Development Standards
+* 4.2.4 Work Logs
+* 4.2.5 Project Development Testing
+* 4.2.6 Project Development Monitoring
+
+This section must be taken into consideration when developing and project as a range of problems can arise due to uneven allocation of work between the team members, not having tasks planned (efficiently), or insufficient progress monitoring for the project.
+
 #### 4.2.1 Roles and Responsibilities:
 
-This section has been addede to show who is involved in the project and what role they take. 
+This section has been added to show who is involved in the project and what role they take. 
 
 | Name | Role |
 | ------ | ------ |
@@ -168,16 +269,112 @@ In order to focus our intentions and be very clear about our main goal for the w
 In order to ensure that all work being produced is of good quality and free from errors, we will be doing the following:
 1. We will branch before editing code or documents.
 2. We will submit a merge request which must be approved by a minimum of one other person in the team who did not work on that branch. 
-...
+3. When writing documentation and other text-based content for the project, we will use the markdown format to do so.
+
+
+When adding a _commit message_ it should follow the design as listed below:
+* A short header no longer than a sentence, briefly stating what was done in the commit
+* A body which contains a more detailed account of what was changed in the commit
+* Tag(s) listing all other team members who worked on the commit 
+
+When adding a _merge request_ it should follow the design as listed below:
+* The merge request should follow the template(s) provided in the <!--Add link in once the branch has been merged-->
+* All code that put in a merge request shoud be free from errors and pass all pipelines
+
+When _approving_ a _merge request_ the following must be listed below:
+* Before pushing to the main branch, a merge request must be made and reviewed by a minimum of one other person.
+* The reviewer must review the code thoroughly, and check for all possible mistakes, including, but not limited to: syntax errors, spelling mistakes, bad formatting.
+* If the reviewer identifies some mistakes, a comment must be made acknowledging this and the merge request will not be approved until all issues are resolved. 
+
+#### 4.2.4 Work logs
+In order to ensure that all team members are contributing an equal amount to the project, we will be logging whether each member is at each assigned lab slot. This will be recorded on the [Lab Time Log](https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Lab-time-log).
+
+Each member can also use the [Lab Time Log Website](https://course-work.glp.ecs.vuw.ac.nz/engr300/2020/group15/group-15/LabLogSite.html) which will automatically generate the times that people enter and leave the labs. 
+
+For each sprint a new board will be created and this will be filled with issues that we believe will be relevant for the sprint. Each team member is assigned 2-3 tickets per sprint. 
+
+For each issue created in the sprint, we will add the level of difficulty we estimate it to be. This should provide us with some assistance as to how long each issue should take, and how many issues we will be able to finish in the sprint. We will also use the burn-down chart to ensure that each team-member is being assigned and completing an even amount of work.
+
+Additionally, we will assigning tickets to Epics and will be using Epics to help monitor the progress that our team is making.  
+
+#### 4.2.5 Project Development Testing
+All documentation produced for this project will not need to be tested. The documnetation will go under rigorous inspection while being written as well as during merge requests. 
+
+All code will need to have tests written for it. We should achieve high coverage with these unit tests - a minimum of at least 90% coverage. To ensure that the code is of good quality, we will have different members of the team review it. 
+
+All merge requests for code will be tested. We will be using CI / CD pipelines to do so. The pipelines will ensure that the code is free from errors, does not contain build failures, and that all unit tests written will pass. 
+
+We will also test our code on different operating systems once a week to ensure that our code is not just compatible with just one laptop / OS. 
 
 ### 4.3 Process
-...
+The process viewpoint identifies the individual processes that are interacting to complete the scenarios.The process architecture can control they deployment, starting, recovery, reconfiguration and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
+
+The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. 
 
 ### 4.4 Physical 
-...
+For our project, the topology consists of only of one physical component. This component is a:
+* Field Laptop
+
+The field laptop will contain software which we will use in order to run our simulations. The software on the field laptop will read the data, customise data, run the simulations and create a graphical output. 
+
+![Deployment Diagram](assets/Deployment_Diagram.png)
 
 ### 4.5 Scenarios
-...
+
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor user
+actor rocket
+rectangle simulations {
+    user -- (Runs simulation)
+        (Save to file) <- (Graph data)
+        (Graph data) <- (Runs simulation)
+        (Runs simulation) <- rocket
+}
+@enduml
+```
+
+*Running the simulations and saving the data*
+One of the main purpose of our simulations is to be able to graphically view the predicted landings of the rocket simulations. Once the simulations are finished, the user can save the graph data.
+
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor user
+actor rocket
+rectangle simulations {
+    user -- (Adds topographical data)
+        (Adds topographical data) -> (Enter launch site location)
+        (Enter launch site location) -> (Saves data to working simulation file)
+        (Saves data to working simulation file) <- rocket
+}
+@enduml
+```
+*Adding topographical data*
+The user is able to add topographical or weather data to the working simulation file to change the environmental conditions during the rocket simulations. This allows the graphical output created to be more accurate depending on the launch and journey of the rocket.
+
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor user
+actor rocket
+rectangle simulations {
+    user -- (Selects mission control options)
+        (Selects mission control options) -> (Starts simulation)
+        (Starts simulation) -> (adjusts the angle of rocket)
+        (adjusts the angle of rocket) -> (Finish simulation)
+        (Finish simulation) -> (output graphical data)
+        (Starts simulation) <- rocket
+        
+        
+}
+@enduml
+```
+Another main purpose of our simulation is to be able to run the simulations with mission control software. This means the user is able to adjust rocket settings to change the simulation graphical data output.
 
 ## 5. Development Schedule
 
@@ -205,9 +402,22 @@ Key project deliverables:
 ### 5.2 Budget and Procurement
 
 #### 5.2.1 Budget
+The budget for this project is: __$0.00__
 
-As all developers are unpaid, OpenRocket is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
-We will ensure that any design and software choices take into account the lack of budget.
+A table has been made below to show the equipment, software and technology required and the corresponding costs:
+
+| Particular needed | Cost |
+| ------ | ------ |
+| Laptop for software development | $0.00 |
+| OpenRocket Software | $0.00 | 
+| IDEs for software development | $0.00 | 
+| GitLab for version-control | $0.00 | 
+
+This is due to the following reasons:
+* All the developers are unpaid
+* OpenRocket is an open-source software
+* Open-source IDEs will be used by the developers
+* All additionally development tools used for the project are provided at no cost by the university
 
 #### 5.2.2 Procurement
 
