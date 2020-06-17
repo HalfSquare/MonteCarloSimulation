@@ -437,11 +437,11 @@ Monte Carlo - a method of simulation.
 
 | Contributor | Sections |
 | :---: | :------- |
-| Michael | |
-| Alex | |
-| Georgia | Section 5 (5.1, 5.2.1, 5.2, 5.2.2, 5.3, 5.4, 5.4.1) |
-| Max | 5.2.2, 3.1 |
-| Justina | |
-|Jacqui | |
+| Michael | Section 2 |
+| Alex | Section 2 |
+| Georgia | Section 2, Section 5, 6.2, Section 7 |
+| Max | Section 2, 3.1, 5.2.2 |
+| Justina | Section 1, Section 2, Section 4 |
+|Jacqui | Section 1, Section 2, 3.2, Section 4 |
 
 ---
