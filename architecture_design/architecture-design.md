@@ -250,7 +250,7 @@ This section has been added to show who is involved in the project and what role
 | Max McMurray | Software Developer |
 | Michael Behan | Software Developer |
 
-As this is a team project, we decided that is was most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one it taking charge of the project as a whole. Instead, we will have a rotation that will allow each team member to be a scrum master and minute taker for at least one sprint.
+As this is a team project, we decided that it was the most appropriate for everyone to receive the role of a software developer. This means that everyone within the group has the same role, and therefore no one is taking charge of the project as a whole. Instead, we will have a rotation that will allow each team member to be a scrum master and minute taker for at least one sprint.
 
 #### 4.2.2 Project Management Development technique 
 
