@@ -124,7 +124,7 @@ There are also possible limitations of the final product:
 
 ### 3.1 External interfaces
 
-OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to large variation in specification. They interfaces are:
+OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to a large variation in specifications. The interfaces are:
  - **Monitor**: At least standard definition, likely high definition or above.
  - **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
  - **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement. 
@@ -264,8 +264,6 @@ Typical users scale from experienced with model rocket use to people just starti
 
 ### 3.3 Usability Requirements
 
-See 9.5.12. for most systems this will be around one page.
-
 ##### Objective
 We want to create an extension to the OpenRocket application, this extension will be accessible to the rocket community due to the extension's code being open source.
 This extension will be able to be applied to any rocket design the user imports. 
@@ -280,7 +278,7 @@ After each simulation is run in the Monte Carlo process, the data will be stored
 
 ##### Satisfaction criteria
 For the system to meet satisfaction it needs to meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where their rocket will end up for the current weather conditions. 
-The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the amount of times specified. 
+The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the number of times specified. 
 
 ### 3.4 Performance requirements
 
@@ -418,33 +416,22 @@ SimulationData "1" -- TopographicalData
 | MountainData | Type of Topographical Data. |
 
 ### 3.6 Design constraints
-There are many possible constraints that can be imposed on the project. These can be broken down into three main sections: _constraints imposed by external standards_, _constraints imposed by regulatory requirements_ and _constraints imposed by project limitations_.
+Many possible constraints can be imposed on the project. These can be broken down into three main sections: _constraints imposed by external standards_, _constraints imposed by regulatory requirements_ and _constraints imposed by project limitations_.
 
 
 __Constraints imposed by external standards:__
-- COVID-19 contraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also contrained by our inability to carry out in-person group meetings and stand ups, as well as group work. 
+- COVID-19 constraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also constrained by our inability to carry out in-person group meetings and stand-ups, as well as group work. 
 
 __Constraint imposed by regulatory requirements:__
-- Health and safety contraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
+- Health and safety constraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
 
 
 __Constraints imposed by project limitations:__
-- Time constraint: Our project has a very limited time frame in which it can run for. This means that decisions must be made in order to maintain the integrity and completion of the project before the second semester is finished. Additionally, during the length of this project, our team members still have other papers to work on, and therefore we are also limited by the number of hours that our team members are able to put in each week. 
+- Time constraint: Our project has a very limited time frame in which it can run. This means that decisions must be made to maintain the integrity and completion of the project before the second semester is finished. Additionally, during the length of this project, our team members still have other papers to work on, and therefore we are also limited by the number of hours that our team members can put in each week. 
 - Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budgetless.
-- Knowledge contraint: There is also a knowledge constraint due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
-- Technical constraint: While our project is solely software based, we have a lack of access to professional and industry standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
-- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
-
-
-> 9.5.16 Standards compliance<br>
-> Specify the requirements derived from existing standards or regulations, including:
-> 
-> a) Report format;<br>
-> b) Data naming;<br>
-> c) Accounting procedures;<br>
-> d) Audit tracing.
-> 
-> For example, this could specify the requirement for software to trace processing activity. Such traces are needed for some applications to meet minimum regulatory or financial standards. An audit trace requirement may, for example, state that all changes to a payroll database shall be recorded in a trace file with before and after values.
+- Knowledge constraint: There is also a knowledge constraint due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
+- Technical constraint: While our project is solely software-based, we have a lack of access to professional and industry-standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
+- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such as the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
 
 ### 3.7 Nonfunctional system attributes
 
@@ -452,26 +439,26 @@ __Constraints imposed by project limitations:__
 * Usability
 * Reliability
 * Security
-* Maintainibility
+* Maintainability
 * Portability
 * Open Source
 * Performance Efficiency
 
 **Compatibility**
 
-This project (creating Monte Carlo simulations) is one of three projects with an overarching goal of launching a hobby rocket. As such, one of the top nonfunctional requrirements is that our program must be compatible with the other two projects.
+This project (creating Monte Carlo simulations) is one of three projects with an overarching goal of launching a hobby rocket. As such, one of the top nonfunctional requirements is that our program must be compatible with the other two projects.
 
-Our progam must be compatible, and must coexist, with the avionics and mission control projects. Specifically, we must be able to read in rocket data from the avionics team, and we must be able to read in weather condition data from the mission control team, and use these data sets to construct a realistic simulation to be used to judge whether the rocket's flight path and subsequent landing zone is considered safe.
+Our program must be compatible and must coexist with the avionics and mission control projects. Specifically, we must be able to read in rocket data from the avionics team, and we must be able to read in weather condition data from the mission control team and use these data sets to construct a realistic simulation to be used to judge whether the rocket's flight path and subsequent landing zone are considered safe.
 
 This will involve exchanging information with these project groups, and using that information in our project. Therefore, compatibility is an important systemic attribute to this project.
 
 **Usability**
 
 As the client (and therefore one of the main users), of this project is a hobby rocketeer, and the program is designed to be used by a variety of users with varying skill levels, the program must be user-friendly. 
-To be more specific, this program must be designed in a way that it is easy to operate and control, and users are able to efficiently and effectively learn and understand how to use it. 
+To be more specific, this program must be designed in a way that is easy to operate and control, and users can efficiently and effectively learn and understand how to use it. 
 It should also protect against simple user errors, such as invalid inputs (negative values for example).
 
-The program should have a user interface that is accessible to most users, and is understandable and reasonably intuitive to use. 
+The program should have a user interface that is accessible to most users and is understandable and reasonably intuitive to use. 
 
 As the program has one main overall function (Monte Carlo simulations of **hobby** rockets), users should be able to quickly realize/recognize whether this program is appropriate for their needs. 
 It should be made obvious that this program is designed for simulating hobby rockets only.
@@ -493,13 +480,13 @@ The program should have integrity, meaning it should be protected against tamper
 
 **Maintainability**
 
-The program should be modular when possible, so that changes to the program have minimised impact. 
+The program should be modular when possible so that changes to the program have a minimized impact. 
 The program should also be written in a way that code can be reused when possible, to avoid redundancy. 
 
-The program should be efficient and effective to analyse, so that failures/deficiencies can be found and fixed efficiently, and so that modifications can be made with ease. 
+The program should be efficient and effective to analyze so that failures/deficiencies can be found and fixed efficiently, and so that modifications can be made with ease. 
 It is likely that modifications will need to be made, in the case of requirements changing, or having more time to implement additional features).
 
-The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met, and that our program works accurately.
+The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met and that our program works accurately.
 
 **Portability**
 
@@ -507,25 +494,24 @@ The program should be efficient and intuitive for the user to install and have w
 
 The program should be adaptable, and should not require major refactoring for small changes. 
 
-The program should be clear about the performance requirements of the machine it is running on, as Monte Carlo simulations are resource intensive.
+The program should be clear about the performance requirements of the machine it is running on, as Monte Carlo simulations are resource-intensive.
 
 **Open Source**
 
 The program should be open source and free to use, meaning that all software, tools, and equipment used to build and create the program should not conflict with this. 
 
-All software, tools, and equipment should also be open source, so that the program is free to use for hobby rocketeers and any other user who the program is appropriate for.
+All software, tools, and equipment should also be open-source so that the program is free to use for hobby rocketeers and any other user who the program is appropriate for.
 
 **Performance Efficiency**
 
 The program must be designed with efficiency in mind. 
-As Monte Carlo simulations are resource intensive and computationally stressful, the program must not use resources inefficiently, and must make the best effort to reduce stress on the machine it is running on where possible. 
+As Monte Carlo simulations are resource-intensive and computationally stressful, the program must not use resources inefficiently and must make the best effort to reduce stress on the machine it is running on where possible. 
 
-The program should be clear to the user about the performance requirements of the machine it should be running on, as Monte Carlo simulations are resource intensive.
-
+The program should be clear to the user about the performance requirements of the machine it should be running on, as Monte Carlo simulations are resource-intensive.
 
 ### 3.8 Physical and Environmental Requirements 
 
-This is a purely software project, and so there are no physical or environmental requirements. 
+This is a pure software project, and so there are no physical or environmental requirements. 
 
 ### 3.9 Supporting information
 
