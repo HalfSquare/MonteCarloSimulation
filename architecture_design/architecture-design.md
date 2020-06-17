@@ -260,7 +260,8 @@ When adding a _commit message_ it should follow the design as listed below:
 * Tag(s) listing all other team members who worked on the commit 
 
 When adding a _merge request_ it should follow the design as listed below:
-_discuss this with the team_
+* The merge request should follow the template(s) provided in the <!--Add link in once the branch has been merged-->
+* All code that put in a merge request shoud be free from errors and pass all pipelines
 
 When _approving_ a _merge request_ the following must be listed below:
 * Before pushing to the main branch, a merge request must be made and reviewed by a minimum of one other person.
