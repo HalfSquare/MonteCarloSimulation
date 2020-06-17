@@ -23,8 +23,6 @@ public class GraphWindow {
     this.reRunButton.addActionListener(listener);
   }
 
-  public void
-
   public void setVisible(boolean flag) {
     rootPanel.setVisible(flag);
   }
