@@ -297,19 +297,20 @@ The system will handle the simulation data from OpenRocket across all the Monte 
 
 **Dynamic Requirements**
 
-The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000 (one million), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand). 
+The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000,000 (one billion), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand), as this is enough simulations to gather a reasonable idea of what will happen, but will take a short amount of time (30 seconds) to run, giving the user a chance to test out an idea without the inconvenience of having to wait a long time. 
 
-*This requirement is subject to change when we begin creating the program, as it is a broad estimate.*
-The system should run/process each simulation in approximately 10 seconds. This will mean that 6 simulations can be run in a minute.
+The system should run/process one thousand (1,000) simulations in 30 seconds or less. This will mean that each simulation should take 0.03 seconds, and two thousand (2,000) simulations should run per minute.
 Refer to the table below for a range of time estimates for different Monte Carlo simulation sizes. 
 
-| Simulation Length (Numerical) | Simulation Length  | Time Estimate (Seconds) | Time Estimate (Hours) |
-|-------------------------------|--------------------|-------------------------|-----------------------|
-| 1                             | One                | 10                      | -                     |
-| 100                           | One hundred        | 1,000                   | 0.278                 |
-| 1,000                         | One thousand       | 10,000                  | 2.778                 |
-| 10,000                        | Ten thousand       | 100,000                 | 27.778                |
-| 1,000,000                     | One million        | 10,000,000              | 277.778               |
+| Simulation Count (Numerical)  | Simulation Count   | Time Estimate (Seconds) | Time Estimate (Minutes) | Time Estimate (Hours) |
+|-------------------------------|--------------------|-------------------------|-------------------------|-----------------------|
+| 1                             | One                | 0.03                    | 0.0005                  | -                     |
+| 100                           | One hundred        | 3                       | 0.05                    | -                     |
+| 1,000                         | One thousand       | 30                      | 0.5                     | -                     |
+| 10,000                        | Ten thousand       | 300                     | 5                       | -                     |
+| 1,000,000                     | One million        | 30,000                  | 500                     | 8.333                 |
+| 10,000,000                    | Ten million        | 300,000                 | 5,000                   | 83.333                |
+| 1,000,000,000                 | One billion        | 30,000,000              | 500,000                 | 8,333.333             |
 
 
 ### 3.5 Logical database requirements
