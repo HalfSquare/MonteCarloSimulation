@@ -60,42 +60,24 @@ If the requirement have changed significantly since the requirements document, o
 References to other documents or standards. Follow the IEEE Citation Reference scheme, available from the [IEEE website](https://ieee-dataport.org/sites/default/files/analysis/27/IEEE%20Citation%20Guidelines.pdf) (PDF; 20 KB). (1 page, longer if required)
 
 ## 3. Architecture
-
-Describe your system's architecture according to ISO/IEC/IEEE 42010:2011(E), ISO/IEC/IEEE 12207, ISO/IEC/IEEE 15289 and ISO/IEC/IEEE 15288.
-
-Note in particular the note to clause 5 of 42010:
-
-_"The verb include when used in Clause 5 indicates that either the information is present in the architecture description or reference to that information is provided therein."_
-
-This means that you should refer to information (e.g. risks, requirements, models) in this or other documents rather than repeat information.
-
 ### 3.1 Stakeholders
-
-*See ISO/IEC/IEEE 42010 clause 5.3 and ISO/IEC/IEEE 12207 clause 6.4.4.3(2).*
-
-*For most systems this will be about 2 pages, including a table mapping concerns to stakeholder.*
-
 | Stakeholder | Concern |
 |---------|-------------|
-| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. | The users will be concerned with the functionality of the system, its purpose and its suitability for the purpose. |
-| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace and Georgia Strongman. | The developers will be concerned with the feasibility, suitability, maintainability of the project. |
-| The customer requesting the system to be made. This will be Andre Geldenhuis | The customer is be concerned with the purpose, suitability, evolvability of the system.  |
+| The users of the system. This includes those who will be testing the PIDs with the software and those testing mission control software. This includes groups 1 to 12 taking part in the course. | The users will be concerned with the functionality of the system, its purpose, and its suitability for the purpose. |
+| The team developing the system. This includes Michael Behan, Jacqueline Dong, Justina Koh, Max McMurray, Alexander Pace, and Georgia Strongman. | The developers will be concerned with the feasibility, suitability, and maintainability of the project. |
+| The customer requesting the system to be made. This will be Andre Geldenhuis | The customer is be concerned with the purpose, suitability, evolvability of the system. |
 | The university coordinators in charge of the project. These include Aaron Chen and Craig Anslow. | The managers are concerned with the feasibility, suitability, evolvability of the system. |
 
-
 ### 3.2 Architectural Viewpoints
-(1 page, 42010 5.4) 
-
-Identify the architectural viewpoints you will use to present your system's architecture. Write one sentence to outline each viewpoint. Show which viewpoint frames which architectural concern.
 
 #### Logical
-The logical viewpoint corresponds to the functionality of the system it provides to end-users; the system is divided into a set of key abstractions and are expressed through UML state and class diagrams.
+The logical viewpoint corresponds to the functionality of the system it provides to end-users. The system is divided into a set of key abstractions and is expressed through UML state and class diagrams.
 
 #### Development
 The development viewpoint describes the architecture for the software management processes involved in the system, expressed through UML component diagrams.
 
 #### Process
-The process viewpoint captures the non-functional requirements of the system, including behaviour, concurrency, performance and availability, and how the main abstractions from the logical view fit within the process architecture.
+The process viewpoint captures the non-functional requirements of the system, including behaviour, concurrency, performance, and availability, and how the main abstractions from the logical view fit within the process architecture.
 
 #### Physical
 The physical viewpoint represents the infrastructure of an application, which describes the mapping of software to hardware.
