@@ -221,9 +221,9 @@ The development section covers the software management aspects of the project. T
 * 4.2.1 Roles and responsibilities
 * 4.2.2 Project Management Development Technique
 * 4.2.3 Project Development Standards
-* 4.2.4 Work logs
-* 4.2.5 Project development testing
-* 4.2.6 Project development monitoring
+* 4.2.4 Work Logs
+* 4.2.5 Project Development Testing
+* 4.2.6 Project Development Monitoring
 
 This section must be taken into consideration when developing and project as a range of problems can arise due to uneven allocation of work between the team members, not having tasks planned (efficiently), or insufficient progress monitoring for the project.
 
@@ -286,6 +286,16 @@ Each member can also use the [Lab Time Log Website](https://course-work.glp.ecs.
 For each sprint a new board will be created and this will be filled with issues that we believe will be relevant for the sprint. Each team member is assigned 2-3 tickets per sprint. 
 
 For each issue created in the sprint, we will add the level of difficulty we estimate it to be. This should provide us with some assistance as to how long each issue should take, and how many issues we will be able to finish in the sprint. We will also use the burn-down chart to ensure that each team-member is being assigned and completing an even amount of work.
+
+#### 4.2.5 Project Development Testing
+All documentation produced for this project will not need to be tested. The documnetation will go under rigorous inspection while being written as well as during merge requests. 
+
+All code will need to have tests written for it. We should achieve high coverage with these unit tests - a minimum of at least 90% coverage. To ensure that the code is of good quality, we will have different members of the team review it. 
+
+All merge requests for code will be tested. We will be using CI / CD pipelines to do so. The pipelines will ensure that the code is free from errors, does not contain build failures, and that all unit tests written will pass. 
+
+#### 4.2.6 Project Development Monitoring
+In 
 
 ### 4.3 Process
 The process viewpoint identifies the individual processes that are interacting to complete the scenarios.The process architecture can control they deployment, starting, recovery, reconfiguration and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
