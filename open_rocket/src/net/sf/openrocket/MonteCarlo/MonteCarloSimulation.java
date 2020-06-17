@@ -7,6 +7,7 @@ import net.sf.openrocket.rocketcomponent.Rocket;
 import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.OpenRocketHelper;
+import net.sf.openrocket.startup.Startup2;
 
 import java.util.Random;
 
@@ -35,7 +36,7 @@ public class MonteCarloSimulation {
 
         // Change simulation options
         SimulationOptions simulationOptions = simulation.getOptions();
-        simulationOptions.setWindSpeedAverage(2);
+
         // Time between simulation steps (A smaller time step results in a more accurate but slower simulation)
         simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
@@ -65,11 +66,10 @@ public class MonteCarloSimulation {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-
-		//TODO: Investigate whether there is a way to open OpenRocket in headless/noGUI mode, or close OpenRocket automatically (Check Startup2 class)
-
-        Startup.main(args);
+    public static void main(String[] args) {
+        Startup.initializeLogging();
+        Startup.initializeL10n();
+        Startup2.loadMotor();
         new MonteCarloSimulation();
     }
 
