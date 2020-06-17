@@ -240,11 +240,11 @@ This section has been added to show who is involved in the project and what role
 | Name | Role |
 | ------ | ------ |
 | Andre Geldenhuis | Client |
-| Craig Anslow | Course coordinator |
+| Craig Anslow | Course Coordinator |
 | Benjamin Secker | Senior Manager |
 | ------ | ------ |
 | Alex Pace | Software Developer |
-| Georgie Strongman | Software Developer |
+| Georgia Strongman | Software Developer |
 | Jacqui Dong | Software Developer |
 | Justina Koh | Software Developer |
 | Max McMurray | Software Developer |
@@ -335,6 +335,7 @@ rectangle simulations {
 ```
 
 *Running the simulations and saving the data*
+
 One of the main purposes of our simulations is to be able to graphically view the predicted landings of the rocket simulations. Once the simulations are finished, the user can save the graph data.
 
 ```plantuml
@@ -352,6 +353,7 @@ rectangle simulations {
 @enduml
 ```
 *Adding topographical data*
+
 The user is able to add topographical or weather data to the working simulation file to change the environmental conditions during the rocket simulations. This allows the graphical output created to be more accurate depending on the launch and journey of the rocket.
 
 ```plantuml
@@ -372,6 +374,8 @@ rectangle simulations {
 }
 @enduml
 ```
+*Changing rocket settings*
+
 Another main purpose of our simulation is to be able to run the simulations with mission control software. This means the user is able to adjust rocket settings to change the simulation graphical data output.
 
 ## 5. Development Schedule
