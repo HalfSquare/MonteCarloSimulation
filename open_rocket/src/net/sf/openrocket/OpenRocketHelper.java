@@ -1,4 +1,4 @@
-package net.sf.openrocket.template;
+package net.sf.openrocket;
 
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
@@ -13,12 +13,21 @@ public class OpenRocketHelper {
     public OpenRocketHelper() {
     }
 
+    /**
+     * Load .ork document
+     * @param fileName  Name of file to load
+     */
     public OpenRocketDocument loadORDocument(String fileName) throws RocketLoadException {
         File rocketFile = new File(fileName);
         GeneralRocketLoader gen = new GeneralRocketLoader();
         return gen.load(rocketFile);
     }
 
+    /**
+     * Runs a single simulation
+     * @param simulation    Simulation object to run
+     * @param listener      Listener to add to simulation
+     */
     public void runSimulation(Simulation simulation, AbstractSimulationListener listener) {
         simulation.getOptions().randomizeSeed();
         try {

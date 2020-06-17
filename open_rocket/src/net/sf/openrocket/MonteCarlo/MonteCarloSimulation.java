@@ -1,4 +1,4 @@
-package net.sf.openrocket.template;
+package net.sf.openrocket.MonteCarlo;
 
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
@@ -6,6 +6,7 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.rocketcomponent.Rocket;
 import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.startup.Startup;
+import net.sf.openrocket.OpenRocketHelper;
 
 import java.util.Random;
 
@@ -54,9 +55,9 @@ public class MonteCarloSimulation {
     }
 
     public MonteCarloSimulation() {
-        // runs 20 simulations can throw Rocket load exception if .ork document cant be loaded
 
 		//TODO: allow user to choose to import their rocket/.ork file - should this tie into GUI?
+
         try {
             runSimulations(1000);
         } catch (RocketLoadException e) {
@@ -65,9 +66,9 @@ public class MonteCarloSimulation {
     }
 
     public static void main(String[] args) throws Exception {
-        //TODO: Needs to start up openrocket to load motor investigate methods to load motor programmatically (Check Startup2 class)
 
-		//TODO: Investigate whether there is a way to open OpenRocket in headless/noGUI mode, or close OpenRocket automatically
+		//TODO: Investigate whether there is a way to open OpenRocket in headless/noGUI mode, or close OpenRocket automatically (Check Startup2 class)
+
         Startup.main(args);
         new MonteCarloSimulation();
     }
