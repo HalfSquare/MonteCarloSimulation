@@ -1,3 +1,5 @@
+package nz.ac.vuw.engr301.group15.montecarlo;
+
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,9 +31,9 @@ public class TestOpenRocket {
 	}
 
 	// Initial test to set up pipeline - should ALWAYS fail
-	@Test
-	public void Test3() {
-		assertEquals(1, 5);
-	}
+//	@Test
+//	public void Test3() {
+//		assertEquals(1, 5);
+//	}
 
 }

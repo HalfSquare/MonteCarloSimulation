@@ -1,4 +1,6 @@
-import net.sf.openrocket.MonteCarlo.MonteCarloSimulation;
+package nz.ac.vuw.engr301.group15.gui;
+
+import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
