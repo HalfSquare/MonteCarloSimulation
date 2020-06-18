@@ -1,8 +1,6 @@
 import net.sf.openrocket.MonteCarlo.MonteCarloSimulation;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -39,7 +37,6 @@ public class GUI extends JFrame {
 
   private void startSettings() {
     settingsWindow.setStartButtonListener(new ActionListener() {
-      @Override
       public void actionPerformed(ActionEvent e) {
         setState(SIMULATION);
       }
@@ -59,8 +56,6 @@ public class GUI extends JFrame {
       timer = new Timer(1, null);
       ActionListener updateBar = new ActionListener() {
         private int bar = 1;
-
-        @Override
         public void actionPerformed(ActionEvent e) {
           if (bar <= 500) {
             simulationWindow.bar(bar++);
@@ -80,7 +75,6 @@ public class GUI extends JFrame {
 
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(new ActionListener() {
-      @Override
       public void actionPerformed(ActionEvent e) {
         setState(SETTINGS);
       }
@@ -92,29 +86,31 @@ public class GUI extends JFrame {
     simulationWindow.setVisible(false);
     graphWindow.setVisible(false);
 
-    switch (state) {
-      case SETTINGS:
-        startSettings();
-        settingsWindow.setVisible(true);
-        break;
-      case SIMULATION:
-        startSimulation();
-        simulationWindow.setVisible(true);
-        break;
-      case GRAPH:
-        MonteCarloSimulation.main(null);
-        startGraph();
-        graphWindow.setVisible(true);
-        break;
-      default:
-        throw new RuntimeException("Unexpected state switch");
+    if (SETTINGS.equals(state)) {
+      startSettings();
+      settingsWindow.setVisible(true);
+    } else if (SIMULATION.equals(state)) {
+      startSimulation();
+      simulationWindow.setVisible(true);
+    } else if (GRAPH.equals(state)) {
+      MonteCarloSimulation.main(null);
+      startGraph();
+      graphWindow.setVisible(true);
+    } else {
+      throw new RuntimeException("Unexpected state switch");
     }
   }
 
   public static void main(String[] args) {
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (InstantiationException e) {
+      e.printStackTrace();
+    } catch (IllegalAccessException e) {
+      e.printStackTrace();
+    } catch (UnsupportedLookAndFeelException e) {
       e.printStackTrace();
     }
 

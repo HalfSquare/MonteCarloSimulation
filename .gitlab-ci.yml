@@ -18,8 +18,8 @@ unittest:
     - shell
   script:
     - echo "test"
-    - exit 0
-  allow_failure: true
+    - mvn test
+  allow_failure: false
 
 deploy:
   stage: Deploy
