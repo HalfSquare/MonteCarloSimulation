@@ -1,3 +1,5 @@
+package nz.ac.vuw.engr301.group15.gui;
+
 import net.sf.openrocket.MonteCarlo.MonteCarloSimulation;
 
 import javax.swing.*;

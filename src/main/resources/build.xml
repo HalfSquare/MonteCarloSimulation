@@ -1,6 +1,6 @@
-<project name="ExtensionTemplate" basedir="." default="build">
+<project name="ExtensionTemplate" basedir="../../../open_rocket" default="build">
 
-    <property name="src.dir" value="${basedir}/src"/>
+    <property name="src.dir" value="/"/>
     <property name="build.dir" value="${basedir}/build"/>
 
     <target name="build">

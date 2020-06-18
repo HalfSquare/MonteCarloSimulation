@@ -1,5 +1,6 @@
+package nz.ac.vuw.engr301.group15.gui;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SettingsWindow {
