@@ -28,8 +28,9 @@ public class OpenRocketTest1 {
 	}
 
 	// Initial test to set up pipeline - should ALWAYS fail
-	@Test
+	/*@Test
 	public void Test3() {
 		assertEquals(1, 5);
 	}
+	*/
 }
