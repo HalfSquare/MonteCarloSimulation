@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  *
  */
 
-public class OpenRocketTest1 {
+public class TestOpenRocket {
 	// Initial test to set up pipeline - should ALWAYS pass
 	@Test
 	public void Test1(){
