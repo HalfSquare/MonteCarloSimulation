@@ -20,6 +20,7 @@ unittest:
     - echo "test"
     - mvn verify
     - mvn test
+    - mvn -Dtest=OpenRocketTest1
   allow_failure: false
 
 deploy:
