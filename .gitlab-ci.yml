@@ -19,7 +19,7 @@ unittest:
   script:
     - echo "test"
     - mvn verify
-    - mvn ORtests/OpenRocketTest1.java
+    - mvn test
   allow_failure: false
 
 deploy:
