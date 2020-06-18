@@ -1,5 +1,6 @@
+package nz.ac.vuw.engr301.group15.gui;
+
 import javax.swing.*;
-import java.awt.event.ActionListener;
 
 public class SimulationWindow {
   private JProgressBar progressBar1;
