@@ -1,4 +1,4 @@
-package net.sf.openrocket.MonteCarlo;
+package nz.ac.vuw.engr301.group15.montecarlo;
 
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;

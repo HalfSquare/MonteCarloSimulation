@@ -1,4 +1,4 @@
-package net.sf.openrocket;
+package nz.ac.vuw.engr301.group15.montecarlo;
 
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;

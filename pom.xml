@@ -25,6 +25,15 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- modified open rocket -->
+        <dependency>
+            <groupId>net.sf.openrocket</groupId>
+            <artifactId>modified-openrocket</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/modified-openrocket-1-1-9.jar</systemPath>
+        </dependency>
+
     </dependencies>
     <build>
         <finalName>maven-unit-test</finalName>
