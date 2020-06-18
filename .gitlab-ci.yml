@@ -18,8 +18,8 @@ unittest:
     - shell
   script:
     - echo "test"
-    - cd ORtests/
-    - test OpenRocketTest1.java
+    - mvn verify
+    - mvn test
   allow_failure: false
 
 deploy:
