@@ -18,9 +18,7 @@ unittest:
     - shell
   script:
     - echo "test"
-    - mvn verify
     - mvn test
-    - mvn -Dtest=OpenRocketTest1 test
   allow_failure: false
 
 deploy:
