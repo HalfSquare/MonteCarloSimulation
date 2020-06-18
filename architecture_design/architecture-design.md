@@ -263,6 +263,7 @@ We will also test our code on different operating systems once a week to ensure 
 The process viewpoint identifies the individual processes that are interacting to complete the scenarios. The process architecture can control the deployment, starting, recovery, reconfiguration, and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
  
 The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. 
+
 ![Process Diagram](assets/Process_diagram.png)
 
 ### 4.4 Physical 
@@ -419,7 +420,7 @@ Monte Carlo - a method of simulation.
 | Contributor | Sections |
 | :---: | :------- |
 | Michael | Section 2 |
-| Alex | Section 2 |
+| Alex | Section 2, 4.3 |
 | Georgia | Section 2, Section 5, 6.2, Section 7 |
 | Max | Section 2, 3.1, 5.2.2 |
 | Justina | Section 1, Section 2, Section 4 |
