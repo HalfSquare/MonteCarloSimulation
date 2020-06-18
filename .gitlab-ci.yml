@@ -19,7 +19,7 @@ unittest:
   script:
     - echo "test"
     - cd ORtests/
-    - ant OpenRocketTest1
+    - mvn OpenRocketTest1
   allow_failure: false
 
 deploy:
