@@ -19,7 +19,7 @@ unittest:
   script:
     - echo "test"
     - cd ORtests/
-    - junit OpenRocketTest1.java
+    - OpenRocketTest1.java
   allow_failure: false
 
 deploy:
