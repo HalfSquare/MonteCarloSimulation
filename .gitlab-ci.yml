@@ -18,8 +18,9 @@ unittest:
     - shell
   script:
     - echo "test"
-    - exit 0
-  allow_failure: true
+    - cd ORtests/
+    - test OpenRocketTest1.java
+  allow_failure: false
 
 deploy:
   stage: Deploy
