@@ -1,4 +1,4 @@
-package nz.ac.vuw.engr301.group15.simulation;
+package nz.ac.vuw.engr301.group15.montecarlo;
 
 import org.junit.jupiter.api.Test;
 
