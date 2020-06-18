@@ -1,4 +1,4 @@
-package net.sf.openrocket.MonteCarlo;
+package nz.ac.vuw.engr301.group15.montecarlo;
 
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
@@ -6,7 +6,6 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.rocketcomponent.Rocket;
 import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.startup.Startup;
-import net.sf.openrocket.OpenRocketHelper;
 import net.sf.openrocket.startup.Startup2;
 
 import java.util.Random;
