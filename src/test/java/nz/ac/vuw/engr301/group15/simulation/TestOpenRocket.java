@@ -31,9 +31,9 @@ public class TestOpenRocket {
 	}
 
 	// Initial test to set up pipeline - should ALWAYS fail
-	@Test
-	public void Test3() {
-		assertEquals(1, 5);
-	}
+//	@Test
+//	public void Test3() {
+//		assertEquals(1, 5);
+//	}
 
 }
