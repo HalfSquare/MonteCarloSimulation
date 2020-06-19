@@ -4,31 +4,12 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import java.awt.Color;
-import org.jzy3d.chart.ChartLauncher;
-
-import org.jzy3d.colors.ColorMapper;
-import org.jzy3d.colors.colormaps.ColorMapRainbow;
 import org.jzy3d.maths.Coord3d;
 import org.jzy3d.plot3d.builder.Mapper;
-import org.jzy3d.plot3d.primitives.Scatter;
 
 import javax.swing.*;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.util.ArrayList;
-
-import static java.awt.Color.WHITE;
 
 public class GUI extends JFrame {
 
@@ -40,7 +21,7 @@ public class GUI extends JFrame {
   public static final String SIMULATION = "SIMULATION";
   public static final String GRAPH = "GRAPH";
 
-  public static final int NUM_SIMS = 10;
+  public static final int NUM_SIMS = 1000;
   private ArrayList<SimulationStatus> data;
 
   public enum GraphType {
@@ -94,18 +75,28 @@ public class GUI extends JFrame {
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
 
-
     //Table
-    String[][] pointArray = {{"1", "2"},{"2", "2"}};
-    String[] columnTitles = {"max", "Georgia"};
+    String[][] pointArray = new String[data.size()][2];
+    String[] columnNames = {"Longitude", "Latitude"};
 
-    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnTitles){
+
+    //reading the points into the List
+    for(int i = 0; i < data.size(); i++){
+        SimulationStatus longAndLat = data.get(i);
+        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+        double x = landingPos.getLongitudeDeg();
+        double y =  landingPos.getLatitudeDeg();
+        pointArray[i][0] = String.valueOf(x);
+        pointArray[i][1] = String.valueOf(y);
+    }
+
+
+    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames){
       @Override
       public boolean isCellEditable(int row, int column){
         return false;
       }
     };
-
     graphWindow.getSimulationTable().setModel(tableModel);
   }
 

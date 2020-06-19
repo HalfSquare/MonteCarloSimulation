@@ -13,10 +13,6 @@ public class GraphWindow {
   private JButton reRunButton;
   private JPanel graphPanel;
 
-  public JTable getSimulationTable() {
-    return simulationTable;
-  }
-
   private JTable simulationTable;
 
   /**
@@ -24,6 +20,10 @@ public class GraphWindow {
    */
   public GraphWindow(){
 
+  }
+
+  public JTable getSimulationTable() {
+    return simulationTable;
   }
 
   public void addToGraph(ChartPanel chartPanel){
