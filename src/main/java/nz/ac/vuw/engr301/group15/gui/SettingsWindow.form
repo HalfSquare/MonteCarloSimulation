@@ -38,7 +38,7 @@
                       <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Number of Simulations"/>
+                      <text value="Number of Simulations (TODO)"/>
                     </properties>
                   </component>
                   <component id="499a4" class="javax.swing.JLabel">
@@ -46,7 +46,7 @@
                       <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Other Things"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="1bab" class="javax.swing.JTextField" binding="textField2" default-binding="true">
@@ -62,7 +62,7 @@
                       <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="b6bdb" class="javax.swing.JLabel">
@@ -70,7 +70,7 @@
                       <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="PID"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="eeca3" class="javax.swing.JFormattedTextField" binding="cMyDocsNoFormattedTextField" default-binding="true">
@@ -80,16 +80,18 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="C:/MyDocs/No"/>
+                      <text value=""/>
                     </properties>
                   </component>
-                  <component id="ce0ff" class="javax.swing.JFormattedTextField" binding="formattedTextField1" default-binding="true">
+                  <component id="ce0ff" class="javax.swing.JFormattedTextField" binding="numberOfSimulations">
                     <constraints>
                       <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
                       </grid>
                     </constraints>
-                    <properties/>
+                    <properties>
+                      <text value=""/>
+                    </properties>
                   </component>
                   <component id="2f9b4" class="javax.swing.JFormattedTextField" binding="formattedTextField2" default-binding="true">
                     <constraints>
@@ -104,7 +106,7 @@
                       <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="1bd5c" class="javax.swing.JLabel">
@@ -112,7 +114,7 @@
                       <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="50579" class="javax.swing.JFormattedTextField" binding="formattedTextField3" default-binding="true">
@@ -181,7 +183,7 @@
                       <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Wind"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="b77f" class="javax.swing.JLabel">
@@ -189,7 +191,7 @@
                       <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Other Things"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="19fda" class="javax.swing.JTextField" default-binding="true">
@@ -205,7 +207,7 @@
                       <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="6f6d5" class="javax.swing.JLabel">
@@ -213,7 +215,7 @@
                       <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="aae1d" class="javax.swing.JFormattedTextField" default-binding="true">
@@ -223,7 +225,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="0"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <component id="549e1" class="javax.swing.JFormattedTextField" default-binding="true">
@@ -247,7 +249,7 @@
                       <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="d49c5" class="javax.swing.JLabel">
@@ -255,7 +257,7 @@
                       <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="56ee8" class="javax.swing.JFormattedTextField" default-binding="true">
@@ -324,7 +326,7 @@
                       <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Mountain"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="71b5f" class="javax.swing.JLabel">
@@ -332,7 +334,7 @@
                       <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Other Things"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="54459" class="javax.swing.JTextField" default-binding="true">
@@ -348,7 +350,7 @@
                       <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="37787" class="javax.swing.JLabel">
@@ -356,7 +358,7 @@
                       <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="d37ca" class="javax.swing.JFormattedTextField" default-binding="true">
@@ -366,7 +368,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="0"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <component id="37956" class="javax.swing.JFormattedTextField" default-binding="true">
@@ -390,7 +392,7 @@
                       <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="dc97" class="javax.swing.JLabel">
@@ -398,7 +400,7 @@
                       <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="27c65" class="javax.swing.JFormattedTextField" default-binding="true">
@@ -467,7 +469,7 @@
                       <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Process"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="a1e3a" class="javax.swing.JLabel">
@@ -475,7 +477,7 @@
                       <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Other Things"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="5f59f" class="javax.swing.JTextField" default-binding="true">
@@ -491,7 +493,7 @@
                       <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="7ed83" class="javax.swing.JLabel">
@@ -499,7 +501,7 @@
                       <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="566a2" class="javax.swing.JFormattedTextField" default-binding="true">
@@ -509,7 +511,7 @@
                       </grid>
                     </constraints>
                     <properties>
-                      <text value="0"/>
+                      <text value=""/>
                     </properties>
                   </component>
                   <component id="9540b" class="javax.swing.JFormattedTextField" default-binding="true">
@@ -533,7 +535,7 @@
                       <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="963e2" class="javax.swing.JLabel">
@@ -541,7 +543,7 @@
                       <grid row="5" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Label"/>
+                      <text value="Placeholder"/>
                     </properties>
                   </component>
                   <component id="dd34d" class="javax.swing.JFormattedTextField" default-binding="true">

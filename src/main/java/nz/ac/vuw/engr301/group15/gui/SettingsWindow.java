@@ -10,7 +10,7 @@ public class SettingsWindow {
   private JButton startButton;
   private JButton cancelButton;
   private JFormattedTextField cMyDocsNoFormattedTextField;
-  private JFormattedTextField formattedTextField1;
+  private JFormattedTextField numberOfSimulations;
   private JFormattedTextField formattedTextField2;
   private JFormattedTextField formattedTextField3;
   private JFormattedTextField formattedTextField4;
@@ -18,6 +18,11 @@ public class SettingsWindow {
 
   public SettingsWindow() {
     cancelButton.addActionListener(new ExitAction());
+    numberOfSimulations.setEditable(false);
+  }
+
+  public void setNumSim(int num) {
+    numberOfSimulations.setValue(num);
   }
 
   public void setStartButtonListener(ActionListener listener) {
@@ -31,6 +36,5 @@ public class SettingsWindow {
   public void setVisible(boolean flag) {
     rootPanel.setVisible(flag);
   }
-
 
 }
