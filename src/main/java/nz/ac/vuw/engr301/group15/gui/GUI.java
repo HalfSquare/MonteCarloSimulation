@@ -4,9 +4,18 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
-import org.jzy3d.chart.Chart;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+import java.awt.Color;
 import org.jzy3d.chart.ChartLauncher;
-import org.jzy3d.colors.Color;
+
 import org.jzy3d.colors.ColorMapper;
 import org.jzy3d.colors.colormaps.ColorMapRainbow;
 import org.jzy3d.maths.Coord3d;
@@ -14,6 +23,8 @@ import org.jzy3d.plot3d.builder.Mapper;
 import org.jzy3d.plot3d.primitives.Scatter;
 
 import javax.swing.*;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -29,7 +40,7 @@ public class GUI extends JFrame {
   public static final String SIMULATION = "SIMULATION";
   public static final String GRAPH = "GRAPH";
 
-  public static final int NUM_SIMS = 1000;
+  public static final int NUM_SIMS = 10;
   private ArrayList<SimulationStatus> data;
 
   public enum GraphType {
@@ -82,6 +93,20 @@ public class GUI extends JFrame {
 
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
+
+
+    //Table
+    String[][] pointArray = {{"1", "2"},{"2", "2"}};
+    String[] columnTitles = {"max", "Georgia"};
+
+    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnTitles){
+      @Override
+      public boolean isCellEditable(int row, int column){
+        return false;
+      }
+    };
+
+    graphWindow.getSimulationTable().setModel(tableModel);
   }
 
   private void setState(String state) {
@@ -158,60 +183,68 @@ public class GUI extends JFrame {
 
   class GraphCreater{
     public void createGraph(){
-//      Graphics2D g2D = (Graphics2D)g;
-//      g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//
-//      //Adding all points to list to be graphed
-//      ArrayList<Point> graphPoints = new ArrayList<Point>();
-//      for (int i = 0; i < data.size(); i++ ){
-//        // Get the long and lat points
-//        SimulationStatus longAndLat = data.get(0);
+
+//// Create scatter points
+//      for(int i = 0; i < data.size(); i++){
+//        SimulationStatus longAndLat = data.get(i);
 //        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-//        int longPost = (int)landingPos.getLongitudeDeg();
-//        int latPos = (int)landingPos.getLatitudeDeg();
-//        graphPoints.add(new Point(longPost, latPos));
+//        x = (float)landingPos.getLongitudeDeg();
+//        y = (float)landingPos.getLatitudeDeg();
+//        z = (float)0;
+//        a = 0.25f;
+//        points[i] = new Coord3d(x,y,z);
+//        colors[i] = new org.jzy3d.colors.Color(x, y, z, a);
 //      }
+//      System.out.println("Points length:" + points.length);
+//      System.out.println("colors length:" + colors.length);
+
+//      Start of almost functioninggraph
+//      JFreeChart xylineChart = ChartFactory.createXYLineChart(
+//              "chartTitle" ,
+//              "Category" ,
+//              "Score" ,
+//              createDataset() ,
+//              PlotOrientation.VERTICAL ,
+//              true , true , false);
 //
-//      //Drawing the graph
+//      ChartPanel chartPanel = new ChartPanel( xylineChart );
+//      chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
+//      final XYPlot plot = xylineChart.getXYPlot( );
 //
-//      //Making the background
-//      g2D.setColor(Color.WHITE);
-      // Define a function to plot
-      float x;
-      float y;
-      float z;
-      float a;
-
-      System.out.println("data " + data.size());
-      Coord3d[] points = new Coord3d[data.size()];
-      org.jzy3d.colors.Color[]   colors = new org.jzy3d.colors.Color[data.size()];
-
-// Create scatter points
-      for(int i = 0; i < data.size(); i++){
-        SimulationStatus longAndLat = data.get(i);
-        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-        x = (float)landingPos.getLongitudeDeg();
-        y = (float)landingPos.getLatitudeDeg();
-        z = (float)0;
-        a = 0.25f;
-        points[i] = new Coord3d(x,y,z);
-        colors[i] = new org.jzy3d.colors.Color(x, y, z, a);
-      }
-      System.out.println("Points length:" + points.length);
-      System.out.println("colors length:" + colors.length);
-
-// Create a drawable scatter with a colormap
-      Scatter scatter = new Scatter(points, colors);
-
-// Create a chart and add scatter
-      Chart chart = new Chart();
-//      chart.white();
-      chart.getAxeLayout().setMainColor(Color.WHITE);
-      chart.getView().setBackgroundColor(Color.BLACK);
-      chart.getScene().add(scatter);
-      ChartLauncher.openChart(chart);
-
+//      XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
+//      renderer.setSeriesPaint( 0 , Color.BLACK);
+//      renderer.setSeriesPaint( 1 , Color.GREEN );
+//      renderer.setSeriesPaint( 2 , Color.YELLOW );
+//      renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
+//      renderer.setSeriesStroke( 1 , new BasicStroke( 3.0f ) );
+//      renderer.setSeriesStroke( 2 , new BasicStroke( 2.0f ) );
+//      plot.setRenderer( renderer );
+////      setContentPane( chartPanel );
+//      graphWindow.addToGraph( chartPanel );
     }
+//
+//    private XYDataset createDataset( ) {
+//      final XYSeries firefox = new XYSeries( "Firefox" );
+//      firefox.add( 1.0 , 1.0 );
+//      firefox.add( 2.0 , 4.0 );
+//      firefox.add( 3.0 , 3.0 );
+//
+//      final XYSeries chrome = new XYSeries( "Chrome" );
+//      chrome.add( 1.0 , 4.0 );
+//      chrome.add( 2.0 , 5.0 );
+//      chrome.add( 3.0 , 6.0 );
+//
+//      final XYSeries iexplorer = new XYSeries( "InternetExplorer" );
+//      iexplorer.add( 3.0 , 4.0 );
+//      iexplorer.add( 4.0 , 5.0 );
+//      iexplorer.add( 5.0 , 4.0 );
+//
+//      final XYSeriesCollection dataset = new XYSeriesCollection( );
+//      dataset.addSeries( firefox );
+//      dataset.addSeries( chrome );
+//      dataset.addSeries( iexplorer );
+//      return dataset;
+//    }
   }
 }
 
