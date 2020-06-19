@@ -71,6 +71,8 @@ public class GUI extends JFrame {
   }
 
   private void startGraph() {
+    GraphCreater g = new GraphCreater();
+    g.createGraph();
     GraphType graphType = GraphType.CIRCLE;
 
     this.add(graphWindow.getRootPanel());
@@ -98,13 +100,13 @@ public class GUI extends JFrame {
 
   public static void main(String[] args) {
 
-//    try {
-//      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-//      e.printStackTrace();
-//    }
-//
-//    GUI gui = new GUI();
+    try {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+      e.printStackTrace();
+    }
+
+    GUI gui = new GUI();
   }
 
   class SimulationRunner implements Runnable {
@@ -148,7 +150,10 @@ public class GUI extends JFrame {
       }
     };
 
-    public void createGraph (){
+  }
+
+  class GraphCreater{
+    public void createGraph(){
 //      Graphics2D g2D = (Graphics2D)g;
 //      g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 //
@@ -173,6 +178,7 @@ public class GUI extends JFrame {
       float z;
       float a;
 
+      System.out.println("data " + data.size());
       Coord3d[] points = new Coord3d[data.size()];
       org.jzy3d.colors.Color[]   colors = new org.jzy3d.colors.Color[data.size()];
 
@@ -184,16 +190,20 @@ public class GUI extends JFrame {
         y = (float)landingPos.getLatitudeDeg();
         z = (float)0;
         a = 0.25f;
+        points[i] = new Coord3d(x,y,z);
         colors[i] = new org.jzy3d.colors.Color(x, y, z, a);
       }
+      System.out.println("Points length:" + points.length);
+      System.out.println("colors length:" + colors.length);
 
 // Create a drawable scatter with a colormap
       Scatter scatter = new Scatter(points, colors);
 
 // Create a chart and add scatter
       Chart chart = new Chart();
-      chart.getAxeLayout().setMainColor(org.jzy3d.colors.Color.WHITE);
-      chart.getView().setBackgroundColor(org.jzy3d.colors.Color.BLACK);
+      chart.white();
+//      chart.getAxeLayout().setMainColor(org.jzy3d.colors.Color.WHITE);
+//      chart.getView().setBackgroundColor(org.jzy3d.colors.Color.BLACK);
       chart.getScene().add(scatter);
       ChartLauncher.openChart(chart);
 
