@@ -1,7 +1,17 @@
 stages:
+  - Lint
   - Build
   - Test
   - Deploy
+
+markdownlint:
+  stage: Lint
+  tags:
+    - docker
+  image: pipelinecomponents/markdownlint:latest
+  script:
+    - mdl --style all --warnings .
+  allow_failure: true
 
 build:
   stage: Build
