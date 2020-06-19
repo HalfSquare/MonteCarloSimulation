@@ -20,14 +20,12 @@ public class TestOpenRocket {
 		int x = 1;
 		int y = 1;
 		assertEquals(x, y);
-		System.out.println("1");
 	}
 
 	// Initial test to set up pipeline - should ALWAYS pass
 	@Test
 	public void Test2(){
 		assertTrue(true);
-		System.out.println("2");
 	}
 
 	// Initial test to check that simulation can run 1 instance
@@ -40,7 +38,6 @@ public class TestOpenRocket {
 		catch (Exception ex){
 			fail();
 		}
-		System.out.println("3");
 	}
 
 	// Initial test to check that simulation will not crash on negative value
@@ -53,7 +50,6 @@ public class TestOpenRocket {
 		catch (Exception ex){
 			fail();
 		}
-		System.out.println("4");
 	}
 
 	// Initial test to check that simulation can run 1000 instances
@@ -61,12 +57,11 @@ public class TestOpenRocket {
 	public void Test5() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(10);
+			sim.runSimulations(1000);
 		}
 		catch (Exception ex){
 			fail();
 		}
-		System.out.println("5");
 	}
 
 }

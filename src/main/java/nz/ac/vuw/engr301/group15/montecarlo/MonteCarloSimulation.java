@@ -46,6 +46,7 @@ public class MonteCarloSimulation {
     simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
+    MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
     for (int simNum = 1; simNum <= num; simNum++) {
 //      System.out.println("Running simulation number: " + simNum);
 
@@ -56,7 +57,7 @@ public class MonteCarloSimulation {
       simulationOptions.setLaunchRodAngle(rand.nextGaussian() * 45);
       simulationOptions.setLaunchTemperature(rand.nextGaussian() + 30);
 
-      MonteCarloSimulationExtensionListener simulationListener = new MonteCarloSimulationExtensionListener();
+      simulationListener.reset();
       helper.runSimulation(simulation, simulationListener);
 
       while (simulationListener.getSimulation() == null) {

@@ -19,7 +19,6 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
 
         // Latitude Difference
 //        System.out.println(landingPos.getLatitudeDeg() - launchPos.getLatitudeDeg());
-//shh
         simulationStatus = status;
     }
 
@@ -29,5 +28,9 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
         } else {
             return simulationStatus;
         }
+    }
+
+    public void reset() {
+        simulationStatus = null;
     }
 }
