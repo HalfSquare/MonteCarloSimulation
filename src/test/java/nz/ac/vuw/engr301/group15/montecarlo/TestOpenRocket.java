@@ -2,8 +2,7 @@ package nz.ac.vuw.engr301.group15.montecarlo;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -21,7 +20,6 @@ public class TestOpenRocket {
 		int x = 1;
 		int y = 1;
 		assertEquals(x, y);
-		System.out.println("happy noises");
 	}
 
 	// Initial test to set up pipeline - should ALWAYS pass
@@ -30,10 +28,43 @@ public class TestOpenRocket {
 		assertTrue(true);
 	}
 
-	// Initial test to set up pipeline - should ALWAYS fail
-//	@Test
-//	public void Test3() {
-//		assertEquals(1, 5);
-//	}
+	// Initial test to check that simulation can run 1 instance
+	@Test
+	public void Test3() {
+		MonteCarloSimulation sim = new MonteCarloSimulation();
+		try{
+			sim.runSimulations(1);
+		}
+		catch (Exception ex){
+			System.out.println("Error:" + ex);
+			fail();
+		}
+	}
+
+	// Initial test to check that simulation will not crash on negative value
+	@Test
+	public void Test4(){
+		MonteCarloSimulation sim = new MonteCarloSimulation();
+		try {
+			sim.runSimulations(-6);
+		}
+		catch (Exception ex){
+			System.out.println("Error:" + ex);
+			fail();
+		}
+	}
+
+	// Initial test to check that simulation can run 1000 instances
+	@Test
+	public void Test5() {
+		MonteCarloSimulation sim = new MonteCarloSimulation();
+		try{
+			sim.runSimulations(1000);
+		}
+		catch (Exception ex){
+			System.out.println("Error:" + ex);
+			fail();
+		}
+	}
 
 }
