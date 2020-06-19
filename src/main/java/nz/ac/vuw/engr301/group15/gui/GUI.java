@@ -51,6 +51,7 @@ public class GUI extends JFrame {
   private void startSimulation() {
     // Simulation Window
     this.add(simulationWindow.getRootPanel());
+    simulationWindow.resetBar();
     simulationWindow.setBar1Max(NUM_SIMS);
 
     // Simulation stuff
@@ -72,14 +73,14 @@ public class GUI extends JFrame {
     graphWindow.setVisible(false);
 
     if (SETTINGS.equals(state)) {
-      settingsWindow.setVisible(true);
       startSettings();
+      settingsWindow.setVisible(true);
     } else if (SIMULATION.equals(state)) {
-      simulationWindow.setVisible(true);
       startSimulation();
+      simulationWindow.setVisible(true);
     } else if (GRAPH.equals(state)) {
-      graphWindow.setVisible(true);
       startGraph();
+      graphWindow.setVisible(true);
     } else {
       throw new RuntimeException("Unexpected state switch");
     }
@@ -122,7 +123,7 @@ public class GUI extends JFrame {
     }
 
     public void start() {
-      System.out.println("Starting ");
+//      System.out.println("Starting ");
       if (t == null) {
         t = new Thread(this, "sim");
         t.start();
