@@ -35,6 +35,10 @@ public class GUI extends JFrame {
     simulationWindow = new SimulationWindow();
     graphWindow = new GraphWindow();
 
+    settingsWindow.doUIStuff();
+    simulationWindow.doUIStuff();
+    graphWindow.doUIStuff();
+
     settingsWindow.setNumSim(NUM_SIMS);
 
     setState(SETTINGS);
