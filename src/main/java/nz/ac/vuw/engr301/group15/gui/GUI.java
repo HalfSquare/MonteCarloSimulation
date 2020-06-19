@@ -6,6 +6,7 @@ import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import org.jzy3d.chart.Chart;
 import org.jzy3d.chart.ChartLauncher;
+import org.jzy3d.colors.Color;
 import org.jzy3d.colors.ColorMapper;
 import org.jzy3d.colors.colormaps.ColorMapRainbow;
 import org.jzy3d.maths.Coord3d;
@@ -99,7 +100,6 @@ public class GUI extends JFrame {
   }
 
   public static void main(String[] args) {
-
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
@@ -201,9 +201,9 @@ public class GUI extends JFrame {
 
 // Create a chart and add scatter
       Chart chart = new Chart();
-      chart.white();
-//      chart.getAxeLayout().setMainColor(org.jzy3d.colors.Color.WHITE);
-//      chart.getView().setBackgroundColor(org.jzy3d.colors.Color.BLACK);
+//      chart.white();
+      chart.getAxeLayout().setMainColor(Color.WHITE);
+      chart.getView().setBackgroundColor(Color.BLACK);
       chart.getScene().add(scatter);
       ChartLauncher.openChart(chart);
 
