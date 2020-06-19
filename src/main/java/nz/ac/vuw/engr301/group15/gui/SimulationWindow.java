@@ -6,7 +6,7 @@ public class SimulationWindow {
   private JProgressBar progressBar1;
   private JPanel rootPanel;
   private JProgressBar progressBar2;
-  private JButton button1;
+  private JButton abortTODOButton;
   private JButton cancelButton;
 
   public SimulationWindow() {
