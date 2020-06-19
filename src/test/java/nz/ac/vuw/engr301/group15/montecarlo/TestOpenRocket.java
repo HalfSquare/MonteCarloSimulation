@@ -61,7 +61,7 @@ public class TestOpenRocket {
 	public void Test5() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(1000);
+			sim.runSimulations(10);
 		}
 		catch (Exception ex){
 			fail();
