@@ -29,10 +29,6 @@ unittest:
   script:
     - echo "test"
     - mvn test
-    - cd "/local/scratch/ciuser/builds/6d3ea156/0/course-work/engr300/2020/group15/group-15/target/surefire-reports/"
-    - echo "AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH"
-    - OUTPUT=$(ls -1)
-    - cat "${OUTPUT}"
   allow_failure: false
 
 deploy:
