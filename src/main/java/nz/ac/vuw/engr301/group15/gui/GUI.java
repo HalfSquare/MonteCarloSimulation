@@ -5,8 +5,6 @@ import net.sf.openrocket.simulation.SimulationStatus;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GUI extends JFrame {
@@ -19,7 +17,7 @@ public class GUI extends JFrame {
   public static final String SIMULATION = "SIMULATION";
   public static final String GRAPH = "GRAPH";
 
-  public static final int NUM_SIMS = 100;
+  public static final int NUM_SIMS = 1000;
   private ArrayList<SimulationStatus> data;
 
   public enum GraphType {
@@ -37,10 +35,11 @@ public class GUI extends JFrame {
     simulationWindow = new SimulationWindow();
     graphWindow = new GraphWindow();
 
+    settingsWindow.setNumSim(NUM_SIMS);
+
     setState(SETTINGS);
 
     this.setVisible(true);
-    //showOnScreen(2, this);
   }
 
   private void startSettings() {
