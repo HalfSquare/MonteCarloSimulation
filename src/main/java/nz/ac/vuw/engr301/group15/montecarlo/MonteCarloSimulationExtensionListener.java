@@ -12,8 +12,8 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
     public void endSimulation(SimulationStatus status, SimulationException exception) {
 
         // Prints landing position and launch site position after simulation has run
-        WorldCoordinate landingPos = status.getRocketWorldPosition();
-        WorldCoordinate launchPos = status.getSimulationConditions().getLaunchSite();
+//        WorldCoordinate landingPos = status.getRocketWorldPosition();
+//        WorldCoordinate launchPos = status.getSimulationConditions().getLaunchSite();
 //        System.out.println("Landing position: " + landingPos);
 //        System.out.println("Launch position: " + launchPos);
 
