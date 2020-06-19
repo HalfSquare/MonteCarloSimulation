@@ -9,6 +9,7 @@ public class GraphWindow {
   private JPanel rootPanel;
   private JButton exitButton;
   private JButton reRunButton;
+  private JPanel graphPanel;
 
   /**
    * Constructor.
@@ -18,7 +19,11 @@ public class GraphWindow {
   }
 
   public JPanel getRootPanel() {
-    return rootPanel;
+    return this.rootPanel;
+  }
+
+  public JPanel getGraphPanel() {
+    return this.graphPanel;
   }
 
   public void setReRunButtonListener(ActionListener listener) {
@@ -28,4 +33,6 @@ public class GraphWindow {
   public void setVisible(boolean flag) {
     rootPanel.setVisible(flag);
   }
+
+
 }

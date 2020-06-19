@@ -2,10 +2,21 @@ package nz.ac.vuw.engr301.group15.gui;
 
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
+import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
+import org.jzy3d.chart.Chart;
+import org.jzy3d.chart.ChartLauncher;
+import org.jzy3d.colors.ColorMapper;
+import org.jzy3d.colors.colormaps.ColorMapRainbow;
+import org.jzy3d.maths.Coord3d;
+import org.jzy3d.plot3d.builder.Mapper;
+import org.jzy3d.plot3d.primitives.Scatter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
+
+import static java.awt.Color.WHITE;
 
 public class GUI extends JFrame {
 
@@ -86,13 +97,14 @@ public class GUI extends JFrame {
   }
 
   public static void main(String[] args) {
-    try {
-      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-      e.printStackTrace();
-    }
 
-    GUI gui = new GUI();
+//    try {
+//      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+//      e.printStackTrace();
+//    }
+//
+//    GUI gui = new GUI();
   }
 
   class SimulationRunner implements Runnable {
@@ -127,6 +139,64 @@ public class GUI extends JFrame {
         t = new Thread(this, "sim");
         t.start();
       }
+    }
+
+    // Define a function to plot
+    Mapper mapper = new Mapper() {
+      public double f(double x, double y) {
+        return 10 * Math.sin(x / 10) * Math.cos(y / 20);
+      }
+    };
+
+    public void createGraph (){
+//      Graphics2D g2D = (Graphics2D)g;
+//      g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//
+//      //Adding all points to list to be graphed
+//      ArrayList<Point> graphPoints = new ArrayList<Point>();
+//      for (int i = 0; i < data.size(); i++ ){
+//        // Get the long and lat points
+//        SimulationStatus longAndLat = data.get(0);
+//        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+//        int longPost = (int)landingPos.getLongitudeDeg();
+//        int latPos = (int)landingPos.getLatitudeDeg();
+//        graphPoints.add(new Point(longPost, latPos));
+//      }
+//
+//      //Drawing the graph
+//
+//      //Making the background
+//      g2D.setColor(Color.WHITE);
+      // Define a function to plot
+      float x;
+      float y;
+      float z;
+      float a;
+
+      Coord3d[] points = new Coord3d[data.size()];
+      org.jzy3d.colors.Color[]   colors = new org.jzy3d.colors.Color[data.size()];
+
+// Create scatter points
+      for(int i = 0; i < data.size(); i++){
+        SimulationStatus longAndLat = data.get(i);
+        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+        x = (float)landingPos.getLongitudeDeg();
+        y = (float)landingPos.getLatitudeDeg();
+        z = (float)0;
+        a = 0.25f;
+        colors[i] = new org.jzy3d.colors.Color(x, y, z, a);
+      }
+
+// Create a drawable scatter with a colormap
+      Scatter scatter = new Scatter(points, colors);
+
+// Create a chart and add scatter
+      Chart chart = new Chart();
+      chart.getAxeLayout().setMainColor(org.jzy3d.colors.Color.WHITE);
+      chart.getView().setBackgroundColor(org.jzy3d.colors.Color.BLACK);
+      chart.getScene().add(scatter);
+      ChartLauncher.openChart(chart);
+
     }
   }
 }
