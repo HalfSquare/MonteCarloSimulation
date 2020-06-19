@@ -9,18 +9,22 @@ import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.startup.Startup2;
 
+import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.Random;
 
 public class MonteCarloSimulation {
+
+  private final Runnable listener;
 
   /**
    * Runs a specified amount of Monte Carlo simulations
    * Currently takes about 10 seconds to run 1,000 simulations
    *
    * @param num Number of simulations to run
-   * @return
+   * @return the simulations ran
    */
-  public SimulationStatus runSimulations(int num) throws RocketLoadException {
+  public ArrayList<SimulationStatus> runSimulations(int num) throws RocketLoadException {
 
     // Create helper object
     OpenRocketHelper helper = new OpenRocketHelper();
@@ -42,7 +46,8 @@ public class MonteCarloSimulation {
     // Time between simulation steps (A smaller time step results in a more accurate but slower simulation)
     simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
-//    for (int simNum = 1; simNum <= num; simNum++) {
+    ArrayList<SimulationStatus> simulationData = new ArrayList<>();
+    for (int simNum = 1; simNum <= num; simNum++) {
 //      System.out.println("Running simulation number: " + simNum);
 
       //TODO: find which variables we want to take in from user, and which variables should be randomized
@@ -52,38 +57,38 @@ public class MonteCarloSimulation {
       simulationOptions.setLaunchRodAngle(rand.nextGaussian() * 45);
       simulationOptions.setLaunchTemperature(rand.nextGaussian() + 30);
 
-      MonteCarloSimulationExtensionListener listener = new MonteCarloSimulationExtensionListener();
-      helper.runSimulation(simulation, listener);
+      MonteCarloSimulationExtensionListener simulationListener = new MonteCarloSimulationExtensionListener();
+      helper.runSimulation(simulation, simulationListener);
 
-      while (listener.getSimulation() == null) {
-          System.out.println("waiting");
+      while (simulationListener.getSimulation() == null) {
+        System.out.println("waiting");
       }
-      return listener.getSimulation();
+      simulationData.add(simulationListener.getSimulation());
+      listener.run();
 
-//    }
+    }
+    return simulationData;
   }
 
   public MonteCarloSimulation() {
-
-    //TODO: allow user to choose to import their rocket/.ork file - should this tie into GUI?
-
-//    try {
-//      runSimulations(1000);
-//    } catch (RocketLoadException e) {
-//      e.printStackTrace();
-//    }
+    this(() -> { });
   }
 
-  public static void main(String[] args) {
+  public MonteCarloSimulation(Runnable runnable) {
+    //TODO: allow user to choose to import their rocket/.ork file - should this tie into GUI?
+    this.listener = runnable;
     Startup.initializeLogging();
     Startup.initializeL10n();
     Startup2.loadMotor();
-    MonteCarloSimulation mcs = new MonteCarloSimulation();
-      try {
-          System.out.println(mcs.runSimulations(1).getRocketPosition().toString());
-      } catch (RocketLoadException e) {
-          e.printStackTrace();
-      }
+  }
+
+  public static void main(String[] args) {
+    try {
+      MonteCarloSimulation mcs = new MonteCarloSimulation();
+      mcs.runSimulations(5);
+    } catch (RocketLoadException e) {
+      e.printStackTrace();
+    }
   }
 
 
