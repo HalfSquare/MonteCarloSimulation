@@ -9,12 +9,9 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import org.jzy3d.maths.Coord3d;
-import org.jzy3d.plot3d.builder.Mapper;
 
 import java.awt.*;
 
@@ -32,7 +29,7 @@ public class GUI extends JFrame {
   public static final String SIMULATION = "SIMULATION";
   public static final String GRAPH = "GRAPH";
 
-  public static final int NUM_SIMS = 5;
+  public static final int NUM_SIMS = 1000;
   private ArrayList<SimulationStatus> data;
 
   public enum GraphType {
@@ -86,30 +83,37 @@ public class GUI extends JFrame {
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
 
-//    Table containing all longitude and latitude data points
-//    Uncomment if you wish to view it. Additionally, you should go to GraphWindow.form
-//    and create a new JTable called simulationTable after double cliking on the centre of the
-//    page
-//    String[][] pointArray = new String[data.size()][2];
-//    String[] columnNames = {"Longitude", "Latitude"};
-//
-//    //reading the points into the List
-//    for(int i = 0; i < data.size(); i++){
-//        SimulationStatus longAndLat = data.get(i);
-//        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-//        double x = landingPos.getLongitudeDeg();
-//        double y =  landingPos.getLatitudeDeg();
-//        pointArray[i][0] = String.valueOf(x);
-//        pointArray[i][1] = String.valueOf(y);
-//    }
-//
-//    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames){
-//      @Override
-//      public boolean isCellEditable(int row, int column){
-//        return false;
-//      }
-//    };
-//    graphWindow.getSimulationTable().setModel(tableModel);
+    //createTable();
+
+  }
+
+  /**
+   * Table containing all longitude and latitude data points
+   *     Uncomment if you wish to view it. Additionally, you should go to GraphWindow.form
+   *     and create a new JTable called simulationTable after double cliking on the centre of the
+   *     page
+   */
+  private void createTable(){
+    String[][] pointArray = new String[data.size()][2];
+    String[] columnNames = {"Longitude", "Latitude"};
+
+    //reading the points into the List
+    for(int i = 0; i < data.size(); i++){
+        SimulationStatus longAndLat = data.get(i);
+        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+        double x = landingPos.getLongitudeDeg();
+        double y =  landingPos.getLatitudeDeg();
+        pointArray[i][0] = String.valueOf(x);
+        pointArray[i][1] = String.valueOf(y);
+    }
+
+    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames){
+      @Override
+      public boolean isCellEditable(int row, int column){
+        return false;
+      }
+    };
+    graphWindow.getSimulationTable().setModel(tableModel);
   }
 
   private void setState(String state) {
@@ -173,13 +177,6 @@ public class GUI extends JFrame {
         t.start();
       }
     }
-
-    // Define a function to plot
-    Mapper mapper = new Mapper() {
-      public double f(double x, double y) {
-        return 10 * Math.sin(x / 10) * Math.cos(y / 20);
-      }
-    };
 
   }
 
