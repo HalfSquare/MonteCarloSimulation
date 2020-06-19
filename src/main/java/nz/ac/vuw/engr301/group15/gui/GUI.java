@@ -1,10 +1,11 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import net.sf.openrocket.file.RocketLoadException;
+import net.sf.openrocket.simulation.SimulationStatus;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GUI extends JFrame {
 
@@ -16,13 +17,16 @@ public class GUI extends JFrame {
   public static final String SIMULATION = "SIMULATION";
   public static final String GRAPH = "GRAPH";
 
-  public enum GraphType{
+  public static final int NUM_SIMS = 1000;
+  private ArrayList<SimulationStatus> data;
+
+  public enum GraphType {
     CIRCLE, SQUARE, ROCKET
   }
 
-  private Timer timer;
-
   public GUI() {
+    this.data = new ArrayList<>();
+
     this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     this.setSize(600, 300);
     this.setLocationRelativeTo(null);
@@ -31,56 +35,35 @@ public class GUI extends JFrame {
     simulationWindow = new SimulationWindow();
     graphWindow = new GraphWindow();
 
+    settingsWindow.setNumSim(NUM_SIMS);
+
     setState(SETTINGS);
 
     this.setVisible(true);
-    //showOnScreen(2, this);
   }
 
   private void startSettings() {
-    settingsWindow.setStartButtonListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        setState(SIMULATION);
-      }
-    });
+    settingsWindow.setStartButtonListener(e -> setState(SIMULATION));
     this.add(settingsWindow.getRootPanel());
   }
 
   private void startSimulation() {
-      // Simulation Window
-      this.add(simulationWindow.getRootPanel());
+    // Simulation Window
+    this.add(simulationWindow.getRootPanel());
+    simulationWindow.resetBar();
+    simulationWindow.setBar1Max(NUM_SIMS);
 
-      simulationWindow.bar(0);
+    // Simulation stuff
+    SimulationRunner runner = new SimulationRunner();
+    runner.start();
 
-      // Simulation stuff
-
-
-      timer = new Timer(1, null);
-      ActionListener updateBar = new ActionListener() {
-        private int bar = 1;
-        public void actionPerformed(ActionEvent e) {
-          if (bar <= 500) {
-            simulationWindow.bar(bar++);
-          } else {
-            timer.stop();
-            setState(GRAPH);
-          }
-        }
-      };
-      timer.addActionListener(updateBar);
-      timer.start();
   }
 
   private void startGraph() {
     GraphType graphType = GraphType.CIRCLE;
-    //graphWindow.
 
     this.add(graphWindow.getRootPanel());
-    graphWindow.setReRunButtonListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        setState(SETTINGS);
-      }
-    });
+    graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
   }
 
   private void setState(String state) {
@@ -95,7 +78,6 @@ public class GUI extends JFrame {
       startSimulation();
       simulationWindow.setVisible(true);
     } else if (GRAPH.equals(state)) {
-      MonteCarloSimulation.main(null);
       startGraph();
       graphWindow.setVisible(true);
     } else {
@@ -106,39 +88,47 @@ public class GUI extends JFrame {
   public static void main(String[] args) {
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
-    } catch (InstantiationException e) {
-      e.printStackTrace();
-    } catch (IllegalAccessException e) {
-      e.printStackTrace();
-    } catch (UnsupportedLookAndFeelException e) {
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
       e.printStackTrace();
     }
 
     GUI gui = new GUI();
   }
 
-//  //Method to show on second monitor
-//  //TODO: remove
-//  public static void showOnScreen( int screen, JFrame frame )
-//  {
-//    GraphicsEnvironment ge = GraphicsEnvironment
-//            .getLocalGraphicsEnvironment();
-//    GraphicsDevice[] gs = ge.getScreenDevices();
-//    if( screen > -1 && screen < gs.length )
-//    {
-//      gs[screen].setFullScreenWindow( frame );
-//    }
-//    else if( gs.length > 0 )
-//    {
-//      gs[0].setFullScreenWindow( frame );
-//    }
-//    else
-//    {
-//      throw new RuntimeException( "No Screens Found" );
-//    }
-//  }
+  class SimulationRunner implements Runnable {
+    private Thread t;
+
+    /**
+     * When an object implementing interface <code>Runnable</code> is used
+     * to create a thread, starting the thread causes the object's
+     * <code>run</code> method to be called in that separately executing
+     * thread.
+     * <p>
+     * The general contract of the method <code>run</code> is that it may
+     * take any action whatsoever.
+     *
+     * @see Thread#run()
+     */
+    @Override
+    public void run() {
+      MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
+      try {
+        data = mcs.runSimulations(NUM_SIMS);
+      } catch (RocketLoadException e) {
+        e.printStackTrace();
+      }
+
+      setState(GRAPH);
+    }
+
+    public void start() {
+//      System.out.println("Starting ");
+      if (t == null) {
+        t = new Thread(this, "sim");
+        t.start();
+      }
+    }
+  }
 }
 
 
