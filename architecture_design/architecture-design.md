@@ -176,6 +176,7 @@ Graph Data - One of the main purposes of this system is to output the predicted 
 
 
 ### 4.2 Development
+
 This section focusses on the development aspect of the project. It follows the Krutchen's 4 + 1 architectural view model. 
 
 The development section covers the software management aspects of the project. This includes the following subsections:
@@ -224,7 +225,6 @@ In order to ensure that all work being produced is of good quality and free from
 2. We will submit a merge request which must be approved by a minimum of one other person in the team who did not work on that branch. 
 3. When writing documentation and other text-based content for the project, we will use the markdown format to do so.
 
-
 When adding a _commit message_ it should follow the design as listed below:
 * A short header no longer than a sentence, briefly stating what was done in the commit
 * A body which contains a more detailed account of what was changed in the commit
@@ -240,6 +240,7 @@ When _approving_ a _merge request_ the following must be listed below:
 * If the reviewer identifies some mistakes, a comment must be made acknowledging this and the merge request will not be approved until all issues are resolved. 
 
 #### 4.2.4 Work logs
+
 In order to ensure that all team members are contributing an equal amount to the project, we will be logging whether each member is at each assigned lab slot. This will be recorded on the [Lab Time Log](https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Lab-time-log).
 
 Each member can also use the [Lab Time Log Website](https://course-work.glp.ecs.vuw.ac.nz/engr300/2020/group15/group-15/LabLogSite.html) which will automatically generate the times that people enter and leave the labs. 
@@ -251,6 +252,7 @@ For each issue created in the sprint, we will add the level of difficulty we est
 Additionally, we will assign tickets to Epics and will be using Epics to help monitor the progress that our team is making.  
 
 #### 4.2.5 Project Development Testing
+
 All documentation produced for this project will not need to be tested. The documentation will go under rigorous inspection while being written as well as during merge requests. 
 
 All code will need to have tests written for it. We should achieve high coverage with these unit tests - a minimum of at least 90% coverage. To ensure that the code is of good quality, we will have different members of the team review it. 
@@ -260,10 +262,12 @@ All merge requests for code will be tested. We will be using CI / CD pipelines t
 We will also test our code on different operating systems once a week to ensure that our code is not just compatible with just one laptop / OS. 
 
 #### 4.2.6 Development Diagram
+
 ![Development Diagram](assets/Development_Diagram.png)
 
 
 ### 4.3 Process
+
 The process viewpoint identifies the individual processes that are interacting to complete the scenarios. The process architecture can control the deployment, starting, recovery, reconfiguration, and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
  
 The concurrency present in the system can be associated with reading data used for running the Monte Carlo Simulation. The data read will be sourced from the simulation data file as well as the PID controller variables. 
@@ -271,6 +275,7 @@ The concurrency present in the system can be associated with reading data used f
 ![Process Diagram](assets/Process_diagram.png)
 
 ### 4.4 Physical 
+
 For our project, the topology consists of only one physical component. This component is a:
 * Field Laptop
  
