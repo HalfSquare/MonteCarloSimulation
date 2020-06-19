@@ -36,7 +36,6 @@ public class TestOpenRocket {
 			sim.runSimulations(1);
 		}
 		catch (Exception ex){
-			System.out.println("Error:" + ex);
 			fail();
 		}
 	}
@@ -49,7 +48,6 @@ public class TestOpenRocket {
 			sim.runSimulations(-6);
 		}
 		catch (Exception ex){
-			System.out.println("Error:" + ex);
 			fail();
 		}
 	}
@@ -62,7 +60,6 @@ public class TestOpenRocket {
 			sim.runSimulations(1000);
 		}
 		catch (Exception ex){
-			System.out.println("Error:" + ex);
 			fail();
 		}
 	}
