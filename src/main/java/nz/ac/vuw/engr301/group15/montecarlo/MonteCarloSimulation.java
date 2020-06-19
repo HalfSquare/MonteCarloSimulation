@@ -64,14 +64,16 @@ public class MonteCarloSimulation {
         System.out.println("waiting");
       }
       simulationData.add(simulationListener.getSimulation());
-      listener.run();
+      if (listener != null) {
+        listener.run();
+      }
 
     }
     return simulationData;
   }
 
   public MonteCarloSimulation() {
-    this(() -> { });
+    this(null);
   }
 
   public MonteCarloSimulation(Runnable runnable) {
