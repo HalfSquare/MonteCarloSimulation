@@ -30,7 +30,7 @@ public class MonteCarloSimulation {
     OpenRocketHelper helper = new OpenRocketHelper();
 
     // Opens open rocket document
-    OpenRocketDocument document = helper.loadORDocument("src\\main\\resources\\rocket-1-1-9.ork");
+    OpenRocketDocument document = helper.loadORDocument("src/main/resources/rocket-1-1-9.ork");
 
     // Gets first simulation from the ork file
     Simulation simulation = document.getSimulation(0);
