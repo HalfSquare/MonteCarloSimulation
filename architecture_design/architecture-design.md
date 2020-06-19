@@ -184,7 +184,7 @@ The development section covers the software management aspects of the project. T
 * 4.2.3 Project Development Standards
 * 4.2.4 Work Logs
 * 4.2.5 Project Development Testing
-* 4.2.6 Project Development Monitoring
+* 4.2.6 Project Development Diagram
 
 This section must be taken into consideration when developing and project as a range of problems can arise due to uneven allocation of work between the team members, not having tasks planned (efficiently), or insufficient progress monitoring for the project.
 
@@ -258,6 +258,10 @@ All code will need to have tests written for it. We should achieve high coverage
 All merge requests for code will be tested. We will be using CI / CD pipelines to do so. The pipelines will ensure that the code is free from errors, does not contain build failures, and that all unit tests written will pass. 
 
 We will also test our code on different operating systems once a week to ensure that our code is not just compatible with just one laptop / OS. 
+
+#### 4.2.6 Development Diagram
+![Development Diagram](assets/Development_Diagram.png)
+
 
 ### 4.3 Process
 The process viewpoint identifies the individual processes that are interacting to complete the scenarios. The process architecture can control the deployment, starting, recovery, reconfiguration, and shutdown of a system. The purpose of the process view is to capture the concurrency and reliability of the system, through the sequence and timing of certain communications.
