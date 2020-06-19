@@ -4,8 +4,19 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jzy3d.maths.Coord3d;
 import org.jzy3d.plot3d.builder.Mapper;
+
+import java.awt.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -21,7 +32,7 @@ public class GUI extends JFrame {
   public static final String SIMULATION = "SIMULATION";
   public static final String GRAPH = "GRAPH";
 
-  public static final int NUM_SIMS = 1000;
+  public static final int NUM_SIMS = 5;
   private ArrayList<SimulationStatus> data;
 
   public enum GraphType {
@@ -75,29 +86,30 @@ public class GUI extends JFrame {
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
 
-    //Table
-    String[][] pointArray = new String[data.size()][2];
-    String[] columnNames = {"Longitude", "Latitude"};
-
-
-    //reading the points into the List
-    for(int i = 0; i < data.size(); i++){
-        SimulationStatus longAndLat = data.get(i);
-        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-        double x = landingPos.getLongitudeDeg();
-        double y =  landingPos.getLatitudeDeg();
-        pointArray[i][0] = String.valueOf(x);
-        pointArray[i][1] = String.valueOf(y);
-    }
-
-
-    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames){
-      @Override
-      public boolean isCellEditable(int row, int column){
-        return false;
-      }
-    };
-    graphWindow.getSimulationTable().setModel(tableModel);
+//    Table containing all longitude and latitude data points
+//    Uncomment if you wish to view it. Additionally, you should go to GraphWindow.form
+//    and create a new JTable called simulationTable after double cliking on the centre of the
+//    page
+//    String[][] pointArray = new String[data.size()][2];
+//    String[] columnNames = {"Longitude", "Latitude"};
+//
+//    //reading the points into the List
+//    for(int i = 0; i < data.size(); i++){
+//        SimulationStatus longAndLat = data.get(i);
+//        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+//        double x = landingPos.getLongitudeDeg();
+//        double y =  landingPos.getLatitudeDeg();
+//        pointArray[i][0] = String.valueOf(x);
+//        pointArray[i][1] = String.valueOf(y);
+//    }
+//
+//    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames){
+//      @Override
+//      public boolean isCellEditable(int row, int column){
+//        return false;
+//      }
+//    };
+//    graphWindow.getSimulationTable().setModel(tableModel);
   }
 
   private void setState(String state) {
@@ -156,7 +168,6 @@ public class GUI extends JFrame {
     }
 
     public void start() {
-//      System.out.println("Starting ");
       if (t == null) {
         t = new Thread(this, "sim");
         t.start();
@@ -174,68 +185,40 @@ public class GUI extends JFrame {
 
   class GraphCreater{
     public void createGraph(){
+      // Create chart
+      JFreeChart chart = ChartFactory.createScatterPlot(
+              "tLongitude vs. Latitude Points",
+              "Longitude",
+              "Latitude",
+              createDataset(),
+              PlotOrientation.VERTICAL ,
+              true , true , false);
 
-//// Create scatter points
-//      for(int i = 0; i < data.size(); i++){
-//        SimulationStatus longAndLat = data.get(i);
-//        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-//        x = (float)landingPos.getLongitudeDeg();
-//        y = (float)landingPos.getLatitudeDeg();
-//        z = (float)0;
-//        a = 0.25f;
-//        points[i] = new Coord3d(x,y,z);
-//        colors[i] = new org.jzy3d.colors.Color(x, y, z, a);
-//      }
-//      System.out.println("Points length:" + points.length);
-//      System.out.println("colors length:" + colors.length);
 
-//      Start of almost functioninggraph
-//      JFreeChart xylineChart = ChartFactory.createXYLineChart(
-//              "chartTitle" ,
-//              "Category" ,
-//              "Score" ,
-//              createDataset() ,
-//              PlotOrientation.VERTICAL ,
-//              true , true , false);
-//
-//      ChartPanel chartPanel = new ChartPanel( xylineChart );
-//      chartPanel.setPreferredSize( new java.awt.Dimension( 560 , 367 ) );
-//      final XYPlot plot = xylineChart.getXYPlot( );
-//
-//      XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer( );
-//      renderer.setSeriesPaint( 0 , Color.BLACK);
-//      renderer.setSeriesPaint( 1 , Color.GREEN );
-//      renderer.setSeriesPaint( 2 , Color.YELLOW );
-//      renderer.setSeriesStroke( 0 , new BasicStroke( 4.0f ) );
-//      renderer.setSeriesStroke( 1 , new BasicStroke( 3.0f ) );
-//      renderer.setSeriesStroke( 2 , new BasicStroke( 2.0f ) );
-//      plot.setRenderer( renderer );
-////      setContentPane( chartPanel );
-//      graphWindow.addToGraph( chartPanel );
+      //Changes background color
+      XYPlot plot = (XYPlot)chart.getPlot();
+      plot.setBackgroundPaint(new Color(255,228,196));
+
+      // Create Panel
+      ChartPanel panel = new ChartPanel(chart);
+      setContentPane(panel);
     }
-//
-//    private XYDataset createDataset( ) {
-//      final XYSeries firefox = new XYSeries( "Firefox" );
-//      firefox.add( 1.0 , 1.0 );
-//      firefox.add( 2.0 , 4.0 );
-//      firefox.add( 3.0 , 3.0 );
-//
-//      final XYSeries chrome = new XYSeries( "Chrome" );
-//      chrome.add( 1.0 , 4.0 );
-//      chrome.add( 2.0 , 5.0 );
-//      chrome.add( 3.0 , 6.0 );
-//
-//      final XYSeries iexplorer = new XYSeries( "InternetExplorer" );
-//      iexplorer.add( 3.0 , 4.0 );
-//      iexplorer.add( 4.0 , 5.0 );
-//      iexplorer.add( 5.0 , 4.0 );
-//
-//      final XYSeriesCollection dataset = new XYSeriesCollection( );
-//      dataset.addSeries( firefox );
-//      dataset.addSeries( chrome );
-//      dataset.addSeries( iexplorer );
-//      return dataset;
-//    }
+
+    private XYDataset createDataset( ) {
+      // Create scatter points
+      final XYSeries longAndLatPoints = new XYSeries("longAndLatPoints");
+      for(int i = 0; i < data.size(); i++){
+        SimulationStatus longAndLat = data.get(i);
+        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+        double x = landingPos.getLongitudeDeg();
+        double y = landingPos.getLatitudeDeg();
+        longAndLatPoints.add(x, y);
+      }
+
+      final XYSeriesCollection dataset = new XYSeriesCollection( );
+      dataset.addSeries( longAndLatPoints );
+      return dataset;
+    }
   }
 }
 
