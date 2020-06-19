@@ -11,8 +11,9 @@ public class SimulationWindow {
 
   public SimulationWindow() {
     this.cancelButton.addActionListener(new ExitAction());
-    this.progressBar1.setMaximum(500);
+    this.progressBar1.setMaximum(100);
     this.progressBar1.setMinimum(0);
+    this.progressBar1.setValue(0);
   }
 
   public JPanel getRootPanel() {
@@ -23,7 +24,11 @@ public class SimulationWindow {
     rootPanel.setVisible(flag);
   }
 
-  public void bar(int n) {
-    progressBar1.setValue(n);
+  public void uptickBar() {
+    progressBar1.setValue(progressBar1.getValue() + 1);
+  }
+
+  public void setBar1Max(int max) {
+    this.progressBar1.setMaximum(max);
   }
 }
