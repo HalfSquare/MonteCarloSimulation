@@ -14,7 +14,7 @@ public class GraphWindow {
    * Constructor.
    */
   public GraphWindow(){
-    exitButton.addActionListener(new ExitAction());
+
   }
 
   public JPanel getRootPanel() {
@@ -27,5 +27,9 @@ public class GraphWindow {
 
   public void setVisible(boolean flag) {
     rootPanel.setVisible(flag);
+  }
+
+  public void doUIStuff() {
+    exitButton.addActionListener(new ExitAction());
   }
 }
