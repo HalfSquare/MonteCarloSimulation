@@ -17,8 +17,7 @@ public class SettingsWindow {
 
 
   public SettingsWindow() {
-    cancelButton.addActionListener(new ExitAction());
-    numberOfSimulations.setEditable(false);
+
   }
 
   public void setNumSim(int num) {
@@ -37,4 +36,8 @@ public class SettingsWindow {
     rootPanel.setVisible(flag);
   }
 
+  public void doUIStuff() {
+    cancelButton.addActionListener(new ExitAction());
+    numberOfSimulations.setEditable(false);
+  }
 }

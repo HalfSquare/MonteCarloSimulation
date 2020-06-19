@@ -10,10 +10,7 @@ public class SimulationWindow {
   private JButton cancelButton;
 
   public SimulationWindow() {
-    this.cancelButton.addActionListener(new ExitAction());
-    this.progressBar1.setMaximum(100);
-    this.progressBar1.setMinimum(0);
-    resetBar();
+
   }
 
   public JPanel getRootPanel() {
@@ -34,5 +31,12 @@ public class SimulationWindow {
 
   public void resetBar() {
     this.progressBar1.setValue(0);
+  }
+
+  public void doUIStuff() {
+    this.cancelButton.addActionListener(new ExitAction());
+    this.progressBar1.setMaximum(100);
+    this.progressBar1.setMinimum(0);
+    resetBar();
   }
 }
