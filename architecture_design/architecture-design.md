@@ -203,8 +203,8 @@ In order to focus our intentions and be very clear about our main goal for the w
 In order to ensure that all work being produced is of good quality and free from errors, we will be doing the following:
 
 1. We will branch before editing code or documents.
-2. We will submit a merge request which must be approved by a minimum of one other person in the team who did not work on that branch.
-3. When writing documentation and other text-based content for the project, we will use the markdown format to do so.
+1. We will submit a merge request which must be approved by a minimum of one other person in the team who did not work on that branch.
+1. When writing documentation and other text-based content for the project, we will use the markdown format to do so.
 
 When adding a _commit message_ it should follow the design as listed below:
 
@@ -233,7 +233,7 @@ For each sprint, a new board will be created and this will be filled with issues
 
 For each issue created in the sprint, we will add the level of difficulty we estimate it to be. This should provide us with some assistance as to how long each issue should take, and how many issues we will be able to finish in the sprint. We will also use the burn-down chart to ensure that each team member is being assigned and completing an even amount of work.
 
-Additionally, we will assign tickets to Epics and will be using Epics to help monitor the progress that our team is making.  
+Additionally, we will assign tickets to Epics and will be using Epics to help monitor the progress that our team is making.
 
 #### 4.2.5 Project Development Testing
 
