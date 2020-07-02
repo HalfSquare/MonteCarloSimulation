@@ -10,7 +10,7 @@ markdownlint:
     - docker
   image: pipelinecomponents/markdownlint:latest
   script:
-    - mdl --style all --warnings .
+    - mdl --style all --warnings --rules ~MD013 .
   allow_failure: true
 
 build:
