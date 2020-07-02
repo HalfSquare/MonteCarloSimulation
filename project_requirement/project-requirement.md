@@ -1,33 +1,26 @@
-# ENGR 301: Project Requirements Document
-
----
-
-<div style="page-break-after: always;"></div>
-
 # ENGR 301 Project 15 Project Proposal and Requirements Document
-#### Authors:
+
+**Authors**:
 
 Max McMurray, Georgia Strongman, Michael Behan, Alexander Pace, Jacqueline Dong, Justina Koh
 
 ## 1. Introduction
 
-Throughout the World, rockets are used for a plethora of reasons: to launch satellites, human spaceflight, and space exploration to name a few. The process of building and launching rockets is incredibly expensive, and so it is paramount to factor in all possible conditions and outcomes that could occur when launching a rocket. 
+Throughout the World, rockets are used for a plethora of reasons: to launch satellites, human spaceflight, and space exploration to name a few. The process of building and launching rockets is incredibly expensive, and so it is paramount to factor in all possible conditions and outcomes that could occur when launching a rocket.
 
-The project designed by the Course Coordinator is triadic: the first part involves the actual building of the rocket, the second part involves the programming of the rocket, and the third part involves the use of external software to test the predictability and likelihood of success of the rocket. While these subprojects are primarily designed to be carried out individually, ultimately, communication is to occur between the three groups to create a wholly, and successfully functioning rocket. 
+The project designed by the Course Coordinator is triadic: the first part involves the actual building of the rocket, the second part involves the programming of the rocket, and the third part involves the use of external software to test the predictability and likelihood of success of the rocket. While these subprojects are primarily designed to be carried out individually, ultimately, communication is to occur between the three groups to create a wholly, and successfully functioning rocket.
 
-Our group project predominantly focuses on the use of Monte Carlo simulations [1] to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction, and weather conditions. 
-
+Our group project predominantly focuses on the use of Monte Carlo simulations [1] to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction, and weather conditions.
 
 ### Client
 
 Andre Geldenhuis is our client for this project [2].
 
-| | |
-|---|---|
-| Client | Andre Geldenhuis |
-| Email | andre.geldenhuis@vuw.ac.nz |
-| Mattermost tag | @geldenan |
-
+|                |                            |
+| -------------- | -------------------------- |
+| Client         | Andre Geldenhuis           |
+| Email          | andre.geldenhuis@vuw.ac.nz |
+| Mattermost tag | @geldenan                  |
 
 ### 1.1 Purpose
 
@@ -37,76 +30,79 @@ Design Monte Carlo simulation [1] software which will statistically predict the 
 
 A plugin for OpenRocket [3] that utilizes pre-existing frameworks to run simulations according to the Monte Carlo [1] method. The simulation will take into account basic weather data (for example wind and atmospheric conditions) and be contextualized  within the launch site's topography. Integration with controller software will be provided, allowing controlled motor gimballing to be included in the simulation. Flight performance and path data will be presented in a graphical format, with a focus on the rocket's predicted landing site.
 
-### 1.3 Product overview 
-The part that we are designing is a subelement of an overall project, and it has been created so that it has the ability to work in conjunction with a larger rocket system that other groups are working on. The over branching theme of the project is to be able to create a rocket that is able to successfully launch outside with the given conditions. <br>
-Rockets are incredibly costly and require a lot of time and manpower in order to create. Additionally, a failing rocket can have disastrous consequences, and therefore when building a rocket it is essential that all possible variables and factors are considered to prevent any sort of failure. To help prevent rocket failure, we have been assigned a project which will help determine two things, where the rocket will land after being launched, and the estimates required for the PID controller in the motor. The first part uses _Monte Carlo_ simulations to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find the correct variables for the PID motor in the rocket. <br>
-The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real-life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed, etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios which consider all the possible factors in order to determine a landing spot for the rocket. This information can then be used to determine the power of which the motors should be running for a successful rocket launch. 
+### 1.3 Product overview
+
+The part that we are designing is a sub-element of an overall project, and it has been created so that it has the ability to work in conjunction with a larger rocket system that other groups are working on. The over branching theme of the project is to be able to create a rocket that is able to successfully launch outside with the given conditions.
+
+Rockets are incredibly costly and require a lot of time and manpower in order to create. Additionally, a failing rocket can have disastrous consequences, and therefore when building a rocket it is essential that all possible variables and factors are considered to prevent any sort of failure. To help prevent rocket failure, we have been assigned a project which will help determine two things, where the rocket will land after being launched, and the estimates required for the PID controller in the motor. The first part uses _Monte Carlo_ simulations to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find the correct variables for the PID motor in the rocket.
+
+The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real-life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed, etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios which consider all the possible factors in order to determine a landing spot for the rocket. This information can then be used to determine the power of which the motors should be running for a successful rocket launch.
 
 #### 1.3.1 Product perspective
 
 The product overview defines the product perspective, functions, user characteristics, and limitations of the system we are designing.
 
-#### 1.3.1 Product perspective
-
-The system that we are designing is a subelement of the larger system, and it has been created so that it has the ability to work in conjunction with a larger rocket system that other groups are working on. The over branching theme of the project is to be able to create a rocket that is able to successfully launch outside with the given conditions. The simulation software we are designing will statistically predict the rocket's flight and help design the control parameters for the avionics. 
+The system that we are designing is a sub-element of the larger system, and it has been created so that it has the ability to work in conjunction with a larger rocket system that other groups are working on. The over branching theme of the project is to be able to create a rocket that is able to successfully launch outside with the given conditions. The simulation software we are designing will statistically predict the rocket's flight and help design the control parameters for the avionics.
 
 Rockets are incredibly costly and require a lot of time and manpower in order to create. Additionally, a failing rocket can have disastrous consequences, and therefore when building a rocket it is essential that all possible variables and factors are considered to prevent any sort of failure. To help prevent rocket failure, we have been assigned a project which will help determine two things, where the rocket will land after being launched, and the estimates required for the PID controller in the motor.
 
-The first part uses _Monte Carlo_ simulations [1] to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find the correct variables for the PID motor in the rocket. 
+The first part uses _Monte Carlo_ simulations [1] to factor in all possible variables to predict the possible landing positions of a rocket. This should be carried out with automation, and result in a scatter plot which gives us a range of the possible positions the rocket can land in. The second part of our project should find the correct variables for the PID motor in the rocket.
 
-In order to generate the correct variables for the PID motor controller, we will need to work in collaboration with the Mission Control teams and integrate our simulation software with their software. The success of the rocket flight simulations will be dependent on the design and union of both software systems. 
+In order to generate the correct variables for the PID motor controller, we will need to work in collaboration with the Mission Control teams and integrate our simulation software with their software. The success of the rocket flight simulations will be dependent on the design and union of both software systems.
 
 #### 1.3.2 Product functions
 
 The main functions of the product are range safety and site selection through Monte Carlo simulation [1] methodologies, in conjunction with incorporating a PID controller to allow for control tuning and design in the simulation.
 
-The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real-life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed, etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios that consider all the possible factors in order to determine a landing spot for the rocket. 
+The function of our project is so that physical testing will not be needed on launch day. This is due to the fact that physical testing can be costly, and in a real-life situation it is simply not viable to have physical testing done before launching the ‘real product’. Additionally, external factors are constantly changing e.g. wind speed, etc. and therefore even if physical testing was possible, it would be close to impossible to recreate the conditions in which we were testing for the final product. The use of Monte Carlo simulations does this for us. It creates a series of scenarios that consider all the possible factors in order to determine a landing spot for the rocket.
 
 We will simulate the rocket in OpenRocket [3] to create a graphical output of predicted landing locations, by varying parameters. These parameters will include basic weather data, parachute ejection time, launch angle, and motor performance. By automatically generating and optimizing these parameters, the safety and performance of each simulated flight can be determined from the graphical output. This allows the optimal combination of parameters to be established prior to the launch of the physical rocket.
 
 To meet the requirements of the minimum viable product, the Monte Carlo simulation [1] will:
+
 - Automatically generate various parameters for the rocket simulation.
 - Create a graphical output of predicted landing locations from the various parameters generated.
 
-The main function of the PID controller is to simulate the controller and determine estimates for the controller parameters. This is achieved in OpenRocket through the use of simulation listeners. 
+The main function of the PID controller is to simulate the controller and determine estimates for the controller parameters. This is achieved in OpenRocket through the use of simulation listeners.
 
 To meet the requirements of the minimum viable product, the PID controller will:
+
 - Determine estimates for the PID controller parameters through simulation listeners.
 
-
-#### 1.3.3 User characteristics   
+#### 1.3.3 User characteristics
 
 This project will be all open source and as such will need to use open source tools to make it accessible to the community, such as OpenRocket [3]. OpenRocket is a program for all model-rocketeers who intend to estimate their rocket's performance before physically building and flying it. The user should have a general understanding of how to use this software, however, there are no educational requirements as this is an open-source project. This system may have users with or without OpenRocket experience. Technical expertise will be required while installing and understanding the functions within the system. Users should be familiar with Monte Carlo simulations and PID controllers as well as understanding how they work.
 
-
 #### 1.3.4 Limitations
 
-There are very many possible limitations of the product. 
+There are very many possible limitations of the product.
 
 Firstly, there are a few limitations that may occur with the overall project. These are listed below:
-- We are supposed to work in conjunction with other groups. However, due to the recent pandemic, it will be significantly harder to be able to collaborate and share our code with other groups, particularly those that are working with physical hardware. 
-- There is a limited time-frame for the creation of the product. While time-frames are also expected in a real-world situation, our time-frame is significantly shorter than given if this were to be carried out with a real rocket. This means that there will be significant cuts needed to be made over what we will be able to include in the product. 
+
+- We are supposed to work in conjunction with other groups. However, due to the recent pandemic, it will be significantly harder to be able to collaborate and share our code with other groups, particularly those that are working with physical hardware.
+- There is a limited time-frame for the creation of the product. While time-frames are also expected in a real-world situation, our time-frame is significantly shorter than given if this were to be carried out with a real rocket. This means that there will be significant cuts needed to be made over what we will be able to include in the product.
 
 Secondly, there are limitations with the _Monte Carlo_simulations [1]. Such examples of these limitations are listed below:
+
 - Monte Carlo simulations can be complex, and if a proper understanding of the way the program works is not developed, then that can result in an incorrect implementation of the program, and therefore incorrect estimates.
 - Values produced by the Monte Carlo simulations are _estimates_. They are not exact values. We need to be able to account for this fact when using the Monte Carlo values.
 
 There are also possible limitations of the final product:
-- During the launch of the rocket, the rocket will be sending real-time data back from its current location to the computer used to launch it. This means that it is likely to result in a time-delay between what is currently being picked up by the rocket, and the time that the computer receives this information. 
-- Additionally, there is the possibility of interference being picked up as the data is being transmitted / the data being lost. 
 
+- During the launch of the rocket, the rocket will be sending real-time data back from its current location to the computer used to launch it. This means that it is likely to result in a time-delay between what is currently being picked up by the rocket, and the time that the computer receives this information.
+- Additionally, there is the possibility of interference being picked up as the data is being transmitted / the data being lost.
 
 ## 2. References
 
-[1] A. Pace, "Monte Carlo Simulation", May, 2020. [Online]. Available: https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/Monte-Carlo-Simulation. [Accessed May. 20, 2020].
+[1] A. Pace, "Monte Carlo Simulation", May, 2020. [Online]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/Monte-Carlo-Simulation>. [Accessed May. 20, 2020].
 
-[2] A. Geldenhuis, "Rocket Project Intro", Date unknown. [Online]. Available: https://andre-geldenhuis.github.io/rocket-intro-2020-slides/index.html. [Accessed May. 20, 2020].
+[2] A. Geldenhuis, "Rocket Project Intro", Date unknown. [Online]. Available: <https://andre-geldenhuis.github.io/rocket-intro-2020-slides/index.html>. [Accessed May. 20, 2020].
 
-[3] M. Behan, "OpenRocket - Extending OpenRocket", May, 2020. [Online]. Available: https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/OpenRocket. [Accessed May. 20, 2020].
+[3] M. Behan, "OpenRocket - Extending OpenRocket", May, 2020. [Online]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/OpenRocket>. [Accessed May. 20, 2020].
 
-[4] G. Strongman, "Ergonomics and Safe Computer Usage", May, 2020. [Online]. Available: https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Other/Ergonomics-and-Safe-Computer-Usage. [Accessed May. 20, 2020].
+[4] G. Strongman, "Ergonomics and Safe Computer Usage", May, 2020. [Online]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Other/Ergonomics-and-Safe-Computer-Usage>. [Accessed May. 20, 2020].
 
-[5] Victoria University of Wellington, "Project Management - Health and Safety", 2020. [Online]. Available: https://ecs.wgtn.ac.nz/Courses/ENGR301_2020T1/HealthAndSafety. [Accessed May. 22, 2020].
+[5] Victoria University of Wellington, "Project Management - Health and Safety", 2020. [Online]. Available: <https://ecs.wgtn.ac.nz/Courses/ENGR301_2020T1/HealthAndSafety>. [Accessed May. 22, 2020].
 
 [6] Quinlan, B., 2015. Dimensional Analysis: How Many Monte Carlo Simulations Should I Run? Part 2. [online] Blog.3dcs.com. Available at: <https://blog.3dcs.com/dimensional-analysis-how-many-monte-carlo-simulations-should-i-run> [Accessed 3 June 2020].
 
@@ -117,174 +113,177 @@ There are also possible limitations of the final product:
 ### 3.1 External interfaces
 
 OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to a large variation in specifications. The interfaces are:
- - **Monitor**: At least standard definition, likely high definition or above.
- - **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
- - **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement. 
+
+- **Monitor**: At least standard definition, likely high definition or above.
+- **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
+- **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement.
 
 ### 3.2 Functions
 
-##### Persona scale
+#### Persona scale
+
 Typical users scale from experienced with model rocket use to people just starting. They also scale in their confidence in computer usage.
 
-##### Use Cases
+#### Use Cases
 
-**User runs and re-runs simulation with data saved to file**
+##### User runs and re-runs simulation with data saved to file
 
-| Persona/User | System Response |
-|---|---|
-| User checks 'Save To File' option | |
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| | Finish simulation |
-| | Show the data graphically |
-| | Simulation data is saved to a file |
-| User selects 'Re-Run Simulation' | |
-| | Run simulation again and show the new data graphically |
-| | Simulation data is saved to a file |
+| Persona/User                                           | System Response                                        |
+| ------------------------------------------------------ | ------------------------------------------------------ |
+| User checks 'Save To File' option                      |                                                        |
+| User starts a simulation with the 'Monte Carlo' option |                                                        |
+|                                                        | Run simulation                                         |
+|                                                        | Finish simulation                                      |
+|                                                        | Show the data graphically                              |
+|                                                        | Simulation data is saved to a file                     |
+| User selects 'Re-Run Simulation'                       |                                                        |
+|                                                        | Run simulation again and show the new data graphically |
+|                                                        | Simulation data is saved to a file                     |
 
-**User runs and re-runs simulation**
+##### User runs and re-runs simulation
 
-| Persona/User | System Response |
-|---|---|
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| | Finish simulation |
-| | Show the data graphically |
-| User selects 'Re-Run Simulation' | |
-| | Run simulation again and show the new data graphically |
+| Persona/User                                           | System Response                                        |
+| ------------------------------------------------------ | ------------------------------------------------------ |
+| User starts a simulation with the 'Monte Carlo' option |                                                        |
+|                                                        | Run simulation                                         |
+|                                                        | Finish simulation                                      |
+|                                                        | Show the data graphically                              |
+| User selects 'Re-Run Simulation'                       |                                                        |
+|                                                        | Run simulation again and show the new data graphically |
 
-**User runs simulation and saves to file**
+##### User runs simulation and saves to file
 
-| Persona/User | System Response |
-|---|---|
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| | Finish simulation |
-| | Show the data graphically |
-| User selects 'Save to File' | |
-| | Simulation data is saved to a file |
+| Persona/User                                           | System Response                    |
+| ------------------------------------------------------ | ---------------------------------- |
+| User starts a simulation with the 'Monte Carlo' option |                                    |
+|                                                        | Run simulation                     |
+|                                                        | Finish simulation                  |
+|                                                        | Show the data graphically          |
+| User selects 'Save to File'                            |                                    |
+|                                                        | Simulation data is saved to a file |
 
-**User runs simulation**
+##### User runs simulation
 
-| Persona/User | System Response |
-|---|---|
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| | Finish simulation |
-| | Show the data graphically |
+| Persona/User                                           | System Response           |
+| ------------------------------------------------------ | ------------------------- |
+| User starts a simulation with the 'Monte Carlo' option |                           |
+|                                                        | Run simulation            |
+|                                                        | Finish simulation         |
+|                                                        | Show the data graphically |
 
-**User finishes simulation early**
+##### User finishes simulation early
 
-| Persona/User | System Response |
-|---|---|
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| User finishes simulation early ||
-| | Finish simulation early |
-| | Show the data graphically |
+| Persona/User                                           | System Response           |
+| ------------------------------------------------------ | ------------------------- |
+| User starts a simulation with the 'Monte Carlo' option |                           |
+|                                                        | Run simulation            |
+| User finishes simulation early                         |                           |
+|                                                        | Finish simulation early   |
+|                                                        | Show the data graphically |
 
-**User aborts simulation**
+##### User aborts simulation
 
-| Persona/User | System Response |
-|---|---|
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| User aborts simulation ||
-| | Abort simulation |
-| | Throw away data |
+| Persona/User                                           | System Response  |
+| ------------------------------------------------------ | ---------------- |
+| User starts a simulation with the 'Monte Carlo' option |                  |
+|                                                        | Run simulation   |
+| User aborts simulation                                 |                  |
+|                                                        | Abort simulation |
+|                                                        | Throw away data  |
 
-**User gets help**
+##### User gets help
 
-| Persona/User | System Response |
-|---|---|
-| User selects 'help' ||
-| | Show help info screen |
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| | Finish simulation |
-| | Show the data graphically |
+| Persona/User                                           | System Response           |
+| ------------------------------------------------------ | ------------------------- |
+| User selects 'help'                                    |                           |
+|                                                        | Show help info screen     |
+| User starts a simulation with the 'Monte Carlo' option |                           |
+|                                                        | Run simulation            |
+|                                                        | Finish simulation         |
+|                                                        | Show the data graphically |
 
-**User adds topographical data**
+##### User adds topographical data
 
-| Persona/User | System Response |
-|---|---|
-| User selects 'add topographical data' ||
-||Prompt for launch site location|
-| User enters launch site location||
-|User selects 'continue'||
-||Save topographical data to working simulation file|
+| Persona/User                          | System Response                                    |
+| ------------------------------------- | -------------------------------------------------- |
+| User selects 'add topographical data' |                                                    |
+|                                       | Prompt for launch site location                    |
+| User enters launch site location      |                                                    |
+| User selects 'continue'               |                                                    |
+|                                       | Save topographical data to working simulation file |
 
-**User adds weather data**
+##### User adds weather data
 
-| Persona/User | System Response |
-|---|---|
-| User selects 'add weather data' ||
-|User selects 'continue'||
-||Save weather data to working simulation file|
+(*Discuss with mission control group*)
 
-*Discuss with mission control group*
+| Persona/User                    | System Response                              |
+| ------------------------------- | -------------------------------------------- |
+| User selects 'add weather data' |                                              |
+| User selects 'continue'         |                                              |
+|                                 | Save weather data to working simulation file |
 
-**User integrates mission control**
+##### User integrates mission control
 
-| Persona/User | System Response |
-|---|---|
-| User selects mission control options ||
-| | Show settings for controlling rocket |
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| | User selected controller adjusts the angle of rocket |
-| | Finish simulation |
-| | Show the data graphically |
+| Persona/User                                           | System Response                                      |
+| ------------------------------------------------------ | ---------------------------------------------------- |
+| User selects mission control options                   |                                                      |
+|                                                        | Show settings for controlling rocket                 |
+| User starts a simulation with the 'Monte Carlo' option |                                                      |
+|                                                        | Run simulation                                       |
+|                                                        | User selected controller adjusts the angle of rocket |
+|                                                        | Finish simulation                                    |
+|                                                        | Show the data graphically                            |
 
-**User integrates multiple mission control options across multiple simulations**
+##### User integrates multiple mission control options across multiple simulations
 
-| Persona/User | System Response |
-|---|---|
-| User selects mission control options ||
-| | Show settings for controlling rocket |
-| User starts a simulation with the 'Monte Carlo' option | |
-| | Run simulation |
-| | User selected controller adjusts the angle of rocket |
-| | Finish simulation |
-| | Show the data graphically |
-| Re run simulation with different controller options | |
-| | Run simulation |
-| | User selected controller adjusts the angle of rocket |
-| | Finish simulation |
-| | Show the comparison data graphically |
-
+| Persona/User                                           | System Response                                      |
+| ------------------------------------------------------ | ---------------------------------------------------- |
+| User selects mission control options                   |                                                      |
+|                                                        | Show settings for controlling rocket                 |
+| User starts a simulation with the 'Monte Carlo' option |                                                      |
+|                                                        | Run simulation                                       |
+|                                                        | User selected controller adjusts the angle of rocket |
+|                                                        | Finish simulation                                    |
+|                                                        | Show the data graphically                            |
+| Re run simulation with different controller options    |                                                      |
+|                                                        | Run simulation                                       |
+|                                                        | User selected controller adjusts the angle of rocket |
+|                                                        | Finish simulation                                    |
+|                                                        | Show the comparison data graphically                 |
 
 ### 3.3 Usability Requirements
 
-##### Objective
-We want to create an extension to the OpenRocket application, this extension will be accessible to the rocket community due to the extension's code being open source.
-This extension will be able to be applied to any rocket design the user imports. 
+#### Objective
 
-##### Measurable effectiveness
-The extension should run at the same time the OpenRocket simulation runs without a delay. 
+We want to create an extension to the OpenRocket application, this extension will be accessible to the rocket community due to the extension's code being open source.
+This extension will be able to be applied to any rocket design the user imports.
+
+#### Measurable effectiveness
+
+The extension should run at the same time the OpenRocket simulation runs without a delay.
 When the Monte Carlo simulation is run over a long period of time it is expected that the program will finish without crashing and would have run without any errors. We can measure the effectiveness by simulating the rocket and displaying the data and seeing if the results match up with the real launch.
 
-##### Efficiency
-It is expected that the program should run the simulations as fast as possible with the only limitation being the speed of the hardware. 
+#### Efficiency
+
+It is expected that the program should run the simulations as fast as possible with the only limitation being the speed of the hardware.
 After each simulation is run in the Monte Carlo process, the data will be stored and only until the Monte Carlo simulation has finished the data will be displayed graphically this is to avoid taking up resources that should be used for running each simulation at its maximum speed.
 
-##### Satisfaction criteria
-For the system to meet satisfaction it needs to meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where their rocket will end up for the current weather conditions. 
-The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the number of times specified. 
+#### Satisfaction criteria
+
+For the system to meet satisfaction it needs to meet the following criteria, the program should calculate and display graphically where the rocket will land when the user wants to find out where their rocket will end up for the current weather conditions.
+The program should take in the values the user provides and simulate the rocket with the conditions and run the Monte Carlo simulation for the number of times specified.
 
 ### 3.4 Performance requirements
 
+#### Capacity
 
-**Capacity**
-
-The system being created will be downloaded and installed to the plugins directory of OpenRocket on the user’s device. As such, the system will support 1 terminal per installation of the software, as in the terminal that the software is installed on. 
+The system being created will be downloaded and installed to the plugins directory of OpenRocket on the user’s device. As such, the system will support 1 terminal per installation of the software, as in the terminal that the software is installed on.
 
 The system will handle 1 simultaneous user per installation (1 simultaneous user per terminal).
 
-The system will run on Windows, Mac, and Linux devices. 
+The system will run on Windows, Mac, and Linux devices.
 
-
-**Information Handling**
+#### Information Handling
 
 The system will handle the user’s rocket information, including details about the rocket to be simulated to pass to OpenRocket.
 
@@ -292,30 +291,28 @@ The system will handle PID values/control software, to properly simulate how the
 
 The system will handle mission control data, including weather conditions. Primarily, wind information will be handled as this is the most influential to the simulations.
 
-The system will handle the simulation data from OpenRocket across all the Monte Carlo simulations. This will then be converted to graphical data, to be stored for the user and displayed graphically for ease of understanding. The simulation data should be saved regularly, so in the case of crashing, early termination, or other issues, the information gathered to that point is preserved for the user. 
+The system will handle the simulation data from OpenRocket across all the Monte Carlo simulations. This will then be converted to graphical data, to be stored for the user and displayed graphically for ease of understanding. The simulation data should be saved regularly, so in the case of crashing, early termination, or other issues, the information gathered to that point is preserved for the user.
 
+#### Dynamic Requirements
 
-**Dynamic Requirements**
-
-The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000,000 (one billion), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand), as this is enough simulations to gather a reasonable idea of what will happen, but will take a short amount of time (30 seconds) to run, giving the user a chance to test out an idea without the inconvenience of having to wait a long time. 
+The system will allow a degree of flexibility to the user in terms of the number of Monte Carlo simulations to be run. There will be a maximal limit of 1,000,000,000 (one billion), and a lower limit of 100 (one hundred). This will allow the user to test the program, or test a new idea, in a short amount of time. This will also allow the user to run an extremely long Monte Carlo simulation to gain an idea of certainty in what will happen. The default number will be 1,000 (1 thousand), as this is enough simulations to gather a reasonable idea of what will happen, but will take a short amount of time (30 seconds) to run, giving the user a chance to test out an idea without the inconvenience of having to wait a long time.
 
 The system should run/process one thousand (1,000) simulations in 30 seconds or less. This will mean that each simulation should take 0.03 seconds, and two thousand (2,000) simulations should run per minute.
-Refer to the table below for a range of time estimates for different Monte Carlo simulation sizes. 
+Refer to the table below for a range of time estimates for different Monte Carlo simulation sizes.
 
-| Simulation Count (Numerical)  | Simulation Count   | Time Estimate (Seconds) | Time Estimate (Minutes) | Time Estimate (Hours) |
-|-------------------------------|--------------------|-------------------------|-------------------------|-----------------------|
-| 1                             | One                | 0.03                    | 0.0005                  | -                     |
-| 100                           | One hundred        | 3                       | 0.05                    | -                     |
-| 1,000                         | One thousand       | 30                      | 0.5                     | -                     |
-| 10,000                        | Ten thousand       | 300                     | 5                       | -                     |
-| 1,000,000                     | One million        | 30,000                  | 500                     | 8.333                 |
-| 10,000,000                    | Ten million        | 300,000                 | 5,000                   | 83.333                |
-| 1,000,000,000                 | One billion        | 30,000,000              | 500,000                 | 8,333.333             |
-
+| Simulation Count (Numerical) | Simulation Count | Time Estimate (Seconds) | Time Estimate (Minutes) | Time Estimate (Hours) |
+| ---------------------------- | ---------------- | ----------------------- | ----------------------- | --------------------- |
+| 1                            | One              | 0.03                    | 0.0005                  | -                     |
+| 100                          | One hundred      | 3                       | 0.05                    | -                     |
+| 1,000                        | One thousand     | 30                      | 0.5                     | -                     |
+| 10,000                       | Ten thousand     | 300                     | 5                       | -                     |
+| 1,000,000                    | One million      | 30,000                  | 500                     | 8.333                 |
+| 10,000,000                   | Ten million      | 300,000                 | 5,000                   | 83.333                |
+| 1,000,000,000                | One billion      | 30,000,000              | 500,000                 | 8,333.333             |
 
 ### 3.5 Logical database requirements
 
-##### Overview Domain Model
+#### Overview Domain Model
 
 ```plantuml
 @startuml
@@ -392,41 +389,44 @@ SimulationData "1" -- WeatherData
 SimulationData "1" -- TopographicalData
 @enduml
 ```
+
 ##### Responsibilities of each class in the model
 
-| Class | Brief description |
-|---|---|
-| Main | Runs the overall system.|
-| GUI | Allows the user to navigate through the system. |
-| MonteCarloSimulation | Runs the Monte Carlo Simulation. |
-| MissionControlSettings | Holds the information for the Mission Control Settings. |
-| GraphData | Creates, displays and compares the graphical output of the Monte Carlo Simulation. |
-| SimulationData | Contains all of the data for the Monte Carlo Simulation. |
-| WeatherData | Type of Simulation Data. |
-| WindData | Type of Weather Data. |
-| AtmosphericData | Type of Weather Data. |
-| TopographicalData | Type of Simulation Data. |
-| MountainData | Type of Topographical Data. |
+| Class                  | Brief description                                                                  |
+| ---------------------- | ---------------------------------------------------------------------------------- |
+| Main                   | Runs the overall system.                                                           |
+| GUI                    | Allows the user to navigate through the system.                                    |
+| MonteCarloSimulation   | Runs the Monte Carlo Simulation.                                                   |
+| MissionControlSettings | Holds the information for the Mission Control Settings.                            |
+| GraphData              | Creates, displays and compares the graphical output of the Monte Carlo Simulation. |
+| SimulationData         | Contains all of the data for the Monte Carlo Simulation.                           |
+| WeatherData            | Type of Simulation Data.                                                           |
+| WindData               | Type of Weather Data.                                                              |
+| AtmosphericData        | Type of Weather Data.                                                              |
+| TopographicalData      | Type of Simulation Data.                                                           |
+| MountainData           | Type of Topographical Data.                                                        |
 
 ### 3.6 Design constraints
+
 Many possible constraints can be imposed on the project. These can be broken down into three main sections: _constraints imposed by external standards_, _constraints imposed by regulatory requirements_ and _constraints imposed by project limitations_.
 
-
 __Constraints imposed by external standards:__
-- COVID-19 constraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also constrained by our inability to carry out in-person group meetings and stand-ups, as well as group work. 
+
+- COVID-19 constraint: Due to the recent events of COVD-19, our team is also social distancing. This means that we are also constrained by our inability to carry out in-person group meetings and stand-ups, as well as group work.
 
 __Constraint imposed by regulatory requirements:__
-- Health and safety constraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules. 
 
+- Health and safety constraints: Our project must abide by all health and safety laws. This means that we are not able to carry _any_ sub-projects that may violate these rules.
 
 __Constraints imposed by project limitations:__
-- Time constraint: Our project has a very limited time frame in which it can run. This means that decisions must be made to maintain the integrity and completion of the project before the second semester is finished. Additionally, during the length of this project, our team members still have other papers to work on, and therefore we are also limited by the number of hours that our team members can put in each week. 
-- Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budgetless.
-- Knowledge constraint: There is also a knowledge constraint due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding. 
-- Technical constraint: While our project is solely software-based, we have a lack of access to professional and industry-standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software. 
-- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such as the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile. 
 
-### 3.7 Nonfunctional system attributes
+- Time constraint: Our project has a very limited time frame in which it can run. This means that decisions must be made to maintain the integrity and completion of the project before the second semester is finished. Additionally, during the length of this project, our team members still have other papers to work on, and therefore we are also limited by the number of hours that our team members can put in each week.
+- Cost constraint: There is are no predicted project costs for this project. This means that whatever we do in this assignment must stay budget-less.
+- Knowledge constraint: There is also a knowledge constraint due to the fact that we are only in our third year of university. This means that we have limited experience in both working in a group / team environment, as well as having limited experience in professional coding.
+- Technical constraint: While our project is solely software-based, we have a lack of access to professional and industry-standard machinery and software. We only have access to our personal laptops and electronics and free, open-source software.
+- Agile constraint: Our project must be carried out in an agile software development method (or some form of agile such as the Kanban method). This means that we must maintain good Agile hygiene and carry out frequent stand-ups, sprints, retrospectives as well as the other aspects of Agile.
+
+### 3.7 Non-functional system attributes
 
 * Compatibility
 * Usability
@@ -578,27 +578,27 @@ This requirement will be verified by a subjective analysis of several sample mac
 
 Key project deliverables: 
 
-| Deliverable: | Goal Timeline: |
-|------|-------|
-| Architectural Prototype | T2 Weeks 3-4 (Sprint 5) |
-| Minimum Viable Product | T2 Week 7-8 (Sprint 7) |
-| Final Release | T2 Week 11-12 (Sprint 9 - final sprint) |
+| Deliverable:            | Goal Timeline:                          |
+| ----------------------- | --------------------------------------- |
+| Architectural Prototype | T2 Weeks 3-4 (Sprint 5)                 |
+| Minimum Viable Product  | T2 Week 7-8 (Sprint 7)                  |
+| Final Release           | T2 Week 11-12 (Sprint 9 - final sprint) |
 
 Sprint schedule:
 
-| Week:      | Sprint No:              | Goal/Progress:                                                  |
-|------------|-------------------------|--------------------------------------------------------|
-| T1 Week 7     | Sprint 1                | Push to complete the bulk of the documentation             |
-| T1 Week 8-9   | Sprint 2                | Finishing documentation and beginning programming      |
-| T1 Week 10-11 | Sprint 3                | Transitioning from documentation to solely programming |
-| T1 Week 12    | No sprint  (terms test) |                                                        |
-| -BREAK-    | No sprint               |                                                        |
-| T2 Week 1-2   | Sprint 4                | Picking up from before the break, reorienting and settling into the project again    |
-| T2 Week 3-4   | Sprint 5                | Working on extension architecture - architectural prototype should be ready |
-| T2 Week 5-6   | Sprint 6                | Working on extension and adding features |
+| Week:         | Sprint No:              | Goal/Progress:                                                                    |
+| ------------- | ----------------------- | --------------------------------------------------------------------------------- |
+| T1 Week 7     | Sprint 1                | Push to complete the bulk of the documentation                                    |
+| T1 Week 8-9   | Sprint 2                | Finishing documentation and beginning programming                                 |
+| T1 Week 10-11 | Sprint 3                | Transitioning from documentation to solely programming                            |
+| T1 Week 12    | No sprint  (terms test) |                                                                                   |
+| -BREAK-       | No sprint               |                                                                                   |
+| T2 Week 1-2   | Sprint 4                | Picking up from before the break, reorienting and settling into the project again |
+| T2 Week 3-4   | Sprint 5                | Working on extension architecture - architectural prototype should be ready       |
+| T2 Week 5-6   | Sprint 6                | Working on extension and adding features                                          |
 | T2 Week 7-8   | Sprint 7                | Working on extension and adding features - minimum viable product should be ready |
-| T2 Week 9-10  | Sprint 8                | Pushing to complete additional features from project requirement  |
-| T2 Week 11-12 | Sprint 9                | Readying project for deployment and final release |
+| T2 Week 9-10  | Sprint 8                | Pushing to complete additional features from project requirement                  |
+| T2 Week 11-12 | Sprint 9                | Readying project for deployment and final release                                 |
 
 A more detailed version of the sprint schedule can be found in the following link. This includes the list of scrum masters and minute takers for each sprint. 
 * https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Project/Minute-and-Scrum-Master-Timetable
@@ -610,18 +610,18 @@ We will ensure that any design and software choices take into account the lack o
 
 ### 5.3 Risks 
 
-| Risk | Likelihood | Impact | Mitigation |
-|------|-------|-------|-----|
-| Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High | Tolerable | As we are already at home in quarantine, we are already used to working remotely, and do not need to worry about spreading any sickness. In the case that a team member is too sick to work, we should be able to rearrange duties to cover the workload as it is a team of 6 developers, and it is likely that another team member has the skills required to cover the work. We will also make an effort to keep documentation of what has been done and what is being worked on, along with having weekly stand-up meetings to discuss what is being worked on, and to keep all team members updated on the current situation. |
-| The personal equipment of a team member failing (e.g. computers/internet/power loss) | Moderate | Serious | As we are all working remotely, if a team member's personal equipment fails (such as desktop/laptop), we will have to work without them until repairs can be made. As a team of 6, we should be able to reassign duties to cover the workload between the remaining members. If a more uncontrollable event happens, such as a powercut/loss of power, or loss of internet, to mitigate the loss of work, we will make sure to commit often so that all completed work is accessible to team members. |
-| Changes to the project requirements requiring minor reworks of the system | Moderate | Tolerable | We will maintain regular contact with the customer to ensure that we are aware and understand the customer’s needs and requirements, to avoid misunderstanding the project requirements. We will keep our program as flexible as possible, to ensure that changes to the requirements do not require large changes to our system. |
-| Improper use of computer equipment resulting in injury | High | Serious | We will ensure that all group members take regular breaks to stretch, walk around, and rest their eyes, to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI). |
-| External tools failing to provide expected functionality (e.g. OpenRocket) | Moderate | Serious | Before beginning to use any tool, the team will research the tool to ensure that it will provide the functionality we need and that we understand the capabilities provided by the tool. |
-| The time required to develop the software is underestimated | High | Serious | The team will regularly review the progress we have made at each weekly meeting to ensure that we are making sufficient progress on the project according to our estimates. If we have underestimated the time requirement, this will become clear and we will be able to compensate accordingly  |
-| Team members have other commitments come up leading to not having enough time to commit to working on the project | Moderate | Tolerable | The team will keep open communication about outside commitments so that only a reasonable time commitment is expected of each member per week. If necessary, we will adjust the duties of overburdened members to keep the workload reasonable. |
-| A skill is required for the project that no team member can provide | Low | Catastrophic | The team will keep communication open so that we are aware of each member's skills and abilities, along with their skill level in certain areas. This will mean we are able to effectively choose certain tools and languages for the project that complement our skills. |
-| New team members or team members leaving the project | Low | Tolerable | The team will commit work regularly and keep clear documentation of progress, so that team member changes mean duties can be picked up smoothly, and that no work is lost. |
-| Updates to external tools causing issues with the project | Low | Serious | The team will keep up-to-date with any changes made to tools, and if necessary, change tools to something that will be compatible with the project.  |
+| Risk                                                                                                                 | Likelihood | Impact       | Mitigation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| -------------------------------------------------------------------------------------------------------------------- | ---------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High       | Tolerable    | As we are already at home in quarantine, we are already used to working remotely, and do not need to worry about spreading any sickness. In the case that a team member is too sick to work, we should be able to rearrange duties to cover the workload as it is a team of 6 developers, and it is likely that another team member has the skills required to cover the work. We will also make an effort to keep documentation of what has been done and what is being worked on, along with having weekly stand-up meetings to discuss what is being worked on, and to keep all team members updated on the current situation. |
+| The personal equipment of a team member failing (e.g. computers/internet/power loss)                                 | Moderate   | Serious      | As we are all working remotely, if a team member's personal equipment fails (such as desktop/laptop), we will have to work without them until repairs can be made. As a team of 6, we should be able to reassign duties to cover the workload between the remaining members. If a more uncontrollable event happens, such as a powercut/loss of power, or loss of internet, to mitigate the loss of work, we will make sure to commit often so that all completed work is accessible to team members.                                                                                                                             |
+| Changes to the project requirements requiring minor reworks of the system                                            | Moderate   | Tolerable    | We will maintain regular contact with the customer to ensure that we are aware and understand the customer’s needs and requirements, to avoid misunderstanding the project requirements. We will keep our program as flexible as possible, to ensure that changes to the requirements do not require large changes to our system.                                                                                                                                                                                                                                                                                                 |
+| Improper use of computer equipment resulting in injury                                                               | High       | Serious      | We will ensure that all group members take regular breaks to stretch, walk around, and rest their eyes, to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI).                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| External tools failing to provide expected functionality (e.g. OpenRocket)                                           | Moderate   | Serious      | Before beginning to use any tool, the team will research the tool to ensure that it will provide the functionality we need and that we understand the capabilities provided by the tool.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| The time required to develop the software is underestimated                                                          | High       | Serious      | The team will regularly review the progress we have made at each weekly meeting to ensure that we are making sufficient progress on the project according to our estimates. If we have underestimated the time requirement, this will become clear and we will be able to compensate accordingly                                                                                                                                                                                                                                                                                                                                  |
+| Team members have other commitments come up leading to not having enough time to commit to working on the project    | Moderate   | Tolerable    | The team will keep open communication about outside commitments so that only a reasonable time commitment is expected of each member per week. If necessary, we will adjust the duties of overburdened members to keep the workload reasonable.                                                                                                                                                                                                                                                                                                                                                                                   |
+| A skill is required for the project that no team member can provide                                                  | Low        | Catastrophic | The team will keep communication open so that we are aware of each member's skills and abilities, along with their skill level in certain areas. This will mean we are able to effectively choose certain tools and languages for the project that complement our skills.                                                                                                                                                                                                                                                                                                                                                         |
+| New team members or team members leaving the project                                                                 | Low        | Tolerable    | The team will commit work regularly and keep clear documentation of progress, so that team member changes mean duties can be picked up smoothly, and that no work is lost.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Updates to external tools causing issues with the project                                                            | Low        | Serious      | The team will keep up-to-date with any changes made to tools, and if necessary, change tools to something that will be compatible with the project.                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 ### 5.4 Health and Safety
 
@@ -653,13 +653,13 @@ Monte Carlo [1] - a method of simulation.
 
 A one page statement of contributions, including a list of each member of the group and what they contributed to this document.
 
-| Contributor | Sections |
-| :---: | :------- |
-| Michael | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2, 3.3 |
-| Alex | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.1, 3.2, Section 4 |
-| Georgia | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, 3.4, 3.7, 3.8, 5.1, Safe Computing Wiki (for H&S) |
-| Max | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2 |
-| Justina | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.6 |
-| Jacqui | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.5, 3.2 |
+| Contributor | Sections                                                                                                   |
+| :---------: | :--------------------------------------------------------------------------------------------------------- |
+|   Michael   | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2, 3.3                                                 |
+|    Alex     | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.1, 3.2, Section 4                                |
+|   Georgia   | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, 3.4, 3.7, 3.8, 5.1, Safe Computing Wiki (for H&S) |
+|     Max     | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2                                                       |
+|   Justina   | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.6                                            |
+|   Jacqui    | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.5, 3.2                                       |
 
 ---
