@@ -428,140 +428,152 @@ __Constraints imposed by project limitations:__
 
 ### 3.7 Non-functional system attributes
 
-* Compatibility
-* Usability
-* Reliability
-* Security
-* Maintainability
-* Portability
-* Open Source
-* Performance Efficiency
+- Compatibility
+- Usability
+- Reliability
+- Security
+- Maintainability
+- Portability
+- Open Source
+- Performance Efficiency
 
-**Compatibility**
+#### Compatibility
 
-This project (creating Monte Carlo simulations) is one of three projects with an overarching goal of launching a hobby rocket. As such, one of the top nonfunctional requirements is that our program must be compatible with the other two projects.
+This project (creating Monte Carlo simulations) is one of three projects with an overarching goal of launching a hobby rocket. As such, one of the top non-functional requirements is that our program must be compatible with the other two projects.
 
 Our program must be compatible and must coexist with the avionics and mission control projects. Specifically, we must be able to read in rocket data from the avionics team, and we must be able to read in weather condition data from the mission control team and use these data sets to construct a realistic simulation to be used to judge whether the rocket's flight path and subsequent landing zone are considered safe.
 
 This will involve exchanging information with these project groups, and using that information in our project. Therefore, compatibility is an important systemic attribute to this project.
 
-**Usability**
+#### Usability
 
-As the client (and therefore one of the main users), of this project is a hobby rocketeer, and the program is designed to be used by a variety of users with varying skill levels, the program must be user-friendly. 
-To be more specific, this program must be designed in a way that is easy to operate and control, and users can efficiently and effectively learn and understand how to use it. 
+As the client (and therefore one of the main users), of this project is a hobby rocketeer, and the program is designed to be used by a variety of users with varying skill levels, the program must be user-friendly.
+To be more specific, this program must be designed in a way that is easy to operate and control, and users can efficiently and effectively learn and understand how to use it.
 It should also protect against simple user errors, such as invalid inputs (negative values for example).
 
-The program should have a user interface that is accessible to most users and is understandable and reasonably intuitive to use. 
+The program should have a user interface that is accessible to most users and is understandable and reasonably intuitive to use.
 
-As the program has one main overall function (Monte Carlo simulations of **hobby** rockets), users should be able to quickly realize/recognize whether this program is appropriate for their needs. 
+As the program has one main overall function (Monte Carlo simulations of **hobby** rockets), users should be able to quickly realize/recognize whether this program is appropriate for their needs.
 It should be made obvious that this program is designed for simulating hobby rockets only.
 
-**Reliability**
+#### Reliability
 
-The program must be able to reliably perform consecutive Monte Carlo simulations until the amount of times specified is reached. 
-Specifically, the program must reliably complete this task successfully without crashing or encountering issues. 
+The program must be able to reliably perform consecutive Monte Carlo simulations until the amount of times specified is reached.
+Specifically, the program must reliably complete this task successfully without crashing or encountering issues.
 
 The program should be widely available to use.
 
 The program should, in the event of an interruption or failure, be able to recover and store the usable data in a way that benefits the user (for example, store the data so that it can be displayed to the user graphically even if the simulations have not all finished).
 
-**Security**
+#### Security
 
-The program should never handle user information, as it would be unnecessary to do so, which means that user information could never be stolen from our program. 
+The program should never handle user information, as it would be unnecessary to do so, which means that user information could never be stolen from our program.
 
-The program should have integrity, meaning it should be protected against tampering and/or modification. 
+The program should have integrity, meaning it should be protected against tampering and/or modification.
 
-**Maintainability**
+#### Maintainability
 
-The program should be modular when possible so that changes to the program have a minimized impact. 
-The program should also be written in a way that code can be reused when possible, to avoid redundancy. 
+The program should be modular when possible so that changes to the program have a minimized impact.
+The program should also be written in a way that code can be reused when possible, to avoid redundancy.
 
-The program should be efficient and effective to analyze so that failures/deficiencies can be found and fixed efficiently, and so that modifications can be made with ease. 
+The program should be efficient and effective to analyze so that failures/deficiencies can be found and fixed efficiently, and so that modifications can be made with ease.
 It is likely that modifications will need to be made, in the case of requirements changing, or having more time to implement additional features).
 
 The program should be testable, to allow us to effectively and efficiently check whether the project requirements have been met and that our program works accurately.
 
-**Portability**
+#### Portability
 
 The program should be efficient and intuitive for the user to install and have working, there should be instructions available for any steps that may not be clear to the user.
 
-The program should be adaptable, and should not require major refactoring for small changes. 
+The program should be adaptable, and should not require major refactoring for small changes.
 
 The program should be clear about the performance requirements of the machine it is running on, as Monte Carlo simulations are resource-intensive.
 
-**Open Source**
+#### Open Source
 
-The program should be open source and free to use, meaning that all software, tools, and equipment used to build and create the program should not conflict with this. 
+The program should be open source and free to use, meaning that all software, tools, and equipment used to build and create the program should not conflict with this.
 
 All software, tools, and equipment should also be open-source so that the program is free to use for hobby rocketeers and any other user who the program is appropriate for.
 
-**Performance Efficiency**
+#### Performance Efficiency
 
-The program must be designed with efficiency in mind. 
-As Monte Carlo simulations are resource-intensive and computationally stressful, the program must not use resources inefficiently and must make the best effort to reduce stress on the machine it is running on where possible. 
+The program must be designed with efficiency in mind.
+As Monte Carlo simulations are resource-intensive and computationally stressful, the program must not use resources inefficiently and must make the best effort to reduce stress on the machine it is running on where possible.
 
 The program should be clear to the user about the performance requirements of the machine it should be running on, as Monte Carlo simulations are resource-intensive.
 
-### 3.8 Physical and Environmental Requirements 
+### 3.8 Physical and Environmental Requirements
 
-This is a pure software project, and so there are no physical or environmental requirements. 
+This is a pure software project, and so there are no physical or environmental requirements.
 
 ### 3.9 Supporting information
 
-see 9.5.19. 
+see 9.5.19.
 
 ## 4. Verification
 
 This section details how we verify our product meets the requirements laid out here in this document in section 3. These verification methods will include testable acceptance criteria.
+
 ### External Interfaces (3.1)
+
 This requirement will be verified by being able to operate the product using only a monitor, mouse, and keyboard as external interfaces, with no other interfaces needed.
 
 ### Functions (3.2)
+
 This requirement will be verified by being able to perform all of the use cases, following all of the steps in the order presented without product failure and with successful results. It can be tested by a manual walkthrough of the product.
 
 ### Usability Requirements (3.3)
+
 This requirement will be verified mostly by the successful verification of many of the other sections, namely parts of this section relating to sections 3.2, 3.4, and 3.7. Overall verification for this section can be achieved through team review, user testing, and customer testing.
 
 ### Performance Requirements (3.4)
+
 This requirement will be verified by meeting the specifics detailed in section 3.3. Static attributes like those in the *Capacity* and *Information Handling* sections can be verified through manual analysis. The attribute in the *Dynamic Requirements* section can be verified through automated unit testing.
 
 ### Logical Database Requirements (3.5)
+
 This requirement will be verified by an analysis of the product source code to identify class structure and associations between classes. Verification will be achieved if the structure and associations mostly resemble the UML diagram presented in section 3.5. Minor deviations from the diagram are permitted as the need arises during development.
 
 ### Design Constraints (3.6)
+
 This requirement will be verified by a retrospective analysis of the team's actions and decisions. Team members could be reviewed individually, or a special meeting could be held to identify any breaches of the stated limitations.
 
-### Nonfunctional System Attributes (3.7)
+### Non-functional System Attributes (3.7)
+
 **Compatibility**
 This requirement will be verified by the ability of the program to integrate necessary data from the avionics and mission control products. Verification will be achieved if necessary rocket data is able to be read in from the avionics product and necessary weather condition data is able to be read in from the mission control product. This can be tested with unit testing.
 
 **Usability**
 This requirement will be verified by being user-friendly and accessible. Verification will be achieved if:
- - User testing indicates the product is relatively easy to use at the skill level of the user personas.
- - User testing indicates the product is intuitive based on the experience of the user personas.
- - User testing indicates the product doesn't have a steep learning curve, i.e. the learning process is efficient and does not contain any major barriers.
- - User testing indicates the ability to quickly recognize whether the product is appropriate for their needs.
- - Invalid input protections are in place, preventing the user from passing out-of-bounds or inapplicable inputs to the product. These can include things like negative values and large/small values where they are not expected. This can be tested with automated testing.
- - The product's interface is accessible to most users and contains basic accessibility options like font size adjustment, colour-blindness support, and keyboard shortcuts.
+
+- User testing indicates the product is relatively easy to use at the skill level of the user personas.
+- User testing indicates the product is intuitive based on the experience of the user personas.
+- User testing indicates the product doesn't have a steep learning curve, i.e. the learning process is efficient and does not contain any major barriers.
+- User testing indicates the ability to quickly recognize whether the product is appropriate for their needs.
+- Invalid input protections are in place, preventing the user from passing out-of-bounds or inapplicable inputs to the product. These can include things like negative values and large/small values where they are not expected. This can be tested with automated testing.
+- The product's interface is accessible to most users and contains basic accessibility options like font size adjustment, colour-blindness support, and keyboard shortcuts.
 
 **Reliability**
 This requirement will be verified by mitigating the causes of program failure and being easily obtained. Verification will be achieved if:
- - The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
- - The product is widely available to use. It should be downloadable from an easily accessible website.
- - The product does not lose data from the current batch of simulations in the event of failure. Data collected up to the point of failure should be stored in a usable fashion that allows it to be read and displayed.
+
+- The product reliably performs consecutive simulations an arbitrary number of times. This number should be reasonable but is expected to be between or larger than 5,000 - 20,000 times [6]. This can be tested with unit testing.
+- The product is widely available to use. It should be downloadable from an easily accessible website.
+- The product does not lose data from the current batch of simulations in the event of failure. Data collected up to the point of failure should be stored in a usable fashion that allows it to be read and displayed.
 
 **Security**
 This requirement will be verified by the product only collecting the minimum necessary user data and employing mechanisms to maintain its integrity. Verification will be achieved if:
- - An analysis and review of the user data collected by the product is able to justify the data collected as being essential to the operation of the product or essential to the user's experience of the product.
- - The product has introduced methods to protect against tampering and modification without the user's consent.
+
+- An analysis and review of the user data collected by the product is able to justify the data collected as being essential to the operation of the product or essential to the user's experience of the product.
+- The product has introduced methods to protect against tampering and modification without the user's consent.
 
 **Maintainability**
 This requirement will be verified by a codebase that is modular, clear, easy to read, and employs encapsulation well. Verification will be achieved if:
- - An analysis of the code shows good use of encapsulation.
- - Code conforms to a chosen standard (i.e. Google standard). This can be enforced with a style checker IDE plugin. For verification to be complete, no warnings from this plugin must be present.
- - JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and a manual review of the codebase.
- - The code not written in Java is accurately documented.
- - The code is commented on where needed.
+
+- An analysis of the code shows good use of encapsulation.
+- Code conforms to a chosen standard (i.e. Google standard). This can be enforced with a style checker IDE plugin. For verification to be complete, no warnings from this plugin must be present.
+- JavaDocs are used correctly and helpfully. This can be enforced with a style checker IDE plugin and a manual review of the codebase.
+- The code not written in Java is accurately documented.
+- The code is commented on where needed.
 
 **Portability**
 As the product is a Java plugin and ostensibly faces no porting during its life cycle, this requirement's verification is fulfilled by the Maintainability section above.
@@ -570,13 +582,13 @@ As the product is a Java plugin and ostensibly faces no porting during its life 
 This requirement will be verified by the ability to change any part of the product's codebase with freely available tools. The product should comply with applicable open source standards, and make its codebase available on a freely accessible online platform (like GitLab or GitHub).
 
 **Performance Efficiency**
-This requirement will be verified by a subjective analysis of several sample machines running the product in a normal scenario. The sample machines should be consistent with those used by the user personas. The product should also perform within a timeframe acceptable to the user personas, within the context of the personas being informed of the resource-intensive nature of Monte Carlo simulations. 
+This requirement will be verified by a subjective analysis of several sample machines running the product in a normal scenario. The sample machines should be consistent with those used by the user personas. The product should also perform within a timeframe acceptable to the user personas, within the context of the personas being informed of the resource-intensive nature of Monte Carlo simulations.
 
-## 5. Development schedule.
+## 5. Development schedule
 
 ### 5.1 Schedule
 
-Key project deliverables: 
+Key project deliverables:
 
 | Deliverable:            | Goal Timeline:                          |
 | ----------------------- | --------------------------------------- |
@@ -600,20 +612,21 @@ Sprint schedule:
 | T2 Week 9-10  | Sprint 8                | Pushing to complete additional features from project requirement                  |
 | T2 Week 11-12 | Sprint 9                | Readying project for deployment and final release                                 |
 
-A more detailed version of the sprint schedule can be found in the following link. This includes the list of scrum masters and minute takers for each sprint. 
-* https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Project/Minute-and-Scrum-Master-Timetable
+A more detailed version of the sprint schedule can be found in the following link. This includes the list of scrum masters and minute takers for each sprint.
+
+<https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Project/Minute-and-Scrum-Master-Timetable>
 
 ### 5.2 Budget
 
 As all developers are unpaid, OpenRocket [3] is open-source software and we will be using open-source IDEs and development tools/tools provided by the University, no budget is required.
-We will ensure that any design and software choices take into account the lack of budget. 
+We will ensure that any design and software choices take into account the lack of budget.
 
-### 5.3 Risks 
+### 5.3 Risks
 
 | Risk                                                                                                                 | Likelihood | Impact       | Mitigation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------------- | ---------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Sickness or other incapacitation of a team member reducing their productivity and leading to deadlines not being met | High       | Tolerable    | As we are already at home in quarantine, we are already used to working remotely, and do not need to worry about spreading any sickness. In the case that a team member is too sick to work, we should be able to rearrange duties to cover the workload as it is a team of 6 developers, and it is likely that another team member has the skills required to cover the work. We will also make an effort to keep documentation of what has been done and what is being worked on, along with having weekly stand-up meetings to discuss what is being worked on, and to keep all team members updated on the current situation. |
-| The personal equipment of a team member failing (e.g. computers/internet/power loss)                                 | Moderate   | Serious      | As we are all working remotely, if a team member's personal equipment fails (such as desktop/laptop), we will have to work without them until repairs can be made. As a team of 6, we should be able to reassign duties to cover the workload between the remaining members. If a more uncontrollable event happens, such as a powercut/loss of power, or loss of internet, to mitigate the loss of work, we will make sure to commit often so that all completed work is accessible to team members.                                                                                                                             |
+| The personal equipment of a team member failing (e.g. computers/internet/power loss)                                 | Moderate   | Serious      | As we are all working remotely, if a team member's personal equipment fails (such as desktop/laptop), we will have to work without them until repairs can be made. As a team of 6, we should be able to reassign duties to cover the workload between the remaining members. If a more uncontrollable event happens, such as a power-cut/loss of power, or loss of internet, to mitigate the loss of work, we will make sure to commit often so that all completed work is accessible to team members.                                                                                                                             |
 | Changes to the project requirements requiring minor reworks of the system                                            | Moderate   | Tolerable    | We will maintain regular contact with the customer to ensure that we are aware and understand the customer’s needs and requirements, to avoid misunderstanding the project requirements. We will keep our program as flexible as possible, to ensure that changes to the requirements do not require large changes to our system.                                                                                                                                                                                                                                                                                                 |
 | Improper use of computer equipment resulting in injury                                                               | High       | Serious      | We will ensure that all group members take regular breaks to stretch, walk around, and rest their eyes, to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI).                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | External tools failing to provide expected functionality (e.g. OpenRocket)                                           | Moderate   | Serious      | Before beginning to use any tool, the team will research the tool to ensure that it will provide the functionality we need and that we understand the capabilities provided by the tool.                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -628,12 +641,11 @@ We will ensure that any design and software choices take into account the lack o
 To manage computer-related risks, all team members will take regular breaks (standing up, walking around, stretching, resting eyes, etc.), to avoid Occupational Overuse Syndrome (OOS) and Repetitive Strain Injury (RSI).
 We will ensure deadlines are realistic and allow time to take breaks as appropriate. Each team member will make the best effort possible to arrange their workspace ergonomically. The team will discuss and provide resources on how to accomplish this. One such resource is the Wiki page 'Ergonomics and Safe Computer Usage' [4], available in the Other section of the project Wikis.
 
-All work will be done remotely at each team member's place of residence. The project will not require work at any external workplaces/sites, and so will not require any Health and Safety inductions. 
+All work will be done remotely at each team member's place of residence. The project will not require work at any external workplaces/sites, and so will not require any Health and Safety inductions.
 
 The project will not require any human or animal experimentation.
 
 Any incidents will be reported to the Victoria University of Wellington Safety Officer (Roger Cliffe - ecs-safety@ecs.vuw.ac.nz), Head of School Stuart Marshall, and Course Coordinator Aaron Chen in accordance with the Project Management Health and Safety Guide [5].
-
 
 #### 5.4.1 Safety Plans
 
@@ -641,7 +653,7 @@ The project is purely software, therefore project requirements do not involve ri
 
 ## 6. Appendices
 
-### 6.1 Assumptions and dependencies 
+### 6.1 Assumptions and dependencies
 
 ### 6.2 Acronyms and abbreviations
 
