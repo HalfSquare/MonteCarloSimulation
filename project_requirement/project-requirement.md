@@ -94,19 +94,19 @@ There are also possible limitations of the final product:
 
 ## 2. References
 
-\[1\] A. Pace, "Monte Carlo Simulation", May, 2020. [Online]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/Monte-Carlo-Simulation>. [Accessed May. 20, 2020].
+\[1\] A. Pace, "Monte Carlo Simulation", May, 2020. \[Online\]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/Monte-Carlo-Simulation>. \[Accessed May. 20, 2020\].
 
-\[2\] A. Geldenhuis, "Rocket Project Intro", Date unknown. [Online]. Available: <https://andre-geldenhuis.github.io/rocket-intro-2020-slides/index.html>. [Accessed May. 20, 2020].
+\[2\] A. Geldenhuis, "Rocket Project Intro", Date unknown. \[Online\]. Available: <https://andre-geldenhuis.github.io/rocket-intro-2020-slides/index.html>. \[Accessed May. 20, 2020\].
 
-\[3\] M. Behan, "OpenRocket - Extending OpenRocket", May, 2020. [Online]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/OpenRocket>. [Accessed May. 20, 2020].
+\[3\] M. Behan, "OpenRocket - Extending OpenRocket", May, 2020. \[Online\]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Research/OpenRocket>. \[Accessed May. 20, 2020\].
 
-\[4\] G. Strongman, "Ergonomics and Safe Computer Usage", May, 2020. [Online]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Other/Ergonomics-and-Safe-Computer-Usage>. [Accessed May. 20, 2020].
+\[4\] G. Strongman, "Ergonomics and Safe Computer Usage", May, 2020. \[Online\]. Available: <https://gitlab.ecs.vuw.ac.nz/course-work/engr300/2020/group15/group-15/-/wikis/Other/Ergonomics-and-Safe-Computer-Usage>. \[Accessed May. 20, 2020\].
 
-\[5\] Victoria University of Wellington, "Project Management - Health and Safety", 2020. [Online]. Available: <https://ecs.wgtn.ac.nz/Courses/ENGR301_2020T1/HealthAndSafety>. [Accessed May. 22, 2020].
+\[5\] Victoria University of Wellington, "Project Management - Health and Safety", 2020. \[Online\]. Available: <https://ecs.wgtn.ac.nz/Courses/ENGR301_2020T1/HealthAndSafety>. \[Accessed May. 22, 2020\].
 
-\[6\] Quinlan, B., 2015. Dimensional Analysis: How Many Monte Carlo Simulations Should I Run? Part 2. [online] Blog.3dcs.com. Available at: <https://blog.3dcs.com/dimensional-analysis-how-many-monte-carlo-simulations-should-i-run> [Accessed 3 June 2020].
+\[6\] Quinlan, B., 2015. Dimensional Analysis: How Many Monte Carlo Simulations Should I Run? Part 2. \[Online\] Blog.3dcs.com. Available at: <https://blog.3dcs.com/dimensional-analysis-how-many-monte-carlo-simulations-should-i-run> \[Accessed 3 June 2020\].
 
-## 3. Specific requirements  
+## 3. Specific requirements
 
 20 pages outlining the requirements of the system. You should apportion these pages across the following subsections to focus on the most important parts of your product.
 
