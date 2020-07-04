@@ -23,7 +23,7 @@ _Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 <!-- This looks very messed up currently, but once it is properly filled in, it should appear as a table. -->
 Ticket Number| Ticket Name | Person | Description
----- | ---- | ---- | ----
+---- | ---- | ---- | ---- 
 Completes: #1| Write team contract | Justina Koh | • This is the team contract <br>• This is bound by law <br>• Everyone must sign this <br>
 <!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br>
 <!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
@@ -31,23 +31,19 @@ Completes: #1| Write team contract | Justina Koh | • This is the team contract
 
 
 ## Discussion Items
-Item | Who | Notes |
----- | ---- | ---- |
-item | who | notes |
+Item | Title | Person | Notes |
+---- | ---- | ---- | ---- |
+#22 | We may have issues with unicorns later | Justina Koh | • Alex has been making lots of unicorns<br>• They might esacpe later<br>• This could be very dangerous for our GUI<br>|
+item | title | who | notes |
+item | title | who | notes |
 
-## Tasks Introduced:
-Ticket Number| Ticket Name | Person | Description
----- | ---- | ---- | ----
-Created: #54| Implement graphical display of data | Justina Koh | • This should address the bug in our GUI <br>• The bug consists of the GUI appearing rainbow coloured <br>• I think Max caused this issue when he added in unicorn functionality <br>
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br>
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
-
-
-## Action Items
-| Done? | Item | Responsible | Due Date |
-| ---- | ---- | ---- | ---- |
-| | item | who | due_date |
+## Tasks To Be Done:
+Ticket Number| Ticket Name | Person | Description | Date to Complete By
+---- | ---- | ---- | ---- | ----
+Created: #54| Implement graphical display of data | Justina Koh | • This should address the bug in our GUI <br>• The bug consists of the GUI appearing rainbow coloured <br>• I think Max caused this issue when he added in unicorn functionality <br> | 20/10/2024
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
 
 ## Other Notes & Information
 N/A
