@@ -30,18 +30,18 @@ Completes: #1| Write team contract | Justina Koh | • This is the team contract
 <!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
 
 
-
 ## Discussion Items
 Item | Who | Notes |
 ---- | ---- | ---- |
 item | who | notes |
 
-## Tasks introduced:
-
-Ticket Number| Person |Item | Description
+## Tasks Introduced:
+Ticket Number| Ticket Name | Person | Description
 ---- | ---- | ---- | ----
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | username | • <br>• <br>• <br>• <br>• 
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | username | • <br>• <br>• <br>• <br>• 
+Created: #54| Implement graphical display of data | Justina Koh | • This should address the bug in our GUI <br>• The bug consists of the GUI appearing rainbow coloured <br>• I think Max caused this issue when he added in unicorn functionality <br>
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br>
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
 
 
 ## Action Items
