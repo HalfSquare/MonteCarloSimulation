@@ -7,7 +7,7 @@
 
 ## Attendees
 <!-- Please put the scrum master and the minute taker at the top of the list in bold -->
-<!-- Delete whoever did not attend the meeting-->
+<!-- Delete whoever did not attend the meeting and make sure to add the scrum master and minute taker to the correct headings, and remove them from the list-->
 _Scrum Master:_  
 _Minute Taker:_  
 _Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
@@ -17,6 +17,19 @@ _Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
 - Justina Koh &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@kohjust
 - Max McMurray &nbsp; &nbsp; &nbsp; &nbsp; @mcmurrmax 
 - Michael Behan &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@behanmich 
+
+
+## Tasks done:
+<!-- The first line is an example of how it should be filled out. Please delete. -->
+<!-- This looks very messed up currently, but once it is properly filled in, it should appear as a table. -->
+Ticket Number| Ticket Name | Person | Description
+---- | ---- | ---- | ----
+Completes: #1| Write team contract | Justina Koh | • This is the team contract <br>• This is bound by law <br>• Everyone must sign this <br>
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br>
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
+<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
+
+
 
 ## Discussion Items
 Item | Who | Notes |
