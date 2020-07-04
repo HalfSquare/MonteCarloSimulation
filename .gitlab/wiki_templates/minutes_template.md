@@ -21,13 +21,21 @@ _Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
 
 ## Tasks done:
 <!-- The first line is an example of how it should be filled out. Please delete. -->
-<!-- This looks very messed up currently, but once it is properly filled in, it should appear as a table. -->
 Ticket Number| Ticket Name | Person | Description
 ---- | ---- | ---- | ---- 
 Completes: #1| Write team contract | Justina Koh | • This is the team contract <br>• This is bound by law <br>• Everyone must sign this <br>
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br>
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> 
+: #| ---- | Name | • <br>• <br>• <br>• <br>
+: #| ---- | Name | • <br>• <br>• <br>• <br> 
+: #| ---- | Name | • <br>• <br>• <br>• <br> 
+
+
+## Tasks To Be Done:
+Ticket Number| Ticket Name | Person | Description | Date to Complete By
+---- | ---- | ---- | ---- | ----
+Created: #54| Implement graphical display of data | Justina Koh | • This should address the bug in our GUI <br>• The bug consists of the GUI appearing rainbow coloured <br>• I think Max caused this issue when he added in unicorn functionality <br> | 20/10/2024
+: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
+: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
+: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
 
 
 ## Discussion Items
@@ -37,13 +45,6 @@ Item | Title | Person | Notes |
 item | title | who | notes |
 item | title | who | notes |
 
-## Tasks To Be Done:
-Ticket Number| Ticket Name | Person | Description | Date to Complete By
----- | ---- | ---- | ---- | ----
-Created: #54| Implement graphical display of data | Justina Koh | • This should address the bug in our GUI <br>• The bug consists of the GUI appearing rainbow coloured <br>• I think Max caused this issue when he added in unicorn functionality <br> | 20/10/2024
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
-<!--  Fixes / Completes /etc. -->: #<!-- issue no.-->| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
 
 ## Other Notes & Information
 N/A
