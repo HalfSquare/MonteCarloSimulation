@@ -1,9 +1,8 @@
 # Meeting Minutes
 ## Meeting Information
-**Meeting Date/Time:** meeting_date, meeting_time  
-**Meeting Purpose:** meeting_purpose  
-**Meeting Location:** meeting_location  
-**Note Taker:** note_taker  
+**Meeting Date/Time:** &nbsp; meeting_date, meeting_time  
+**Meeting Purpose:** &nbsp; &nbsp; &nbsp; meeting_purpose  
+**Meeting Location:** &nbsp; &nbsp; &nbsp;meeting_location  
 
 ## Attendees
 <!-- Please put the scrum master and the minute taker at the top of the list in bold -->
