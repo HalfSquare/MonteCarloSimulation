@@ -24,9 +24,11 @@ _Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
 
 
 ## Questions:
-**Question 1:** This sheet is designed to promote good conversation. Team members should be seated evenly around the sheet so that each question can be read by at least one person easily. Do one question at a time, skip questions if you like. the person closest to the question should read out the question and the _minute taker_ should take notes of the discussion. Each person should get a chance to read and note at least one question. 
+**Question 1:** Starting Point:
 
-_Does everyone agree to this?_   yes / no
+This sheet is designed to promote good conversation. Team members should be seated evenly around the sheet so that each question can be read by at least one person easily. Do one question at a time, skip questions if you like. The person closest to the question should read out the question and the _minute taker_ should take notes of the discussion. Each person should get a chance to read and note at least one question. 
+
+_Does everyone agree to this?_ &nbsp; **yes / no**
 
 **Question 2:** Set up:
 
@@ -42,6 +44,15 @@ Question | Time
 8: Stop | ---- 
 9: Do different | ---- 
 10: Action Plan | ---- 
+
+**Question 3:** Set up:
+
+Kerth's Prime Directive states that regardless of what we discover, we must understand and truly believe that everyone did the best job he or she could, given what was known at the time, his or her skills and abilities, the resources avaiable and the situation at hand. 
+
+The aim of this sheet (and retro) is to find the better way of working, not to apportion blame. Focus on the cause of the problems and not the individuals involved. 
+
+
+_Does everyone agree to follow Kerth's Prime Directive while working on this sheet?_ &nbsp; **yes/no**
 
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
