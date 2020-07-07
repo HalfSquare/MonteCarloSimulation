@@ -98,7 +98,14 @@ Getting 2 alpacas | • The alpacas will be called Carlos and Miranda <br>• So
 Date (if applicable) | Events | Description (if needed)
 Date (if applicable) | Events | Description (if needed)
 
+**Question 8:** Stop:
+Is there anything that you should stop doing?
 
+Idea to get rid of | Description | Number of people for getting rid of it |
+---- | ---- | ---- | 
+Being stressed | • Stress is so bad<br>• We need to increase our serotonin levels<br> | 6 people 
+Date (if applicable) | Events | Description (if needed)
+Date (if applicable) | Events | Description (if needed)
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the things that we have discussed in the meeting today.
