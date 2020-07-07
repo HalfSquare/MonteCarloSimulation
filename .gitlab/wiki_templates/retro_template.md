@@ -54,6 +54,19 @@ The aim of this sheet (and retro) is to find the better way of working, not to a
 
 _Does everyone agree to follow Kerth's Prime Directive while working on this sheet?_ &nbsp; **yes/no**
 
+**Question 4:** Create a timeline:
+
+Create a timeline for the sprint that you are considering in the table below.
+
+Mark the start and end of the sprint (iteration), then mark significant and memorable events.
+
+Date | Event(s) | Description | Notes |
+---- | ---- | ---- | ---- |
+22/12/2020 | Start Sprint | ---- | • Our rocket exploded overnight with no warning<br>• Twas a sad sprint<br>• Serotonin levels are dangerously low<br>|
+Date (if applicable) | Events | Description (if needed) | Extra notes |
+Date (if applicable) | Events | Description (if needed) | Extra notes |
+2/2/2021 | End Sprint | ---- | 
+
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the things that we have discussed in the meeting today.
