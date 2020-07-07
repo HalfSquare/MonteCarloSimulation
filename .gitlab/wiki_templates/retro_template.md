@@ -87,6 +87,18 @@ List of difficulties:
 - Success 2
 - Success 3
 
+**Question 7:** Keep:
+Collectively make a lise of all the things you did which you want to keep doing. 
+
+Make a long list, include all ideas then quickly count (and record) how many of you agree with each idea.
+
+Idea to keep | Description | Number of people for keeping it |
+---- | ---- | ---- | 
+Getting 2 alpacas | • The alpacas will be called Carlos and Miranda <br>• So cute<br> | 6 people 
+Date (if applicable) | Events | Description (if needed)
+Date (if applicable) | Events | Description (if needed)
+
+
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the things that we have discussed in the meeting today.
