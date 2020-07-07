@@ -106,6 +106,17 @@ Idea to get rid of | Description | Number of people for getting rid of it |
 Being stressed | • Stress is so bad<br>• We need to increase our serotonin levels<br> | 6 people 
 Date (if applicable) | Events | Description (if needed)
 Date (if applicable) | Events | Description (if needed)
+
+**Question 9:** Do different:
+
+Make a list of things you could do differently next sprint to work better. Write the list on this sheet, include as many ideas as possible - at least four.
+
+What we could fix | Description 
+---- | ---- 
+Being stressed | • Stress is so bad<br>• We need to increase our serotonin levels<br> 
+Date (if applicable) | Events 
+Date (if applicable) | Events 
+
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the things that we have discussed in the meeting today.
