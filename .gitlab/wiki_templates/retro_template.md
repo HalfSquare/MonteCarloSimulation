@@ -67,6 +67,16 @@ Date (if applicable) | Events | Description (if needed) | Extra notes |
 Date (if applicable) | Events | Description (if needed) | Extra notes |
 2/2/2021 | End Sprint | ---- | 
 
+**Question 5:** Successes:
+<!-- The first line is an example of how it should be filled out. Please delete. -->
+
+What do you consider to be the greatest successes of this sprint?
+
+List of successes:
+- NASA callled us because they wanted our Rocket program
+- Success 2
+- Success 3
+
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the things that we have discussed in the meeting today.
