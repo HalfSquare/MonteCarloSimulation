@@ -117,6 +117,17 @@ Being stressed | • Stress is so bad<br>• We need to increase our serotonin l
 Date (if applicable) | Events 
 Date (if applicable) | Events 
 
+**Question 10:** Action Plan:
+
+From the lists in #8 and #9 choose 3 things you will do, or not do, to make the next piece of work better?
+
+Ideas | Will we do it? | How will it make the next sprint better?
+---- | ---- | ---- 
+Being stressed | • Stress is so bad<br>• We need to increase our serotonin levels<br> | ---- 
+Date (if applicable) | Events | ---- 
+Date (if applicable) | Events | ---- 
+
+
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the things that we have discussed in the meeting today.
