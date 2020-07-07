@@ -4,6 +4,7 @@
 Disclaimer: Please note, this is _not_ the actual dialogue sheet. This is just another method to record what was said and done in the retro so that we can access the information easily if required.
 
 ## Meeting Information
+**Sprint Name and Number:** &nbsp; Sprint Number, Sprint name, Sprint start date - sprint end date   
 **Meeting Date/Time:** &nbsp; meeting_date, meeting_time  
 **Meeting Purpose:** &nbsp; &nbsp; &nbsp; meeting_purpose  
 **Meeting Location:** &nbsp; &nbsp; &nbsp;meeting_location  
@@ -22,30 +23,25 @@ _Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
 - Michael Behan &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@behanmich 
 
 
-## Tasks done:
-<!-- The first line is an example of how it should be filled out. Please delete. -->
-These are the tasks that have been completed since the task meeting.
+## Questions:
+**Question 1:** This sheet is designed to promote good conversation. Team members should be seated evenly around the sheet so that each question can be read by at least one person easily. Do one question at a time, skip questions if you like. the person closest to the question should read out the question and the _minute taker_ should take notes of the discussion. Each person should get a chance to read and note at least one question. 
 
-Ticket Number| Ticket Name | Person | Description
----- | ---- | ---- | ---- 
-Completes: #1| Write team contract | Justina Koh | • This is the team contract <br>• This is bound by law <br>• Everyone must sign this <br>
-: #| ---- | Name | • <br>• <br>• <br>• <br>
-: #| ---- | Name | • <br>• <br>• <br>• <br> 
-: #| ---- | Name | • <br>• <br>• <br>• <br> 
+_Does everyone agree to this?_   yes / no
 
+**Question 2:** Set up:
 
-## Tasks To Be Done:
-<!-- The first line is an example of how it should be filled out. Please delete. -->
-These are the tasks that we anticipate to be completed before the next meeting. 
+Agree how long we will be spending on this retro and write it below. Please also write approximately the amount of time that you will spend on each question. 
 
-
-Ticket Number| Ticket Name | Person | Description | Date to Complete By
----- | ---- | ---- | ---- | ----
-Created: #54| Implement graphical display of data | Justina Koh | • This should address the bug in our GUI <br>• The bug consists of the GUI appearing rainbow coloured <br>• I think Max caused this issue when he added in unicorn functionality <br> | 20/10/2024
-: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
-: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
-: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
-
+Question | Time 
+---- | ---- 
+3: Set up | ----
+4: Create a timeline | ---- 
+5: Successes| ---- 
+6: Difficulties | ---- 
+7: Keep | ---- 
+8: Stop | ---- 
+9: Do different | ---- 
+10: Action Plan | ---- 
 
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
