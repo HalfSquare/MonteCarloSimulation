@@ -77,6 +77,16 @@ List of successes:
 - Success 2
 - Success 3
 
+
+**Question 6:** Successes:
+What difficulties did you encounter during this sprint?
+
+Record the difficulties on the timeline of elsewhere on the sheet.
+List of difficulties:
+- NASA callled us because they wanted our Rocket program
+- Success 2
+- Success 3
+
 ## Discussion Items
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the things that we have discussed in the meeting today.
