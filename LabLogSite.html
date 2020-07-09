@@ -4,43 +4,42 @@
 	<script>
 	 window.onload = function() {
 	 	document.getElementById("submit").onclick = function() {
-	 		var token = "";
-	 		var projectID = "";
-	 		var originalContent = "";
-	 		var contentArray;
-	 		var name = "";
-	 		var pageSlug = "";
+            let token = "";
+            let projectID = "";
+	 		let originalContent = "";
+	 		let contentArray;
+	 		let name = "";
+	 		let pageSlug = "";
 	 		let username = document.getElementById("username").value
 	 		let password = document.getElementById("password").value
-	 		var x = 'grant_type=password&username=' + username + '&password=' + password;
-	 		var table;
-	 		var body = document.getElementsByTagName("body")[0];
+	 		let x = 'grant_type=password&username=' + username + '&password=' + password;
+	 		let table;
+	 		let body = document.getElementsByTagName("body")[0];
 
-	 		var projectsPageNumber = 1;
+	 		let projectsPageNumber = 1;
 
-	 		var label = document.createElement("label");
+	 		let label = document.createElement("label");
 			label.id = "label";
 			label.innerHTML = "Logging into gitlab...";
-		   	if (body.children.length == 1) {
+		   	if (body.children.length === 1) {
 				body.appendChild(label);
 			}	
 
 	 		// Use cors-anywhere free service to bypass cross-origin requests
-			var proxy = 'https://cors-anywhere.herokuapp.com/';
-	 		var Url = "https://gitlab.ecs.vuw.ac.nz/oauth/token";
-	 		var xhr = new XMLHttpRequest();
-	 		var xhr2 = new XMLHttpRequest();
-	 		var xhr3 = new XMLHttpRequest();
-	 		var xhr4 = new XMLHttpRequest();
-	 		var xhr5 = new XMLHttpRequest();
+			let proxy = 'https://cors-anywhere.herokuapp.com/';
+	 		let Url = "https://gitlab.ecs.vuw.ac.nz/oauth/token";
+	 		let xhr = new XMLHttpRequest();
+	 		let xhr2 = new XMLHttpRequest();
+	 		let xhr3 = new XMLHttpRequest();
+	 		let xhr4 = new XMLHttpRequest();
+	 		let xhr5 = new XMLHttpRequest();
 	 		xhr.open('POST', proxy + Url, true);
 			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
 			xhr.send(x);
 			xhr.onreadystatechange = processRequest;
 			 
-			function processRequest(e) {
-
-				if (xhr.readyState == 4 && xhr.status == 200) {
+			function processRequest() {
+				if (xhr.readyState === 4 && xhr.status === 200) {
 					var response1 = JSON.parse(xhr.responseText);
 					token = response1.access_token;
 					let userInfoURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/users?username=" + username;
@@ -52,7 +51,7 @@
 					button.innerHTML = "Log lab arrival";
 					button.style.width = '200px';
 					button.style.height = '100px';
-					if (body.children.length == 2) {
+					if (body.children.length === 2) {
 						body.appendChild(button);
 					}
 					button.addEventListener ("click", function() {
@@ -62,7 +61,7 @@
 					button2.innerHTML = "Log lab leave";
 					button2.style.width = '200px';
 					button2.style.height = '100px';
-					if (body.children.length == 3) {
+					if (body.children.length === 3) {
 						body.appendChild(button2);
 					}
 					button2.addEventListener ("click", function() {
@@ -72,10 +71,9 @@
 	 		}
 
 	 		function userInfo() {
-	 			if (xhr2.readyState == 4 && xhr2.status == 200) {
+	 			if (xhr2.readyState === 4 && xhr2.status === 200) {
 	 				label.innerHTML = "Retrieving lab log table for your group...";
 		 			const data = JSON.parse(xhr2.responseText);
-		 			let id = data[0].id
 		 			name = data[0].name;
 		 			let projectsUrl = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects";
 		 			xhr3.open('GET', projectsUrl, true);
@@ -96,13 +94,13 @@
 	 		}
 
 	 		function allProjects() {
-	 			if (xhr3.readyState == 4 && xhr3.status == 200) {
+	 			if (xhr3.readyState === 4 && xhr3.status === 200) {
 	 				const data = JSON.parse(xhr3.responseText);
 	 				console.log(data)
 	 				var newArray = data.filter(function (el) {
   						return el["namespace"].full_path.includes("engr300");
   					})
-  					if (newArray.length == 0) {
+  					if (newArray.length === 0) {
   						projectsPageNumber += 1;
   						getProjectsNextPage();
   						return;
@@ -118,7 +116,7 @@
 	 		}
 
 	 		function wikiPages() {
-	 			if (xhr4.readyState == 4 && xhr4.status == 200) {
+	 			if (xhr4.readyState === 4 && xhr4.status === 200) {
 	 				const data = JSON.parse(xhr4.responseText);
 	 				console.log(data);
 	 				var newArray = data.filter(function (el) {
@@ -127,7 +125,7 @@
   					pageSlug = newArray[0].slug;
 	 				let content = newArray[0].content;
 					contentArray = content.split("\n");
-					if (originalContent == "") {
+					if (originalContent === "") {
 						originalContent = content;
 					}
 	 				table = document.getElementById("myTable");
@@ -147,12 +145,11 @@
 	 		}
 
 	 		function labLogPageAddLog() {
-	 			let sessionNumber = 0;
 	 			label.innerHTML = "Adding new lab log to your groups wiki page...";
-	 			var firstName = name.split(" ")[0];
-	 			var emptyIndex;
-	 			var index;
-	 			//Checks if space is available for new log
+                const firstName = name.split(" ")[0];
+                let emptyIndex;
+                let index;
+                //Checks if space is available for new log
 	 			for(index = contentArray.length-1; index > 0; index--) {
 	 				var lineStr = contentArray[index].toLowerCase();
 	 				if (lineStr.includes("--: |")) {
@@ -166,7 +163,7 @@
 	 					addNewSession();
 	 					return;
 	 				}
-	 				else if (lineStr.replace(/ /g, '') == "||||||") {
+	 				else if (lineStr.replace(/ /g, '') === "||||||") {
 	 					emptyIndex = index;
 	 				}
 	 			}
@@ -180,9 +177,9 @@
 	 		}
 
 	 		function addNewSession() {
-	 			for (i = contentArray.length-1; i > 0; i--) {
- 					var lineStr = contentArray[i].toLowerCase();
- 					if (lineStr.includes("lab session")) {
+	 			for (let i = contentArray.length-1; i > 0; i--) {
+                    const lineStr = contentArray[i].toLowerCase();
+                    if (lineStr.includes("lab session")) {
  						let session = lineStr.match(/(\d+)/);
  						let sessionNumber = parseInt(session[0]);
  						let contentLength = contentArray.length;
@@ -190,13 +187,13 @@
  						contentArray[contentLength+1] = "| Lab date | Lab time (morning/afternoon) | Person | Arrive time | Departure time |";
  						contentArray[contentLength+2] = "| -------- | :--------------------------: | -----: | ----------- | -------------- |";
  						contentLength += 2;
- 						for (index=1; index <=6; index++) {
+ 						for (let index=1; index <=6; index++) {
  							contentArray[contentLength+index] = "||||||";
  						}
  						contentArray[contentLength+7] = "";
- 						var firstName = name.split(" ")[0];
- 						var date = new Date();
-		 				let month = (date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
+                        const firstName = name.split(" ")[0];
+                        const date = new Date();
+                        let month = (date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
 		 				let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
 		 				let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
 		 				let arrivalTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
@@ -209,11 +206,11 @@
 
 	 		function labLogLeave() {
 	 			label.innerHTML = "Adding time left lab to your groups wiki page...";
-	 			var index;
-	 			var firstName = name.split(" ")[0];
-	 			for (i = contentArray.length-1; i > 0; i--) {
- 					var lineStr = contentArray[i].toLowerCase();
- 					if (lineStr.includes("lab session")) {
+                let index;
+                const firstName = name.split(" ")[0];
+                for (let i = contentArray.length-1; i > 0; i--) {
+                    const lineStr = contentArray[i].toLowerCase();
+                    if (lineStr.includes("lab session")) {
  						return;
  					}
  					else if (lineStr.includes(firstName.toLowerCase())) {
@@ -221,11 +218,10 @@
  						break;
  					}
  				}
- 				var date = new Date();
- 				let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+                const date = new Date();
+                let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
  				let log = contentArray[index];
- 				let leaveLog = log.slice(0, -1) + time + " |";
- 				contentArray[index] = leaveLog;
+                contentArray[index] = log.slice(0, -1) + time + " |";
  				publishWikiPageEdit(contentArray.join("\n"));
 	 		}
 
@@ -235,8 +231,8 @@
 				xhr5.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
 				xhr5.setRequestHeader("Authorization", "Bearer " + token);
 				xhr5.send("content="+content);
-				xhr5.onreadystatechange = function(){
-					if (xhr5.readyState == 4 && xhr5.status == 200) {
+				xhr5.onreadystatechange = function() {
+					if (xhr5.readyState === 4 && xhr5.status === 200) {
 						label.innerHTML = "";
 						let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
 						xhr4.open('GET', wikiURL, true);
@@ -244,12 +240,12 @@
 						xhr4.setRequestHeader("Authorization", "Bearer " + token);
 						xhr4.send();
 						xhr4.onreadystatechange = wikiPages;
-						var button = document.createElement("button");
-						button.innerHTML = "Undo";
+                        const button = document.createElement("button");
+                        button.innerHTML = "Undo";
 						button.style.width = '200px';
 						button.style.height = '100px';
-						var body = document.getElementsByTagName("body")[0];
-						if (body.childElementCount == 4) {
+                        const body = document.getElementsByTagName("body")[0];
+                        if (body.childElementCount === 4) {
 							body.appendChild(button);
 						}
 						button.addEventListener ("click", function() {
@@ -270,11 +266,11 @@
 	Log in to gitlab
 <br><br>
   <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" id="username" required>
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" id="username" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="password" required>
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
     <button type="submit" id="submit">Login</button>
   </div>
