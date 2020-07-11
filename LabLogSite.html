@@ -1,282 +1,309 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script>
-	 window.onload = function() {
-	 	document.getElementById("submit").onclick = function() {
+    <script>
+        window.onload = function () {
+
             let token = "";
             let projectID = "";
-	 		let originalContent = "";
-	 		let contentArray;
-	 		let name = "";
-	 		let pageSlug = "";
-	 		let username = document.getElementById("username").value
-	 		let password = document.getElementById("password").value
-	 		let x = 'grant_type=password&username=' + username + '&password=' + password;
-	 		let table;
-	 		let body = document.getElementsByTagName("body")[0];
+            let originalContent = "";
+            let contentArray;
+            let name = "";
+            let pageSlug = "";
+            let table;
+            let body;
+            let username;
+            let label;
 
-	 		let projectsPageNumber = 1;
+            let projectsPageNumber = 1;
 
-	 		let label = document.createElement("label");
-			label.id = "label";
-			label.innerHTML = "Logging into gitlab...";
-		   	if (body.children.length === 1) {
-				body.appendChild(label);
-			}	
+            let xhr = new XMLHttpRequest();
 
-	 		// Use cors-anywhere free service to bypass cross-origin requests
-			let proxy = 'https://cors-anywhere.herokuapp.com/';
-	 		let Url = "https://gitlab.ecs.vuw.ac.nz/oauth/token";
-	 		let xhr = new XMLHttpRequest();
-	 		let xhr2 = new XMLHttpRequest();
-	 		let xhr3 = new XMLHttpRequest();
-	 		let xhr4 = new XMLHttpRequest();
-	 		let xhr5 = new XMLHttpRequest();
-	 		xhr.open('POST', proxy + Url, true);
-			xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-			xhr.send(x);
-			xhr.onreadystatechange = processRequest;
-			 
-			function processRequest() {
-				if (xhr.readyState === 4 && xhr.status === 200) {
-					var response1 = JSON.parse(xhr.responseText);
-					token = response1.access_token;
-					let userInfoURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/users?username=" + username;
-					xhr2.open('GET', userInfoURL, true);
-					xhr2.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-					xhr2.send();
-					xhr2.onreadystatechange = userInfo;
-					var button = document.createElement("button");
-					button.innerHTML = "Log lab arrival";
-					button.style.width = '200px';
-					button.style.height = '100px';
-					if (body.children.length === 2) {
-						body.appendChild(button);
-					}
-					button.addEventListener ("click", function() {
-						labLogPageAddLog();
-					});
-					var button2 = document.createElement("button");
-					button2.innerHTML = "Log lab leave";
-					button2.style.width = '200px';
-					button2.style.height = '100px';
-					if (body.children.length === 3) {
-						body.appendChild(button2);
-					}
-					button2.addEventListener ("click", function() {
-						labLogLeave();
-					});
-	 			}
-	 		}
+            document.getElementById("submit").onclick = function () {
+                username = document.getElementById("username").value
+                let password = document.getElementById("password").value
+                let requestParam = 'grant_type=password&username=' + username + '&password=' + password;
+                body = document.getElementsByTagName("body")[0];
 
-	 		function userInfo() {
-	 			if (xhr2.readyState === 4 && xhr2.status === 200) {
-	 				label.innerHTML = "Retrieving lab log table for your group...";
-		 			const data = JSON.parse(xhr2.responseText);
-		 			name = data[0].name;
-		 			let projectsUrl = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects";
-		 			xhr3.open('GET', projectsUrl, true);
-					xhr3.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-					xhr3.setRequestHeader("Authorization", "Bearer " + token);
-					xhr3.send();
-					xhr3.onreadystatechange = allProjects;
-				}
-	 		}
+                label = document.createElement("label");
+                label.id = "label";
+                label.innerHTML = "Logging into gitlab...";
+                if (body.children.length === 1) {
+                    body.appendChild(label);
+                }
 
-	 		function getProjectsNextPage() {
-	 			let projectsUrl = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects?page="+projectsPageNumber;
-	 			xhr3.open('GET', projectsUrl, true);
-				xhr3.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-				xhr3.setRequestHeader("Authorization", "Bearer " + token);
-				xhr3.send();
-				xhr3.onreadystatechange = allProjects;
-	 		}
+                // Use cors-anywhere free service to bypass cross-origin requests
+                let proxy = 'https://cors-anywhere.herokuapp.com/';
+                let url = "https://gitlab.ecs.vuw.ac.nz/oauth/token";
+                xhr.open('POST', proxy + url, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                xhr.send(requestParam);
+                xhr.onreadystatechange = processRequest;
+            }
 
-	 		function allProjects() {
-	 			if (xhr3.readyState === 4 && xhr3.status === 200) {
-	 				const data = JSON.parse(xhr3.responseText);
-	 				console.log(data)
-	 				var newArray = data.filter(function (el) {
-  						return el["namespace"].full_path.includes("engr300");
-  					})
-  					if (newArray.length === 0) {
-  						projectsPageNumber += 1;
-  						getProjectsNextPage();
-  						return;
-  					}
-					projectID = newArray[0]["id"];
-					let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
-					xhr4.open('GET', wikiURL, true);
-					xhr4.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-					xhr4.setRequestHeader("Authorization", "Bearer " + token);
-					xhr4.send();
-					xhr4.onreadystatechange = wikiPages;
-	 			}
-	 		}
+            function processRequest() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const response1 = JSON.parse(xhr.responseText);
+                        token = response1["access_token"];
+                        let userInfoURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/users?username=" + username;
+                        xhr = new XMLHttpRequest();
+                        xhr.open('GET', userInfoURL, true);
+                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                        xhr.send();
+                        xhr.onreadystatechange = userInfo;
+                        const button = document.createElement("button");
+                        button.innerHTML = "Log lab arrival";
+                        button.style.width = '200px';
+                        button.style.height = '100px';
+                        if (body.children.length === 2) {
+                            body.appendChild(button);
+                        }
+                        button.addEventListener("click", function () {
+                            labLogPageAddLog();
+                        });
+                        const button2 = document.createElement("button");
+                        button2.innerHTML = "Log lab leave";
+                        button2.style.width = '200px';
+                        button2.style.height = '100px';
+                        if (body.children.length === 3) {
+                            body.appendChild(button2);
+                        }
+                        button2.addEventListener("click", function () {
+                            labLogLeave();
+                        });
+                    } else {
+                        label.innerHTML = xhr.statusText;
+                    }
+                }
+            }
 
-	 		function wikiPages() {
-	 			if (xhr4.readyState === 4 && xhr4.status === 200) {
-	 				const data = JSON.parse(xhr4.responseText);
-	 				console.log(data);
-	 				var newArray = data.filter(function (el) {
-  						return el["title"].toLowerCase().includes("time log");
-  					})
-  					pageSlug = newArray[0].slug;
-	 				let content = newArray[0].content;
-					contentArray = content.split("\n");
-					if (originalContent === "") {
-						originalContent = content;
-					}
-	 				table = document.getElementById("myTable");
-	 				table.innerHTML = "";
-	 				for (i = 0; i < contentArray.length; i++) {
-	 					var row = table.insertRow(table.rows.length);
-						var cell = row.insertCell(0);
-						cell.innerHTML = contentArray[i];
-	 				}
-	 				document.documentElement.scrollTo({
-					  left: 0,
-					  top: document.documentElement.scrollHeight - document.documentElement.clientHeight,
-					  behavior: 'smooth'
-					});
-	 				label.innerHTML = "";
-	 			}
-	 		}
+            function userInfo() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        label.innerHTML = "Retrieving lab log table for your group...";
+                        const data = JSON.parse(xhr.responseText);
+                        name = data[0].name;
+                        let projectsUrl = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects";
+                        xhr = new XMLHttpRequest();
+                        xhr.open('GET', projectsUrl, true);
+                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                        xhr.send();
+                        xhr.onreadystatechange = allProjects;
+                    } else {
+                        label.innerHTML = xhr.statusText;
+                    }
+                }
+            }
 
-	 		function labLogPageAddLog() {
-	 			label.innerHTML = "Adding new lab log to your groups wiki page...";
+            function getProjectsNextPage() {
+                let projectsUrl = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects?page=" + projectsPageNumber;
+                xhr.open('GET', projectsUrl, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+                xhr.send();
+                xhr.onreadystatechange = allProjects;
+            }
+
+            function allProjects() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const data = JSON.parse(xhr.responseText);
+                        console.log(data)
+                        const newArray = data.filter(function (el) {
+                            return el["namespace"]["full_path"].includes("engr300");
+                        });
+                        if (newArray.length === 0) {
+                            projectsPageNumber += 1;
+                            getProjectsNextPage();
+                            return;
+                        }
+                        projectID = newArray[0]["id"];
+                        let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
+                        xhr = new XMLHttpRequest();
+                        xhr.open('GET', wikiURL, true);
+                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                        xhr.send();
+                        xhr.onreadystatechange = wikiPages;
+                    } else {
+                        label.innerHTML = xhr.statusText;
+                    }
+                }
+            }
+
+            function wikiPages() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const data = JSON.parse(xhr.responseText);
+                        console.log(data);
+                        const newArray = data.filter(function (el) {
+                            return el["title"].toLowerCase().includes("time log");
+                        });
+                        pageSlug = newArray[0]["slug"];
+                        let content = newArray[0].content;
+                        contentArray = content.split("\n");
+                        if (originalContent === "") {
+                            originalContent = content;
+                        }
+                        table = document.getElementById("myTable");
+                        table.innerHTML = "";
+                        for (let i = 0; i < contentArray.length; i++) {
+                            const row = table.insertRow(table.rows.length);
+                            const cell = row.insertCell(0);
+                            cell.innerHTML = contentArray[i];
+                        }
+                        document.documentElement.scrollTo({
+                            left: 0,
+                            top: document.documentElement.scrollHeight - document.documentElement.clientHeight,
+                            behavior: 'smooth'
+                        });
+                        label.innerHTML = "";
+                    } else {
+                        label.innerHTML = xhr.statusText;
+                    }
+                }
+            }
+
+            function labLogPageAddLog() {
+                label.innerHTML = "Adding new lab log to your groups wiki page...";
                 const firstName = name.split(" ")[0];
                 let emptyIndex;
                 let index;
-                //Checks if space is available for new log
-	 			for(index = contentArray.length-1; index > 0; index--) {
-	 				var lineStr = contentArray[index].toLowerCase();
-	 				if (lineStr.includes("--: |")) {
-	 					if (emptyIndex == null) {
-	 						addNewSession();
-	 						return;
-	 					}
-	 					break;
-	 				}
-	 				else if (lineStr.includes(firstName.toLowerCase())) {
-	 					addNewSession();
-	 					return;
-	 				}
-	 				else if (lineStr.replace(/ /g, '') === "||||||") {
-	 					emptyIndex = index;
-	 				}
-	 			}
- 				var date = new Date();
- 				let month = (date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
- 				let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
- 				let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
- 				let arrivalTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
- 				contentArray[emptyIndex] = "| "+labDate+" | "+labTime+" | "+firstName+" | "+arrivalTime+" | |";
- 				publishWikiPageEdit(contentArray.join("\n"));
-	 		}
+                // Checks if space is available for new log
+                for (index = contentArray.length - 1; index > 0; index--) {
+                    const lineStr = contentArray[index].toLowerCase();
+                    if (lineStr.includes("--: |")) {
+                        if (emptyIndex == null) {
+                            addNewSession();
+                            return;
+                        }
+                        break;
+                    } else if (lineStr.includes(firstName.toLowerCase())) {
+                        addNewSession();
+                        return;
+                    } else if (lineStr.replace(/ /g, '') === "||||||") {
+                        emptyIndex = index;
+                    }
+                }
+                const date = new Date();
+                let month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+                let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+                let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
+                let arrivalTime = date.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})
+                contentArray[emptyIndex] = "| " + labDate + " | " + labTime + " | " + firstName + " | " + arrivalTime + " | |";
+                publishWikiPageEdit(contentArray.join("\n"));
+            }
 
-	 		function addNewSession() {
-	 			for (let i = contentArray.length-1; i > 0; i--) {
+            function addNewSession() {
+                for (let i = contentArray.length - 1; i > 0; i--) {
                     const lineStr = contentArray[i].toLowerCase();
                     if (lineStr.includes("lab session")) {
- 						let session = lineStr.match(/(\d+)/);
- 						let sessionNumber = parseInt(session[0]);
- 						let contentLength = contentArray.length;
- 						contentArray[contentLength] = "#### Group Lab Session "+(sessionNumber+1);
- 						contentArray[contentLength+1] = "| Lab date | Lab time (morning/afternoon) | Person | Arrive time | Departure time |";
- 						contentArray[contentLength+2] = "| -------- | :--------------------------: | -----: | ----------- | -------------- |";
- 						contentLength += 2;
- 						for (let index=1; index <=6; index++) {
- 							contentArray[contentLength+index] = "||||||";
- 						}
- 						contentArray[contentLength+7] = "";
+                        let session = lineStr.match(/(\d+)/);
+                        let sessionNumber = parseInt(session[0]);
+                        let contentLength = contentArray.length;
+                        contentArray[contentLength] = "#### Group Lab Session " + (sessionNumber + 1);
+                        contentArray[contentLength + 1] = "| Lab date | Lab time (morning/afternoon) | Person | Arrive time | Departure time |";
+                        contentArray[contentLength + 2] = "| -------- | :--------------------------: | -----: | ----------- | -------------- |";
+                        contentLength += 2;
+                        for (let index = 1; index <= 6; index++) {
+                            contentArray[contentLength + index] = "||||||";
+                        }
+                        contentArray[contentLength + 7] = "";
                         const firstName = name.split(" ")[0];
                         const date = new Date();
-                        let month = (date.getMonth()+1) < 10 ? "0" + (date.getMonth()+1) : (date.getMonth()+1);
-		 				let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
-		 				let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
-		 				let arrivalTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
-		 				contentArray[contentLength+1] = "| "+labDate+" | "+labTime+" | "+firstName+" | "+arrivalTime+" | |";
-		 				publishWikiPageEdit(contentArray.join("\n"));
- 						break;
- 					}
-	 			}	
-	 		}
+                        let month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+                        let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+                        let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
+                        let arrivalTime = date.toLocaleString('en-US', {
+                            hour: 'numeric',
+                            minute: 'numeric',
+                            hour12: true
+                        })
+                        contentArray[contentLength + 1] = "| " + labDate + " | " + labTime + " | " + firstName + " | " + arrivalTime + " | |";
+                        publishWikiPageEdit(contentArray.join("\n"));
+                        break;
+                    }
+                }
+            }
 
-	 		function labLogLeave() {
-	 			label.innerHTML = "Adding time left lab to your groups wiki page...";
+            function labLogLeave() {
+                label.innerHTML = "Adding time left lab to your groups wiki page...";
                 let index;
                 const firstName = name.split(" ")[0];
-                for (let i = contentArray.length-1; i > 0; i--) {
+                for (let i = contentArray.length - 1; i > 0; i--) {
                     const lineStr = contentArray[i].toLowerCase();
                     if (lineStr.includes("lab session")) {
- 						return;
- 					}
- 					else if (lineStr.includes(firstName.toLowerCase())) {
- 						index = i;
- 						break;
- 					}
- 				}
+                        return;
+                    } else if (lineStr.includes(firstName.toLowerCase())) {
+                        index = i;
+                        break;
+                    }
+                }
                 const date = new Date();
-                let time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
- 				let log = contentArray[index];
+                let time = date.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})
+                let log = contentArray[index];
                 contentArray[index] = log.slice(0, -1) + time + " |";
- 				publishWikiPageEdit(contentArray.join("\n"));
-	 		}
+                publishWikiPageEdit(contentArray.join("\n"));
+            }
 
-	 		function publishWikiPageEdit(content) {
-	 			let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis/" + encodeURIComponent(pageSlug, "UTF-8");
-				xhr5.open('PUT', wikiURL, true);
-				xhr5.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-				xhr5.setRequestHeader("Authorization", "Bearer " + token);
-				xhr5.send("content="+content);
-				xhr5.onreadystatechange = function() {
-					if (xhr5.readyState === 4 && xhr5.status === 200) {
-						label.innerHTML = "";
-						let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
-						xhr4.open('GET', wikiURL, true);
-						xhr4.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-						xhr4.setRequestHeader("Authorization", "Bearer " + token);
-						xhr4.send();
-						xhr4.onreadystatechange = wikiPages;
-                        const button = document.createElement("button");
-                        button.innerHTML = "Undo";
-						button.style.width = '200px';
-						button.style.height = '100px';
-                        const body = document.getElementsByTagName("body")[0];
-                        if (body.childElementCount === 4) {
-							body.appendChild(button);
-						}
-						button.addEventListener ("click", function() {
-							label.innerHTML = "Reverting back to oringinal...";
-							publishWikiPageEdit(originalContent);
-						});
-					}
-				}
-	 		}
-
-	 	}
-	}
-	</script>
+            function publishWikiPageEdit(content) {
+                let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis/" + encodeURIComponent(pageSlug);
+                xhr = new XMLHttpRequest();
+                xhr.open('PUT', wikiURL, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+                xhr.send("content=" + content);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            label.innerHTML = "";
+                            let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
+                            xhr = new XMLHttpRequest();
+                            xhr.open('GET', wikiURL, true);
+                            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                            xhr.setRequestHeader("Authorization", "Bearer " + token);
+                            xhr.send();
+                            xhr.onreadystatechange = wikiPages;
+                            const button = document.createElement("button");
+                            button.innerHTML = "Undo";
+                            button.style.width = '200px';
+                            button.style.height = '100px';
+                            const body = document.getElementsByTagName("body")[0];
+                            if (body.childElementCount === 4) {
+                                body.appendChild(button);
+                            }
+                            button.addEventListener("click", function () {
+                                label.innerHTML = "Reverting back to original...";
+                                publishWikiPageEdit(originalContent);
+                            });
+                        } else {
+                            label.innerHTML = xhr.statusText;
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
 <body>
 <center>
-	Log in to gitlab
-<br><br>
-  <div class="container">
-    <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" id="username" required>
+    Log in to gitlab
+    <br><br>
+    <div class="container">
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" id="username" required>
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" id="password" required>
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-    <button type="submit" id="submit">Login</button>
-  </div>
- <br><br>
- <table border="1" id="myTable">
- </table>
- </center>
+        <button type="submit" id="submit">Login</button>
+    </div>
+    <br><br>
+    <table border="1" id="myTable">
+    </table>
+</center>
 </body>
 </html>
