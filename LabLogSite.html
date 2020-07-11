@@ -73,7 +73,7 @@
                             labLogLeave();
                         });
                     } else {
-                        label.innerHTML = xhr.statusText;
+                        label.innerHTML = xhr.statusText + ": Can't log in to gitlab account. Suggestion: If two-factor auth is on please turn off";
                     }
                 }
             }
@@ -120,11 +120,7 @@
                             return;
                         }
                         projectID = newArray[0]["id"];
-                        let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
-                        xhr = new XMLHttpRequest();
-                        xhr.open('GET', wikiURL, true);
-                        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-                        xhr.setRequestHeader("Authorization", "Bearer " + token);
+                        getLogTable();
                         xhr.send();
                         xhr.onreadystatechange = wikiPages;
                     } else {
@@ -133,67 +129,89 @@
                 }
             }
 
+            function getLogTable() {
+                let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
+                xhr = new XMLHttpRequest();
+                xhr.open('GET', wikiURL, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+            }
+
             function wikiPages() {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
-                        const data = JSON.parse(xhr.responseText);
-                        console.log(data);
-                        const newArray = data.filter(function (el) {
-                            return el["title"].toLowerCase().includes("time log");
-                        });
-                        pageSlug = newArray[0]["slug"];
-                        let content = newArray[0].content;
-                        contentArray = content.split("\n");
-                        if (originalContent === "") {
-                            originalContent = content;
-                        }
-                        table = document.getElementById("myTable");
-                        table.innerHTML = "";
-                        for (let i = 0; i < contentArray.length; i++) {
-                            const row = table.insertRow(table.rows.length);
-                            const cell = row.insertCell(0);
-                            cell.innerHTML = contentArray[i];
-                        }
-                        document.documentElement.scrollTo({
-                            left: 0,
-                            top: document.documentElement.scrollHeight - document.documentElement.clientHeight,
-                            behavior: 'smooth'
-                        });
-                        label.innerHTML = "";
+                        parseAndDisplayLogTable(xhr.responseText, false);
                     } else {
                         label.innerHTML = xhr.statusText;
                     }
                 }
             }
 
+            function parseAndDisplayLogTable(responseText, setOriginal) {
+                const data = JSON.parse(responseText);
+                console.log(data);
+                const newArray = data.filter(function (el) {
+                    return el["title"].toLowerCase().includes("time log");
+                });
+                if (newArray.length === 0) {
+                    label.innerHTML = "Error: Could not find wiki page containing 'time log' in title"
+                    return;
+                }
+                pageSlug = newArray[0]["slug"];
+                let content = newArray[0].content;
+                contentArray = content.split("\n");
+                if (originalContent === "" || setOriginal === true) {
+                    originalContent = content;
+                }
+                table = document.getElementById("myTable");
+                table.innerHTML = "";
+                for (let i = 0; i < contentArray.length; i++) {
+                    const row = table.insertRow(table.rows.length);
+                    const cell = row.insertCell(0);
+                    cell.innerHTML = contentArray[i];
+                }
+                document.documentElement.scrollTo({
+                    left: 0,
+                    top: document.documentElement.scrollHeight - document.documentElement.clientHeight,
+                    behavior: 'smooth'
+                });
+                label.innerHTML = "";
+            }
+
             function labLogPageAddLog() {
-                label.innerHTML = "Adding new lab log to your groups wiki page...";
-                const firstName = name.split(" ")[0];
-                let emptyIndex;
-                let index;
-                // Checks if space is available for new log
-                for (index = contentArray.length - 1; index > 0; index--) {
-                    const lineStr = contentArray[index].toLowerCase();
-                    if (lineStr.includes("--: |")) {
-                        if (emptyIndex == null) {
+                label.innerHTML = "Retrieving latest version of table...";
+                getLogTable();
+                xhr.send();
+                xhr.onreadystatechange = function () {
+                    parseAndDisplayLogTable(xhr.responseText, true);
+                    label.innerHTML = "Adding new lab log to your groups wiki page...";
+                    const firstName = name.split(" ")[0];
+                    let emptyIndex;
+                    let index;
+                    // Checks if space is available for new log
+                    for (index = contentArray.length - 1; index > 0; index--) {
+                        const lineStr = contentArray[index].toLowerCase();
+                        if (lineStr.includes("--: |")) {
+                            if (emptyIndex == null) {
+                                addNewSession();
+                                return;
+                            }
+                            break;
+                        } else if (lineStr.includes(firstName.toLowerCase())) {
                             addNewSession();
                             return;
+                        } else if (lineStr.replace(/ /g, '') === "||||||") {
+                            emptyIndex = index;
                         }
-                        break;
-                    } else if (lineStr.includes(firstName.toLowerCase())) {
-                        addNewSession();
-                        return;
-                    } else if (lineStr.replace(/ /g, '') === "||||||") {
-                        emptyIndex = index;
                     }
-                }
-                const date = new Date();
-                let month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
-                let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
-                let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
-                let arrivalTime = date.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})
-                contentArray[emptyIndex] = "| " + labDate + " | " + labTime + " | " + firstName + " | " + arrivalTime + " | |";
-                publishWikiPageEdit(contentArray.join("\n"));
+                    const date = new Date();
+                    let month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+                    let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+                    let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
+                    let arrivalTime = date.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})
+                    contentArray[emptyIndex] = "| " + labDate + " | " + labTime + " | " + firstName + " | " + arrivalTime + " | |";
+                    publishWikiPageEdit(contentArray.join("\n"));
+                };
             }
 
             function addNewSession() {
@@ -229,23 +247,29 @@
             }
 
             function labLogLeave() {
-                label.innerHTML = "Adding time left lab to your groups wiki page...";
-                let index;
-                const firstName = name.split(" ")[0];
-                for (let i = contentArray.length - 1; i > 0; i--) {
-                    const lineStr = contentArray[i].toLowerCase();
-                    if (lineStr.includes("lab session")) {
-                        return;
-                    } else if (lineStr.includes(firstName.toLowerCase())) {
-                        index = i;
-                        break;
+                label.innerHTML = "Retrieving latest version of table...";
+                getLogTable();
+                xhr.send();
+                xhr.onreadystatechange = function () {
+                    parseAndDisplayLogTable(xhr.responseText, true);
+                    label.innerHTML = "Adding time left lab to your groups wiki page...";
+                    let index;
+                    const firstName = name.split(" ")[0];
+                    for (let i = contentArray.length - 1; i > 0; i--) {
+                        const lineStr = contentArray[i].toLowerCase();
+                        if (lineStr.includes("lab session")) {
+                            return;
+                        } else if (lineStr.includes(firstName.toLowerCase())) {
+                            index = i;
+                            break;
+                        }
                     }
+                    const date = new Date();
+                    let time = date.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})
+                    let log = contentArray[index];
+                    contentArray[index] = log.slice(0, -1) + time + " |";
+                    publishWikiPageEdit(contentArray.join("\n"));
                 }
-                const date = new Date();
-                let time = date.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})
-                let log = contentArray[index];
-                contentArray[index] = log.slice(0, -1) + time + " |";
-                publishWikiPageEdit(contentArray.join("\n"));
             }
 
             function publishWikiPageEdit(content) {
