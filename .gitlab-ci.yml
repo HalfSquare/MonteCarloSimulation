@@ -27,9 +27,27 @@ unittest:
   tags:
     - shell
   script:
-    - echo "test"
+    - echo "Beginning unit tests"
     - mvn test
   allow_failure: false
+
+styletest:
+  stage: Test
+  tags:
+    - shell
+  script:
+    - echo "Beginning Checkstyle test"
+    - mvn checkstyle:checkstyle
+  allow_failure: true  
+
+bugtest:
+  stage: Test
+  tags:
+    - shell
+  script:
+    - echo "Beginning SpotBugs test"
+    - mvn spotbugs:check
+  allow_failure: true
 
 deploy:
   stage: Deploy
@@ -53,4 +71,3 @@ pages:
   - master
   tags:
    - docker
-
