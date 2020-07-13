@@ -38,7 +38,7 @@ styletest:
   script:
     - echo "Beginning Checkstyle test"
     - mvn checkstyle:checkstyle
-  allow_failure: true  
+  allow_failure: false  
 
 bugtest:
   stage: Test
@@ -47,7 +47,7 @@ bugtest:
   script:
     - echo "Beginning SpotBugs test"
     - mvn spotbugs:check
-  allow_failure: true
+  allow_failure: false
 
 deploy:
   stage: Deploy
