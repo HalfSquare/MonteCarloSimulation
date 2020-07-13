@@ -1,87 +1,8 @@
 <!doctype html>
 <title>Lab log site</title>
-<style>
-    body {
-        display: grid;
-        grid-template-areas:
-    "nav header"
-    "nav article"
-    "nav controls"
-    "nav footer";
-        grid-template-rows: 130px 1fr 70px 70px;
-        grid-template-columns: 20% 1fr;
-        grid-row-gap: 10px;
-        grid-column-gap: 10px;
-        height: 100%;
-        margin: 0;
-    }
-
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-
-    .button {
-        background-color: gray;
-        border: none;
-        color: white;
-        padding: 8px 35px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-    }
-
-    header, footer, article, nav, controls {
-        padding: 1.2em;
-        background: darkgrey;
-    }
-
-    nav img {
-        max-width: 100%;
-    }
-
-    #pageHeader {
-        grid-area: header;
-        text-align: right;
-        position: sticky;
-        top: 0;
-        box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.4);
-    }
-
-    #pageFooter {
-        grid-area: footer;
-    }
-
-    #logControls {
-        grid-area: controls;
-    }
-
-    #mainArticle {
-        grid-area: article;
-    }
-
-    #mainNav {
-        grid-area: nav;
-        background-image: url("img.jpg");
-        background-size: 100%;
-        background-repeat: repeat-y;
-        overflow: hidden;
-    }
-
-    @media all and (max-width: 575px) {
-        body {
-            grid-template-areas:
-      "header"
-      "article"
-      "controls"
-      "nav"
-      "footer";
-            grid-template-rows: 160px 1fr 70px 0 70px;
-            grid-template-columns: 1fr;
-        }
-    }
-</style>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
 <body>
 <header id="pageHeader">
@@ -97,27 +18,30 @@
                 <label for="password"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="password" id="password" required>
                 <br><br>
-                <button type="submit" id="submit">Login</button>
+                <button class="button" id="submit" onclick="login()">Login</button>
             </div>
         </div>
     </div>
 </header>
+
 <article id="mainArticle">
     <table id="myTable">
     </table>
 </article>
+
 <nav id="mainNav">
     <img src="img.jpg" alt="Image of big rocket">
 </nav>
+
 <controls id="logControls">
     <button class="button" id="arriveLog" onclick="labLogPageAddLog()">Log arrival</button>
     <button class="button" id="leaveLog" onclick="labLogLeave()">Log leave</button>
     <button class="button" id="undo" onclick="undoAction()">Undo</button>
 </controls>
-<footer id="pageFooter">
-    Developed by Team 15
-</footer>
 
+<footer id="pageFooter">
+    Developed by Group 15
+</footer>
 
 <script>
 
@@ -385,29 +309,29 @@
         publishWikiPageEdit(originalContent);
     }
 
+    function login () {
+        username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        let requestParam = 'grant_type=password&username=' + username + '&password=' + password;
+        body = document.getElementsByTagName("body")[0];
+
+        label = document.getElementById("status");
+        label.innerHTML = "Logging into gitlab...";
+
+        // Use cors-anywhere free service to bypass cross-origin requests
+        let proxy = 'https://cors-anywhere.herokuapp.com/';
+        let url = "https://gitlab.ecs.vuw.ac.nz/oauth/token";
+        xhr.open('POST', proxy + url, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        xhr.send(requestParam);
+        xhr.onreadystatechange = processRequest;
+    }
+
     window.onload = function () {
 
         document.getElementById("undo").style.visibility = "hidden";
         document.getElementById("arriveLog").style.visibility = "hidden";
         document.getElementById("leaveLog").style.visibility = "hidden";
-
-        document.getElementById("submit").onclick = function () {
-            username = document.getElementById("username").value
-            let password = document.getElementById("password").value
-            let requestParam = 'grant_type=password&username=' + username + '&password=' + password;
-            body = document.getElementsByTagName("body")[0];
-
-            label = document.getElementById("status");
-            label.innerHTML = "Logging into gitlab...";
-
-            // Use cors-anywhere free service to bypass cross-origin requests
-            let proxy = 'https://cors-anywhere.herokuapp.com/';
-            let url = "https://gitlab.ecs.vuw.ac.nz/oauth/token";
-            xhr.open('POST', proxy + url, true);
-            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
-            xhr.send(requestParam);
-            xhr.onreadystatechange = processRequest;
-        }
 
     }
 </script>

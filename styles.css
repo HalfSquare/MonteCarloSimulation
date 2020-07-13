@@ -1,0 +1,80 @@
+body {
+    display: grid;
+    grid-template-areas:
+    "nav header"
+    "nav article"
+    "nav controls"
+    "nav footer";
+    grid-template-rows: 150px 1fr 70px 70px;
+    grid-template-columns: 20% 1fr;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    height: 100%;
+    margin: 0;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.button {
+    background-color: gray;
+    border: none;
+    color: white;
+    padding: 8px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+header, footer, article, nav, controls {
+    padding: 1.2em;
+    background: darkgrey;
+}
+
+nav img {
+    max-width: 100%;
+}
+
+#pageHeader {
+    grid-area: header;
+    text-align: right;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 4px 4px -1px rgba(0, 0, 0, 0.4);
+}
+
+#pageFooter {
+    grid-area: footer;
+}
+
+#logControls {
+    grid-area: controls;
+}
+
+#mainArticle {
+    grid-area: article;
+}
+
+#mainNav {
+    grid-area: nav;
+    background-image: url("img.jpg");
+    background-size: 100%;
+    background-repeat: repeat-y;
+    overflow: hidden;
+}
+
+@media all and (max-width: 575px) {
+    body {
+        grid-template-areas:
+      "header"
+      "article"
+      "controls"
+      "nav"
+      "footer";
+        grid-template-rows: 180px 1fr 70px 0 70px;
+        grid-template-columns: 1fr;
+    }
+}
