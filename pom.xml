@@ -33,8 +33,26 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/src/main/resources/modified-openrocket-1-1-9.jar</systemPath>
         </dependency>
-
+        <!--log4j dependency-->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>apache-log4j-extras</artifactId>
+            <version>1.2.17</version>
+        </dependency>
     </dependencies>
+    <!-- Repo for jzy-3d (graphing)-->
+    <repositories>
+        <repository>
+            <id>jzy3d-snapshots</id>
+            <name>Jzy3d Snapshots</name>
+            <url>http://maven.jzy3d.org/snapshots</url>
+        </repository>
+        <repository>
+            <id>jzy3d-releases</id>
+            <name>Jzy3d Snapshots</name>
+            <url>http://maven.jzy3d.org/releases</url>
+        </repository>
+    </repositories>
     <build>
         <finalName>maven-unit-test</finalName>
         <plugins>

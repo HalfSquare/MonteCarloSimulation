@@ -37,7 +37,7 @@ public class SettingsWindow {
   }
 
   public void doUIStuff() {
-    numberOfSimulations.setEditable(false);
     cancelButton.addActionListener(new ExitAction());
+    numberOfSimulations.setEditable(false);
   }
 }
