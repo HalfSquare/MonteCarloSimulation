@@ -1,5 +1,7 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import org.jfree.chart.ChartPanel;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
@@ -9,6 +11,9 @@ public class GraphWindow {
   private JPanel rootPanel;
   private JButton exitButton;
   private JButton reRunButton;
+  private JPanel graphPanel;
+
+  private JTable simulationTable;
 
   /**
    * Constructor.
@@ -17,8 +22,19 @@ public class GraphWindow {
 
   }
 
+  public JTable getSimulationTable() {
+    return simulationTable;
+  }
+
+  public void addToGraph(ChartPanel chartPanel){
+    graphPanel.add(chartPanel);
+  }
   public JPanel getRootPanel() {
-    return rootPanel;
+    return this.rootPanel;
+  }
+
+  public JPanel getGraphPanel() {
+    return this.graphPanel;
   }
 
   public void setReRunButtonListener(ActionListener listener) {

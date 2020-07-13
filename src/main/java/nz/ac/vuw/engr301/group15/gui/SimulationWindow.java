@@ -34,9 +34,9 @@ public class SimulationWindow {
   }
 
   public void doUIStuff() {
+    this.cancelButton.addActionListener(new ExitAction());
     this.progressBar1.setMaximum(100);
     this.progressBar1.setMinimum(0);
-    this.cancelButton.addActionListener(new ExitAction());
     resetBar();
   }
 }
