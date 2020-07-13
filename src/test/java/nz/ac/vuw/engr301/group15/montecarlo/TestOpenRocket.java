@@ -52,12 +52,12 @@ public class TestOpenRocket {
 		}
 	}
 
-	// Initial test to check that simulation can run 1000 instances
+	// Initial test to check that simulation can run 10 instances
 	@Test
 	public void Test5() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(1000);
+			sim.runSimulations(10);
 		}
 		catch (Exception ex){
 			fail();
