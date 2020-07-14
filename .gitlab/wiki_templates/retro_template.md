@@ -60,6 +60,8 @@ Create a timeline for the sprint that you are considering in the table below.
 
 Mark the start and end of the sprint (iteration), then mark significant and memorable events.
 
+<!-- The first line is an example of how it should be filled out. Please delete. -->
+
 Date | Event(s) | Description | Notes |
 ---- | ---- | ---- | ---- |
 22/12/2020 | Start Sprint | ---- | • Our rocket exploded overnight with no warning<br>• Twas a sad sprint<br>• Serotonin levels are dangerously low<br>|
@@ -82,6 +84,8 @@ List of successes:
 
 What difficulties did you encounter during this sprint?
 
+<!-- The first line is an example of how it should be filled out. Please delete. -->
+
 Record the difficulties on the timeline of elsewhere on the sheet.
 List of difficulties:
 - NASA callled us because they wanted our Rocket program
@@ -94,6 +98,8 @@ Collectively make a list of all the things you did which you want to keep doing.
 
 Make a long list, include all ideas then quickly count (and record) how many of you agree with each idea.
 
+<!-- The first line is an example of how it should be filled out. Please delete. -->
+
 Idea to keep | Description | Number of people for keeping it |
 ---- | ---- | ---- | 
 Getting 2 alpacas | • The alpacas will be called Carlos and Miranda <br>• So cute<br> | 6 people 
@@ -103,6 +109,8 @@ Date (if applicable) | Events | Description (if needed)
 **Question 8:** _Stop_  
 
 Is there anything that you should stop doing?
+
+<!-- The first line is an example of how it should be filled out. Please delete. -->
 
 Idea to get rid of | Description | Number of people for getting rid of it |
 ---- | ---- | ---- | 
@@ -114,6 +122,8 @@ Date (if applicable) | Events | Description (if needed)
 
 Make a list of things you could do differently next sprint to work better. Write the list on this sheet, include as many ideas as possible - at least four.
 
+<!-- The first line is an example of how it should be filled out. Please delete. -->
+
 What we could fix | Description 
 ---- | ---- 
 Being stressed | • Stress is so bad<br>• We need to increase our serotonin levels<br> 
@@ -123,6 +133,8 @@ Date (if applicable) | Events
 **Question 10:** _Action Plan_
 
 From the lists in #8 and #9 choose 3 things you will do, or not do, to make the next piece of work better?
+
+<!-- The first line is an example of how it should be filled out. Please delete. -->
 
 Ideas | Will we do it? | How will it make the next sprint better?
 ---- | ---- | ---- 
