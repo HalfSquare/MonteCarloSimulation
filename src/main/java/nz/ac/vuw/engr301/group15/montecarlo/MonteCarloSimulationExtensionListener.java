@@ -12,14 +12,13 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
     public void endSimulation(SimulationStatus status, SimulationException exception) {
 
         // Prints landing position and launch site position after simulation has run
-        WorldCoordinate landingPos = status.getRocketWorldPosition();
-        WorldCoordinate launchPos = status.getSimulationConditions().getLaunchSite();
-        System.out.println("Landing position: " + landingPos);
-        System.out.println("Launch position: " + launchPos);
+//        WorldCoordinate landingPos = status.getRocketWorldPosition();
+//        WorldCoordinate launchPos = status.getSimulationConditions().getLaunchSite();
+//        System.out.println("Landing position: " + landingPos);
+//        System.out.println("Launch position: " + launchPos);
 
         // Latitude Difference
-        System.out.println(landingPos.getLatitudeDeg() - launchPos.getLatitudeDeg());
-
+//        System.out.println(landingPos.getLatitudeDeg() - launchPos.getLatitudeDeg());
         simulationStatus = status;
     }
 
@@ -29,5 +28,9 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
         } else {
             return simulationStatus;
         }
+    }
+
+    public void reset() {
+        simulationStatus = null;
     }
 }
