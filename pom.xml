@@ -77,6 +77,8 @@
                 <version>3.0.0</version>
                 <configuration>
                     <violationSeverity>warning</violationSeverity>
+                    <failsOnError>true</failsOnError>
+                    <failOnViolation>true</failOnViolation>
                 </configuration>
                 <executions>
                     <execution>
