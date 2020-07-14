@@ -47,7 +47,7 @@ Question | Time
  
 **Question 3:** _Set up_
 
-Kerth's Prime Directive states that regardless of what we discover, we must understand and truly believe that everyone did the best job he or she could, given what was known at the time, his or her skills and abilities, the resources avaiable and the situation at hand. 
+Kerth's Prime Directive states that regardless of what we discover, we must understand and truly believe that everyone did the best job he or she could, given what was known at the time, his or her skills and abilities, the resources available and the situation at hand. 
 
 The aim of this sheet (and retro) is to find the better way of working, not to apportion blame. Focus on the cause of the problems and not the individuals involved. 
 
@@ -75,7 +75,7 @@ Date (if applicable) | Events | Description (if needed) | Extra notes |
 What do you consider to be the greatest successes of this sprint?
 
 List of successes:
-- NASA callled us because they wanted our Rocket program
+- NASA called us because they wanted our Rocket program
 - Success 2
 - Success 3
 
@@ -149,7 +149,7 @@ These are the things that we have discussed in the meeting today.
 
 Item | Title | Person | Notes |
 ---- | ---- | ---- | ---- |
-#22 | We may have issues with unicorns later | Justina Koh | • Alex has been making lots of unicorns<br>• They might esacpe later<br>• This could be very dangerous for our GUI<br>|
+#22 | We may have issues with unicorns later | Justina Koh | • Alex has been making lots of unicorns<br>• They might escape later<br>• This could be very dangerous for our GUI<br>|
 item | title | who | notes |
 item | title | who | notes |
 
