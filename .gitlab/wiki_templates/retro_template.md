@@ -90,7 +90,7 @@ List of difficulties:
 
 **Question 7:** _Keep_  
 
-Collectively make a lise of all the things you did which you want to keep doing. 
+Collectively make a list of all the things you did which you want to keep doing. 
 
 Make a long list, include all ideas then quickly count (and record) how many of you agree with each idea.
 
