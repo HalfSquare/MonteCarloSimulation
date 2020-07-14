@@ -1,0 +1,338 @@
+<!doctype html>
+<title>Lab log site</title>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+<header id="pageHeader">
+    <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+            <div style="width: 50%; text-align: left; display: table-cell;">
+                <label id="status"></label>
+            </div>
+            <div style="display: table-cell;">
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" id="username" required>
+                <br><br>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" id="password" required>
+                <br><br>
+                <button class="button" id="submit" onclick="login()">Login</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article id="mainArticle">
+    <table id="myTable">
+    </table>
+</article>
+
+<nav id="mainNav">
+    <img src="img.jpg" alt="Image of big rocket">
+</nav>
+
+<controls id="logControls">
+    <button class="button" id="arriveLog" onclick="labLogPageAddLog()">Log arrival</button>
+    <button class="button" id="leaveLog" onclick="labLogLeave()">Log leave</button>
+    <button class="button" id="undo" onclick="undoAction()">Undo</button>
+</controls>
+
+<footer id="pageFooter">
+    Developed by Group 15
+</footer>
+
+<script>
+
+    let token = "";
+    let projectID = "";
+    let originalContent = "";
+    let contentArray;
+    let name = "";
+    let pageSlug = "";
+    let table;
+    let body;
+    let username;
+    let label;
+
+    let projectsPageNumber = 1;
+
+    let xhr = new XMLHttpRequest();
+
+    function processRequest() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                const response1 = JSON.parse(xhr.responseText);
+                token = response1["access_token"];
+                let userInfoURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/users?username=" + username;
+                xhr = new XMLHttpRequest();
+                xhr.open('GET', userInfoURL, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                xhr.send();
+                xhr.onreadystatechange = userInfo;
+            } else {
+                label.innerHTML = xhr.statusText + ": Can't log in to gitlab account. Suggestion: If two-factor auth is on please turn off";
+            }
+        }
+    }
+
+    function userInfo() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                label.innerHTML = "Retrieving lab log table for your group...";
+                const data = JSON.parse(xhr.responseText);
+                name = data[0].name;
+                let projectsUrl = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects";
+                xhr = new XMLHttpRequest();
+                xhr.open('GET', projectsUrl, true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                xhr.setRequestHeader("Authorization", "Bearer " + token);
+                xhr.send();
+                xhr.onreadystatechange = allProjects;
+            } else {
+                label.innerHTML = xhr.statusText;
+            }
+        }
+    }
+
+    function getProjectsNextPage() {
+        let projectsUrl = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects?page=" + projectsPageNumber;
+        xhr.open('GET', projectsUrl, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+        xhr.send();
+        xhr.onreadystatechange = allProjects;
+    }
+
+    function allProjects() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                console.log(data)
+                const newArray = data.filter(function (el) {
+                    return el["namespace"]["full_path"].includes("engr300");
+                });
+                if (newArray.length === 0) {
+                    projectsPageNumber += 1;
+                    getProjectsNextPage();
+                    return;
+                }
+                projectsPageNumber = 1;
+                projectID = newArray[0]["id"];
+                getLogTable();
+                xhr.send();
+                xhr.onreadystatechange = wikiPages;
+            } else {
+                label.innerHTML = xhr.statusText;
+            }
+        }
+    }
+
+    function getLogTable() {
+        let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
+        xhr = new XMLHttpRequest();
+        xhr.open('GET', wikiURL, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+    }
+
+    function wikiPages() {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                document.getElementById("arriveLog").style.visibility = "visible";
+                document.getElementById("leaveLog").style.visibility = "visible";
+                parseAndDisplayLogTable(xhr.responseText, false);
+            } else {
+                label.innerHTML = xhr.statusText;
+            }
+        }
+    }
+
+    function parseAndDisplayLogTable(responseText, setOriginal) {
+        const data = JSON.parse(responseText);
+        console.log(data);
+        const newArray = data.filter(function (el) {
+            return el["title"].toLowerCase().includes("time log");
+        });
+        if (newArray.length === 0) {
+            label.innerHTML = "Error: Could not find wiki page containing 'time log' in title"
+            return;
+        }
+        pageSlug = newArray[0]["slug"];
+        let content = newArray[0].content;
+        contentArray = content.split("\n");
+        if (originalContent === "" || setOriginal === true) {
+            originalContent = content;
+        }
+        table = document.getElementById("myTable");
+        table.innerHTML = "";
+        for (let i = 0; i < contentArray.length; i++) {
+            const row = table.insertRow(table.rows.length);
+            const cell = row.insertCell(0);
+            cell.innerHTML = contentArray[i];
+        }
+        document.documentElement.scrollTo({
+            left: 0,
+            top: document.documentElement.scrollHeight - document.documentElement.clientHeight,
+            behavior: 'smooth'
+        });
+        label.innerHTML = "";
+    }
+
+    function labLogPageAddLog() {
+        label.innerHTML = "Retrieving latest version of table...";
+        getLogTable();
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            parseAndDisplayLogTable(xhr.responseText, true);
+            label.innerHTML = "Adding new lab log to your groups wiki page...";
+            const firstName = name.split(" ")[0];
+            let emptyIndex;
+            let index;
+            // Checks if space is available for new log
+            for (index = contentArray.length - 1; index > 0; index--) {
+                const lineStr = contentArray[index].toLowerCase();
+                if (lineStr.includes("--: |")) {
+                    if (emptyIndex == null) {
+                        addNewSession();
+                        return;
+                    }
+                    break;
+                } else if (lineStr.includes(firstName.toLowerCase())) {
+                    addNewSession();
+                    return;
+                } else if (lineStr.replace(/ /g, '') === "||||||") {
+                    emptyIndex = index;
+                }
+            }
+            const date = new Date();
+            let month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+            let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+            let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
+            let arrivalTime = date.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})
+            contentArray[emptyIndex] = "| " + labDate + " | " + labTime + " | " + firstName + " | " + arrivalTime + " | |";
+            publishWikiPageEdit(contentArray.join("\n"));
+        };
+    }
+
+    function addNewSession() {
+        for (let i = contentArray.length - 1; i > 0; i--) {
+            const lineStr = contentArray[i].toLowerCase();
+            if (lineStr.includes("lab session")) {
+                let session = lineStr.match(/(\d+)/);
+                let sessionNumber = parseInt(session[0]);
+                let contentLength = contentArray.length;
+                contentArray[contentLength] = "#### Group Lab Session " + (sessionNumber + 1);
+                contentArray[contentLength + 1] = "| Lab date | Lab time (morning/afternoon) | Person | Arrive time | Departure time |";
+                contentArray[contentLength + 2] = "| -------- | :--------------------------: | -----: | ----------- | -------------- |";
+                contentLength += 2;
+                for (let index = 1; index <= 6; index++) {
+                    contentArray[contentLength + index] = "||||||";
+                }
+                contentArray[contentLength + 7] = "";
+                const firstName = name.split(" ")[0];
+                const date = new Date();
+                let month = (date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : (date.getMonth() + 1);
+                let labDate = date.getDate() + "/" + month + "/" + date.getFullYear();
+                let labTime = date.getHours() < 12 ? "Morning" : "Afternoon";
+                let arrivalTime = date.toLocaleString('en-US', {
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true
+                })
+                contentArray[contentLength + 1] = "| " + labDate + " | " + labTime + " | " + firstName + " | " + arrivalTime + " | |";
+                publishWikiPageEdit(contentArray.join("\n"));
+                break;
+            }
+        }
+    }
+
+    function labLogLeave() {
+        label.innerHTML = "Retrieving latest version of table...";
+        getLogTable();
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            parseAndDisplayLogTable(xhr.responseText, true);
+            label.innerHTML = "Adding time left lab to your groups wiki page...";
+            let index;
+            const firstName = name.split(" ")[0];
+            for (let i = contentArray.length - 1; i > 0; i--) {
+                const lineStr = contentArray[i].toLowerCase();
+                if (lineStr.includes("lab session")) {
+                    return;
+                } else if (lineStr.includes(firstName.toLowerCase())) {
+                    index = i;
+                    break;
+                }
+            }
+            const date = new Date();
+            let time = date.toLocaleString('en-US', {hour: 'numeric', minute: 'numeric', hour12: true})
+            let log = contentArray[index];
+            contentArray[index] = log.slice(0, -1) + time + " |";
+            publishWikiPageEdit(contentArray.join("\n"));
+        }
+    }
+
+    function publishWikiPageEdit(content) {
+        let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis/" + encodeURIComponent(pageSlug);
+        xhr = new XMLHttpRequest();
+        xhr.open('PUT', wikiURL, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        xhr.setRequestHeader("Authorization", "Bearer " + token);
+        xhr.send("content=" + content);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    label.innerHTML = "";
+                    let wikiURL = "https://gitlab.ecs.vuw.ac.nz/api/v4/projects/" + projectID + "/wikis?with_content=1"
+                    xhr = new XMLHttpRequest();
+                    xhr.open('GET', wikiURL, true);
+                    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+                    xhr.setRequestHeader("Authorization", "Bearer " + token);
+                    xhr.send();
+                    xhr.onreadystatechange = wikiPages;
+                    if (content === originalContent) {
+                        document.getElementById("undo").style.visibility = "hidden";
+                    } else {
+                        document.getElementById("undo").style.visibility = "visible";
+                    }
+                } else {
+                    label.innerHTML = xhr.statusText;
+                }
+            }
+        }
+    }
+
+    function undoAction() {
+        label.innerHTML = "Reverting back to original...";
+        publishWikiPageEdit(originalContent);
+    }
+
+    function login () {
+        username = document.getElementById("username").value
+        let password = document.getElementById("password").value
+        let requestParam = 'grant_type=password&username=' + username + '&password=' + password;
+        body = document.getElementsByTagName("body")[0];
+
+        label = document.getElementById("status");
+        label.innerHTML = "Logging into gitlab...";
+
+        // Use cors-anywhere free service to bypass cross-origin requests
+        let proxy = 'https://cors-anywhere.herokuapp.com/';
+        let url = "https://gitlab.ecs.vuw.ac.nz/oauth/token";
+        xhr.open('POST', proxy + url, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded;charset=UTF-8');
+        xhr.send(requestParam);
+        xhr.onreadystatechange = processRequest;
+    }
+
+    window.onload = function () {
+
+        document.getElementById("undo").style.visibility = "hidden";
+        document.getElementById("arriveLog").style.visibility = "hidden";
+        document.getElementById("leaveLog").style.visibility = "hidden";
+
+    }
+</script>
+</body>
