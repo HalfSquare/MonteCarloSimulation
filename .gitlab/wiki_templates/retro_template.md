@@ -45,7 +45,7 @@ Question | Time
 9: Do different | ---- 
 10: Action Plan | ---- 
  
-**Question 3:** _Set up_
+**Question 3:** _Set up - Rules and guidelines for this retro_
 
 Kerth's Prime Directive states that regardless of what we discover, we must understand and truly believe that everyone did the best job he or she could, given what was known at the time, his or her skills and abilities, the resources available and the situation at hand. 
 
@@ -80,7 +80,7 @@ List of successes:
 - Success 3
 
 
-**Question 6:** _Successes_
+**Question 6:** _Difficulties_
 
 What difficulties did you encounter during this sprint?
 
