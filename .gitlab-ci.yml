@@ -52,7 +52,7 @@ bugtest:
   script:
     - echo "Beginning SpotBugs test"
 #    - mvn $MAVEN_CLI_OPTS spotbugs:check
-    - mvn spotbugs:check -textui -effort:max -exitcode src
+    - mvn spotbugs:check -effort=max
   allow_failure: true
 
 deploy:
