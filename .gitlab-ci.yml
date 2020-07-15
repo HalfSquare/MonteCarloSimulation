@@ -3,6 +3,7 @@ variables:
 
 stages:
   - Lint
+  - Bugs
   - Build
   - Test
   - Deploy
@@ -44,7 +45,8 @@ styletest:
   allow_failure: true  
 
 bugtest:
-  stage: Test
+#  stage: Test
+  stage: Bugs
   tags:
     - shell
   script:
