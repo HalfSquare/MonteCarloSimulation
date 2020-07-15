@@ -97,6 +97,7 @@
                     <effort>Max</effort>
                     <failThreshold>Low</failThreshold>
                     <xmlOutput>true</xmlOutput>
+                    <failOnError>true</failOnError>
                 </configuration>
                 <executions>
                     <execution>
