@@ -95,9 +95,16 @@
                 <version>4.0.4</version>
                 <configuration>
                     <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <xmlOutput>false</xmlOutput>
+                    <failThreshold>Low</failThreshold>
+                    <xmlOutput>true</xmlOutput>
                 </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
 <!--                <dependencies>-->
 <!--                    <dependency>-->
 <!--                        <groupId>com.github.spotbugs</groupId>-->
