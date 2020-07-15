@@ -3,9 +3,9 @@ variables:
 
 stages:
   - Lint
-  - Bugs
   - Build
   - Test
+  - Bugs
   - Deploy
 
 markdownlint:
