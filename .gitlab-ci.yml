@@ -52,7 +52,7 @@ bugtest:
   script:
     - echo "Beginning SpotBugs test"
     - mvn $MAVEN_CLI_OPTS -Pcicdprofile spotbugs:spotbugs
-  allow_failure: true
+  allow_failure: false
 
 deploy:
   stage: Deploy
