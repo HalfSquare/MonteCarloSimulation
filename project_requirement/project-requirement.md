@@ -255,7 +255,7 @@ rectangle "User finishes simulation early" {
   (Run simulation) -- System
   User -- (Finishes simulation early)
   (Finish simulation early) -- System
-  (Show the dara graphically) -- System
+  (Show the data graphically) -- System
 }
 @enduml
 ```
@@ -269,6 +269,21 @@ rectangle "User finishes simulation early" {
 | User aborts simulation                                 |                  |
 |                                                        | Abort simulation |
 |                                                        | Throw away data  |
+
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User aborts simulation" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  User -- (Aborts simulation)
+  (Abort simulation) -- System
+  (Throw away data) -- System
+}
+@enduml
+```
 
 ##### User gets help
 
