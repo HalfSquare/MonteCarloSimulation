@@ -197,6 +197,22 @@ rectangle "User runs and re-runs smulation" {
 | User selects 'Save to File'                            |                                    |
 |                                                        | Simulation data is saved to a file |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User runs simulation and saves to file" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+  User -- (Selects 'Save to file')
+  (Simulation data is saved to a file) -- System
+}
+@enduml
+```
+
 ##### User runs simulation
 
 | Persona/User                                           | System Response           |
