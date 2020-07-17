@@ -140,6 +140,25 @@ Typical users scale from experienced with model rocket use to people just starti
 |                                                        | Run simulation again and show the new data graphically |
 |                                                        | Simulation data is saved to a file                     |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User runs and re-runs smulation with data saved to file" {
+  User -- (Checks 'Save To File' option)
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+  (Simulation data is saved to a file) -- System
+  User -- (Selects 'Re-Run Simulation')
+  (Run simulation again and show the new data graphically) -- System
+  (Simulation data is saved to a new file) -- System
+}
+@enduml
+```
+
 ##### User runs and re-runs simulation
 
 | Persona/User                                           | System Response                                        |
