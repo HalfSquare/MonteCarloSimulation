@@ -198,7 +198,10 @@ public class GUI extends JFrame {
 
       // Create Panel
       ChartPanel panel = new ChartPanel(chart);
-      setContentPane(panel);
+      graphWindow.getGraphPanel().setLayout(new BorderLayout());
+      graphWindow.getGraphPanel().add(panel, BorderLayout.CENTER);
+      graphWindow.getGraphPanel().validate();
+//      setContentPane(panel);
     }
 
     private XYDataset createDataset( ) {
