@@ -1,5 +1,13 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+//import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
@@ -13,13 +21,8 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import java.awt.*;
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.util.ArrayList;
-
-public class GUI extends JFrame {
+public class Gui extends JFrame {
 
   private final SettingsWindow settingsWindow;
   private final SimulationWindow simulationWindow;
@@ -36,7 +39,10 @@ public class GUI extends JFrame {
     CIRCLE, SQUARE, ROCKET
   }
 
-  public GUI() {
+  /**
+   * Creates a window that runs monte carlo simulations.
+   */
+  public Gui() {
     this.data = new ArrayList<>();
 
     this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -93,23 +99,23 @@ public class GUI extends JFrame {
    *     and create a new JTable called simulationTable after double cliking on the centre of the
    *     page
    */
-  private void createTable(){
+  private void createTable() {
     String[][] pointArray = new String[data.size()][2];
     String[] columnNames = {"Longitude", "Latitude"};
 
     //reading the points into the List
-    for(int i = 0; i < data.size(); i++){
-        SimulationStatus longAndLat = data.get(i);
-        WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-        double x = landingPos.getLongitudeDeg();
-        double y =  landingPos.getLatitudeDeg();
-        pointArray[i][0] = String.valueOf(x);
-        pointArray[i][1] = String.valueOf(y);
+    for (int i = 0; i < data.size(); i++) {
+      SimulationStatus longAndLat = data.get(i);
+      WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+      double x = landingPos.getLongitudeDeg();
+      double y =  landingPos.getLatitudeDeg();
+      pointArray[i][0] = String.valueOf(x);
+      pointArray[i][1] = String.valueOf(y);
     }
 
-    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames){
+    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames) {
       @Override
-      public boolean isCellEditable(int row, int column){
+      public boolean isCellEditable(int row, int column) {
         return false;
       }
     };
@@ -135,26 +141,32 @@ public class GUI extends JFrame {
     }
   }
 
+  /**
+   * A simple runnable for the gui.
+   *
+   * @param args args
+   */
   public static void main(String[] args) {
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+    } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+            | UnsupportedLookAndFeelException e) {
       e.printStackTrace();
     }
 
-    GUI gui = new GUI();
+    Gui gui = new Gui();
   }
 
   class SimulationRunner implements Runnable {
-    private Thread t;
+    private Thread thread;
 
     /**
      * When an object implementing interface <code>Runnable</code> is used
      * to create a thread, starting the thread causes the object's
      * <code>run</code> method to be called in that separately executing
      * thread.
-     * <p>
-     * The general contract of the method <code>run</code> is that it may
+     *
+     * <p>The general contract of the method <code>run</code> is that it may
      * take any action whatsoever.
      *
      * @see Thread#run()
@@ -172,51 +184,49 @@ public class GUI extends JFrame {
     }
 
     public void start() {
-      if (t == null) {
-        t = new Thread(this, "sim");
-        t.start();
+      if (thread == null) {
+        thread = new Thread(this, "sim");
+        thread.start();
       }
     }
 
   }
 
-  class GraphCreater{
-    public void createGraph(){
+  class GraphCreater {
+    public void createGraph() {
       // Create chart
       JFreeChart chart = ChartFactory.createScatterPlot(
               "tLongitude vs. Latitude Points",
               "Longitude",
               "Latitude",
               createDataset(),
-              PlotOrientation.VERTICAL ,
-              true , true , false);
+              PlotOrientation.VERTICAL,
+              true, true, false);
 
 
       //Changes background color
-      XYPlot plot = (XYPlot)chart.getPlot();
-      plot.setBackgroundPaint(new Color(255,228,196));
+      XYPlot plot = (XYPlot) chart.getPlot();
+      plot.setBackgroundPaint(new Color(255, 228, 196));
 
       // Create Panel
       ChartPanel panel = new ChartPanel(chart);
       graphWindow.getGraphPanel().setLayout(new BorderLayout());
       graphWindow.getGraphPanel().add(panel, BorderLayout.CENTER);
       graphWindow.getGraphPanel().validate();
-//      setContentPane(panel);
     }
 
-    private XYDataset createDataset( ) {
+    private XYDataset createDataset() {
       // Create scatter points
       final XYSeries longAndLatPoints = new XYSeries("longAndLatPoints");
-      for(int i = 0; i < data.size(); i++){
-        SimulationStatus longAndLat = data.get(i);
+      for (SimulationStatus longAndLat : data) {
         WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
         double x = landingPos.getLongitudeDeg();
         double y = landingPos.getLatitudeDeg();
         longAndLatPoints.add(x, y);
       }
 
-      final XYSeriesCollection dataset = new XYSeriesCollection( );
-      dataset.addSeries( longAndLatPoints );
+      final XYSeriesCollection dataset = new XYSeriesCollection();
+      dataset.addSeries(longAndLatPoints);
       return dataset;
     }
   }
