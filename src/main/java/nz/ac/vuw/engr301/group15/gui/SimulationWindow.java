@@ -1,12 +1,14 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 
 public class SimulationWindow {
   private JProgressBar progressBar1;
   private JPanel rootPanel;
   private JProgressBar progressBar2;
-  private JButton abortTODOButton;
+  private JButton abortTodoButton;
   private JButton cancelButton;
 
   public SimulationWindow() {
@@ -33,7 +35,10 @@ public class SimulationWindow {
     this.progressBar1.setValue(0);
   }
 
-  public void doUIStuff() {
+  /**
+   * Resets the panel.
+   */
+  public void doUiStuff() {
     this.cancelButton.addActionListener(new ExitAction());
     this.progressBar1.setMaximum(100);
     this.progressBar1.setMinimum(0);
