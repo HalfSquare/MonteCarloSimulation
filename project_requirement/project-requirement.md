@@ -206,6 +206,20 @@ rectangle "User runs and re-runs smulation" {
 |                                                        | Finish simulation         |
 |                                                        | Show the data graphically |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User runs smulation" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+}
+@enduml
+```
+
 ##### User finishes simulation early
 
 | Persona/User                                           | System Response           |
