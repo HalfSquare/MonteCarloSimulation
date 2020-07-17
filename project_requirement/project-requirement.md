@@ -170,6 +170,22 @@ rectangle "User runs and re-runs smulation with data saved to file" {
 | User selects 'Re-Run Simulation'                       |                                                        |
 |                                                        | Run simulation again and show the new data graphically |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User runs and re-runs smulation" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+  User -- (Selects 'Re-Run Simulation')
+  (Run simulation again and show the new data graphically) -- System
+}
+@enduml
+```
+
 ##### User runs simulation and saves to file
 
 | Persona/User                                           | System Response                    |
