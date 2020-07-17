@@ -2,19 +2,37 @@ variables:
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end"
 
 stages:
-  - Lint
+  - Validate
   - Build
   - Test
-  - Bugs
   - Deploy
 
 markdownlint:
-  stage: Lint
+  stage: Validate
   tags:
     - docker
   image: pipelinecomponents/markdownlint:latest
   script:
     - mdl --style all --warnings --rules ~MD013 .
+  allow_failure: true
+  
+styletest:
+  stage: Validate
+  tags:
+    - shell
+  script:
+    - echo "Beginning Checkstyle test"
+    - mvn checkstyle:checkstyle
+  allow_failure: true  
+
+bugtest:
+  stage: Validate
+  tags:
+    - shell
+  script:
+    - echo "Beginning SpotBugs test"
+#    - mvn $MAVEN_CLI_OPTS spotbugs:check
+    - mvn spotbugs:check
   allow_failure: true
 
 build:
@@ -34,26 +52,6 @@ unittest:
     - echo "Beginning unit tests"
     - mvn test
   allow_failure: false
-
-styletest:
-  stage: Test
-  tags:
-    - shell
-  script:
-    - echo "Beginning Checkstyle test"
-    - mvn checkstyle:checkstyle
-  allow_failure: true  
-
-bugtest:
-#  stage: Test
-  stage: Bugs
-  tags:
-    - shell
-  script:
-    - echo "Beginning SpotBugs test"
-#    - mvn $MAVEN_CLI_OPTS spotbugs:check
-    - mvn spotbugs:check
-  allow_failure: true
 
 deploy:
   stage: Deploy
