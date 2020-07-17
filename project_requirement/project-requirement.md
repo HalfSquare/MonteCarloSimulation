@@ -291,10 +291,18 @@ rectangle "User aborts simulation" {
 | ------------------------------------------------------ | ------------------------- |
 | User selects 'help'                                    |                           |
 |                                                        | Show help info screen     |
-| User starts a simulation with the 'Monte Carlo' option |                           |
-|                                                        | Run simulation            |
-|                                                        | Finish simulation         |
-|                                                        | Show the data graphically |
+
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User gets help" {
+  User -- (Selects 'help')
+  (Show help info screen) -- System
+}
+@enduml
+```
 
 ##### User adds topographical data
 
