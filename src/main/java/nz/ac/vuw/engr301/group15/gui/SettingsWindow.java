@@ -1,7 +1,11 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import javax.swing.*;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
 
 public class SettingsWindow {
   private JPanel rootPanel;
@@ -9,7 +13,7 @@ public class SettingsWindow {
   private JTextField textField2;
   private JButton startButton;
   private JButton cancelButton;
-  private JFormattedTextField cMyDocsNoFormattedTextField;
+  private JFormattedTextField formattedTextField80;
   private JFormattedTextField numberOfSimulations;
   private JFormattedTextField formattedTextField2;
   private JFormattedTextField formattedTextField3;
@@ -36,7 +40,7 @@ public class SettingsWindow {
     rootPanel.setVisible(flag);
   }
 
-  public void doUIStuff() {
+  public void doUiStuff() {
     cancelButton.addActionListener(new ExitAction());
     numberOfSimulations.setEditable(false);
   }
