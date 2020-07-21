@@ -245,6 +245,7 @@ rectangle "User runs smulation" {
 | User finishes simulation early                         |                           |
 |                                                        | Finish simulation early   |
 |                                                        | Show the data graphically |
+
 ```plantuml
 @startuml
 left to right direction
