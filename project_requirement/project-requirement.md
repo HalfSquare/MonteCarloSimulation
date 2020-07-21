@@ -128,7 +128,9 @@ A rocket model file (.ork) is needed to import the rocket's hardware into our si
 
 The software will need to import data from the mission control team. This data ranges from weather information (humidity, temperature, wind speed etc.), to launch conditions (launch latitude, longitude and altitude etc.), to rocket information (launch rod angle, length, direction, etc.). This data will be used to take the condition of the launch site and external factors into consideration, to accurately simulate how the rocket will respond in the given conditions and whether the conditions will negatively affect the flight path of the rocket.
 
-#### 
+#### PID Data
+
+The software will need to import PID (Proportional–Integral–Derivative) data from the avionics team. This data will contain the information about how the rocket's control loop functions, which will allow the simulations to take the rocket's reactions into account. This will mean that the PID values can be tested to see effectiveness. This will also give more accurate simulations, and will allow for a more accurate landing zone estimate. 
 
 ### 3.2 Functions
 
