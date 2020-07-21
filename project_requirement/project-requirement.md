@@ -108,21 +108,21 @@ There are also possible limitations of the final product:
 
 ## 3. Specific requirements
 
-20 pages outlining the requirements of the system. You should apportion these pages across the following subsections to focus on the most important parts of your product.
-
 ### 3.1 External interfaces
 
 #### Computer Peripherals
 
-OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to a large variation in specifications. The interfaces are:
+OpenRocket is a Java executable. Our software builds on OpenRocket, using it as a library, and therefore will also be a Java executable. This means it will run on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our software, is a standard desktop environment. The individual interfaces for this environment are subject to a large variation in specifications. The interfaces are:
 
 - **Monitor**: At least standard definition, likely high definition or above.
 - **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
 - **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement.
 
+These peripherals, along with the computer itself, are needed to run the software. The keyboard and mouse are needed to interact with the GUI (entering values into the simulation and importing data). The monitor is needed to view the results of the simulation, as the results are displayed graphically. 
+
 #### Rocket Model File
 
-Rocket model file (.ork)
+A rocket model file (.ork) is needed to import the rocket's hardware into our simulation software, to correctly and accurately simulate the rocket's behaviour. The .ork file can be created through OpenRocket, which has the tools to build a digital model of the rocket being used. This .ork will then be imported into our software within the configuration stage of the program. This will give the simulation all of the applicable rocket hardware info, such as the motor type and the speed the rocket can reach. 
 
 #### Mission Control Data
 
