@@ -432,7 +432,7 @@ This extension will be able to be applied to any rocket design the user imports.
 
 The extension should run at the same time the OpenRocket simulation runs without a delay.
 When the Monte Carlo simulation is run over a long period of time it is expected that the program will finish without crashing and would have run without any errors. We can measure the effectiveness by simulating the rocket and displaying the data and seeing if the results match up with the real launch.
-An ideal performance goal would be 1,000,000 simulations is 500 minutes (8.333 hours) without any crashes, freezing, or errors.
+An ideal performance goal would be 1,000,000 simulations in 500 minutes (8.333 hours) without any crashes, freezing, or errors.
 
 #### Efficiency
 
