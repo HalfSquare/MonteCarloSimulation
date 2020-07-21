@@ -339,6 +339,19 @@ rectangle "User adds topographical data" {
 | User selects 'continue'         |                                              |
 |                                 | Save weather data to working simulation file |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User adds weather data" {
+  User -- (Selects 'add weather data')
+  User -- (Selects 'continue')
+  (Save weather data to working simulation file) -- System
+}
+@enduml
+```
+
 ##### User integrates mission control
 
 | Persona/User                                           | System Response                                      |
