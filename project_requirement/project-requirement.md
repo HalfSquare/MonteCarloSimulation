@@ -314,6 +314,21 @@ rectangle "User gets help" {
 | User selects 'continue'               |                                                    |
 |                                       | Save topographical data to working simulation file |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User adds topographical data" {
+  User -- (Selects 'add topographical data')
+  (Prompt for launch site location) -- System
+  User -- (Enters launch site location)
+  User -- (Selects 'continue')
+  (Save topographical data to working simulation file) -- System
+}
+@enduml
+```
+
 ##### User adds weather data
 
 (*Discuss with mission control group*)
