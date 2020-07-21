@@ -126,7 +126,7 @@ A rocket model file (.ork) is needed to import the rocket's hardware into our si
 
 #### Mission Control Data
 
-Mission control data (CSV)
+The software will need to import data from the mission control team. This data ranges from weather information (humidity, temperature, wind speed etc.), to launch conditions (launch latitude, longitude and altitude etc.), to rocket information (launch rod angle, length, direction, etc.). This data will be used to take the condition of the launch site and external factors into consideration, to accurately simulate how the rocket will respond in the given conditions and whether the conditions will negatively affect the flight path of the rocket.
 
 #### 
 
