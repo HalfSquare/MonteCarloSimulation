@@ -432,11 +432,13 @@ This extension will be able to be applied to any rocket design the user imports.
 
 The extension should run at the same time the OpenRocket simulation runs without a delay.
 When the Monte Carlo simulation is run over a long period of time it is expected that the program will finish without crashing and would have run without any errors. We can measure the effectiveness by simulating the rocket and displaying the data and seeing if the results match up with the real launch.
+An ideal performance goal would be 1,000,000 simulations in 500 minutes (8.333 hours) without any crashes, freezing, or errors.
 
 #### Efficiency
 
 It is expected that the program should run the simulations as fast as possible with the only limitation being the speed of the hardware.
 After each simulation is run in the Monte Carlo process, the data will be stored and only until the Monte Carlo simulation has finished the data will be displayed graphically this is to avoid taking up resources that should be used for running each simulation at its maximum speed.
+An ideal performance goal would be 1,000,000 simulations on a standard low-range laptop setup (4GB RAM) using only 30% of the RAM (1.2 GB) and no page-filing to the HDD/SSD.
 
 #### Satisfaction criteria
 
@@ -838,7 +840,7 @@ A one page statement of contributions, including a list of each member of the gr
 | Contributor | Sections                                                                                                   |
 | :---------: | :--------------------------------------------------------------------------------------------------------- |
 |   Michael   | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2, 3.3                                                 |
-|    Alex     | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.1, 3.2, Section 4                                |
+|    Alex     | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.1, 3.2, 3.3, Section 4                                |
 |   Georgia   | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, 3.4, 3.7, 3.8, 5.1, Safe Computing Wiki (for H&S) |
 |     Max     | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2                                                       |
 |   Justina   | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.6                                            |
