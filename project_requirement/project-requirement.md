@@ -108,15 +108,29 @@ There are also possible limitations of the final product:
 
 ## 3. Specific requirements
 
-20 pages outlining the requirements of the system. You should apportion these pages across the following subsections to focus on the most important parts of your product.
-
 ### 3.1 External interfaces
 
-OpenRocket is a Java executable and so runs on all desktop systems that support Java, including Windows, MacOS, and most Linux distributions. The interface for OpenRocket, and thus our extension, is a standard desktop environment. The individual interfaces for this environment are subject to a large variation in specifications. The interfaces are:
+#### Computer Peripherals
+
+OpenRocket is a Java executable. Our software builds on OpenRocket, using it as a library, and therefore will also be a Java executable. This means it will run on all desktop systems that support Java, including Windows, macOS, and most Linux distributions. The interface for OpenRocket, and thus our software, is a standard desktop environment. The individual interfaces for this environment are subject to a large variation in specifications. The interfaces are:
 
 - **Monitor**: At least standard definition, likely high definition or above.
 - **Keyboard**: Likely QWERTY, could be other layouts. We will only be designing for keyboards that use the Latin Alphabet.
 - **Mouse**: Specification for the mouse is irrelevant as long as it provides two axes of movement.
+
+These peripherals, along with the computer itself, are needed to run the software. The keyboard and mouse are needed to interact with the GUI (entering values into the simulation and importing data). The monitor is needed to view the results of the simulation, as the results are displayed graphically.
+
+#### Rocket Model File
+
+A rocket model file (.ork) is needed to import the rocket's hardware into our simulation software, in order to correctly and accurately simulate the rocket's behavior. The .ork file can be created through OpenRocket, which has the tools to build a digital model of the rocket being used. This .ork will then be imported into our software within the configuration stage of the program. This will give the simulation all of the applicable rocket hardware info, such as the motor type and the speed the rocket can reach.
+
+#### Mission Control Data
+
+The software will need to import data from the mission control team. This data ranges from weather information (humidity, temperature, wind speed, etc.), to launch conditions (launch latitude, longitude, and altitude, etc.), to rocket information (launch rod angle, length, direction, etc.). This data will be used to take the condition of the launch site and external factors into consideration, to accurately simulate how the rocket will respond in the given conditions and whether the conditions will negatively affect the flight path of the rocket.
+
+#### PID Data
+
+The software will need to import PID (Proportional–Integral–Derivative) data from the avionics team. This data will contain information about how the rocket's control loop functions, which will allow the simulations to take the rocket's reactions into account. This will mean that the PID values can be tested to see the effectiveness. This will also give more accurate simulations and will allow for a more accurate landing zone estimate.
 
 ### 3.2 Functions
 
@@ -841,7 +855,7 @@ A one page statement of contributions, including a list of each member of the gr
 | :---------: | :--------------------------------------------------------------------------------------------------------- |
 |   Michael   | 1.0, 1.1, 1.2, 7. Contributions, OpenRocket wiki, 3.2, 3.3                                                 |
 |    Alex     | 1.0, 1.1, 1.2, 7. Contributions, Monte Carlo wiki page, 3.1, 3.2, 3.3, Section 4                                |
-|   Georgia   | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2, 3.4, 3.7, 3.8, 5.1, Safe Computing Wiki (for H&S) |
+|   Georgia   | 1.0, 1.1, 2, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.1, 3.2, 3.4, 3.7, 3.8, 5.1, Safe Computing Wiki (for H&S) |
 |     Max     | 1.0, 1.1, Section 5 (5.1, 5.2, 5.3, 5.4, 5.4.1), 3.2                                                       |
 |   Justina   | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.6                                            |
 |   Jacqui    | 1.0, 1.1, Section 1 (1.2, 1.3, 1.3.1, 1.3.2, 1.3.3, 1.3.4), 3.5, 3.2                                       |
