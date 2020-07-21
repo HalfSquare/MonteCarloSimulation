@@ -122,7 +122,7 @@ These peripherals, along with the computer itself, are needed to run the softwar
 
 #### Rocket Model File
 
-A rocket model file (.ork) is needed to import the rocket's hardware into our simulation software, to correctly and accurately simulate the rocket's behavior. The .ork file can be created through OpenRocket, which has the tools to build a digital model of the rocket being used. This .ork will then be imported into our software within the configuration stage of the program. This will give the simulation all of the applicable rocket hardware info, such as the motor type and the speed the rocket can reach.
+A rocket model file (.ork) is needed to import the rocket's hardware into our simulation software, in order to correctly and accurately simulate the rocket's behavior. The .ork file can be created through OpenRocket, which has the tools to build a digital model of the rocket being used. This .ork will then be imported into our software within the configuration stage of the program. This will give the simulation all of the applicable rocket hardware info, such as the motor type and the speed the rocket can reach.
 
 #### Mission Control Data
 
