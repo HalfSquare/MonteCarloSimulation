@@ -73,7 +73,7 @@
                       <text value="Placeholder"/>
                     </properties>
                   </component>
-                  <component id="eeca3" class="javax.swing.JFormattedTextField" binding="cMyDocsNoFormattedTextField" default-binding="true">
+                  <component id="eeca3" class="javax.swing.JFormattedTextField" binding="formattedTextField80">
                     <constraints>
                       <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
                         <preferred-size width="150" height="-1"/>
