@@ -140,6 +140,25 @@ Typical users scale from experienced with model rocket use to people just starti
 |                                                        | Run simulation again and show the new data graphically |
 |                                                        | Simulation data is saved to a file                     |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User runs and re-runs smulation with data saved to file" {
+  User -- (Checks 'Save To File' option)
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+  (Simulation data is saved to a file) -- System
+  User -- (Selects 'Re-Run Simulation')
+  (Run simulation again and show the new data graphically) -- System
+  (Simulation data is saved to a new file) -- System
+}
+@enduml
+```
+
 ##### User runs and re-runs simulation
 
 | Persona/User                                           | System Response                                        |
@@ -150,6 +169,22 @@ Typical users scale from experienced with model rocket use to people just starti
 |                                                        | Show the data graphically                              |
 | User selects 'Re-Run Simulation'                       |                                                        |
 |                                                        | Run simulation again and show the new data graphically |
+
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User runs and re-runs smulation" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+  User -- (Selects 'Re-Run Simulation')
+  (Run simulation again and show the new data graphically) -- System
+}
+@enduml
+```
 
 ##### User runs simulation and saves to file
 
@@ -162,6 +197,22 @@ Typical users scale from experienced with model rocket use to people just starti
 | User selects 'Save to File'                            |                                    |
 |                                                        | Simulation data is saved to a file |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User runs simulation and saves to file" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+  User -- (Selects 'Save to file')
+  (Simulation data is saved to a file) -- System
+}
+@enduml
+```
+
 ##### User runs simulation
 
 | Persona/User                                           | System Response           |
@@ -170,6 +221,20 @@ Typical users scale from experienced with model rocket use to people just starti
 |                                                        | Run simulation            |
 |                                                        | Finish simulation         |
 |                                                        | Show the data graphically |
+
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User runs smulation" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+}
+@enduml
+```
 
 ##### User finishes simulation early
 
@@ -181,6 +246,21 @@ Typical users scale from experienced with model rocket use to people just starti
 |                                                        | Finish simulation early   |
 |                                                        | Show the data graphically |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User finishes simulation early" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  User -- (Finishes simulation early)
+  (Finish simulation early) -- System
+  (Show the data graphically) -- System
+}
+@enduml
+```
+
 ##### User aborts simulation
 
 | Persona/User                                           | System Response  |
@@ -191,16 +271,39 @@ Typical users scale from experienced with model rocket use to people just starti
 |                                                        | Abort simulation |
 |                                                        | Throw away data  |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User aborts simulation" {
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  User -- (Aborts simulation)
+  (Abort simulation) -- System
+  (Throw away data) -- System
+}
+@enduml
+```
+
 ##### User gets help
 
 | Persona/User                                           | System Response           |
 | ------------------------------------------------------ | ------------------------- |
 | User selects 'help'                                    |                           |
 |                                                        | Show help info screen     |
-| User starts a simulation with the 'Monte Carlo' option |                           |
-|                                                        | Run simulation            |
-|                                                        | Finish simulation         |
-|                                                        | Show the data graphically |
+
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User gets help" {
+  User -- (Selects 'help')
+  (Show help info screen) -- System
+}
+@enduml
+```
 
 ##### User adds topographical data
 
@@ -212,6 +315,21 @@ Typical users scale from experienced with model rocket use to people just starti
 | User selects 'continue'               |                                                    |
 |                                       | Save topographical data to working simulation file |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User adds topographical data" {
+  User -- (Selects 'add topographical data')
+  (Prompt for launch site location) -- System
+  User -- (Enters launch site location)
+  User -- (Selects 'continue')
+  (Save topographical data to working simulation file) -- System
+}
+@enduml
+```
+
 ##### User adds weather data
 
 (*Discuss with mission control group*)
@@ -221,6 +339,19 @@ Typical users scale from experienced with model rocket use to people just starti
 | User selects 'add weather data' |                                              |
 | User selects 'continue'         |                                              |
 |                                 | Save weather data to working simulation file |
+
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User adds weather data" {
+  User -- (Selects 'add weather data')
+  User -- (Selects 'continue')
+  (Save weather data to working simulation file) -- System
+}
+@enduml
+```
 
 ##### User integrates mission control
 
@@ -233,6 +364,23 @@ Typical users scale from experienced with model rocket use to people just starti
 |                                                        | User selected controller adjusts the angle of rocket |
 |                                                        | Finish simulation                                    |
 |                                                        | Show the data graphically                            |
+
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User integrates mission control" {
+  User -- (Selects mission control options)
+  (Show settings for controlling rocket) -- System
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (User seleted controller adjusts the angle of rocket) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+}
+@enduml
+```
 
 ##### User integrates multiple mission control options across multiple simulations
 
@@ -250,6 +398,28 @@ Typical users scale from experienced with model rocket use to people just starti
 |                                                        | User selected controller adjusts the angle of rocket |
 |                                                        | Finish simulation                                    |
 |                                                        | Show the comparison data graphically                 |
+
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User integrates multiple mission control options across multiple simulations" {
+  User -- (Selects mission control options)
+  (Show settings for controlling rocket) -- System
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (User seleted controller adjusts the angle of rocket) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+  User -- (Re-run simulation with different controller options)
+  ( Run simulation) -- System
+  ( User seleted controller adjusts the angle of rocket) -- System
+  ( Finish simulation) -- System
+  ( Show the data graphically) -- System
+}
+@enduml
+```
 
 ### 3.3 Usability Requirements
 
