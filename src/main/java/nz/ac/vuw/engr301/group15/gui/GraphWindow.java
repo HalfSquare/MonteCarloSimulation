@@ -1,9 +1,11 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import org.jfree.chart.ChartPanel;
-
-import javax.swing.*;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import org.jfree.chart.ChartPanel;
 
 public class GraphWindow {
   private JComboBox<String> graphTypeComboBox;
@@ -26,9 +28,10 @@ public class GraphWindow {
     return simulationTable;
   }
 
-  public void addToGraph(ChartPanel chartPanel){
+  public void addToGraph(ChartPanel chartPanel) {
     graphPanel.add(chartPanel);
   }
+
   public JPanel getRootPanel() {
     return this.rootPanel;
   }
@@ -45,7 +48,7 @@ public class GraphWindow {
     rootPanel.setVisible(flag);
   }
 
-  public void doUIStuff() {
+  public void doUiStuff() {
     exitButton.addActionListener(new ExitAction());
   }
 }
