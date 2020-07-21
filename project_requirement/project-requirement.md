@@ -398,6 +398,28 @@ rectangle "User integrates mission control" {
 |                                                        | Finish simulation                                    |
 |                                                        | Show the comparison data graphically                 |
 
+```plantuml
+@startuml
+left to right direction
+actor "User"
+actor "System"
+rectangle "User integrates multiple mission control options across multiple simulations" {
+  User -- (Selects mission control options)
+  (Show settings for controlling rocket) -- System
+  User -- (Starts a simulation with the 'Monte Carlo' option)
+  (Run simulation) -- System
+  (User seleted controller adjusts the angle of rocket) -- System
+  (Finish simulation) -- System
+  (Show the data graphically) -- System
+  User -- (Re-run simulation with different controller options)
+  ( Run simulation) -- System
+  ( User seleted controller adjusts the angle of rocket) -- System
+  ( Finish simulation) -- System
+  ( Show the data graphically) -- System
+}
+@enduml
+```
+
 ### 3.3 Usability Requirements
 
 #### Objective
