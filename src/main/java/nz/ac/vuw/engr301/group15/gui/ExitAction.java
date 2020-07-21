@@ -11,13 +11,13 @@ import java.awt.event.ActionListener;
  */
 public class ExitAction implements ActionListener {
 
-    /**
-     * Invoked when button is clicked.
-     *
-     * @param e action
-     */
-    @Override
-    public void actionPerformed(ActionEvent e) {
-      System.exit(0);
-    }
+  /**
+   * Invoked when button is clicked.
+   *
+   * @param e action
+   */
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    System.exit(0);
+  }
 }
