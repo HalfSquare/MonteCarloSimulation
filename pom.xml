@@ -82,6 +82,7 @@
                     <violationSeverity>warning</violationSeverity>
                     <failsOnError>true</failsOnError>
                     <failOnViolation>true</failOnViolation>
+                    <configLocation>google_checks.xml</configLocation>
                 </configuration>
                 <executions>
                     <execution>
