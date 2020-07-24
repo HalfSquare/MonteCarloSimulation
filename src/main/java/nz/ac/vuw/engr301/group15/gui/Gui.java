@@ -3,10 +3,11 @@ package nz.ac.vuw.engr301.group15.gui;
 //import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
@@ -14,6 +15,7 @@ import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -27,6 +29,8 @@ public class Gui extends JFrame {
   private final SettingsWindow settingsWindow;
   private final SimulationWindow simulationWindow;
   private final GraphWindow graphWindow;
+
+  private final JFileChooser fileChooser;
 
   public static final String SETTINGS = "SETTINGS";
   public static final String SIMULATION = "SIMULATION";
@@ -52,6 +56,8 @@ public class Gui extends JFrame {
     settingsWindow = new SettingsWindow();
     simulationWindow = new SimulationWindow();
     graphWindow = new GraphWindow();
+
+    fileChooser = new JFileChooser();
 
     settingsWindow.doUiStuff();
     simulationWindow.doUiStuff();
@@ -82,14 +88,14 @@ public class Gui extends JFrame {
   }
 
   private void startGraph() {
-    GraphCreater g = new GraphCreater();
-    g.createGraph();
+    GraphCreator g = new GraphCreator();
+    ChartPanel chartPanel = g.createGraph();
     GraphType graphType = GraphType.CIRCLE;
 
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
 
-    graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage());
+    graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     //createTable();
 
   }
@@ -97,8 +103,20 @@ public class Gui extends JFrame {
   /**
    * Saves the currently displayed graph as a PNG image.
    */
-  private void saveGraphAsImage(){
+  private void saveGraphAsImage(ChartPanel chartPanel){
+    //Code adapted from https://stackoverflow.com/questions/34836338/how-to-save-current-chart-in-chartpanel-as-png-programmatically#34836396
+    try {
+      fileChooser.showSaveDialog(this);
 
+      OutputStream out = new FileOutputStream("name");
+      ChartUtilities.writeChartAsPNG(out,
+              chartPanel.getChart(),
+              chartPanel.getWidth(),
+              chartPanel.getHeight());
+
+    } catch (IOException ex) {
+      throw new Error("IO Exception");
+    }
   }
 
   /**
@@ -200,8 +218,13 @@ public class Gui extends JFrame {
 
   }
 
-  class GraphCreater {
-    public void createGraph() {
+  class GraphCreator {
+    /**
+     * Constructor.
+     *
+     * @return created graph in ChartPanel form
+     */
+    public ChartPanel createGraph() {
       // Create chart
       JFreeChart chart = ChartFactory.createScatterPlot(
               "tLongitude vs. Latitude Points",
@@ -221,6 +244,8 @@ public class Gui extends JFrame {
       graphWindow.getGraphPanel().setLayout(new BorderLayout());
       graphWindow.getGraphPanel().add(panel, BorderLayout.CENTER);
       graphWindow.getGraphPanel().validate();
+
+      return panel;
     }
 
     private XYDataset createDataset() {
