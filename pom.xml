@@ -77,7 +77,6 @@
                         <id>modified-openrocket</id>
                         <phase>clean</phase>
                         <configuration>
-                            <repositoryLayout>default</repositoryLayout>
                             <groupId>net.sf.openrocket</groupId>
                             <artifactId>modified-openrocket</artifactId>
                             <version>1.0</version>
