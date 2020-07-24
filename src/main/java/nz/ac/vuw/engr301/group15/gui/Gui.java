@@ -89,7 +89,15 @@ public class Gui extends JFrame {
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
 
+    graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage());
     //createTable();
+
+  }
+
+  /**
+   * Saves the currently displayed graph as a PNG image.
+   */
+  private void saveGraphAsImage(){
 
   }
 
