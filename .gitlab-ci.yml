@@ -40,7 +40,6 @@ build:
   tags:
     - shell
   script:
-    - mvn clean install
     - echo "static analysis"
     - exit 0
   allow_failure: true
@@ -51,7 +50,7 @@ unittest:
     - shell
   script:
     - echo "Beginning unit tests"
-    - mvn test
+    - mvn install test
   allow_failure: false
 
 deploy:
