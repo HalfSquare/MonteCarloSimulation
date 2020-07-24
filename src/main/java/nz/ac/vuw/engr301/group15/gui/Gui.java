@@ -3,6 +3,7 @@ package nz.ac.vuw.engr301.group15.gui;
 //import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -102,13 +103,25 @@ public class Gui extends JFrame {
 
   /**
    * Saves the currently displayed graph as a PNG image.
+   * @param chartPanel the chartPanel being saved
    */
   private void saveGraphAsImage(ChartPanel chartPanel){
     //Code adapted from https://stackoverflow.com/questions/34836338/how-to-save-current-chart-in-chartpanel-as-png-programmatically#34836396
     try {
-      fileChooser.showSaveDialog(this);
+      File file = new File("chart.png"); //default filename
+      fileChooser.setSelectedFile(file);
+      int option = fileChooser.showDialog(this, "Save as image");
 
-      OutputStream out = new FileOutputStream("name");
+      //If user clicked "save", set the file to the desired new file
+      if(option == JFileChooser.APPROVE_OPTION) {
+        file = fileChooser.getSelectedFile();
+      }
+      else{
+        return;
+      }
+
+      //Save chart as image to selected file at original size
+      OutputStream out = new FileOutputStream(file);
       ChartUtilities.writeChartAsPNG(out,
               chartPanel.getChart(),
               chartPanel.getWidth(),
