@@ -67,7 +67,6 @@
     <build>
         <finalName>maven-unit-test</finalName>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
@@ -80,7 +79,7 @@
                             <groupId>net.sf.openrocket</groupId>
                             <artifactId>modified-openrocket</artifactId>
                             <version>1.0</version>
-                            <file>${project.basedir}/lib/modified-openrocket-1-1-9.jar</file>
+                            <file>src/main/resources/modified-openrocket-1-1-9.jar</file>
                             <packaging>jar</packaging>
                             <generatePom>true</generatePom>
                         </configuration>
