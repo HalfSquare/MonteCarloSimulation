@@ -40,6 +40,7 @@ build:
   tags:
     - shell
   script:
+    - mvn clean install
     - echo "static analysis"
     - exit 0
   allow_failure: true
