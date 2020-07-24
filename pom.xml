@@ -45,6 +45,11 @@
             <artifactId>apache-log4j-extras</artifactId>
             <version>1.2.17</version>
         </dependency>
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>forms_rt</artifactId>
+            <version>6.0.5</version>
+        </dependency>
     </dependencies>
     <!-- Repo for jzy-3d (graphing)-->
     <repositories>
@@ -98,7 +103,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/Group15GUI</outputDirectory>
+                            <outputDirectory>${basedir}/Group15Program</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>resources</directory>
@@ -120,7 +125,7 @@
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/Group15GUI/lib</outputDirectory>
+                            <outputDirectory>${project.build.directory}/Group15Program/lib</outputDirectory>
                             <overWriteReleases>false</overWriteReleases>
                             <overWriteSnapshots>false</overWriteSnapshots>
                             <overWriteIfNewer>true</overWriteIfNewer>
@@ -144,7 +149,7 @@
                         </manifestEntries>
                     </archive>
 
-                    <finalName>Group15GUI/Group15GUI</finalName>
+                    <finalName>Group15Program/Group15Program</finalName>
                 </configuration>
             </plugin>
 
