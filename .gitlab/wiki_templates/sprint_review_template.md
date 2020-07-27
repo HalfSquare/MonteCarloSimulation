@@ -93,3 +93,7 @@ What was could be improved | How it could be improved
 Have better communication between the team members | • Use MatterMost to communicate more frequently <br>|
 ---- | ---- 
 ---- | ---- 
+
+**Question 6:** _Any Other Issues / Questions / Things brought up_  
+
+Are there any other things that were brought up in the meeting? Please bullet point them below. 
