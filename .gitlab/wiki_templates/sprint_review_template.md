@@ -82,3 +82,13 @@ What was Done Well | Why it was done well
 Fixed a major bug that we didn't understand | • We collaborated on the task  effectively and showed good team work <br>|
 ---- | ---- 
 ---- | ---- 
+
+**Question 5:** _What Could We Improve Next time_
+
+Please bullet point what could be done better in the next sprint and how we could do this better next time.
+
+What was Done Well | Why it was done well 
+---- | ---- 
+Fixed a major bug that we didn't understand | • We collaborated on the task  effectively and showed good team work <br>|
+---- | ---- 
+---- | ---- 
