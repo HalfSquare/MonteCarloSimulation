@@ -24,10 +24,32 @@ _Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
 ## Questions:
 **Question 1:** _What Did Everyone Work on in the Sprint?_
 <!-- The first line is an example of how the table should be filled out -->
+This section details what everyone worked on for this sprint. This includes 
+everything that they worked one, whether they completed the task or not. If the task was successfully completed, 
+please write that down. 
+
+If possible please link the appropriate issue number after the bullet point.  
+
 
 Team Member | What they worked on
 ---- | ---- 
-Michael Behan | • Wrote documentation for the retro<br>• Talked to Craig about requirements<br> |
+Michael Behan | • Completed #20: Documentation for the Project Requirements<br>• Talked to Craig about requirements<br> |
+Justina Koh | ---- 
+Max McMurray | ---- 
+Alexander Pace | ---- 
+Jacqueline Dong | ---- 
+Georgia Strongman | ---- 
+
+
+**Question 2:** _Difficulties_
+<!-- The first line is an example of how the table should be filled out -->
+Did anyone have any difficulties with their work while in this sprint?
+Please link any corresponding issues in the description. If there were no 
+difficulties, please leave the cell blank. 
+
+Team Member | Difficulties
+---- | ---- 
+Michael Behan | • Max wanted to fight <br>• The code self-destructed<br> |
 Justina Koh | ---- 
 Max McMurray | ---- 
 Alexander Pace | ---- 
