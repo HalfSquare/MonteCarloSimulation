@@ -1,26 +1,20 @@
 <!-- This is a template for all documentation things such as needing to do some documentation or fixing an error (bug) in a document-->
 #### __Content__
-Title: (Title of the Documentation task)
+Description: (Concisely summarise what needs to be done)
 <br>
-Description: (Summarise what is to be done concisely)
-
 
 #### __Extra Information about the Documentation Task:__
 <!-- Take this  out if not relevant.-->
 
 #### Relevant logs, links and/or screenshots
 
-(Paste any relevant logs - please use code blocks (```) to format console output,
-logs, and code as it's tough to read otherwise.)
+(Paste any relevant logs - please use code blocks ```` ``` ```` )
+<br>
 
 ### __Possible fixes__
 <!-- Take this section out if not relevant -->
-(If you can, link the document and section that is )
+(If you can, link the document and section that needs attention)
+<br>
 
-#### People
-Authors:
-Assignees(s):
-
-/label ~documentation <br>
-/label ~bug  <!--Take this label out if it is not a bug-->
-/epic <!-- Please apply the correct epic label with this -->
+/label ~Documentation <br>
+/epic <!-- Please apply the correct epic label -->
