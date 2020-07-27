@@ -20,3 +20,16 @@ _Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
 - Max McMurray &nbsp; &nbsp; &nbsp; &nbsp; @mcmurrmax 
 - Michael Behan &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;@behanmich 
 
+
+## Questions:
+**Question 1:** _What Did Everyone Work on in the Sprint?_
+<!-- The first line is an example of how the table should be filled out -->
+
+Team Member | What they worked on
+---- | ---- 
+Michael Behan | • Wrote documentation for the retro<br>• Talked to Craig about requirements<br> |
+Justina Koh | ---- 
+Max McMurray | ---- 
+Alexander Pace | ---- 
+Jacqueline Dong | ---- 
+Georgia Strongman | ---- 
