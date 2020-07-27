@@ -83,3 +83,13 @@ Fixed a major bug that we didn't understand | • We collaborated on the task  e
 ---- | ---- 
 ---- | ---- 
 
+
+**Question 5:** _What Could We Improve Next time_
+
+Please bullet point what could be done better in the next sprint and how we could do this better next time.
+
+What was could be improved | How it could be improved
+---- | ---- 
+Have better communication between the team members | • Use MatterMost to communicate more frequently <br>|
+---- | ---- 
+---- | ---- 
