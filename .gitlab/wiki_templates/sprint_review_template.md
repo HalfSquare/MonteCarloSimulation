@@ -72,3 +72,13 @@ Max McMurray | ----
 Alexander Pace | ---- 
 Jacqueline Dong | ---- 
 Georgia Strongman | ----
+
+**Question 4:** _What did we do well this Sprint?_
+
+Please bullet point what was done well in the sprint and why it was done well. 
+
+What was Done Well | Why it was done well 
+---- | ---- 
+Fixed a major bug that we didn't understand | • We collaborated on the task  effectively and showed good team work <br>|
+---- | ---- 
+---- | ---- 
