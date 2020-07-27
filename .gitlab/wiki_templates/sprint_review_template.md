@@ -43,6 +43,7 @@ Georgia Strongman | ----
 
 **Question 2:** _Difficulties_
 <!-- The first line is an example of how the table should be filled out -->
+
 Did anyone have any difficulties with their work while in this sprint?
 Please link any corresponding issues in the description. If there were no 
 difficulties, please leave the cell blank. 
@@ -55,3 +56,19 @@ Max McMurray | ----
 Alexander Pace | ---- 
 Jacqueline Dong | ---- 
 Georgia Strongman | ---- 
+
+**Question 3:** _New Issues_
+<!-- The first line is an example of how the table should be filled out -->
+
+Did anyone create and add any new issues after the last sprint planning meeting?
+
+If anything was added, please list it below. If none were created, then please leave the cell blank. 
+
+Team Member | Difficulties
+---- | ---- 
+Michael Behan | • Created #21 Add new GUI features for Max <br>|
+Justina Koh | ---- 
+Max McMurray | ---- 
+Alexander Pace | ---- 
+Jacqueline Dong | ---- 
+Georgia Strongman | ----
