@@ -1,5 +1,6 @@
 let token = process.argv.forEach((arg) => {
     if (arg.startsWith("--token=")) {
+        console.log(arg);
         return arg.replace("--token=", "");
     }
 });
