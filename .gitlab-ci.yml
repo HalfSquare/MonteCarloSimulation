@@ -9,10 +9,6 @@ stages:
   - Test
   - Deploy
 
-before_script:
-    - npm install
-    - npm i node-fetch --save
-
 markdownlint:
   stage: Validate
   tags:
