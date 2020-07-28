@@ -37,7 +37,6 @@
 <script>
     function parseAndDisplayTable(releases) {
         const data = JSON.parse(releases);
-        console.log(data);
 
         table = document.getElementById("releaseTable");
         table.innerHTML = "";
@@ -68,11 +67,26 @@
         });
     }
 
+    function readTextFile(fileName)
+    {
+        //https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
+        let file = new XMLHttpRequest();
+        file.open("GET", fileName, false);
+        file.onreadystatechange = () =>
+        {
+            if(file.readyState === 4)
+            {
+                if(file.status === 200 || file.status === 0)
+                {
+                    parseAndDisplayTable(file.response);
+                }
+            }
+        }
+        file.send(null);
+    }
+
     window.onload = function () {
-        let exampleData = '[{"Tag": "gorilla", "Notes": ["did a thing", "did the other"], "Link":"https://www.google.co.nz"},' +
-            '               {"Tag": "ocelot", "Notes": ["did cat thing", "meow"], "Link": "https://www.google.com"}]';
-        console.log(exampleData);
-        parseAndDisplayTable(exampleData);
+        readTextFile("tags.json");
     }
 </script>
 </body>
