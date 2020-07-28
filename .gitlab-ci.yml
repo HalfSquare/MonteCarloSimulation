@@ -3,9 +3,17 @@ image: node:latest
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end"
   
-before_script:
-  - cd application/client
-  - npm install
+cache:
+    paths:
+        - node_modules/
+
+install_dependencies:
+    stage: build
+    script:
+        - npm install
+    artifacts:
+        paths:
+            - node_modules/
 
 stages:
   - Validate
