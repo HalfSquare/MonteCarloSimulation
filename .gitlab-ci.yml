@@ -59,6 +59,8 @@ deploy:
     - shell
   script:
     - echo "deploy"
+    - cd "deploy website"
+    - node fetch-tags.js --token=$CI_JOB_TOKEN
     - exit 0
   allow_failure: true
   
