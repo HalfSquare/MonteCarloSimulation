@@ -74,14 +74,13 @@
                 <executions>
                     <execution>
                         <id>modified-openrocket</id>
-                        <phase>clean</phase>
+                        <phase>install</phase>
                         <configuration>
                             <groupId>net.sf.openrocket</groupId>
                             <artifactId>modified-openrocket</artifactId>
                             <version>1.0</version>
-                            <file>${project.basedir}/src/main/resources/modified-openrocket-1-1-9.jar</file>
+                            <file>${pom.basedir}/src/main/resources/modified-openrocket-1-1-9.jar</file>
                             <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
                         </configuration>
                         <goals>
                             <goal>install-file</goal>
