@@ -23,8 +23,13 @@ table, tbody, tr, td {
     /*border: 1px solid black;*/
     border-bottom: 1px solid #ddd;
     border-collapse: collapse;
-
+    text-align: left;
 }
+
+tr:nth-child(even) {
+    background-color: #999999;
+}
+
 
 b {
     font-size: large;
@@ -76,6 +81,10 @@ nav img {
     background-size: 100%;
     background-repeat: repeat-y;
     overflow: hidden;
+}
+
+#notes {
+    text-align: left;
 }
 
 @media all and (max-width: 575px) {
