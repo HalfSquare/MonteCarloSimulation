@@ -9,6 +9,10 @@ stages:
   - Test
   - Deploy
 
+before_script:
+    - npm install
+    - npm i node-fetch --save
+
 markdownlint:
   stage: Validate
   tags:
@@ -61,7 +65,8 @@ deploy:
     - shell
   script:
     - echo "deploy"
-    - node -e "console.log('hello')"
+    - cd "deploy website"
+    - node releaseNotesScript.js
     - exit 0
   allow_failure: true
   
