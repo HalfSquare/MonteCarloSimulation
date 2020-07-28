@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="UTF-8">
 <title>Deploy</title>
 <head>
     <link rel="stylesheet" href="styles.css">
@@ -21,7 +22,8 @@
 </header>
 
 <article id="mainArticle">
-    <h1>hi</h1>
+    <table id="releaseTable">
+    </table>
 </article>
 
 <nav id="mainNav">
@@ -36,10 +38,40 @@
     function parseAndDisplayTable(releases) {
         const data = JSON.parse(releases);
         console.log(data);
+
+        table = document.getElementById("releaseTable");
+        table.innerHTML = "";
+        let row = table.insertRow(table.rows.length);
+        Object.keys(data[0]).forEach((property) => {
+            let cell = row.insertCell();
+            cell.innerHTML = "<b>" + property + "</b>";
+        });
+        data.forEach((version) => {
+            let row = table.insertRow(table.rows.length);
+            Object.keys(version).forEach((property) => {
+                let cell = row.insertCell();
+                if (Array.isArray(version[property])) {
+                  let smallTable = "";
+                  version[property].forEach((note) => {
+                      smallTable += "- " + note;
+                      smallTable += "<br>"
+                  });
+                  cell.innerHTML = smallTable;
+                }
+                else if (property === "Link") {
+                    cell.innerHTML = "<a href='" + version[property] + "'><i>Download</i></a>"
+                }
+                else {
+                    cell.innerHTML = version[property];
+                }
+            });
+        });
     }
 
     window.onload = function () {
-        let exampleData = '{"tag": "gorilla", "notes": "-1\n-2\n3", "link":"https://www.google.co.nz"}';
+        let exampleData = '[{"Tag": "gorilla", "Notes": ["did a thing", "did the other"], "Link":"https://www.google.co.nz"},' +
+            '               {"Tag": "ocelot", "Notes": ["did cat thing", "meow"], "Link": "https://www.google.com"}]';
+        console.log(exampleData);
         parseAndDisplayTable(exampleData);
     }
 </script>
