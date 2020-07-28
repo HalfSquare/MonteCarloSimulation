@@ -61,7 +61,8 @@ deploy:
     - shell
   script:
     - echo "deploy"
-    - node "/deploy website/releaseNotesScript.js"
+    - cd "deploy website"
+    - node releaseNotesScript.js
     - exit 0
   allow_failure: true
   
