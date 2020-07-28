@@ -1,3 +1,5 @@
+image: node:latest
+
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end"
 
@@ -59,6 +61,7 @@ deploy:
     - shell
   script:
     - echo "deploy"
+    - node -e "console.log('hello')"
     - exit 0
   allow_failure: true
   
