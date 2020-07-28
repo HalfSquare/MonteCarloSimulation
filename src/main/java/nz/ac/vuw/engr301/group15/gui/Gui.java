@@ -1,4 +1,5 @@
 package nz.ac.vuw.engr301.group15.gui;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
@@ -23,6 +24,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.ShapeUtilities;
+
 import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CIRCLE;
 import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CROSS;
 import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.SQUARE;
@@ -163,6 +165,7 @@ public class Gui extends JFrame {
   }
 
   class SimulationRunner implements Runnable {
+
     private Thread thread;
 
     /**
@@ -215,13 +218,13 @@ public class Gui extends JFrame {
       Shape shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
 
       // Creates the plotting shape
-      if (CROSS.equals(graphType)){
+      if (CROSS.equals(graphType)) {
         shape = ShapeUtilities.createDiagonalCross(1, 1);
       }
-      if (SQUARE.equals(graphType)){
-        shape = new Rectangle2D.Double(-3,-3,3,3);
+      if (SQUARE.equals(graphType)) {
+        shape = new Rectangle2D.Double(-3, -3, 3, 3);
       }
-      if (CIRCLE.equals(graphType)){
+      if (CIRCLE.equals(graphType)) {
         shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
       }
 
