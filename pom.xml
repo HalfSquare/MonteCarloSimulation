@@ -38,6 +38,8 @@
             <groupId>net.sf.openrocket</groupId>
             <artifactId>modified-openrocket</artifactId>
             <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/modified-openrocket-1-1-9.jar</systemPath>
         </dependency>
         <!--log4j dependency-->
         <dependency>
