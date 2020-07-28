@@ -13,9 +13,21 @@ body {
     margin: 0;
 }
 
-table, th, td {
-    border: 1px solid black;
+table {
+    width: 100%;
+    text-align: center;
+    vertical-align: top;
+}
+
+table, tbody, tr, td {
+    /*border: 1px solid black;*/
+    border-bottom: 1px solid #ddd;
     border-collapse: collapse;
+
+}
+
+b {
+    font-size: large;
 }
 
 .button {
