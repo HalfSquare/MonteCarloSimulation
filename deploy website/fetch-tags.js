@@ -1,7 +1,8 @@
-let token = process.argv.forEach((arg) => {
+let token = "";
+process.argv.forEach((arg) => {
     if (arg.startsWith("--token=")) {
-        console.log(arg);
-        return arg.replace("--token=", "");
+        console.log(arg.replace("--token=", ""));
+        token =  arg.replace("--token=", "");
     }
 });
 
