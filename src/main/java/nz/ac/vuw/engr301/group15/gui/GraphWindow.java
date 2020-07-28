@@ -2,7 +2,9 @@ package nz.ac.vuw.engr301.group15.gui;
 
 import java.awt.Insets;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -47,9 +49,26 @@ public class GraphWindow {
     return this.graphPanel;
   }
 
+<<<<<<< src/main/java/nz/ac/vuw/engr301/group15/gui/GraphWindow.java
+  public String getGraphTypeComboBox() { return Objects
+    .requireNonNull(graphTypeComboBox.getSelectedItem()).toString(); }
+
+  public void setReRunButtonListener(ActionListener listener) {
+    this.reRunButton.addActionListener(listener);
+  }
+=======
   public void setReRunButtonListener(ActionListener listener) { this.reRunButton.addActionListener(listener); }
 
   public void setSaveImageToFileButton(ActionListener listener) { this.saveImageToFileButton.addActionListener(listener); }
+>>>>>>> src/main/java/nz/ac/vuw/engr301/group15/gui/GraphWindow.java
+
+  public void setGraphTypeComboBoxListener(ActionListener listener){
+    this.graphTypeComboBox.addActionListener(listener);
+  }
+
+  public void resetGraphPanel(){
+    this.graphPanel.removeAll();
+  }
 
   public void setVisible(boolean flag) {
     rootPanel.setVisible(flag);
