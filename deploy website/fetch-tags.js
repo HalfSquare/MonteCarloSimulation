@@ -1,4 +1,5 @@
-console.log("run");
+console.log(process.argv);
+
 let https = require('https');
 
 const options = {
@@ -15,14 +16,11 @@ const req = https.request(options, (resp) => {
     let data = '';
 
     resp.on('data', (chunk) => {
-        console.log("data");
-        console.log(chunk);
         data += chunk;
     });
 
     resp.on('end', () => {
         let json = JSON.parse(data);
-        console.log("end");
         console.log(json);
     });
 
