@@ -1,4 +1,10 @@
-console.log(process.argv);
+let token = process.argv.forEach((arg) => {
+    if (arg.startsWith("--token=")) {
+        return arg.replace("--token=", "");
+    }
+});
+
+console.log(token);
 
 let https = require('https');
 
@@ -7,7 +13,7 @@ const options = {
     path: "/api/v4/projects/6908/tags",
     method: 'GET',
     headers: {
-        Authorization: "Bearer $CI_JOB_TOKEN",
+        Authorization: "Bearer " + token,
         contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }
 };
