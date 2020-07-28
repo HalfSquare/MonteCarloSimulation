@@ -88,12 +88,13 @@ public class Gui extends JFrame {
   }
 
   private void startGraph() {
+    this.add(graphWindow.getRootPanel());
+    graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
     GraphCreater g = new GraphCreater();
     g.createGraph();
-    this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
     graphWindow.setGraphTypeComboBoxListener(
-      e -> g.createGraph()); // redraws the graph if combobox was selected
+      e -> setState(GRAPH)); // redraws the graph if combobox was selected
     //createTable();
 
   }

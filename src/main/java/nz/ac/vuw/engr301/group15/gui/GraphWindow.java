@@ -52,6 +52,10 @@ public class GraphWindow {
     this.graphTypeComboBox.addActionListener(listener);
   }
 
+  public void resetGraphPanel(){
+    this.graphPanel.removeAll();
+  }
+
   public void setVisible(boolean flag) {
     rootPanel.setVisible(flag);
   }
