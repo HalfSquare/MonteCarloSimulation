@@ -12,7 +12,7 @@ let https = require('https');
 
 const options = {
     hostname: "gitlab.ecs.vuw.ac.nz",
-    path: "/api/v4/projects/6908/tags",
+    path: "/api/v4/projects/6908/repository/tags",
     method: 'GET',
     headers: {
         Authorization: "Bearer " + token,
