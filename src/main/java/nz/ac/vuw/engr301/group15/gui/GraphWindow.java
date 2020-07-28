@@ -20,8 +20,9 @@ public class GraphWindow {
   private JButton exitButton;
   private JButton reRunButton;
   private JPanel graphPanel;
+  private JButton saveImageToFileButton;
 
-  private JTable simulationTable;
+    private JTable simulationTable;
 
   /**
    * Constructor.
@@ -46,9 +47,9 @@ public class GraphWindow {
     return this.graphPanel;
   }
 
-  public void setReRunButtonListener(ActionListener listener) {
-    this.reRunButton.addActionListener(listener);
-  }
+  public void setReRunButtonListener(ActionListener listener) { this.reRunButton.addActionListener(listener); }
+
+  public void setSaveImageToFileButton(ActionListener listener) { this.saveImageToFileButton.addActionListener(listener); }
 
   public void setVisible(boolean flag) {
     rootPanel.setVisible(flag);
