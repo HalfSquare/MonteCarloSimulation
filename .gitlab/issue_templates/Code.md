@@ -1,23 +1,16 @@
 #### __Content__
-Title: (Title of the bug)
+Description: (Concisely summarise what needs to be done)
 <br>
-Description: (Summarise what is needed to be done with the code)
-
 
 #### __Information about the task:__
-__What is the final expected output / product after this code is implemented:__ (One sentence. Can put in list form)
+__What is the final expected output / product after this code is implemented:__ (One sentence / list form)
 <br>
 __What is the code currently doing:__ (What actually happens)
-
+<br>
 
 ### Relevant logs and/or screenshots
 
-(Paste any relevant logs - please use code blocks (```) to format console output,
-logs, and code as it's tough to read otherwise.)
+(Paste any relevant logs - please use code blocks ```` ``` ```` )
+<br>
 
-
-#### People
-Authors:
-Assignees(s):
-
-/label ~documentation
+/label ~Development

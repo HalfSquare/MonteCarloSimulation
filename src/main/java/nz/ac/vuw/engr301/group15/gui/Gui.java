@@ -5,10 +5,12 @@ import java.awt.Color;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.Shape;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
@@ -16,6 +18,7 @@ import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -35,6 +38,8 @@ public class Gui extends JFrame {
   private final SettingsWindow settingsWindow;
   private final SimulationWindow simulationWindow;
   private final GraphWindow graphWindow;
+
+  private final JFileChooser fileChooser;
 
   public static final String SETTINGS = "SETTINGS";
   public static final String SIMULATION = "SIMULATION";
@@ -60,6 +65,8 @@ public class Gui extends JFrame {
     settingsWindow = new SettingsWindow();
     simulationWindow = new SimulationWindow();
     graphWindow = new GraphWindow();
+
+    fileChooser = new JFileChooser();
 
     settingsWindow.doUiStuff();
     simulationWindow.doUiStuff();
@@ -90,6 +97,7 @@ public class Gui extends JFrame {
   }
 
   private void startGraph() {
+<<<<<<< src/main/java/nz/ac/vuw/engr301/group15/gui/Gui.java
     this.add(graphWindow.getRootPanel());
     graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
     GraphCreater g = new GraphCreater();
@@ -97,14 +105,62 @@ public class Gui extends JFrame {
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
     graphWindow.setGraphTypeComboBoxListener(
       e -> setState(GRAPH)); // redraws the graph if combobox was selected
+=======
+    GraphCreator g = new GraphCreator();
+    ChartPanel chartPanel = g.createGraph();
+    GraphType graphType = GraphType.CIRCLE;
+
+    this.add(graphWindow.getRootPanel());
+    graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
+
+    graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
+>>>>>>> src/main/java/nz/ac/vuw/engr301/group15/gui/Gui.java
     //createTable();
 
   }
 
   /**
+<<<<<<< src/main/java/nz/ac/vuw/engr301/group15/gui/Gui.java
    * Table containing all longitude and latitude data points Uncomment if you wish to view it.
    * Additionally, you should go to GraphWindow.form and create a new JTable called simulationTable
    * after double cliking on the centre of the page
+=======
+   * Saves the currently displayed graph as a PNG image.
+   * @param chartPanel the chartPanel being saved
+   */
+  private void saveGraphAsImage(ChartPanel chartPanel){
+    //Code adapted from https://stackoverflow.com/questions/34836338/how-to-save-current-chart-in-chartpanel-as-png-programmatically#34836396
+    try {
+      File file = new File("chart.png"); //default filename
+      fileChooser.setSelectedFile(file);
+      int option = fileChooser.showDialog(this, "Save as image");
+
+      //If user clicked "save", set the file to the desired new file
+      if(option == JFileChooser.APPROVE_OPTION) {
+        file = fileChooser.getSelectedFile();
+      }
+      else{
+        return;
+      }
+
+      //Save chart as image to selected file at original size
+      OutputStream out = new FileOutputStream(file);
+      ChartUtilities.writeChartAsPNG(out,
+              chartPanel.getChart(),
+              chartPanel.getWidth(),
+              chartPanel.getHeight());
+
+    } catch (IOException ex) {
+      throw new Error("IO Exception");
+    }
+  }
+
+  /**
+   * Table containing all longitude and latitude data points
+   *     Uncomment if you wish to view it. Additionally, you should go to GraphWindow.form
+   *     and create a new JTable called simulationTable after double cliking on the centre of the
+   *     page
+>>>>>>> src/main/java/nz/ac/vuw/engr301/group15/gui/Gui.java
    */
   private void createTable() {
     String[][] pointArray = new String[data.size()][2];
@@ -200,11 +256,21 @@ public class Gui extends JFrame {
 
   }
 
+<<<<<<< src/main/java/nz/ac/vuw/engr301/group15/gui/Gui.java
   class GraphCreater {
 
     public void createGraph() {
       GraphType graphType = GraphType.valueOf(graphWindow.getGraphTypeComboBox().toUpperCase());
 
+=======
+  class GraphCreator {
+    /**
+     * Constructor.
+     *
+     * @return created graph in ChartPanel form
+     */
+    public ChartPanel createGraph() {
+>>>>>>> src/main/java/nz/ac/vuw/engr301/group15/gui/Gui.java
       // Create chart
       JFreeChart chart = ChartFactory.createScatterPlot(
         "Longitude vs. Latitude Points",
@@ -241,6 +307,8 @@ public class Gui extends JFrame {
       graphWindow.getGraphPanel().setLayout(new BorderLayout());
       graphWindow.getGraphPanel().add(panel, BorderLayout.CENTER);
       graphWindow.getGraphPanel().validate();
+
+      return panel;
     }
 
     private XYDataset createDataset() {

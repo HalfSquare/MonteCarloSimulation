@@ -122,13 +122,15 @@ Date (if applicable) | Events | Description (if needed)
 
 Make a list of things you could do differently next sprint to work better. Write the list on this sheet, include as many ideas as possible - at least four.
 
+Do the changes fulfil the SMART (Specific, Measurable, Attainable, Realistic, Time-Bound) goals. 
+
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 
-What we could fix | Description 
----- | ---- 
-Being stressed | • Stress is so bad<br>• We need to increase our serotonin levels<br> 
-Date (if applicable) | Events 
-Date (if applicable) | Events 
+What we could fix | Description (Specific) | Measurable | Is it Attainable? | Is It Realistic? | Time-Bound (How long are we going to spend on it)   
+---- | ---- | ---- | ---- | ---- | ---- 
+Being stressed | • Stress is so bad<br>• We need to increase our serotonin levels<br> | ---- | ---- | ---- 
+Date (if applicable) | Events  | ---- | ---- | ---- 
+Date (if applicable) | Events   | ---- | ---- | ---- 
 
 **Question 10:** _Action Plan_
 
