@@ -1,6 +1,7 @@
 package nz.ac.vuw.engr301.group15.gui;
 
 import java.awt.event.ActionListener;
+import java.util.Objects;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
@@ -40,8 +41,15 @@ public class GraphWindow {
     return this.graphPanel;
   }
 
+  public String getGraphTypeComboBox() { return Objects
+    .requireNonNull(graphTypeComboBox.getSelectedItem()).toString(); }
+
   public void setReRunButtonListener(ActionListener listener) {
     this.reRunButton.addActionListener(listener);
+  }
+
+  public void setGraphTypeComboBoxListener(ActionListener listener){
+    this.graphTypeComboBox.addActionListener(listener);
   }
 
   public void setVisible(boolean flag) {

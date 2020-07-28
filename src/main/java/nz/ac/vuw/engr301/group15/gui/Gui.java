@@ -1,8 +1,9 @@
 package nz.ac.vuw.engr301.group15.gui;
-
-//import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.Shape;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -17,9 +18,14 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.AbstractRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+import org.jfree.util.ShapeUtilities;
+import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CIRCLE;
+import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CROSS;
+import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.SQUARE;
 
 
 public class Gui extends JFrame {
@@ -36,7 +42,7 @@ public class Gui extends JFrame {
   private ArrayList<SimulationStatus> data;
 
   public enum GraphType {
-    CIRCLE, SQUARE, ROCKET
+    CIRCLE, SQUARE, CROSS
   }
 
   /**
@@ -84,20 +90,18 @@ public class Gui extends JFrame {
   private void startGraph() {
     GraphCreater g = new GraphCreater();
     g.createGraph();
-    GraphType graphType = GraphType.CIRCLE;
-
     this.add(graphWindow.getRootPanel());
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
-
+    graphWindow.setGraphTypeComboBoxListener(
+      e -> g.createGraph()); // redraws the graph if combobox was selected
     //createTable();
 
   }
 
   /**
-   * Table containing all longitude and latitude data points
-   *     Uncomment if you wish to view it. Additionally, you should go to GraphWindow.form
-   *     and create a new JTable called simulationTable after double cliking on the centre of the
-   *     page
+   * Table containing all longitude and latitude data points Uncomment if you wish to view it.
+   * Additionally, you should go to GraphWindow.form and create a new JTable called simulationTable
+   * after double cliking on the centre of the page
    */
   private void createTable() {
     String[][] pointArray = new String[data.size()][2];
@@ -108,7 +112,7 @@ public class Gui extends JFrame {
       SimulationStatus longAndLat = data.get(i);
       WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
       double x = landingPos.getLongitudeDeg();
-      double y =  landingPos.getLatitudeDeg();
+      double y = landingPos.getLatitudeDeg();
       pointArray[i][0] = String.valueOf(x);
       pointArray[i][1] = String.valueOf(y);
     }
@@ -150,7 +154,7 @@ public class Gui extends JFrame {
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-            | UnsupportedLookAndFeelException e) {
+      | UnsupportedLookAndFeelException e) {
       e.printStackTrace();
     }
 
@@ -161,8 +165,8 @@ public class Gui extends JFrame {
     private Thread thread;
 
     /**
-     * When an object implementing interface <code>Runnable</code> is used
-     * to create a thread, starting the thread causes the object's
+     * When an object implementing interface <code>Runnable</code> is used to create a thread,
+     * starting the thread causes the object's
      * <code>run</code> method to be called in that separately executing
      * thread.
      *
@@ -193,20 +197,40 @@ public class Gui extends JFrame {
   }
 
   class GraphCreater {
+
     public void createGraph() {
+      GraphType graphType = GraphType.valueOf(graphWindow.getGraphTypeComboBox().toUpperCase());
+
       // Create chart
       JFreeChart chart = ChartFactory.createScatterPlot(
-              "tLongitude vs. Latitude Points",
-              "Longitude",
-              "Latitude",
-              createDataset(),
-              PlotOrientation.VERTICAL,
-              true, true, false);
+        "Longitude vs. Latitude Points",
+        "Longitude",
+        "Latitude",
+        createDataset(),
+        PlotOrientation.VERTICAL,
+        true, true, false);
 
+      // Default circle shape
+      Shape shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
+
+      // Creates the plotting shape
+      if (CROSS.equals(graphType)){
+        shape = ShapeUtilities.createDiagonalCross(1, 1);
+      }
+      if (SQUARE.equals(graphType)){
+        shape = new Rectangle2D.Double(-3,-3,3,3);
+      }
+      if (CIRCLE.equals(graphType)){
+        shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
+      }
 
       //Changes background color
       XYPlot plot = (XYPlot) chart.getPlot();
       plot.setBackgroundPaint(new Color(255, 228, 196));
+
+      // Renders the points
+      AbstractRenderer renderer = (AbstractRenderer) plot.getRenderer();
+      renderer.setSeriesShape(0, shape);
 
       // Create Panel
       ChartPanel panel = new ChartPanel(chart);
