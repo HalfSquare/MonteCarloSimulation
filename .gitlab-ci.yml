@@ -61,7 +61,7 @@ deploy:
     - shell
   script:
     - echo "deploy"
-    - node -e "console.log('hello')"
+    - node "/deploy website/releaseNotesScript.js"
     - exit 0
   allow_failure: true
   
