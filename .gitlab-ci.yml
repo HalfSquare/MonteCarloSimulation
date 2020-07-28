@@ -2,24 +2,24 @@ image: node:latest
 
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end"
-  
-cache:
-    paths:
-        - node_modules/
-
-install_dependencies:
-    stage: build
-    script:
-        - npm install
-    artifacts:
-        paths:
-            - node_modules/
 
 stages:
   - Validate
   - Build
   - Test
   - Deploy
+  
+cache:
+    paths:
+        - node_modules/
+
+install_dependencies:
+    stage: Build
+    script:
+        - npm install
+    artifacts:
+        paths:
+            - node_modules/
 
 markdownlint:
   stage: Validate
