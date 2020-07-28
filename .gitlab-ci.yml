@@ -2,6 +2,10 @@ image: node:latest
 
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end"
+  
+before_script:
+  - cd application/client
+  - npm install
 
 stages:
   - Validate
