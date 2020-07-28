@@ -1,12 +1,20 @@
-let token = "";
-process.argv.forEach((arg) => {
-    if (arg.startsWith("--token=")) {
-        console.log(arg.replace("--token=", ""));
-        token =  arg.replace("--token=", "");
-    }
-});
+function getToken () {
+    let args = null;
+    process.argv
+        .slice(2, process.argv.length)
+        .forEach( arg => {
+            // long arg
+            if (arg.slice(0,2) === '--') {
+                const longArg = arg.split('=');
+                longArg[0].slice(2,longArg[0].length);
+                args = longArg.length > 1 ? longArg[1] : true;
+            }
+        });
+    return args;
+}
 
-console.log(token);
+const token = getToken();
+
 
 let https = require('https');
 
