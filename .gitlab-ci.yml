@@ -9,6 +9,21 @@ stages:
   - Test
   - Deploy
 
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: Build
+  tags:
+    - docker
+  script:
+    - npm install
+    - npm i node-fetch --save
+  artifacts:
+    paths:
+      - node_modules/
+
 markdownlint:
   stage: Validate
   tags:
