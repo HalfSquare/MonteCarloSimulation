@@ -62,7 +62,7 @@ deploy:
   script:
     - echo "deploy"
     - cd "deploy website"
-    - node releaseNotesScript.js
+    - node releaseNotesScript.js --token=$CI_JOB_TOKEN
     - exit 0
   allow_failure: true
   
