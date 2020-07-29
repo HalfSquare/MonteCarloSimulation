@@ -23,7 +23,7 @@ const options = {
     path: "/api/v4/projects/6908/repository/tags",
     method: 'GET',
     headers: {
-        Authorization: "Bearer " + token,
+        Authorization: token,
         contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }
 };
