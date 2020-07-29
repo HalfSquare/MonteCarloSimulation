@@ -20,10 +20,9 @@ let https = require('https');
 const options = {
     hostname: "gitlab.ecs.vuw.ac.nz",
     path: "/api/v4/projects/6908/repository/tags",
-    // path: "/projects/6908/repository/tags",
     method: 'GET',
     headers: {
-        private_token: token,
+        "Private-Token": token,
         contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
         sort: "asc"
     }
