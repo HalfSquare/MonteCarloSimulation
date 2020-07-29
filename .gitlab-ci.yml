@@ -60,7 +60,7 @@ deploy:
   script:
     - echo "deploy"
     - cd "deploy website"
-    - node fetch-tags.js --token=$CI_JOB_TOKEN
+    - node fetch-tags.js --token=DEPLOY_API_TOKEN
     - exit 0
   allow_failure: true
   
