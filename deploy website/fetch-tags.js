@@ -20,11 +20,11 @@ let https = require('https');
 
 const options = {
     hostname: "gitlab.ecs.vuw.ac.nz",
-    // path: "/api/v4/projects/6908/repository/tags",
-    path: "/projects/6908/repository/tags",
+    path: "/api/v4/projects/6908/repository/tags",
+    // path: "/projects/6908/repository/tags",
     method: 'GET',
     headers: {
-        Authorization: token,
+        authorization: token,
         contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
     }
 };
@@ -37,8 +37,9 @@ const req = https.request(options, (resp) => {
     });
 
     resp.on('end', () => {
+        console.log(data);
         let json = JSON.parse(data);
-        console.log(json);
+        // console.log(json);
     });
 
 }).on("error", (err) => {
