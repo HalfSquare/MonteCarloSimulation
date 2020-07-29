@@ -14,7 +14,11 @@ function getToken () {
 }
 
 const token = getToken();
-
+if (token.startsWith("--")) {
+    console.log("this is the problem");
+} else {
+    console.log("lmao");
+}
 
 let https = require('https');
 
@@ -39,7 +43,7 @@ const req = https.request(options, (resp) => {
     resp.on('end', () => {
         console.log(data);
         let json = JSON.parse(data);
-        // console.log(json);
+        console.log(json);
     });
 
 }).on("error", (err) => {
