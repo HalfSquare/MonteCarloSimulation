@@ -49,15 +49,15 @@ const req = https.request(options, (resp) => {
                 "Link": "https://www.example.com"
             };
             tags.push(tag);
-        }).then(() => {
-            let fs = require('fs');
+        })
 
-            fs.appendFile(FILE_NAME, tags.toString(), (err) => {
-                if (err) console.log("Error: " + err.message);
-                console.log('Saved!');
-            })
+        let fs = require('fs');
 
-        });
+        fs.appendFile(FILE_NAME, tags.toString(), (err) => {
+            if (err) console.log("Error: " + err.message);
+            console.log('Saved!');
+        })
+
     });
 
 }).on("error", (err) => {
