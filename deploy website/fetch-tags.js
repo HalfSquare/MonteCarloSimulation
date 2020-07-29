@@ -45,5 +45,5 @@ const req = https.request(options, (resp) => {
 }).on("error", (err) => {
     console.log("Error: " + err.message);
 });
-
+console.log(req);
 req.end();
