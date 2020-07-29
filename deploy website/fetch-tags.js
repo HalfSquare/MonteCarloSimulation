@@ -23,7 +23,7 @@ const options = {
     // path: "/projects/6908/repository/tags",
     method: 'GET',
     headers: {
-        authorization: token,
+        private_token: token,
         contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
         sort: "asc"
     }
