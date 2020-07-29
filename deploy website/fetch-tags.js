@@ -1,4 +1,5 @@
 const token = getToken();
+// const token = "";
 const FILE_NAME = "tags.json";
 
 
@@ -53,7 +54,8 @@ const req = https.request(options, (resp) => {
 
         let fs = require('fs');
 
-        fs.appendFile(FILE_NAME, tags.toString(), (err) => {
+        console.log(JSON.stringify(tags.reverse()));
+        fs.writeFile(FILE_NAME, JSON.stringify(tags.reverse()), (err) => {
             if (err) console.log("Error: " + err.message);
             console.log('Saved!');
         })

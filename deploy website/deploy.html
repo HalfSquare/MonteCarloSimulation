@@ -72,7 +72,7 @@
     {
         //https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
         let file = new XMLHttpRequest();
-        file.open("GET", fileName, false);
+        file.open("GET", fileName, false)
         file.onreadystatechange = () =>
         {
             if(file.readyState === 4)
@@ -86,8 +86,14 @@
         file.send(null);
     }
 
+    function getGitlabTags() {
+
+    }
+
     window.onload = function () {
-        readTextFile("tags.json");
+        let tags = getGitlabTags();
+        parseAndDisplayTable(tags);
+        // readTextFile("tags.json");
     }
 </script>
 </body>
