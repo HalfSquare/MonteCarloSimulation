@@ -1,3 +1,7 @@
+const token = getToken();
+const FILE_NAME = "tags.json";
+
+
 function getToken () {
     let args = null;
     process.argv
@@ -13,7 +17,6 @@ function getToken () {
     return args;
 }
 
-const token = getToken();
 
 let https = require('https');
 
@@ -36,13 +39,29 @@ const req = https.request(options, (resp) => {
     });
 
     resp.on('end', () => {
-        console.log(data);
         let json = JSON.parse(data);
-        console.log(json);
+        let tags = [];
+
+        json.forEach((item) => {
+            let tag = {
+                "Tag": item.name,
+                "Notes": ["test, test"],
+                "Link": "https://www.example.com"
+            };
+            tags.push(tag);
+        }).then(() => {
+            let fs = require('fs');
+
+            fs.appendFile(FILE_NAME, tags.toString(), (err) => {
+                if (err) console.log("Error: " + err.message);
+                console.log('Saved!');
+            })
+
+        });
     });
 
 }).on("error", (err) => {
     console.log("Error: " + err.message);
 });
-console.log(req);
+
 req.end();
