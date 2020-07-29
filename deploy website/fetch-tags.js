@@ -14,11 +14,6 @@ function getToken () {
 }
 
 const token = getToken();
-if (token.startsWith("--")) {
-    console.log("this is the problem");
-} else {
-    console.log("lmao");
-}
 
 let https = require('https');
 
@@ -29,7 +24,8 @@ const options = {
     method: 'GET',
     headers: {
         authorization: token,
-        contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
+        contentType: 'application/x-www-form-urlencoded;charset=UTF-8',
+        sort: "asc"
     }
 };
 
