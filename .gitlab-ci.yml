@@ -62,7 +62,7 @@ deploy:
   script:
     - echo "deploy"
     - cd "deploy website"
-    - (curl --request GET --form "token=$DEPLOY_API_TOKEN" --form ref=master https://gitlab.ecs.vuw.ac.nz/api/v4/projects/6908/milestones?state=closed) > file
+    - (curl --request GET --header "PRIVATE-TOKEN: $DEPLOY_API_TOKEN" https://gitlab.ecs.vuw.ac.nz/api/v4/projects/6908/milestones?state=closed) > file
     - cat file
     - node parseMilestoneJson.js file
     - exit 0
