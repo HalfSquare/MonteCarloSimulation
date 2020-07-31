@@ -1,17 +1,7 @@
-function getJsonString () {
-    let args = null;
-    process.argv
-        .slice(2, process.argv.length)
-        .forEach( arg => {
-            if (arg.slice(0,2) === '--') {
-                const longArg = arg.split('=');
-                args = longArg.length > 1 ? longArg[1] : "";
-            }
-        });
-    return args;
-}
+var fs = require('fs'), filename = process.argv[2];
 
-const jsonString = getJsonString();
-
-let json = JSON.parse(jsonString)
-console.log(json);
+fs.readFile(filename, 'utf8', function(err, data) {
+    if (err) throw err;
+    const id = JSON.parse(data)[0]["id"]
+    fs.writeFileSync(filename, String(id));
+});
