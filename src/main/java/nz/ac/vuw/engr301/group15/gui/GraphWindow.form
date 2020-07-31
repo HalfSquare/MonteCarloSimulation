@@ -16,7 +16,7 @@
           <model>
             <item value="Circle"/>
             <item value="Square"/>
-            <item value="Cross"/>
+            <item value="Rocket"/>
           </model>
         </properties>
       </component>
