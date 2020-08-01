@@ -62,7 +62,7 @@ deploy:
   script:
     - echo "deploy"
     - cd "deploy website"
-    - node parseMilestoneJson.js --token=$DEPLOY_API_TOKEN
+    - node GetReleaseNotes.js --token=$DEPLOY_API_TOKEN
     - exit 0
   allow_failure: true
   
