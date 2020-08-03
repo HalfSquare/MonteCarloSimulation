@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 import net.sf.openrocket.file.RocketLoadException;
@@ -119,6 +120,9 @@ public class Gui extends JFrame {
    */
   private void openFileManager(ChartPanel chartPanel){
     JFileChooser j = new JFileChooser();
+    //Filter for CSV files only
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV files", "csv", "CSV");
+    j.setFileFilter(filter);
     j.showSaveDialog(null);
   }
 
