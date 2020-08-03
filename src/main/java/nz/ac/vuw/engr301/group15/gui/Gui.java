@@ -110,8 +110,13 @@ public class Gui extends JFrame {
       e -> setState(GRAPH)); // redraws the graph if combobox was selected
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> openFileManager(chartPanel));
+    graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCSV());
     //createTable();
 
+  }
+
+  private void savePointsAsCSV(){
+    System.out.println("Printing things out here");
   }
 
   /**
