@@ -1,7 +1,5 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-//import java.awt.*;
-
 import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CIRCLE;
 import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CROSS;
 import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.SQUARE;
@@ -12,11 +10,9 @@ import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 
 import net.sf.openrocket.file.RocketLoadException;
