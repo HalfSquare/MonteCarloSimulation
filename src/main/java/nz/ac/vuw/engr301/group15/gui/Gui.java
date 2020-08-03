@@ -142,7 +142,22 @@ public class Gui extends JFrame {
    */
   private void savePointsAsCSV(ArrayList list){
     System.out.println("Printing things out here");
+    try {
+      PrintWriter pw = new PrintWriter(new File("points.csv"));
 
+      //reading everything into a string
+      StringBuilder sb = new StringBuilder();
+
+      for (int i = 0; i < list.size(); i++){
+        sb.append(list.get(i));
+      }
+
+      //Writing to the print writer
+      pw.write(sb.toString());
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
 
   }
 
