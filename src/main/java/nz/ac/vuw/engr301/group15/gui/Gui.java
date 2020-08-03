@@ -10,10 +10,8 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -110,13 +108,42 @@ public class Gui extends JFrame {
       e -> setState(GRAPH)); // redraws the graph if combobox was selected
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> openFileManager(chartPanel));
-    graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCSV());
+    graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCSV(createList()));
     //createTable();
 
   }
 
-  private void savePointsAsCSV(){
+  private ArrayList createList(){
+    System.out.println("Creating the list");
+    ArrayList pointList = new ArrayList();
+
+    //Adding in the column names
+    pointList.add("Longitude");
+    pointList.add(",");
+    pointList.add("Latitude");
+    pointList.add("\n");
+
+    //reading the points into an ArrayList
+    for (int i = 0; i < data.size(); i++) {
+      SimulationStatus longAndLat = data.get(i);
+      WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+      double x = landingPos.getLongitudeDeg();
+      double y =  landingPos.getLatitudeDeg();
+      pointList.add(String.valueOf(x));
+      pointList.add(",");
+      pointList.add(String.valueOf(y));
+      pointList.add("\n");
+    }
+    return pointList;
+  }
+
+  /**
+   * This saves all the points to a CSV file
+   */
+  private void savePointsAsCSV(ArrayList list){
     System.out.println("Printing things out here");
+
+
   }
 
   /**
