@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.filechooser.FileSystemView;
 import javax.swing.table.DefaultTableModel;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
@@ -107,8 +108,18 @@ public class Gui extends JFrame {
     graphWindow.setGraphTypeComboBoxListener(
       e -> setState(GRAPH)); // redraws the graph if combobox was selected
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
+    graphWindow.setCsvButtonListener(e -> openFileManager(chartPanel));
     //createTable();
 
+  }
+
+  /**
+   * This opens up a fileChooser to open up a CSV file
+   * @param chartPanel
+   */
+  private void openFileManager(ChartPanel chartPanel){
+    JFileChooser j = new JFileChooser();
+    j.showSaveDialog(null);
   }
 
   /**
