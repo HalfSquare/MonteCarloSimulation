@@ -1,3 +1,5 @@
+image: node:latest
+
 variables:
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end"
 
@@ -59,6 +61,8 @@ deploy:
     - shell
   script:
     - echo "deploy"
+    - cd "deploy website"
+    - node GetReleaseNotes.js --token=$DEPLOY_API_TOKEN
     - exit 0
   allow_failure: true
   
