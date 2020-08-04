@@ -285,4 +285,61 @@ public class SettingsWindow {
         return rootPanel;
     }
 
+    public void setData(MissionControlSettings data) {
+        maxAngle.setText(data.getMaxAngle());
+        windDir.setText(data.getWindDir());
+        windTurbulence.setText(data.getWindTurbulence());
+        windSpeed.setText(data.getWindSpeed());
+        launchTemp.setText(data.getLaunchTemp());
+        launchAirPressure.setText(data.getLaunchAirPressure());
+        launchRodLength.setText(data.getLaunchRodLength());
+        launchRodDir.setText(data.getLaunchRodDir());
+        launchRodAngle.setText(data.getLaunchRodAngle());
+        launchAlt.setText(data.getLaunchAlt());
+        launchLong.setText(data.getLaunchLong());
+        launchLat.setText(data.getLaunchLat());
+    }
+
+    public void getData(MissionControlSettings data) {
+        data.setMaxAngle(maxAngle.getText());
+        data.setWindDir(windDir.getText());
+        data.setWindTurbulence(windTurbulence.getText());
+        data.setWindSpeed(windSpeed.getText());
+        data.setLaunchTemp(launchTemp.getText());
+        data.setLaunchAirPressure(launchAirPressure.getText());
+        data.setLaunchRodLength(launchRodLength.getText());
+        data.setLaunchRodDir(launchRodDir.getText());
+        data.setLaunchRodAngle(launchRodAngle.getText());
+        data.setLaunchAlt(launchAlt.getText());
+        data.setLaunchLong(launchLong.getText());
+        data.setLaunchLat(launchLat.getText());
+    }
+
+    public boolean isModified(MissionControlSettings data) {
+        if (maxAngle.getText() != null ? !maxAngle.getText().equals(data.getMaxAngle()) : data.getMaxAngle() != null)
+            return true;
+        if (windDir.getText() != null ? !windDir.getText().equals(data.getWindDir()) : data.getWindDir() != null)
+            return true;
+        if (windTurbulence.getText() != null ? !windTurbulence.getText().equals(data.getWindTurbulence()) : data.getWindTurbulence() != null)
+            return true;
+        if (windSpeed.getText() != null ? !windSpeed.getText().equals(data.getWindSpeed()) : data.getWindSpeed() != null)
+            return true;
+        if (launchTemp.getText() != null ? !launchTemp.getText().equals(data.getLaunchTemp()) : data.getLaunchTemp() != null)
+            return true;
+        if (launchAirPressure.getText() != null ? !launchAirPressure.getText().equals(data.getLaunchAirPressure()) : data.getLaunchAirPressure() != null)
+            return true;
+        if (launchRodLength.getText() != null ? !launchRodLength.getText().equals(data.getLaunchRodLength()) : data.getLaunchRodLength() != null)
+            return true;
+        if (launchRodDir.getText() != null ? !launchRodDir.getText().equals(data.getLaunchRodDir()) : data.getLaunchRodDir() != null)
+            return true;
+        if (launchRodAngle.getText() != null ? !launchRodAngle.getText().equals(data.getLaunchRodAngle()) : data.getLaunchRodAngle() != null)
+            return true;
+        if (launchAlt.getText() != null ? !launchAlt.getText().equals(data.getLaunchAlt()) : data.getLaunchAlt() != null)
+            return true;
+        if (launchLong.getText() != null ? !launchLong.getText().equals(data.getLaunchLong()) : data.getLaunchLong() != null)
+            return true;
+        if (launchLat.getText() != null ? !launchLat.getText().equals(data.getLaunchLat()) : data.getLaunchLat() != null)
+            return true;
+        return false;
+    }
 }
