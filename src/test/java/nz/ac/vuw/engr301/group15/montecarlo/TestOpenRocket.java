@@ -2,6 +2,8 @@ package nz.ac.vuw.engr301.group15.montecarlo;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -33,7 +35,7 @@ public class TestOpenRocket {
 	public void Test3() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(1);
+			sim.runSimulations(1, new File("src/main/resources/rocket-1-1-9.ork"));
 		}
 		catch (Exception ex){
 			fail();
@@ -45,7 +47,7 @@ public class TestOpenRocket {
 	public void Test4(){
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try {
-			sim.runSimulations(-6);
+			sim.runSimulations(-6, new File("src/main/resources/rocket-1-1-9.ork"));
 		}
 		catch (Exception ex){
 			fail();
@@ -57,7 +59,7 @@ public class TestOpenRocket {
 	public void Test5() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(10);
+			sim.runSimulations(10, new File("src/main/resources/rocket-1-1-9.ork"));
 		}
 		catch (Exception ex){
 			fail();
