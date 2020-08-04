@@ -3,15 +3,15 @@ const token = getToken();
 const FILE_NAME = "tags.json";
 
 
-function getToken () {
+function getToken() {
     let args = null;
     process.argv
         .slice(2, process.argv.length)
-        .forEach( arg => {
+        .forEach(arg => {
             // long arg
-            if (arg.slice(0,2) === '--') {
+            if (arg.slice(0, 2) === '--') {
                 const longArg = arg.split('=');
-                longArg[0].slice(2,longArg[0].length);
+                longArg[0].slice(2, longArg[0].length);
                 args = longArg.length > 1 ? longArg[1] : true;
             }
         });
@@ -44,10 +44,29 @@ const req = https.request(options, (resp) => {
         let tags = [];
 
         json.forEach((item) => {
-            let release = item.release ?? {description: ""}
+            let release;
+            if (item.release && item.release.description) {
+                //Get an array of the notes and remove the empty spaces
+                let releases = item.release.description.split("\n").filter(x => x !== "");
+                //Get rid of the title line
+                releases.splice(0, 1);
+
+                let description = [];
+                for (let i = 0; i < releases.length; i += 2) {
+                    description[i / 2] = releases[i] + "&#8195;" + releases[i + 1];
+                }
+                release = {
+                    description: description
+                }
+            } else {
+                release = {
+                    description: [""]
+                };
+            }
+            // let release = item.release ?? {description: ""}
             let tag = {
                 "Tag": item.name,
-                "Notes": [release.description],
+                "Notes": release.description,
                 "Link": "https://www.example.com"
             };
             tags.push(tag);
@@ -59,10 +78,9 @@ const req = https.request(options, (resp) => {
             if (err) console.log("Error: " + err.message);
             console.log('Saved!');
             fs.readFile(FILE_NAME, (err, code) => {
-                console.log(JSON.stringify(code))
-                var admin = require("firebase-admin");
+                let admin = require("firebase-admin");
 
-                var serviceAccount = "rocketboydeploy-firebase-adminsdk-3bq1k-a234d5bd98.json";
+                let serviceAccount = "rocketboydeploy-firebase-adminsdk-3bq1k-a234d5bd98.json";
 
                 admin.initializeApp({
                     credential: admin.credential.cert(serviceAccount),
@@ -70,13 +88,9 @@ const req = https.request(options, (resp) => {
                     storageBucket: "gs://rocketboydeploy.appspot.com"
                 });
                 let storage = admin.storage();
-                var bucket = storage.bucket();
-                var options = {
+                let bucket = storage.bucket();
+                let options = {
                     destination: FILE_NAME,
-                    // resumable: false,
-                    // metadata: {
-                    //     metadata: metadata
-                    // }
                 };
                 bucket.upload(FILE_NAME, options, function(err, remoteFile) {
                     if (!err) {
@@ -87,8 +101,6 @@ const req = https.request(options, (resp) => {
                 });
             });
         })
-
-
     });
 
 }).on("error", (err) => {
