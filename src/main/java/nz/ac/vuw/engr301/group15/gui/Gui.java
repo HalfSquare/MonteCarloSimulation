@@ -257,7 +257,7 @@ public class Gui extends JFrame {
         }
       }
       // Copy settings to the public bean
-      settingsMissionControl = settings;
+      settingsWindow.setData(settings);
       sc.close();
     }
       catch (Exception ex){
@@ -347,6 +347,7 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
+            settingsWindow.getData(settingsMissionControl);
             startSimulation();
             simulationWindow.setVisible(true);
         } else if (GRAPH.equals(state)) {

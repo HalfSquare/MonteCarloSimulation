@@ -11,7 +11,7 @@ import javax.swing.*;
 public class SettingsWindow {
     private JPanel rootPanel;
     private JTabbedPane simulationPane;
-    private JTextField maxAngle;
+    private JFormattedTextField maxAngle;
     private JButton startButton;
     private JButton cancelButton;
     private JFormattedTextField formattedTextField80;
@@ -20,12 +20,12 @@ public class SettingsWindow {
     private JButton importOrkButton;
     private JButton importCsvButton;
     private JFormattedTextField windSpeed;
-    private JTextField windDir;
+    private JFormattedTextField windDir;
     private JFormattedTextField windTurbulence;
     private JFormattedTextField launchTemp;
     private JFormattedTextField launchAirPressure;
     private JFormattedTextField launchRodAngle;
-    private JTextField launchRodLength;
+    private JFormattedTextField launchRodLength;
     private JFormattedTextField launchRodDir;
     private JFormattedTextField launchAlt;
     private JFormattedTextField launchLat;
@@ -96,7 +96,7 @@ public class SettingsWindow {
         final JLabel label2 = new JLabel();
         label2.setText("Placeholder");
         panel2.add(label2, new GridConstraints(1, 4, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        maxAngle = new JTextField();
+        maxAngle = new JFormattedTextField();
         panel2.add(maxAngle, new GridConstraints(2, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label3 = new JLabel();
         label3.setText("Placeholder");
