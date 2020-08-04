@@ -39,6 +39,9 @@
 <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
 <script>
+    /**
+     * Uses a json array to read the tags into a table
+     */
     function parseAndDisplayTable(releases) {
         const data = JSON.parse(releases);
 
@@ -71,8 +74,11 @@
         });
     }
 
-    function readTextFile(fileName)
-    {
+    /**
+     * @deprecated
+     * uses a local file to retrieve tag info
+     */
+    function readTextFile(fileName) {
         //https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
         let file = new XMLHttpRequest();
         file.open("GET", fileName, false)
@@ -89,9 +95,10 @@
         file.send(null);
     }
 
+    /**
+     * Uses the firebase to get the tags file
+     */
     function getGitlabTags() {
-        // import firebase from 'firebase';
-        // import 'firebase/storage';
         let firebaseConfig = {
             apiKey: "AIzaSyBtLSSqMjyBnG9UWV1Z-HgWNdt6Q-oMoWM",
             authDomain: "rocketboydeploy.firebaseapp.com",
@@ -103,25 +110,28 @@
             measurementId: "G-4SXG9TY5L7"
         };
         firebase.initializeApp(firebaseConfig);
+
         // Get a reference to the storage service, which is used to create references in your storage bucket
         let storage = firebase.storage();
-        let pathReference = storage.ref('/tags.json');
+        let pathReference = storage.refFromURL('gs://rocketboydeploy.appspot.com/tags.json');
         pathReference.getDownloadURL().then((url) => {
             let xhr = new XMLHttpRequest();
-            xhr.responseType = 'blob';
-            xhr.onload = function(event) {
-                let blob = xhr.response;
-                console.log(blob);
+            xhr.responseType = 'json';
+            xhr.onload = function() {
+                // Received the file so put it in the table
+                let json = xhr.response;
+                return JSON.stringify(json);
             };
-            xhr.open('GET', url);
+
+            // cors tool
+            let proxy = "https://cors-anywhere.herokuapp.com/"
+            xhr.open('GET', proxy+url);
             xhr.send();
 
-            // Or inserted into an <img> element:
-            console.log("ah")
-            console.log(url);
         }).catch(function(error) {
             console.log(error);
             // Handle any errors
+            // Basically cry
         });
 
 
@@ -129,8 +139,7 @@
 
     window.onload = function () {
         let tags = getGitlabTags();
-        // parseAndDisplayTable(tags);
-        // readTextFile("tags.json");
+        parseAndDisplayTable(tags);
     }
 </script>
 </body>
