@@ -15,9 +15,10 @@ function getToken () {
 }
 
 const token = getToken();
+const firebaseToken = "";
 let tagName;
-getTags();
-getMilestone();
+// getTags();
+// getMilestone();
 
 function getMilestone() {
     const options = {
@@ -160,4 +161,23 @@ function getTags() {
     });
 
     req.end();
+}
+
+var firebase = require("firebase/app");
+var admin = require("firebase-admin");
+require("firebase/storage")
+
+var serviceAccount = "rocketboydeploy-firebase-adminsdk-3bq1k-a234d5bd98.json";
+
+publishToFirebaseStorage()
+
+
+function publishToFirebaseStorage() {
+    firebase.initializeApp({
+        credential: admin.credential.cert(serviceAccount),
+        databaseURL: "https://rocketboydeploy.firebaseio.com"
+    });
+    let storage = firebase.storage()
+    let path = storage.refFromURL("gs://rocketboydeploy.appspot.com")
+    console.log()
 }
