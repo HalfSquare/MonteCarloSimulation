@@ -11,6 +11,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -47,6 +48,7 @@ public class Gui extends JFrame {
     public File rocketModelFile = null;
     public File missionControlFile = null;
 
+    public static final int NUM_ATTR = 12;
     public static final int NUM_SIMS = 1000;
     private ArrayList<SimulationStatus> data;
 
@@ -179,6 +181,33 @@ public class Gui extends JFrame {
         j.setFileFilter(filter);
         j.showSaveDialog(null);
         missionControlFile = j.getSelectedFile();
+        loadMissionControlData(j.getSelectedFile());
+    }
+
+    private void loadMissionControlData(File file){
+        if (file != null){
+            MissionControlSettings settings = new MissionControlSettings();
+            try{
+                Scanner sc = new Scanner(file);
+                String[][] data = new String[2][NUM_ATTR];
+                for (int i = 0; i < 2; i++){
+                    if (sc.hasNext()){
+                        data[i] = sc.nextLine().split(",");
+                    }
+                }
+                //System.out.println(data[0][0] + " --- " + data[1][0] + " --- " + data[0][1] + " --- " + data[1][1] );
+                for (int i = 0; i < NUM_ATTR; i++){
+
+                }
+                sc.close();
+            }
+            catch (Exception ex){
+                System.out.println("Uh oh! " + ex);
+            }
+        }
+
+
+
     }
 
     /**
