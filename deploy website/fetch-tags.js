@@ -44,9 +44,10 @@ const req = https.request(options, (resp) => {
         let tags = [];
 
         json.forEach((item) => {
+            let release = item.release ?? {description: ""}
             let tag = {
                 "Tag": item.name,
-                "Notes": ["test, test"],
+                "Notes": [release.description],
                 "Link": "https://www.example.com"
             };
             tags.push(tag);
@@ -54,11 +55,39 @@ const req = https.request(options, (resp) => {
 
         let fs = require('fs');
 
-        console.log(JSON.stringify(tags.reverse()));
         fs.writeFile(FILE_NAME, JSON.stringify(tags.reverse()), (err) => {
             if (err) console.log("Error: " + err.message);
             console.log('Saved!');
+            fs.readFile(FILE_NAME, (err, code) => {
+                console.log(JSON.stringify(code))
+                var admin = require("firebase-admin");
+
+                var serviceAccount = "rocketboydeploy-firebase-adminsdk-3bq1k-a234d5bd98.json";
+
+                admin.initializeApp({
+                    credential: admin.credential.cert(serviceAccount),
+                    databaseURL: "https://rocketboydeploy.firebaseio.com",
+                    storageBucket: "gs://rocketboydeploy.appspot.com"
+                });
+                let storage = admin.storage();
+                var bucket = storage.bucket();
+                var options = {
+                    destination: FILE_NAME,
+                    // resumable: false,
+                    // metadata: {
+                    //     metadata: metadata
+                    // }
+                };
+                bucket.upload(FILE_NAME, options, function(err, remoteFile) {
+                    if (!err) {
+                        console.log("Uploaded!");
+                    } else {
+                        console.log(err);
+                    }
+                });
+            });
         })
+
 
     });
 
