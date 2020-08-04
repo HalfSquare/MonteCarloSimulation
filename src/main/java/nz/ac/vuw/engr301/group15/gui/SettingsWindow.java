@@ -44,6 +44,14 @@ public class SettingsWindow {
         this.startButton.addActionListener(listener);
     }
 
+    public void setImportCsvButton(ActionListener listener){
+        this.importCsvButton.addActionListener(listener);
+    }
+
+    public void setImportOrkButton(ActionListener listener){
+        this.importOrkButton.addActionListener(listener);
+    }
+
     public JPanel getRootPanel() {
         return rootPanel;
     }
