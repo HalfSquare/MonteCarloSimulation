@@ -78,22 +78,22 @@
      * @deprecated
      * uses a local file to retrieve tag info
      */
-    function readTextFile(fileName) {
-        //https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
-        let file = new XMLHttpRequest();
-        file.open("GET", fileName, false)
-        file.onreadystatechange = () =>
-        {
-            if(file.readyState === 4)
-            {
-                if(file.status === 200 || file.status === 0)
-                {
-                    parseAndDisplayTable(file.response);
-                }
-            }
-        }
-        file.send(null);
-    }
+    // function readTextFile(fileName) {
+    //     //https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
+    //     let file = new XMLHttpRequest();
+    //     file.open("GET", fileName, false)
+    //     file.onreadystatechange = () =>
+    //     {
+    //         if(file.readyState === 4)
+    //         {
+    //             if(file.status === 200 || file.status === 0)
+    //             {
+    //                 parseAndDisplayTable(file.response);
+    //             }
+    //         }
+    //     }
+    //     file.send(null);
+    // }
 
     /**
      * Uses the firebase to get the tags file
@@ -120,7 +120,7 @@
             xhr.onload = function() {
                 // Received the file so put it in the table
                 let json = xhr.response;
-                return JSON.stringify(json);
+                parseAndDisplayTable(JSON.stringify(json));
             };
 
             // cors tool
@@ -138,8 +138,8 @@
     }
 
     window.onload = function () {
-        let tags = getGitlabTags();
-        parseAndDisplayTable(tags);
+        getGitlabTags();
+        // parseAndDisplayTable(tags);
     }
 </script>
 </body>
