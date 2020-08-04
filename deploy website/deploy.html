@@ -35,6 +35,9 @@
     Developed by Group 15
 </footer>
 
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
 <script>
     function parseAndDisplayTable(releases) {
         const data = JSON.parse(releases);
@@ -87,12 +90,46 @@
     }
 
     function getGitlabTags() {
+        // import firebase from 'firebase';
+        // import 'firebase/storage';
+        let firebaseConfig = {
+            apiKey: "AIzaSyBtLSSqMjyBnG9UWV1Z-HgWNdt6Q-oMoWM",
+            authDomain: "rocketboydeploy.firebaseapp.com",
+            databaseURL: "https://rocketboydeploy.firebaseio.com/",
+            projectId: "rocketboydeploy",
+            storageBucket: "rocketboydeploy.appspot.com/files",
+            messagingSenderId: "543132747659",
+            appId: "1:543132747659:web:cd34b1666ef9065fd7d18e",
+            measurementId: "G-4SXG9TY5L7"
+        };
+        firebase.initializeApp(firebaseConfig);
+        // Get a reference to the storage service, which is used to create references in your storage bucket
+        let storage = firebase.storage();
+        let pathReference = storage.ref('/tags.json');
+        pathReference.getDownloadURL().then((url) => {
+            let xhr = new XMLHttpRequest();
+            xhr.responseType = 'blob';
+            xhr.onload = function(event) {
+                let blob = xhr.response;
+                console.log(blob);
+            };
+            xhr.open('GET', url);
+            xhr.send();
+
+            // Or inserted into an <img> element:
+            console.log("ah")
+            console.log(url);
+        }).catch(function(error) {
+            console.log(error);
+            // Handle any errors
+        });
+
 
     }
 
     window.onload = function () {
         let tags = getGitlabTags();
-        parseAndDisplayTable(tags);
+        // parseAndDisplayTable(tags);
         // readTextFile("tags.json");
     }
 </script>
