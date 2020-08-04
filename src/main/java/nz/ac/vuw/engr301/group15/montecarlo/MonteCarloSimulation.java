@@ -9,6 +9,7 @@ import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.startup.Startup2;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -23,13 +24,13 @@ public class MonteCarloSimulation {
    * @param num Number of simulations to run
    * @return the simulations ran
    */
-  public ArrayList<SimulationStatus> runSimulations(int num) throws RocketLoadException {
+  public ArrayList<SimulationStatus> runSimulations(int num, File file) throws RocketLoadException {
 
     // Create helper object
     OpenRocketHelper helper = new OpenRocketHelper();
 
     // Opens open rocket document
-    OpenRocketDocument document = helper.loadORDocument("src/main/resources/rocket-1-1-9.ork");
+    OpenRocketDocument document = helper.loadORDocument(file.getPath());
 
     // Gets first simulation from the ork file
     Simulation simulation = document.getSimulation(0);
@@ -87,7 +88,7 @@ public class MonteCarloSimulation {
   public static void main(String[] args) {
     try {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
-      mcs.runSimulations(5);
+      mcs.runSimulations(5, new File ("src/main/resources/rocket-1-1-9.ork"));
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }

@@ -45,8 +45,8 @@ public class Gui extends JFrame {
     public static final String SIMULATION = "SIMULATION";
     public static final String GRAPH = "GRAPH";
 
-    public File rocketModelFile = null;
-    public File missionControlFile = null;
+    public File rocketModelFile;
+    public File missionControlFile;
     public MissionControlSettings settingsMissionControl;
 
     public static final int NUM_ATTR = 12;
@@ -70,6 +70,10 @@ public class Gui extends JFrame {
         settingsWindow = new SettingsWindow();
         simulationWindow = new SimulationWindow();
         graphWindow = new GraphWindow();
+
+        // If null, the user has chose not to import custom files and defaults should be used
+        rocketModelFile = null;
+        missionControlFile = null;
         settingsMissionControl = null;
 
         fileChooser = new JFileChooser();
@@ -387,7 +391,13 @@ public class Gui extends JFrame {
         public void run() {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
-                data = mcs.runSimulations(NUM_SIMS);
+              if (rocketModelFile == null){
+                data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"));
+              }
+              else {
+                data = mcs.runSimulations(NUM_SIMS, rocketModelFile);
+              }
+
             } catch (RocketLoadException e) {
                 e.printStackTrace();
             }
