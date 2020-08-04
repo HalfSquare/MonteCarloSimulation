@@ -8,6 +8,7 @@ import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.startup.Startup2;
+import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 
 import java.io.File;
 import java.util.ArrayList;
