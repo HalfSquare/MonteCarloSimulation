@@ -44,6 +44,9 @@ public class Gui extends JFrame {
     public static final String SIMULATION = "SIMULATION";
     public static final String GRAPH = "GRAPH";
 
+    public File rocketModelFile = null;
+    public File missionControlFile = null;
+
     public static final int NUM_SIMS = 1000;
     private ArrayList<SimulationStatus> data;
 
@@ -58,12 +61,13 @@ public class Gui extends JFrame {
         this.data = new ArrayList<>();
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        this.setSize(600, 300);
+        this.setSize(600, 400);
         this.setLocationRelativeTo(null);
 
         settingsWindow = new SettingsWindow();
         simulationWindow = new SimulationWindow();
         graphWindow = new GraphWindow();
+
 
         fileChooser = new JFileChooser();
 
@@ -79,6 +83,8 @@ public class Gui extends JFrame {
     }
 
     private void startSettings() {
+        settingsWindow.setImportCsvButton(e -> openFileManager());
+        settingsWindow.setImportOrkButton(e -> openFileManagerORK());
         settingsWindow.setStartButtonListener(e -> setState(SIMULATION));
         this.add(settingsWindow.getRootPanel());
     }
@@ -105,7 +111,7 @@ public class Gui extends JFrame {
         graphWindow.setGraphTypeComboBoxListener(
                 e -> setState(GRAPH)); // redraws the graph if combobox was selected
         graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
-        graphWindow.setCsvButtonListener(e -> openFileManager(chartPanel));
+        graphWindow.setCsvButtonListener(e -> openFileManager());
         graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCSV(createList()));
         //createTable();
 
@@ -165,14 +171,27 @@ public class Gui extends JFrame {
     /**
      * This opens up a fileChooser to open up a CSV file
      *
-     * @param chartPanel
      */
-    private void openFileManager(ChartPanel chartPanel) {
+    private void openFileManager() {
         JFileChooser j = new JFileChooser();
         //Filter for CSV files only
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV files", "csv", "CSV");
         j.setFileFilter(filter);
         j.showSaveDialog(null);
+        missionControlFile = j.getSelectedFile();
+    }
+
+    /**
+     * This opens up a fileChooser to open up an ORK file (OpenRocket model rocket file)
+     *
+     */
+    private void openFileManagerORK() {
+        JFileChooser j = new JFileChooser();
+        //Filter for ORK files only
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("ORK files", "ork", "ORK");
+        j.setFileFilter(filter);
+        j.showSaveDialog(null);
+        rocketModelFile = j.getSelectedFile();
     }
 
     /**
