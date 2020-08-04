@@ -111,8 +111,13 @@ public class Gui extends JFrame {
 
     }
 
+    /**
+     * This creates a list of all the longitaude and latitude points, separated by a comma
+     * After each set of points, a new line is created
+     *
+     * @return list of all the points
+     */
     private ArrayList createList() {
-        System.out.println("Creating the list");
         ArrayList pointList = new ArrayList();
 
         //Adding in the column names
@@ -139,7 +144,6 @@ public class Gui extends JFrame {
      * This saves all the points to a CSV file
      */
     private void savePointsAsCSV(ArrayList list) {
-        System.out.println("Printing things out here");
         try {
             PrintWriter pw = new PrintWriter(new File("points.csv"));
 
@@ -351,6 +355,10 @@ public class Gui extends JFrame {
             return panel;
         }
 
+        /**
+         * This goes through all the simulation points and adds them to a list of longitude and latitude points
+         * @return
+         */
         private XYDataset createDataset() {
             // Create scatter points
             final XYSeries longAndLatPoints = new XYSeries("longAndLatPoints");
