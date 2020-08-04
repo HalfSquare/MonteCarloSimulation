@@ -47,6 +47,7 @@ public class Gui extends JFrame {
 
     public File rocketModelFile = null;
     public File missionControlFile = null;
+    public MissionControlSettings settingsMissionControl;
 
     public static final int NUM_ATTR = 12;
     public static final int NUM_SIMS = 1000;
@@ -69,7 +70,7 @@ public class Gui extends JFrame {
         settingsWindow = new SettingsWindow();
         simulationWindow = new SimulationWindow();
         graphWindow = new GraphWindow();
-
+        settingsMissionControl = null;
 
         fileChooser = new JFileChooser();
 
@@ -184,12 +185,13 @@ public class Gui extends JFrame {
         loadMissionControlData(j.getSelectedFile());
     }
 
-    private void loadMissionControlData(File file){
+  private void loadMissionControlData(File file){
         if (file != null){
             MissionControlSettings settings = new MissionControlSettings();
             try{
                 Scanner sc = new Scanner(file);
                 String[][] data = new String[2][NUM_ATTR];
+                String name, value;
                 for (int i = 0; i < 2; i++){
                     if (sc.hasNext()){
                         data[i] = sc.nextLine().split(",");
@@ -197,9 +199,49 @@ public class Gui extends JFrame {
                 }
                 //System.out.println(data[0][0] + " --- " + data[1][0] + " --- " + data[0][1] + " --- " + data[1][1] );
                 for (int i = 0; i < NUM_ATTR; i++){
-
+                  name = data[0][i];
+                  value = data[1][i];
+                  switch (name){
+                    case "launchRodAngle":
+                      settings.setLaunchRodAngle(value);
+                      break;
+                    case "launchRodLength":
+                      settings.setLaunchRodLength(value);
+                      break;
+                    case "launchRodDir":
+                      settings.setLaunchRodDir(value);
+                      break;
+                    case "launchAlt":
+                      settings.setLaunchAlt(value);
+                      break;
+                    case "launchLat":
+                      settings.setLaunchLat(value);
+                      break;
+                    case "launchLong":
+                      settings.setLaunchLong(value);
+                      break;
+                    case "maxAngle":
+                      settings.setMaxAngle(value);
+                      break;
+                    case "windSpeed":
+                      settings.setWindSpeed(value);
+                      break;
+                    case "windDir":
+                      settings.setWindDir(value);
+                      break;
+                    case "windTurbulence":
+                      settings.setWindTurbulence(value);
+                      break;
+                    case "launchTemp":
+                      settings.setLaunchTemp(value);
+                      break;
+                    case "launchAirPressure":
+                      settings.setLaunchAirPressure(value);
+                      break;
+                  }
                 }
-                sc.close();
+                settingsMissionControl = settings;
+              sc.close();
             }
             catch (Exception ex){
                 System.out.println("Uh oh! " + ex);
