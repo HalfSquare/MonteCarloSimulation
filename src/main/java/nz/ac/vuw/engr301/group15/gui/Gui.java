@@ -177,79 +177,88 @@ public class Gui extends JFrame {
      */
     private void openFileManager() {
         JFileChooser j = new JFileChooser();
-        //Filter for CSV files only
+        // Filter for CSV files only
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV files", "csv", "CSV");
         j.setFileFilter(filter);
         j.showSaveDialog(null);
         missionControlFile = j.getSelectedFile();
-        loadMissionControlData(j.getSelectedFile());
+        // If a valid file has been given, parse & load data from the file
+        if (j.getSelectedFile() != null) {
+          loadMissionControlData(j.getSelectedFile());
+      }
     }
 
+  /**
+   * Method to read and load the mission control data from a CSV into a bean.
+   *
+   * @param file CSV file with mission control data, should follow the given template.
+   */
   private void loadMissionControlData(File file){
-        if (file != null){
-            MissionControlSettings settings = new MissionControlSettings();
-            try{
-                Scanner sc = new Scanner(file);
-                String[][] data = new String[2][NUM_ATTR];
-                String name, value;
-                for (int i = 0; i < 2; i++){
-                    if (sc.hasNext()){
-                        data[i] = sc.nextLine().split(",");
-                    }
-                }
-                //System.out.println(data[0][0] + " --- " + data[1][0] + " --- " + data[0][1] + " --- " + data[1][1] );
-                for (int i = 0; i < NUM_ATTR; i++){
-                  name = data[0][i];
-                  value = data[1][i];
-                  switch (name){
-                    case "launchRodAngle":
-                      settings.setLaunchRodAngle(value);
-                      break;
-                    case "launchRodLength":
-                      settings.setLaunchRodLength(value);
-                      break;
-                    case "launchRodDir":
-                      settings.setLaunchRodDir(value);
-                      break;
-                    case "launchAlt":
-                      settings.setLaunchAlt(value);
-                      break;
-                    case "launchLat":
-                      settings.setLaunchLat(value);
-                      break;
-                    case "launchLong":
-                      settings.setLaunchLong(value);
-                      break;
-                    case "maxAngle":
-                      settings.setMaxAngle(value);
-                      break;
-                    case "windSpeed":
-                      settings.setWindSpeed(value);
-                      break;
-                    case "windDir":
-                      settings.setWindDir(value);
-                      break;
-                    case "windTurbulence":
-                      settings.setWindTurbulence(value);
-                      break;
-                    case "launchTemp":
-                      settings.setLaunchTemp(value);
-                      break;
-                    case "launchAirPressure":
-                      settings.setLaunchAirPressure(value);
-                      break;
-                  }
-                }
-                settingsMissionControl = settings;
-              sc.close();
-            }
-            catch (Exception ex){
-                System.out.println("Uh oh! " + ex);
-            }
+    MissionControlSettings settings = new MissionControlSettings();
+
+    // Attempt to read data
+    try {
+      Scanner sc = new Scanner(file);
+      String[][] data = new String[2][NUM_ATTR];
+      String name, value;
+
+      // Read data into 2D array, splitting at the commas (0 is data names, 1 is data values)
+      for (int i = 0; i < 2; i++){
+        if (sc.hasNext()){
+          data[i] = sc.nextLine().split(",");
         }
+      }
 
-
-
+      // Read data from 2D array into the bean, using a switch so that attribute ordering does not matter
+      for (int i = 0; i < NUM_ATTR; i++){
+        name = data[0][i];
+        value = data[1][i];
+        switch (name){
+          case "launchRodAngle":
+            settings.setLaunchRodAngle(value);
+            break;
+          case "launchRodLength":
+            settings.setLaunchRodLength(value);
+            break;
+          case "launchRodDir":
+            settings.setLaunchRodDir(value);
+            break;
+          case "launchAlt":
+            settings.setLaunchAlt(value);
+            break;
+          case "launchLat":
+            settings.setLaunchLat(value);
+            break;
+          case "launchLong":
+            settings.setLaunchLong(value);
+            break;
+          case "maxAngle":
+            settings.setMaxAngle(value);
+            break;
+          case "windSpeed":
+            settings.setWindSpeed(value);
+            break;
+          case "windDir":
+            settings.setWindDir(value);
+            break;
+          case "windTurbulence":
+            settings.setWindTurbulence(value);
+            break;
+          case "launchTemp":
+            settings.setLaunchTemp(value);
+            break;
+          case "launchAirPressure":
+            settings.setLaunchAirPressure(value);
+            break;
+        }
+      }
+      // Copy settings to the public bean
+      settingsMissionControl = settings;
+      sc.close();
+    }
+      catch (Exception ex){
+       System.out.println("Uh oh! " + ex);
+      }
     }
 
     /**
