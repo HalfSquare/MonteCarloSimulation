@@ -1,5 +1,7 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import nz.ac.vuw.engr301.group15.gui.Gui;
+import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -16,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 public class TestOpenRocket {
+	MissionControlSettings settings = new MissionControlSettings();
 	// Initial test to set up pipeline - should ALWAYS pass
 	@Test
 	public void Test1(){
@@ -35,7 +38,7 @@ public class TestOpenRocket {
 	public void Test3() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(1, new File("src/main/resources/rocket-1-1-9.ork"));
+			sim.runSimulations(1, new File("src/main/resources/rocket-1-1-9.ork"), settings);
 		}
 		catch (Exception ex){
 			fail();
@@ -47,7 +50,7 @@ public class TestOpenRocket {
 	public void Test4(){
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try {
-			sim.runSimulations(-6, new File("src/main/resources/rocket-1-1-9.ork"));
+			sim.runSimulations(-6, new File("src/main/resources/rocket-1-1-9.ork"), settings);
 		}
 		catch (Exception ex){
 			fail();
@@ -59,7 +62,7 @@ public class TestOpenRocket {
 	public void Test5() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(10, new File("src/main/resources/rocket-1-1-9.ork"));
+			sim.runSimulations(10, new File("src/main/resources/rocket-1-1-9.ork"), settings);
 		}
 		catch (Exception ex){
 			fail();
