@@ -49,8 +49,6 @@ public class MonteCarloSimulation {
     double launchTemp = settings.getLaunchTemp() != "" ? Double.parseDouble(defaultSettings.getLaunchTemp()) : Double.parseDouble(settings.getLaunchTemp());
     double launchAirPres = settings.getLaunchAirPressure() != "" ? Double.parseDouble(defaultSettings.getLaunchAirPressure()) : Double.parseDouble(settings.getLaunchAirPressure());
 
-    System.out.println("Yeet: " + settings.getLaunchRodLength());
-
     // Create helper object
     OpenRocketHelper helper = new OpenRocketHelper();
 
@@ -72,19 +70,25 @@ public class MonteCarloSimulation {
     simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
     // Set base mission control settings to simulation options
-    //simulationOptions.setLaunchTemperature();
+		simulationOptions.setLaunchRodAngle(launchRodAngle);
+		simulationOptions.setLaunchRodLength(launchRodLength);
+		simulationOptions.setLaunchRodDirection(launchRodDir);
+		simulationOptions.setLaunchAltitude(launchAlt);
+		simulationOptions.setLaunchLatitude(launchLat);
+		simulationOptions.setLaunchLongitude(launchLong);
+		simulationOptions.setMaximumStepAngle(maxAngle);
+		simulationOptions.setWindSpeedAverage(windSpeed);
+		simulationOptions.setWindTurbulenceIntensity(windTurb);
+    simulationOptions.setLaunchTemperature(launchTemp);
+    simulationOptions.setLaunchPressure(launchAirPres);
 
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
     MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
     for (int simNum = 1; simNum <= num; simNum++) {
-
-
-      //TODO: find which variables we want to take in from user, and which variables should be randomized
-
       // Randomize some launch conditions with Gaussian distribution
-      simulationOptions.setWindSpeedAverage(rand.nextGaussian() + 2);
-      simulationOptions.setLaunchRodAngle(rand.nextGaussian() * 45);
-      simulationOptions.setLaunchTemperature(rand.nextGaussian() + 30);
+//      simulationOptions.setWindSpeedAverage(rand.nextGaussian() + 2);
+//      simulationOptions.setLaunchRodAngle(rand.nextGaussian() * 45);
+//      simulationOptions.setLaunchTemperature(rand.nextGaussian() + 30);
 
       simulationListener.reset();
       helper.runSimulation(simulation, simulationListener);
