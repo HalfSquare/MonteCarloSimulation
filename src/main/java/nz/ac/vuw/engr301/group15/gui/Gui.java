@@ -403,7 +403,6 @@ public class Gui extends JFrame {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
               if (rocketModelFile == null){
-              	System.out.println("settings: " + settingsMissionControl.getLaunchRodLength() + ", " + settingsMissionControl.getWindSpeed());
                 data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
               }
               else {
