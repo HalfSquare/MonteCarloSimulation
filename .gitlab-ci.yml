@@ -54,6 +54,9 @@ unittest:
     - echo "Beginning unit tests"
     - mvn test
   allow_failure: false
+  
+before_script:
+    - npm install firebase-admin
 
 deploy:
   stage: Deploy
