@@ -25,8 +25,7 @@ function getFirebaseToken() {
         }
         args = args.slice(0, -1)
         args = args.replace(/'/g, '"')
-        args = args.replace(/\/n/g, '\\n')
-        args += "}"
+        args = args.replace(/\s/g, ' ')
     }
     return JSON.parse(args);
 }
