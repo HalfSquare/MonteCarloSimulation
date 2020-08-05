@@ -115,7 +115,7 @@ function updateTagReleaseNotes(releaseNotes) {
             console.log(res.statusCode)
             return
         }
-        exec(`node fetch-tags.js --token=$DEPLOY_API_TOKEN --firebase|$FIREBASE_API_KEY`, (error, stdout, stderr) => {
+        exec("node fetch-tags.js --token=$DEPLOY_API_TOKEN --firebase=$FIREBASE_API_KEY", (error, stdout, stderr) => {
             if (error) {
                 console.log(`error: ${error.message}`);
                 return;
