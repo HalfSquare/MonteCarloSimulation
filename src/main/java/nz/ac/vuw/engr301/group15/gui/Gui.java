@@ -48,6 +48,7 @@ public class Gui extends JFrame {
     public File rocketModelFile;
     public File missionControlFile;
     public MissionControlSettings settingsMissionControl;
+    public MissionControlSettings defaultSettingsMissionControl;
 
     public static final int NUM_ATTR = 13;
     public int NUM_SIMS = 1000;
@@ -402,6 +403,7 @@ public class Gui extends JFrame {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
               if (rocketModelFile == null){
+              	System.out.println("settings: " + settingsMissionControl.getLaunchRodLength() + ", " + settingsMissionControl.getWindSpeed());
                 data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
               }
               else {

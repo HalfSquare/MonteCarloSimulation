@@ -16,6 +16,13 @@ import java.util.Random;
 
 public class MonteCarloSimulation {
 
+  private static final double ROD_ANGLE_SIGMA = 5.0;
+  private static final double WIND_SPEED_SIGMA = 5.0;
+  private static final double WIND_DIR_SIGMA = 5.0;
+  private static final double WIND_TURB_SIGMA = 5.0;
+  private static final double LAUNCH_TEMP_SIGMA = 5.0;
+  private static final double LAUNCH_AIR_PRES_SIGMA = 5.0;
+
   private final Runnable listener;
 
   /**
@@ -26,6 +33,25 @@ public class MonteCarloSimulation {
    * @return the simulations ran
    */
   public ArrayList<SimulationStatus> runSimulations(int num, File file, MissionControlSettings settings) throws RocketLoadException {
+
+    // Extract mission control setting data, setting defaults if values are empty
+
+
+    double launchRodLength = Double.parseDouble(settings.getLaunchRodLength());
+    double launchRodDir = Double.parseDouble(settings.getLaunchRodDir());
+    double launchAlt = Double.parseDouble(settings.getLaunchAlt());
+    double launchLat = Double.parseDouble(settings.getLaunchLat());
+    double launchLong = Double.parseDouble(settings.getLaunchLong());
+    double maxAngle = Double.parseDouble(settings.getMaxAngle());
+    double windSpeed = Double.parseDouble(settings.getWindSpeed());
+    double windDir = Double.parseDouble(settings.getWindDir());
+    double windTurb = Double.parseDouble(settings.getWindTurbulence());
+    double launchTemp = Double.parseDouble(settings.getLaunchTemp());
+    double launchAirPres = Double.parseDouble(settings.getLaunchAirPressure());
+
+    MissionControlSettings defaultSettings = loadDefaultSettings();
+
+    System.out.println("Yeet: " + settings.getLaunchRodLength());
 
     // Create helper object
     OpenRocketHelper helper = new OpenRocketHelper();
@@ -47,10 +73,13 @@ public class MonteCarloSimulation {
     // Time between simulation steps (A smaller time step results in a more accurate but slower simulation)
     simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
+    // Set base mission control settings to simulation options
+    //simulationOptions.setLaunchTemperature();
+
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
     MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
     for (int simNum = 1; simNum <= num; simNum++) {
-//      System.out.println("Running simulation number: " + simNum);
+
 
       //TODO: find which variables we want to take in from user, and which variables should be randomized
 
@@ -74,12 +103,31 @@ public class MonteCarloSimulation {
     return simulationData;
   }
 
+  private MissionControlSettings loadDefaultSettings(){
+    // Load in default mission control settings
+    MissionControlSettings defaultSettingsMissionControl = new MissionControlSettings();
+    defaultSettingsMissionControl.setLaunchRodAngle("0");
+    defaultSettingsMissionControl.setLaunchRodLength("10");
+    defaultSettingsMissionControl.setLaunchRodDir("0");
+    defaultSettingsMissionControl.setLaunchAlt("282");
+    defaultSettingsMissionControl.setLaunchLat("-41.1325");
+    defaultSettingsMissionControl.setLaunchLong("175.0298");
+    defaultSettingsMissionControl.setMaxAngle("0");
+    defaultSettingsMissionControl.setWindSpeed("10");
+    defaultSettingsMissionControl.setWindDir("5");
+    defaultSettingsMissionControl.setWindTurbulence("0");
+    defaultSettingsMissionControl.setLaunchTemp("30");
+    defaultSettingsMissionControl.setLaunchAirPressure("2");
+    defaultSettingsMissionControl.setNumSimulations("1000");
+
+    return defaultSettingsMissionControl;
+  }
+
   public MonteCarloSimulation() {
     this(null);
   }
 
   public MonteCarloSimulation(Runnable runnable) {
-    //TODO: allow user to choose to import their rocket/.ork file - should this tie into GUI?
     this.listener = runnable;
     Startup.initializeLogging();
     Startup.initializeL10n();
