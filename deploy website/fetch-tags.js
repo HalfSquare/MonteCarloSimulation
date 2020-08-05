@@ -14,18 +14,22 @@ function getToken () {
 }
 
 function getFirebaseToken() {
-    let args = null;
+    let args = '';
     let arg = process.argv
         .slice(2, process.argv.length)[1]
     if (arg.slice(0,2) === '--') {
-        const longArg = arg.split('|')
-        args = longArg[1]
-        console.log(args)
+        const longArg = arg.split('=')
+        longArg.shift()
+        for (let arg in longArg) {
+            args += longArg[arg] + "="
+        }
+        args = args.slice(0, -1)
+        args = args.replace(/'/g, '"')
+        args = args.replace(/\/n/g, '\\n')
+        args += "}"
     }
     return JSON.parse(args);
 }
-
-console.log(JSON.stringify(firebaseToken))
 
 let https = require('https');
 
