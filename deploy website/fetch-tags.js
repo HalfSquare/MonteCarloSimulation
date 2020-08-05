@@ -24,7 +24,7 @@ function getFirebaseToken() {
     return JSON.parse(args);
 }
 
-console.log(firebaseToken)
+console.log(JSON.stringify(firebaseToken))
 
 let https = require('https');
 
