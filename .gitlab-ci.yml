@@ -63,6 +63,7 @@ deploy:
     - echo "deploy"
     - cd "deploy website"
     - npm install firebase-admin
+    - node fetch-tags.js --token=$DEPLOY_API_TOKEN --firebase|$FIREBASE_API_KEY
     - node GetReleaseNotes.js --token=$DEPLOY_API_TOKEN
     - exit 0
   allow_failure: true
