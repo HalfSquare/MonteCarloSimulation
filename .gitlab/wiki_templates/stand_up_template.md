@@ -57,42 +57,21 @@ Alexander Pace | ----
 Jacqueline Dong | ---- 
 Georgia Strongman | ---- 
 
-**Question 3:** _New Issues_
+**Question 3:** _What we are working on this week_
 <!-- The first line is an example of how the table should be filled out -->
 
-Did anyone create and add any new issues after the last sprint planning meeting?
+What is everyone working on this week? Has anything changed? Does everything have something to work on?
 
-If anything was added, please list it below. If none were created, then please leave the cell blank. 
 
-Team Member | Difficulties
+Team Member | Issue we are working on 
 ---- | ---- 
-Michael Behan | • Created #21 Add new GUI features for Max <br>|
+Michael Behan | • Working on  #21 Add new GUI features for Max <br>|
 Justina Koh | ---- 
 Max McMurray | ---- 
 Alexander Pace | ---- 
 Jacqueline Dong | ---- 
 Georgia Strongman | ----
 
-**Question 4:** _What did we do well this Sprint?_
-
-Please bullet point what was done well in the sprint and why it was done well. 
-
-What was Done Well | Why it was done well 
----- | ---- 
-Fixed a major bug that we didn't understand | • We collaborated on the task  effectively and showed good team work <br>|
----- | ---- 
----- | ---- 
-
-
-**Question 5:** _What Could We Improve Next time_
-
-Please bullet point what could be done better in the next sprint and how we could do this better next time.
-
-What was could be improved | How it could be improved
----- | ---- 
-Have better communication between the team members | • Use MatterMost to communicate more frequently <br>|
----- | ---- 
----- | ---- 
 
 **Question 6:** _Any Other Issues / Questions / Things brought up_  
 
