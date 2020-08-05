@@ -20,6 +20,7 @@ function getFirebaseToken() {
     if (arg.slice(0,2) === '--') {
         const longArg = arg.split('|')
         args = longArg[1]
+        console.log(args)
     }
     return JSON.parse(args);
 }
