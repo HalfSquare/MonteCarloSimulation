@@ -36,18 +36,18 @@ public class MonteCarloSimulation {
     MissionControlSettings defaultSettings = loadDefaultSettings();
 
     // Extract mission control setting data, setting defaults if values are empty
-    double launchRodAngle = settings.getLaunchRodAngle() != "" ? Double.parseDouble(defaultSettings.getLaunchRodAngle()) : Double.parseDouble(settings.getLaunchRodAngle());
-    double launchRodLength = settings.getLaunchRodLength() != "" ? Double.parseDouble(defaultSettings.getLaunchRodLength()) : Double.parseDouble(settings.getLaunchRodLength());
-    double launchRodDir = settings.getLaunchRodDir() != "" ? Double.parseDouble(defaultSettings.getLaunchRodDir()) : Double.parseDouble(settings.getLaunchRodDir());
-    double launchAlt = settings.getLaunchAlt() != "" ? Double.parseDouble(defaultSettings.getLaunchAlt()) : Double.parseDouble(settings.getLaunchAlt());
-    double launchLat = settings.getLaunchLat() != "" ? Double.parseDouble(defaultSettings.getLaunchLat()) : Double.parseDouble(settings.getLaunchLat());
-    double launchLong = settings.getLaunchLong() != "" ? Double.parseDouble(defaultSettings.getLaunchLong()) : Double.parseDouble(settings.getLaunchLong());
-    double maxAngle = settings.getMaxAngle() != "" ? Double.parseDouble(defaultSettings.getMaxAngle()) : Double.parseDouble(settings.getMaxAngle());
-    double windSpeed = settings.getWindSpeed() != "" ? Double.parseDouble(defaultSettings.getWindSpeed()) : Double.parseDouble(settings.getWindSpeed());
-    double windDir = settings.getWindDir() != "" ? Double.parseDouble(defaultSettings.getWindDir()) : Double.parseDouble(settings.getWindDir());
-    double windTurb = settings.getWindTurbulence() != "" ? Double.parseDouble(defaultSettings.getWindTurbulence()) : Double.parseDouble(settings.getWindTurbulence());
-    double launchTemp = settings.getLaunchTemp() != "" ? Double.parseDouble(defaultSettings.getLaunchTemp()) : Double.parseDouble(settings.getLaunchTemp());
-    double launchAirPres = settings.getLaunchAirPressure() != "" ? Double.parseDouble(defaultSettings.getLaunchAirPressure()) : Double.parseDouble(settings.getLaunchAirPressure());
+    double launchRodAngle = settings.getLaunchRodAngle().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodAngle()) : Double.parseDouble(settings.getLaunchRodAngle());
+    double launchRodLength = settings.getLaunchRodLength().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodLength()) : Double.parseDouble(settings.getLaunchRodLength());
+    double launchRodDir = settings.getLaunchRodDir().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodDir()) : Double.parseDouble(settings.getLaunchRodDir());
+    double launchAlt = settings.getLaunchAlt().equals("") ? Double.parseDouble(defaultSettings.getLaunchAlt()) : Double.parseDouble(settings.getLaunchAlt());
+    double launchLat = settings.getLaunchLat().equals("") ? Double.parseDouble(defaultSettings.getLaunchLat()) : Double.parseDouble(settings.getLaunchLat());
+    double launchLong = settings.getLaunchLong().equals("") ? Double.parseDouble(defaultSettings.getLaunchLong()) : Double.parseDouble(settings.getLaunchLong());
+    double maxAngle = settings.getMaxAngle().equals("") ? Double.parseDouble(defaultSettings.getMaxAngle()) : Double.parseDouble(settings.getMaxAngle());
+    double windSpeed = settings.getWindSpeed().equals("") ? Double.parseDouble(defaultSettings.getWindSpeed()) : Double.parseDouble(settings.getWindSpeed());
+    double windDir = settings.getWindDir().equals("") ? Double.parseDouble(defaultSettings.getWindDir()) : Double.parseDouble(settings.getWindDir());
+    double windTurb = settings.getWindTurbulence().equals("") ? Double.parseDouble(defaultSettings.getWindTurbulence()) : Double.parseDouble(settings.getWindTurbulence());
+    double launchTemp = settings.getLaunchTemp().equals("") ? Double.parseDouble(defaultSettings.getLaunchTemp()) : Double.parseDouble(settings.getLaunchTemp());
+    double launchAirPres = settings.getLaunchAirPressure().equals("") ? Double.parseDouble(defaultSettings.getLaunchAirPressure()) : Double.parseDouble(settings.getLaunchAirPressure());
 
     // Create helper object
     OpenRocketHelper helper = new OpenRocketHelper();

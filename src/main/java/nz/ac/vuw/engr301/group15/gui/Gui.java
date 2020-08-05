@@ -48,7 +48,6 @@ public class Gui extends JFrame {
     public File rocketModelFile;
     public File missionControlFile;
     public MissionControlSettings settingsMissionControl;
-    public MissionControlSettings defaultSettingsMissionControl;
 
     public static final int NUM_ATTR = 13;
     public int NUM_SIMS = 1000;
@@ -352,12 +351,8 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
-        		// If the user has not imported a CSV, use the default
-						// TODO: check if user has manually inputted values
-            if (settingsMissionControl == null){
-							loadMissionControlData(new File("src/main/resources/defaultMCSettings.csv"));
-            }
-            settingsWindow.getData(settingsMissionControl);
+        		// Get simulation settings from the GUI
+						settingsMissionControl = settingsWindow.getSettings();
             startSimulation();
             simulationWindow.setVisible(true);
         } else if (GRAPH.equals(state)) {
