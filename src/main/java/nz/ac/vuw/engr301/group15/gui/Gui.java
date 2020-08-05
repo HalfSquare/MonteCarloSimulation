@@ -139,7 +139,7 @@ public class Gui extends JFrame {
         pointList.add("Latitude");
         pointList.add("\n");
 
-        //reading the points into an ArrayList
+        //Reading the points into an ArrayList
         for (int i = 0; i < data.size(); i++) {
             SimulationStatus longAndLat = data.get(i);
             WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
@@ -159,14 +159,13 @@ public class Gui extends JFrame {
     private void savePointsAsCSV(ArrayList list) {
         try {
             PrintWriter pw = new PrintWriter(new File("points.csv"));
-
-            //reading everything into a string
+            // Reading everything into a string
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < list.size(); i++) {
                 sb.append(list.get(i));
             }
 
-            //Writing to the print writer
+            // Writing to the print writer
             pw.write(sb.toString());
 
         } catch (FileNotFoundException e) {
@@ -352,8 +351,10 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
+        		// If the user has not imported a CSV, use the default
+						// TODO: check if user has manually inputted values
             if (settingsMissionControl == null){
-
+							loadMissionControlData(new File("src/main/resources/defaultMCSettings.csv"));
             }
             settingsWindow.getData(settingsMissionControl);
             startSimulation();
