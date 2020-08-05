@@ -196,7 +196,7 @@ public class Gui extends JFrame {
    *
    * @param file CSV file with mission control data, should follow the given template.
    */
-  private void loadMissionControlData(File file){
+  public void loadMissionControlData(File file){
     MissionControlSettings settings = new MissionControlSettings();
 
     // Attempt to read data
@@ -351,12 +351,8 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
-        		// If the user has not imported a CSV, use the default
-						// TODO: check if user has manually inputted values
-            if (settingsMissionControl == null){
-							loadMissionControlData(new File("src/main/resources/defaultMCSettings.csv"));
-            }
-            settingsWindow.getData(settingsMissionControl);
+        		// Get simulation settings from the GUI
+						settingsMissionControl = settingsWindow.getSettings();
             startSimulation();
             simulationWindow.setVisible(true);
         } else if (GRAPH.equals(state)) {
@@ -402,10 +398,10 @@ public class Gui extends JFrame {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
               if (rocketModelFile == null){
-                data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"));
+                data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
               }
               else {
-                data = mcs.runSimulations(NUM_SIMS, rocketModelFile);
+                data = mcs.runSimulations(NUM_SIMS, rocketModelFile, settingsMissionControl);
               }
 
             } catch (RocketLoadException e) {
