@@ -33,23 +33,21 @@ public class MonteCarloSimulation {
    * @return the simulations ran
    */
   public ArrayList<SimulationStatus> runSimulations(int num, File file, MissionControlSettings settings) throws RocketLoadException {
+    MissionControlSettings defaultSettings = loadDefaultSettings();
 
     // Extract mission control setting data, setting defaults if values are empty
-
-
-    double launchRodLength = Double.parseDouble(settings.getLaunchRodLength());
-    double launchRodDir = Double.parseDouble(settings.getLaunchRodDir());
-    double launchAlt = Double.parseDouble(settings.getLaunchAlt());
-    double launchLat = Double.parseDouble(settings.getLaunchLat());
-    double launchLong = Double.parseDouble(settings.getLaunchLong());
-    double maxAngle = Double.parseDouble(settings.getMaxAngle());
-    double windSpeed = Double.parseDouble(settings.getWindSpeed());
-    double windDir = Double.parseDouble(settings.getWindDir());
-    double windTurb = Double.parseDouble(settings.getWindTurbulence());
-    double launchTemp = Double.parseDouble(settings.getLaunchTemp());
-    double launchAirPres = Double.parseDouble(settings.getLaunchAirPressure());
-
-    MissionControlSettings defaultSettings = loadDefaultSettings();
+    double launchRodAngle = settings.getLaunchRodAngle() != "" ? Double.parseDouble(defaultSettings.getLaunchRodAngle()) : Double.parseDouble(settings.getLaunchRodAngle());
+    double launchRodLength = settings.getLaunchRodLength() != "" ? Double.parseDouble(defaultSettings.getLaunchRodLength()) : Double.parseDouble(settings.getLaunchRodLength());
+    double launchRodDir = settings.getLaunchRodDir() != "" ? Double.parseDouble(defaultSettings.getLaunchRodDir()) : Double.parseDouble(settings.getLaunchRodDir());
+    double launchAlt = settings.getLaunchAlt() != "" ? Double.parseDouble(defaultSettings.getLaunchAlt()) : Double.parseDouble(settings.getLaunchAlt());
+    double launchLat = settings.getLaunchLat() != "" ? Double.parseDouble(defaultSettings.getLaunchLat()) : Double.parseDouble(settings.getLaunchLat());
+    double launchLong = settings.getLaunchLong() != "" ? Double.parseDouble(defaultSettings.getLaunchLong()) : Double.parseDouble(settings.getLaunchLong());
+    double maxAngle = settings.getMaxAngle() != "" ? Double.parseDouble(defaultSettings.getMaxAngle()) : Double.parseDouble(settings.getMaxAngle());
+    double windSpeed = settings.getWindSpeed() != "" ? Double.parseDouble(defaultSettings.getWindSpeed()) : Double.parseDouble(settings.getWindSpeed());
+    double windDir = settings.getWindDir() != "" ? Double.parseDouble(defaultSettings.getWindDir()) : Double.parseDouble(settings.getWindDir());
+    double windTurb = settings.getWindTurbulence() != "" ? Double.parseDouble(defaultSettings.getWindTurbulence()) : Double.parseDouble(settings.getWindTurbulence());
+    double launchTemp = settings.getLaunchTemp() != "" ? Double.parseDouble(defaultSettings.getLaunchTemp()) : Double.parseDouble(settings.getLaunchTemp());
+    double launchAirPres = settings.getLaunchAirPressure() != "" ? Double.parseDouble(defaultSettings.getLaunchAirPressure()) : Double.parseDouble(settings.getLaunchAirPressure());
 
     System.out.println("Yeet: " + settings.getLaunchRodLength());
 
