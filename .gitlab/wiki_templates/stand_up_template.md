@@ -12,7 +12,6 @@ This is a template for stand ups
 <!-- Delete whoever did not attend the meeting and make sure to add the scrum master and minute taker to the correct headings, and remove them from the list-->
 _Scrum Master:_  
 _Minute Taker:_  
-_Team Manager:_ &nbsp;Benjamin Secker&nbsp; &nbsp;&nbsp; &nbsp;@seckerbenj
 - Alexander Pace &nbsp; &nbsp; &nbsp; &nbsp; @pacealex
 - Georgia Strongman &nbsp;@stronggeor
 - Jacqui Dong &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; @dongjacq
