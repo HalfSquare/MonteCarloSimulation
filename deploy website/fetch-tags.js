@@ -15,16 +15,16 @@ function getToken () {
 
 function getFirebaseToken() {
     let args = null;
-    let arg = process.argv.slice(2, process.argv.length)[1]
+    let arg = process.argv
+        .slice(2, process.argv.length)[1]
     if (arg.slice(0,2) === '--') {
         const longArg = arg.split('|')
-        longArg[0].slice(2,longArg[0].length);
-        console.log(longArg[1])
-        args = longArg.length > 1 ? longArg[1] : true;
+        args = longArg[1]
     }
     return JSON.parse(args);
 }
 
+console.log(firebaseToken)
 
 let https = require('https');
 
