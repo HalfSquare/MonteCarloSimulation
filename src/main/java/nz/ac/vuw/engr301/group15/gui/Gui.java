@@ -11,6 +11,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
@@ -44,10 +45,12 @@ public class Gui extends JFrame {
     public static final String SIMULATION = "SIMULATION";
     public static final String GRAPH = "GRAPH";
 
-    public File rocketModelFile = null;
-    public File missionControlFile = null;
+    public File rocketModelFile;
+    public File missionControlFile;
+    public MissionControlSettings settingsMissionControl;
 
-    public static final int NUM_SIMS = 1000;
+    public static final int NUM_ATTR = 13;
+    public int NUM_SIMS = 1000;
     private ArrayList<SimulationStatus> data;
 
     public enum GraphType {
@@ -68,6 +71,10 @@ public class Gui extends JFrame {
         simulationWindow = new SimulationWindow();
         graphWindow = new GraphWindow();
 
+        // If null, the user has chose not to import custom files and defaults should be used
+        rocketModelFile = null;
+        missionControlFile = null;
+        settingsMissionControl = null;
 
         fileChooser = new JFileChooser();
 
@@ -132,7 +139,7 @@ public class Gui extends JFrame {
         pointList.add("Latitude");
         pointList.add("\n");
 
-        //reading the points into an ArrayList
+        //Reading the points into an ArrayList
         for (int i = 0; i < data.size(); i++) {
             SimulationStatus longAndLat = data.get(i);
             WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
@@ -152,14 +159,13 @@ public class Gui extends JFrame {
     private void savePointsAsCSV(ArrayList list) {
         try {
             PrintWriter pw = new PrintWriter(new File("points.csv"));
-
-            //reading everything into a string
+            // Reading everything into a string
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < list.size(); i++) {
                 sb.append(list.get(i));
             }
 
-            //Writing to the print writer
+            // Writing to the print writer
             pw.write(sb.toString());
 
         } catch (FileNotFoundException e) {
@@ -174,11 +180,93 @@ public class Gui extends JFrame {
      */
     private void openFileManager() {
         JFileChooser j = new JFileChooser();
-        //Filter for CSV files only
+        // Filter for CSV files only
         FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV files", "csv", "CSV");
         j.setFileFilter(filter);
         j.showSaveDialog(null);
         missionControlFile = j.getSelectedFile();
+        // If a valid file has been given, parse & load data from the file
+        if (j.getSelectedFile() != null) {
+          loadMissionControlData(j.getSelectedFile());
+      }
+    }
+
+  /**
+   * Method to read and load the mission control data from a CSV into a bean.
+   *
+   * @param file CSV file with mission control data, should follow the given template.
+   */
+  private void loadMissionControlData(File file){
+    MissionControlSettings settings = new MissionControlSettings();
+
+    // Attempt to read data
+    try {
+      Scanner sc = new Scanner(file);
+      String[][] data = new String[2][NUM_ATTR];
+      String name, value;
+
+      // Read data into 2D array, splitting at the commas (0 is data names, 1 is data values)
+      for (int i = 0; i < 2; i++){
+        if (sc.hasNext()){
+          data[i] = sc.nextLine().split(",");
+        }
+      }
+
+      // Read data from 2D array into the bean, using a switch so that attribute ordering does not matter
+      for (int i = 0; i < NUM_ATTR; i++){
+        name = data[0][i];
+        value = data[1][i];
+        switch (name){
+			    case "numSimulations":
+			      settings.setNumSimulations(value);
+			      NUM_SIMS = Integer.parseInt(value);
+				    break;
+          case "launchRodAngle":
+            settings.setLaunchRodAngle(value);
+            break;
+          case "launchRodLength":
+            settings.setLaunchRodLength(value);
+            break;
+          case "launchRodDir":
+            settings.setLaunchRodDir(value);
+            break;
+          case "launchAlt":
+            settings.setLaunchAlt(value);
+            break;
+          case "launchLat":
+            settings.setLaunchLat(value);
+            break;
+          case "launchLong":
+            settings.setLaunchLong(value);
+            break;
+          case "maxAngle":
+            settings.setMaxAngle(value);
+            break;
+          case "windSpeed":
+            settings.setWindSpeed(value);
+            break;
+          case "windDir":
+            settings.setWindDir(value);
+            break;
+          case "windTurbulence":
+            settings.setWindTurbulence(value);
+            break;
+          case "launchTemp":
+            settings.setLaunchTemp(value);
+            break;
+          case "launchAirPressure":
+            settings.setLaunchAirPressure(value);
+            break;
+        }
+      }
+      // Copy settings to the public bean
+      settingsMissionControl = settings;
+      settingsWindow.setData(settings);
+      sc.close();
+    }
+      catch (Exception ex){
+       System.out.println("Uh oh! " + ex);
+      }
     }
 
     /**
@@ -263,6 +351,12 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
+        		// If the user has not imported a CSV, use the default
+						// TODO: check if user has manually inputted values
+            if (settingsMissionControl == null){
+							loadMissionControlData(new File("src/main/resources/defaultMCSettings.csv"));
+            }
+            settingsWindow.getData(settingsMissionControl);
             startSimulation();
             simulationWindow.setVisible(true);
         } else if (GRAPH.equals(state)) {
@@ -307,7 +401,13 @@ public class Gui extends JFrame {
         public void run() {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
-                data = mcs.runSimulations(NUM_SIMS);
+              if (rocketModelFile == null){
+                data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"));
+              }
+              else {
+                data = mcs.runSimulations(NUM_SIMS, rocketModelFile);
+              }
+
             } catch (RocketLoadException e) {
                 e.printStackTrace();
             }
