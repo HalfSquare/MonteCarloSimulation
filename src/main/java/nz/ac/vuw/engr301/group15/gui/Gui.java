@@ -49,8 +49,8 @@ public class Gui extends JFrame {
     public File missionControlFile;
     public MissionControlSettings settingsMissionControl;
 
-    public static final int NUM_ATTR = 12;
-    public static final int NUM_SIMS = 1000;
+    public static final int NUM_ATTR = 13;
+    public int NUM_SIMS = 1000;
     private ArrayList<SimulationStatus> data;
 
     public enum GraphType {
@@ -218,6 +218,10 @@ public class Gui extends JFrame {
         name = data[0][i];
         value = data[1][i];
         switch (name){
+			    case "numSimulations":
+			      settings.setNumSimulations(value);
+			      NUM_SIMS = Integer.parseInt(value);
+				    break;
           case "launchRodAngle":
             settings.setLaunchRodAngle(value);
             break;
@@ -257,6 +261,7 @@ public class Gui extends JFrame {
         }
       }
       // Copy settings to the public bean
+      settingsMissionControl = settings;
       settingsWindow.setData(settings);
       sc.close();
     }
@@ -347,6 +352,9 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
+            if (settingsMissionControl == null){
+
+            }
             settingsWindow.getData(settingsMissionControl);
             startSimulation();
             simulationWindow.setVisible(true);
