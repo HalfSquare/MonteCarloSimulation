@@ -301,8 +301,6 @@ public class SettingsWindow {
     }
 
     public void getData(MissionControlSettings data) {
-        System.out.println(numSimulations.getText());
-        System.out.println(data);
         data.setNumSimulations(numSimulations.getText());
         data.setMaxAngle(maxAngle.getText());
         data.setWindTurbulence(windTurbulence.getText());
@@ -316,6 +314,25 @@ public class SettingsWindow {
         data.setLaunchLat(launchLat.getText());
         data.setLaunchRodLength(launchRodLength.getText());
         data.setLaunchRodAngle(launchRodAngle.getText());
+    }
+
+    public MissionControlSettings getSettings() {
+        MissionControlSettings s = new MissionControlSettings();
+        s.setNumSimulations(numSimulations.getText());
+        s.setMaxAngle(maxAngle.getText());
+        s.setWindTurbulence(windTurbulence.getText());
+        s.setWindSpeed(windSpeed.getText());
+        s.setLaunchTemp(launchTemp.getText());
+        s.setLaunchAirPressure(launchAirPressure.getText());
+        s.setWindDir(windDir.getText());
+        s.setLaunchRodDir(launchRodDir.getText());
+        s.setLaunchAlt(launchAlt.getText());
+        s.setLaunchLong(launchLong.getText());
+        s.setLaunchLat(launchLat.getText());
+        s.setLaunchRodLength(launchRodLength.getText());
+        s.setLaunchRodAngle(launchRodAngle.getText());
+
+        return s;
     }
 
     public boolean isModified(MissionControlSettings data) {
