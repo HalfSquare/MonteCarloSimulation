@@ -13,6 +13,7 @@ public class MissionControlSettings {
   private String launchAlt;
   private String launchLong;
   private String launchLat;
+  private String numSimulations;
 
   public MissionControlSettings() {
   }
@@ -111,5 +112,13 @@ public class MissionControlSettings {
 
   public void setLaunchLat(final String launchLat) {
     this.launchLat = launchLat;
+  }
+
+  public String getNumSimulations() {
+    return numSimulations;
+  }
+
+  public void setNumSimulations(final String numSimulations) {
+    this.numSimulations = numSimulations;
   }
 }

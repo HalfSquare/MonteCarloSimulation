@@ -15,7 +15,7 @@ public class SettingsWindow {
     private JButton startButton;
     private JButton cancelButton;
     private JFormattedTextField formattedTextField80;
-    private JFormattedTextField numberOfSimulations;
+    private JFormattedTextField numSimulations;
     private JFormattedTextField formattedTextField2;
     private JButton importOrkButton;
     private JButton importCsvButton;
@@ -37,7 +37,7 @@ public class SettingsWindow {
     }
 
     public void setNumSim(int num) {
-        numberOfSimulations.setValue(num);
+        numSimulations.setValue(num);
     }
 
     public void setStartButtonListener(ActionListener listener) {
@@ -62,7 +62,6 @@ public class SettingsWindow {
 
     public void doUiStuff() {
         cancelButton.addActionListener(new ExitAction());
-        numberOfSimulations.setEditable(false);
     }
 
     {
@@ -107,9 +106,9 @@ public class SettingsWindow {
         formattedTextField80 = new JFormattedTextField();
         formattedTextField80.setText("");
         panel2.add(formattedTextField80, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        numberOfSimulations = new JFormattedTextField();
-        numberOfSimulations.setText("");
-        panel2.add(numberOfSimulations, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        numSimulations = new JFormattedTextField();
+        numSimulations.setText("");
+        panel2.add(numSimulations, new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         formattedTextField2 = new JFormattedTextField();
         panel2.add(formattedTextField2, new GridConstraints(4, 4, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label5 = new JLabel();
@@ -286,39 +285,43 @@ public class SettingsWindow {
     }
 
     public void setData(MissionControlSettings data) {
+        numSimulations.setText(data.getNumSimulations());
         maxAngle.setText(data.getMaxAngle());
-        windDir.setText(data.getWindDir());
         windTurbulence.setText(data.getWindTurbulence());
         windSpeed.setText(data.getWindSpeed());
         launchTemp.setText(data.getLaunchTemp());
         launchAirPressure.setText(data.getLaunchAirPressure());
-        launchRodLength.setText(data.getLaunchRodLength());
+        windDir.setText(data.getWindDir());
         launchRodDir.setText(data.getLaunchRodDir());
-        launchRodAngle.setText(data.getLaunchRodAngle());
         launchAlt.setText(data.getLaunchAlt());
         launchLong.setText(data.getLaunchLong());
         launchLat.setText(data.getLaunchLat());
+        launchRodLength.setText(data.getLaunchRodLength());
+        launchRodAngle.setText(data.getLaunchRodAngle());
     }
 
     public void getData(MissionControlSettings data) {
+        System.out.println(numSimulations.getText());
+        System.out.println(data);
+        data.setNumSimulations(numSimulations.getText());
         data.setMaxAngle(maxAngle.getText());
-        data.setWindDir(windDir.getText());
         data.setWindTurbulence(windTurbulence.getText());
         data.setWindSpeed(windSpeed.getText());
         data.setLaunchTemp(launchTemp.getText());
         data.setLaunchAirPressure(launchAirPressure.getText());
-        data.setLaunchRodLength(launchRodLength.getText());
+        data.setWindDir(windDir.getText());
         data.setLaunchRodDir(launchRodDir.getText());
-        data.setLaunchRodAngle(launchRodAngle.getText());
         data.setLaunchAlt(launchAlt.getText());
         data.setLaunchLong(launchLong.getText());
         data.setLaunchLat(launchLat.getText());
+        data.setLaunchRodLength(launchRodLength.getText());
+        data.setLaunchRodAngle(launchRodAngle.getText());
     }
 
     public boolean isModified(MissionControlSettings data) {
-        if (maxAngle.getText() != null ? !maxAngle.getText().equals(data.getMaxAngle()) : data.getMaxAngle() != null)
+        if (numSimulations.getText() != null ? !numSimulations.getText().equals(data.getNumSimulations()) : data.getNumSimulations() != null)
             return true;
-        if (windDir.getText() != null ? !windDir.getText().equals(data.getWindDir()) : data.getWindDir() != null)
+        if (maxAngle.getText() != null ? !maxAngle.getText().equals(data.getMaxAngle()) : data.getMaxAngle() != null)
             return true;
         if (windTurbulence.getText() != null ? !windTurbulence.getText().equals(data.getWindTurbulence()) : data.getWindTurbulence() != null)
             return true;
@@ -328,17 +331,19 @@ public class SettingsWindow {
             return true;
         if (launchAirPressure.getText() != null ? !launchAirPressure.getText().equals(data.getLaunchAirPressure()) : data.getLaunchAirPressure() != null)
             return true;
-        if (launchRodLength.getText() != null ? !launchRodLength.getText().equals(data.getLaunchRodLength()) : data.getLaunchRodLength() != null)
+        if (windDir.getText() != null ? !windDir.getText().equals(data.getWindDir()) : data.getWindDir() != null)
             return true;
         if (launchRodDir.getText() != null ? !launchRodDir.getText().equals(data.getLaunchRodDir()) : data.getLaunchRodDir() != null)
-            return true;
-        if (launchRodAngle.getText() != null ? !launchRodAngle.getText().equals(data.getLaunchRodAngle()) : data.getLaunchRodAngle() != null)
             return true;
         if (launchAlt.getText() != null ? !launchAlt.getText().equals(data.getLaunchAlt()) : data.getLaunchAlt() != null)
             return true;
         if (launchLong.getText() != null ? !launchLong.getText().equals(data.getLaunchLong()) : data.getLaunchLong() != null)
             return true;
         if (launchLat.getText() != null ? !launchLat.getText().equals(data.getLaunchLat()) : data.getLaunchLat() != null)
+            return true;
+        if (launchRodLength.getText() != null ? !launchRodLength.getText().equals(data.getLaunchRodLength()) : data.getLaunchRodLength() != null)
+            return true;
+        if (launchRodAngle.getText() != null ? !launchRodAngle.getText().equals(data.getLaunchRodAngle()) : data.getLaunchRodAngle() != null)
             return true;
         return false;
     }
