@@ -25,7 +25,7 @@ public class MonteCarloSimulation {
    * @param num Number of simulations to run
    * @return the simulations ran
    */
-  public ArrayList<SimulationStatus> runSimulations(int num, File file) throws RocketLoadException {
+  public ArrayList<SimulationStatus> runSimulations(int num, File file, MissionControlSettings settings) throws RocketLoadException {
 
     // Create helper object
     OpenRocketHelper helper = new OpenRocketHelper();
@@ -89,7 +89,7 @@ public class MonteCarloSimulation {
   public static void main(String[] args) {
     try {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
-      mcs.runSimulations(5, new File ("src/main/resources/rocket-1-1-9.ork"));
+      mcs.runSimulations(5, new File ("src/main/resources/rocket-1-1-9.ork"), new MissionControlSettings());
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }

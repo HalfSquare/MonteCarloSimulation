@@ -196,7 +196,7 @@ public class Gui extends JFrame {
    *
    * @param file CSV file with mission control data, should follow the given template.
    */
-  private void loadMissionControlData(File file){
+  public void loadMissionControlData(File file){
     MissionControlSettings settings = new MissionControlSettings();
 
     // Attempt to read data
@@ -402,10 +402,10 @@ public class Gui extends JFrame {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
               if (rocketModelFile == null){
-                data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"));
+                data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
               }
               else {
-                data = mcs.runSimulations(NUM_SIMS, rocketModelFile);
+                data = mcs.runSimulations(NUM_SIMS, rocketModelFile, settingsMissionControl);
               }
 
             } catch (RocketLoadException e) {
