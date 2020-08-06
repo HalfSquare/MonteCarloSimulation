@@ -1,5 +1,6 @@
 const token = getToken();
 const FILE_NAME = "tags.json";
+const JAR_FILE_PATH = "../Group15Program/Group15Program.jar";
 const firebaseToken = getFirebaseToken();
 
 function getToken () {
@@ -24,7 +25,7 @@ function getFirebaseToken() {
             args += longArg[arg] + "="
         }
         args = args.slice(0, -1)
-        args = args.replace(/'/g, '"')
+        args = args.replace(/\\'/g, '"')
         args = args.replace(/\\s/g, ' ')
     }
     return JSON.parse(args);
@@ -85,14 +86,24 @@ const req = https.request(options, (resp) => {
                 };
                 bucket.upload(FILE_NAME, options, function(err) {
                     if (!err) {
-                        console.log("Uploaded!");
+                        console.log(`Uploaded ${FILE_NAME}`);
+                    } else {
+                        console.log(err);
+                    }
+                });
+                let jarFileName = tags[tags.length-1].Tag+".jar"
+                let optionsJar = {
+                    destination: jarFileName,
+                };
+                bucket.upload(JAR_FILE_PATH, optionsJar, function(err) {
+                    if (!err) {
+                        console.log(`Uploaded ${jarFileName}`);
                     } else {
                         console.log(err);
                     }
                 });
             });
         })
-
 
     });
 
