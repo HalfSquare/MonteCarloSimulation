@@ -86,7 +86,11 @@ public class MonteCarloSimulation {
     MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
     for (int simNum = 1; simNum <= num; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
-//      simulationOptions.setWindSpeedAverage(rand.nextGaussian() + 2);
+      simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
+      simulationOptions.setWindSpeedAverage((rand.nextGaussian() * WIND_SPEED_SIGMA) + windSpeed);
+      simulationOptions.setWindTurbulenceIntensity((rand.nextGaussian() * WIND_TURB_SIGMA) + windTurb);
+      simulationOptions.setLaunchTemperature((rand.nextGaussian() * LAUNCH_TEMP_SIGMA) + launchTemp);
+      simulationOptions.setLaunchPressure((rand.nextGaussian() * LAUNCH_AIR_PRES_SIGMA) + launchAirPres);
 //      simulationOptions.setLaunchRodAngle(rand.nextGaussian() * 45);
 //      simulationOptions.setLaunchTemperature(rand.nextGaussian() + 30);
 
