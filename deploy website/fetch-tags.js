@@ -1,5 +1,5 @@
 const FILE_NAME = "tags.json";
-const JAR_FILE_PATH = "../Group15Program/Group15Program.jar";
+const JAR_FILE_PATH = "../Group15Program/Group15Program-jar.jar";
 
 const token = getToken();
 const firebaseToken = getFirebaseToken();
