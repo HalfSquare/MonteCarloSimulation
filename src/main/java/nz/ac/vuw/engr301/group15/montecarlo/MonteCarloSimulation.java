@@ -16,10 +16,10 @@ import java.util.Random;
 
 public class MonteCarloSimulation {
 
-  private static final double ROD_ANGLE_SIGMA = 5.0;
-  private static final double WIND_SPEED_SIGMA = 5.0;
+  //private static final double ROD_ANGLE_SIGMA = 5.0;
+  private static final double WIND_SPEED_SIGMA = 0.5;
   private static final double WIND_DIR_SIGMA = 5.0;
-  private static final double WIND_TURB_SIGMA = 5.0;
+  private static final double WIND_TURB_SIGMA = 0.2;
   private static final double LAUNCH_TEMP_SIGMA = 5.0;
   private static final double LAUNCH_AIR_PRES_SIGMA = 5.0;
 
@@ -86,7 +86,7 @@ public class MonteCarloSimulation {
     MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
     for (int simNum = 1; simNum <= num; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
-      simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
+			//simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
       simulationOptions.setWindSpeedAverage((rand.nextGaussian() * WIND_SPEED_SIGMA) + windSpeed);
       simulationOptions.setWindTurbulenceIntensity((rand.nextGaussian() * WIND_TURB_SIGMA) + windTurb);
       simulationOptions.setLaunchTemperature((rand.nextGaussian() * LAUNCH_TEMP_SIGMA) + launchTemp);
