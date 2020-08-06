@@ -1,8 +1,13 @@
-const token = getToken();
 const FILE_NAME = "tags.json";
 const JAR_FILE_PATH = "../Group15Program/Group15Program.jar";
+
+const token = getToken();
 const firebaseToken = getFirebaseToken();
 
+/**
+ * Parses argument for Gitlab api token
+ * @returns String Gitlab api token
+ */
 function getToken () {
     let args = null;
     let arg = process.argv.slice(2, process.argv.length)[0]
@@ -14,6 +19,10 @@ function getToken () {
     return args;
 }
 
+/**
+ * Parses argument for firebase security credentials
+ * @returns JSON file to be used for initialisation of firebase
+ */
 function getFirebaseToken() {
     let args = '';
     let arg = process.argv
@@ -31,7 +40,21 @@ function getFirebaseToken() {
     return JSON.parse(args);
 }
 
+let admin = require("firebase-admin"); // Required to upload file to firebase using Node
+
+// Initialise Firebase with security credentials
+admin.initializeApp({
+    credential: admin.credential.cert(firebaseToken),
+    databaseURL: "https://rocketboydeploy.firebaseio.com",
+    storageBucket: "gs://rocketboydeploy.appspot.com"
+});
+
+// Firebase storage bucket
+let bucket = admin.storage().bucket();
+
 let https = require('https');
+
+let tags = [];
 
 const options = {
     hostname: "gitlab.ecs.vuw.ac.nz",
@@ -53,7 +76,6 @@ const req = https.request(options, (resp) => {
 
     resp.on('end', () => {
         let json = JSON.parse(data);
-        let tags = [];
 
         json.forEach((item) => {
             let release = item.release ?? {description: ""}
@@ -65,46 +87,8 @@ const req = https.request(options, (resp) => {
             tags.push(tag);
         })
 
-        let fs = require('fs');
-
-        fs.writeFile(FILE_NAME, JSON.stringify(tags.reverse()), (err) => {
-            if (err) console.log("Error: " + err.message);
-            console.log('Saved!');
-            fs.readFile(FILE_NAME, (err) => {
-                if (err != null) return;
-                let admin = require("firebase-admin");
-
-                admin.initializeApp({
-                    credential: admin.credential.cert(firebaseToken),
-                    databaseURL: "https://rocketboydeploy.firebaseio.com",
-                    storageBucket: "gs://rocketboydeploy.appspot.com"
-                });
-                let storage = admin.storage();
-                let bucket = storage.bucket();
-                let options = {
-                    destination: FILE_NAME,
-                };
-                bucket.upload(FILE_NAME, options, function(err) {
-                    if (!err) {
-                        console.log(`Uploaded ${FILE_NAME}`);
-                    } else {
-                        console.log(err);
-                    }
-                });
-                let jarFileName = tags[tags.length-1].Tag+".jar"
-                let optionsJar = {
-                    destination: jarFileName,
-                };
-                bucket.upload(JAR_FILE_PATH, optionsJar, function(err) {
-                    if (!err) {
-                        console.log(`Uploaded ${jarFileName}`);
-                    } else {
-                        console.log(err);
-                    }
-                });
-            });
-        })
-
+        let tagName = tags[0].Tag
+        uploadJar(tagName)
     });
 
 }).on("error", (err) => {
@@ -112,3 +96,56 @@ const req = https.request(options, (resp) => {
 });
 
 req.end();
+
+/**
+ * Upload tags.json to firebase
+ */
+function uploadTags() {
+    let options = {
+        destination: FILE_NAME,
+    };
+    bucket.upload(FILE_NAME, options, function(err) {
+        if (!err) {
+            console.log(`Uploaded ${FILE_NAME}`);
+        } else {
+            console.log(err);
+            // Failed to upload to firebase
+        }
+    });
+}
+
+/**
+ * Upload Jar file to firebase
+ * @param tagName name of file
+ */
+function uploadJar(tagName) {
+    let optionsJar = {
+        destination: tagName+".jar",
+    };
+    bucket.upload(JAR_FILE_PATH, optionsJar, function(err) {
+        if (!err) {
+            console.log(`Uploaded ${tagName+".jar"}`);
+            bucket.file(tagName+".jar").getSignedUrl({
+                action: 'read',
+                expires: '11-11-2491'
+            }).then(url =>{
+                function findTag(tag) {
+                    return tag.Tag === tagName
+                }
+
+                let index = tags.findIndex(findTag)
+                tags[index].Link = url[0]
+
+                let fs = require('fs');
+
+                fs.writeFile(FILE_NAME, JSON.stringify(tags.reverse()), (err) => {
+                    if (err) console.log("Error: " + err.message);
+                    uploadTags()
+                })
+            })
+        } else {
+            console.log(err);
+            // Failed to upload to firebase
+        }
+    });
+}
