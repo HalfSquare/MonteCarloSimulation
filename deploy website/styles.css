@@ -71,7 +71,7 @@ b {
   font-size: 16px;
 }
 
-header, footer, article, nav, controls {
+header, footer, article, nav {
   padding: 1.2em;
   background-color: #e7e7e7;
 }
