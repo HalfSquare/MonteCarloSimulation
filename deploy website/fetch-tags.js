@@ -2,7 +2,7 @@ const token = getToken();
 const FILE_NAME = "tags.json";
 const firebaseToken = getFirebaseToken();
 
-function getToken () {
+function getToken() {
     let args = null;
     let arg = process.argv.slice(2, process.argv.length)[0]
     if (arg.slice(0,2) === '--') {
@@ -55,10 +55,29 @@ const req = https.request(options, (resp) => {
         let tags = [];
 
         json.forEach((item) => {
-            let release = item.release ?? {description: ""}
+            let release;
+            if (item.release && item.release.description) {
+                //Get an array of the notes and remove the empty spaces
+                let releases = item.release.description.split("\n").filter(x => x !== "");
+                //Get rid of the title line
+                releases.splice(0, 1);
+
+                let description = [];
+                for (let i = 0; i < releases.length; i += 2) {
+                    description[i / 2] = releases[i] + "&#8195;" + releases[i + 1];
+                }
+                release = {
+                    description: description
+                }
+            } else {
+                release = {
+                    description: [""]
+                };
+            }
+            // let release = item.release ?? {description: ""}
             let tag = {
                 "Tag": item.name,
-                "Notes": [release.description],
+                "Notes": release.description,
                 "Link": "https://www.example.com"
             };
             tags.push(tag);
@@ -92,8 +111,6 @@ const req = https.request(options, (resp) => {
                 });
             });
         })
-
-
     });
 
 }).on("error", (err) => {
