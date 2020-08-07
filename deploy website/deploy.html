@@ -47,104 +47,115 @@
 <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-storage.js"></script>
 <script>
-  /**
-   * Uses a json array to read the tags into a table
-   */
-  function parseAndDisplayTable(releases) {
-    const data = JSON.parse(releases);
-    console.log(releases)
-    table = document.getElementById("releaseTable");
-    table.innerHTML = "";
-    let row = table.insertRow(table.rows.length);
-    Object.keys(data[0]).forEach((property) => {
-      let cell = row.insertCell();
-      cell.innerHTML = "<b>" + property + "</b>";
-    });
-    data.forEach((version) => {
-      let row = table.insertRow(table.rows.length);
-      Object.keys(version).forEach((property) => {
-        let cell = row.insertCell();
-        if (Array.isArray(version[property])) {
-          let smallTable = "";
-          version[property].forEach((note) => {
-            smallTable += note;
-            smallTable += "<br>"
-          });
-          cell.innerHTML = smallTable;
-        } else if (property === "Link") {
-          cell.innerHTML = "<a href='" + version[property] + "'><i>Download</i></a>"
-        } else {
-          cell.innerHTML = version[property];
-        }
-      });
-    });
-  }
+    /**
+     * Uses a json array to read the tags into a table
+     */
+    function parseAndDisplayTable(releases) {
+        const data = JSON.parse(releases);
 
-  /**
-   * @deprecated
-   * uses a local file to retrieve tag info
-   */
-  // function readTextFile(fileName) {
-  //     //https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
-  //     let file = new XMLHttpRequest();
-  //     file.open("GET", fileName, false)
-  //     file.onreadystatechange = () =>
-  //     {
-  //         if(file.readyState === 4)
-  //         {
-  //             if(file.status === 200 || file.status === 0)
-  //             {
-  //                 parseAndDisplayTable(file.response);
-  //             }
-  //         }
-  //     }
-  //     file.send(null);
-  // }
+        table = document.getElementById("releaseTable");
+        table.innerHTML = "";
+        let row = table.insertRow(table.rows.length);
+        Object.keys(data[0]).forEach((property) => {
+            let cell = row.insertCell();
+            cell.innerHTML = "<b>" + property + "</b>";
+        });
+        data.forEach((version) => {
+            let row = table.insertRow(table.rows.length);
+            Object.keys(version).forEach((property) => {
+                let cell = row.insertCell();
+                if (Array.isArray(version[property])) {
+                  let smallTable = "";
+                  version[property].forEach((note) => {
+                      let issues = note.split("&#8195;")
+                      for (let note in issues) {
+                          if (issues.hasOwnProperty(note)) {
+                              let issue = issues[note]
+                              if (issue !== 'undefined') {
+                                  smallTable += "- " + issue;
+                                  smallTable += "<br>"
+                              }
+                          }
+                      }
+                  });
+                  cell.innerHTML = smallTable;
+                }
+                else if (property === "Link") {
+                    cell.innerHTML = "<a href='" + version[property] + "'><i>Download</i></a>"
+                }
+                else {
+                    cell.innerHTML = version[property];
+                }
+            });
+        });
+    }
 
-  /**
-   * Uses the firebase to get the tags file
-   */
-  function getGitlabTags() {
-    let firebaseConfig = {
-      apiKey: "AIzaSyBtLSSqMjyBnG9UWV1Z-HgWNdt6Q-oMoWM",
-      authDomain: "rocketboydeploy.firebaseapp.com",
-      databaseURL: "https://rocketboydeploy.firebaseio.com/",
-      projectId: "rocketboydeploy",
-      storageBucket: "rocketboydeploy.appspot.com/files",
-      messagingSenderId: "543132747659",
-      appId: "1:543132747659:web:cd34b1666ef9065fd7d18e",
-      measurementId: "G-4SXG9TY5L7"
-    };
-    firebase.initializeApp(firebaseConfig);
+    ///**
+    // * @deprecated
+    // * uses a local file to retrieve tag info
+    // */
+    // function readTextFile(fileName) {
+    //     //https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
+    //     let file = new XMLHttpRequest();
+    //     file.open("GET", fileName, false)
+    //     file.onreadystatechange = () =>
+    //     {
+    //         if(file.readyState === 4)
+    //         {
+    //             if(file.status === 200 || file.status === 0)
+    //             {
+    //                 parseAndDisplayTable(file.response);
+    //             }
+    //         }
+    //     }
+    //     file.send(null);
+    // }
 
-    // Get a reference to the storage service, which is used to create references in your storage bucket
-    let storage = firebase.storage();
-    let pathReference = storage.refFromURL('gs://rocketboydeploy.appspot.com/tags.json');
-    pathReference.getDownloadURL().then((url) => {
-      let xhr = new XMLHttpRequest();
-      xhr.responseType = 'json';
-      xhr.onload = function () {
-        // Received the file so put it in the table
-        let json = xhr.response;
-        parseAndDisplayTable(JSON.stringify(json));
-      };
+    /**
+     * Uses the firebase to get the tags file
+     */
+    function getGitlabTags() {
+        let firebaseConfig = {
+            apiKey: "AIzaSyBtLSSqMjyBnG9UWV1Z-HgWNdt6Q-oMoWM",
+            authDomain: "rocketboydeploy.firebaseapp.com",
+            databaseURL: "https://rocketboydeploy.firebaseio.com/",
+            projectId: "rocketboydeploy",
+            storageBucket: "rocketboydeploy.appspot.com/files",
+            messagingSenderId: "543132747659",
+            appId: "1:543132747659:web:cd34b1666ef9065fd7d18e",
+            measurementId: "G-4SXG9TY5L7"
+        };
+        firebase.initializeApp(firebaseConfig);
 
-      // cors tool
-      let proxy = "https://cors-anywhere.herokuapp.com/"
-      xhr.open('GET', proxy + url);
-      xhr.send();
+        // Get a reference to the storage service, which is used to create references in your storage bucket
+        let storage = firebase.storage();
+        let pathReference = storage.refFromURL('gs://rocketboydeploy.appspot.com/tags.json');
+        pathReference.getDownloadURL().then((url) => {
+            let xhr = new XMLHttpRequest();
+            xhr.responseType = 'json';
+            xhr.onload = function() {
+                // Received the file so put it in the table
+                let json = xhr.response;
+                parseAndDisplayTable(JSON.stringify(json));
+            };
 
-    }).catch(function (error) {
-      console.log(error);
-      // Handle any errors
-      // Basically cry
-    });
+            // cors tool
+            let proxy = "https://cors-anywhere.herokuapp.com/"
+            xhr.open('GET', proxy+url);
+            xhr.send();
 
-  }
+        }).catch(function(error) {
+            console.log(error);
+            // Handle any errors
+            // Basically cry
+        });
 
-  window.onload = function () {
-    getGitlabTags();
-    // parseAndDisplayTable(tags);
-  }
+
+    }
+
+    window.onload = function () {
+        getGitlabTags();
+        // parseAndDisplayTable(tags);
+    }
 </script>
 </body>

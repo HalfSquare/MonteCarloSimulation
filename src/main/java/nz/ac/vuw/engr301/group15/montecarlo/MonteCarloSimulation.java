@@ -1,5 +1,6 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import java.io.InputStream;
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
 import net.sf.openrocket.file.RocketLoadException;
@@ -16,10 +17,10 @@ import java.util.Random;
 
 public class MonteCarloSimulation {
 
-  private static final double ROD_ANGLE_SIGMA = 5.0;
-  private static final double WIND_SPEED_SIGMA = 5.0;
+  //private static final double ROD_ANGLE_SIGMA = 5.0;
+  private static final double WIND_SPEED_SIGMA = 0.5;
   private static final double WIND_DIR_SIGMA = 5.0;
-  private static final double WIND_TURB_SIGMA = 5.0;
+  private static final double WIND_TURB_SIGMA = 0.2;
   private static final double LAUNCH_TEMP_SIGMA = 5.0;
   private static final double LAUNCH_AIR_PRES_SIGMA = 5.0;
 
@@ -32,7 +33,7 @@ public class MonteCarloSimulation {
    * @param num Number of simulations to run
    * @return the simulations ran
    */
-  public ArrayList<SimulationStatus> runSimulations(int num, File file, MissionControlSettings settings) throws RocketLoadException {
+  public ArrayList<SimulationStatus> runSimulations(int num, InputStream file, MissionControlSettings settings) throws RocketLoadException {
     MissionControlSettings defaultSettings = loadDefaultSettings();
 
     // Extract mission control setting data, setting defaults if values are empty
@@ -53,7 +54,7 @@ public class MonteCarloSimulation {
     OpenRocketHelper helper = new OpenRocketHelper();
 
     // Opens open rocket document
-    OpenRocketDocument document = helper.loadORDocument(file.getPath());
+    OpenRocketDocument document = helper.loadORDocument(file);
 
     // Gets first simulation from the ork file
     Simulation simulation = document.getSimulation(0);
@@ -86,9 +87,11 @@ public class MonteCarloSimulation {
     MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
     for (int simNum = 1; simNum <= num; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
-//      simulationOptions.setWindSpeedAverage(rand.nextGaussian() + 2);
-//      simulationOptions.setLaunchRodAngle(rand.nextGaussian() * 45);
-//      simulationOptions.setLaunchTemperature(rand.nextGaussian() + 30);
+			//simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
+      simulationOptions.setWindSpeedAverage((rand.nextGaussian() * WIND_SPEED_SIGMA) + windSpeed);
+      simulationOptions.setWindTurbulenceIntensity((rand.nextGaussian() * WIND_TURB_SIGMA) + windTurb);
+      simulationOptions.setLaunchTemperature((rand.nextGaussian() * LAUNCH_TEMP_SIGMA) + launchTemp);
+      simulationOptions.setLaunchPressure((rand.nextGaussian() * LAUNCH_AIR_PRES_SIGMA) + launchAirPres);
 
       simulationListener.reset();
       helper.runSimulation(simulation, simulationListener);
@@ -108,18 +111,18 @@ public class MonteCarloSimulation {
   private MissionControlSettings loadDefaultSettings(){
     // Load in default mission control settings
     MissionControlSettings defaultSettingsMissionControl = new MissionControlSettings();
-    defaultSettingsMissionControl.setLaunchRodAngle("0");
-    defaultSettingsMissionControl.setLaunchRodLength("10");
-    defaultSettingsMissionControl.setLaunchRodDir("0");
-    defaultSettingsMissionControl.setLaunchAlt("282");
-    defaultSettingsMissionControl.setLaunchLat("-41.1325");
-    defaultSettingsMissionControl.setLaunchLong("175.0298");
-    defaultSettingsMissionControl.setMaxAngle("0");
-    defaultSettingsMissionControl.setWindSpeed("10");
-    defaultSettingsMissionControl.setWindDir("5");
-    defaultSettingsMissionControl.setWindTurbulence("0");
-    defaultSettingsMissionControl.setLaunchTemp("30");
-    defaultSettingsMissionControl.setLaunchAirPressure("2");
+    defaultSettingsMissionControl.setLaunchRodAngle("0.0");
+    defaultSettingsMissionControl.setLaunchRodLength("0.2");
+    defaultSettingsMissionControl.setLaunchRodDir("0.0");
+    defaultSettingsMissionControl.setLaunchAlt("159.0");
+    defaultSettingsMissionControl.setLaunchLat("-41.1283");
+    defaultSettingsMissionControl.setLaunchLong("175.0202");
+    defaultSettingsMissionControl.setMaxAngle("0.017453292519943295");
+    defaultSettingsMissionControl.setWindSpeed("6.0");
+    defaultSettingsMissionControl.setWindDir("0.0");
+    defaultSettingsMissionControl.setWindTurbulence("0.1");
+    defaultSettingsMissionControl.setLaunchTemp("284.15");
+    defaultSettingsMissionControl.setLaunchAirPressure("1010.0");
     defaultSettingsMissionControl.setNumSimulations("1000");
 
     return defaultSettingsMissionControl;
@@ -139,7 +142,9 @@ public class MonteCarloSimulation {
   public static void main(String[] args) {
     try {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
-      mcs.runSimulations(5, new File ("src/main/resources/rocket-1-1-9.ork"), new MissionControlSettings());
+      ClassLoader classLoader = mcs.getClass().getClassLoader();
+      InputStream rocketFile = classLoader.getResourceAsStream("src/main/resources/rocket-1-1-9.ork");
+      mcs.runSimulations(5, rocketFile, new MissionControlSettings());
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
