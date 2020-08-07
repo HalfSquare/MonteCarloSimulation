@@ -124,7 +124,7 @@ public class Gui extends JFrame {
     }
 
     /**
-     * This creates a list of all the longitaude and latitude points, separated by a comma
+     * This creates a list of all the longitude and latitude points, separated by a comma
      * After each set of points, a new line is created
      *
      * @return list of all the points
@@ -173,7 +173,16 @@ public class Gui extends JFrame {
 
     }
 
-    private void saveSettingsAsCSV() {
+  /**
+   * This will open a filechooser to save the simulation settings as a CSV.
+   */
+  private void saveSettingsAsCSV() {
+      JFileChooser j = new JFileChooser();
+      j.showSaveDialog(null);
+      writeMissionControlSettings(j.getSelectedFile());
+    }
+
+    private void writeMissionControlSettings(File f) {
 
     }
 
