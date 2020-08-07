@@ -2,6 +2,8 @@ const FILE_NAME = "tags.json";
 const JAR_FILE_PATH = "../Group15Program/Group15Program.jar";
 const DOWNLOADS_FILE_NAME = "downloads.json"
 
+const DOWNLOADS_JSON_URL = 'https://storage.googleapis.com/rocketboydeploy.appspot.com/downloads.json?GoogleAccessId=firebase-adminsdk-3bq1k%40rocketboydeploy.iam.gserviceaccount.com&Expires=16468311600&Signature=jypaKfHYhtH2FejTTZ8Kf2GJp36xLVAoSGBPdQl7%2BNuQ%2FkHVN2O7tZF1AqbfNefzE2TDPusdbEBJnm7Z1W5EY4r5N9EqLOorhr4aS6amTAvmqSJfxzLYii0tAB51AO5TJXdVwo%2BzN5XiF8dehrK5iFqHVSgMsaX3tMgP1xKkPGe9X25ya%2BMI9z38X3u29z6rUls2%2BSo8z6aQMF7JAB%2BJuwoKVIFBXsMRuyIqX1YSyNRLby6VRV2f80tQJGGmCUxo5E0B%2B%2BT8p6RqnenoVXQ9XbGEvEC8DQJ9Hdb8eDtX5c93Du3enP2dEDt37dTY3ERVgMIS8LLweNzacQHPuqx2wA%3D%3D'
+
 const token = getToken();
 const firebaseToken = getFirebaseToken();
 
@@ -37,7 +39,7 @@ function getFirebaseToken() {
             args += longArg[arg] + "="
         }
         args = args.slice(0, -1)
-        args = args.replace(/'/g, '"')
+        args = args.replace(/\\'/g, '"')
         args = args.replace(/\\s/g, ' ')
     }
     return JSON.parse(args);
@@ -56,6 +58,7 @@ admin.initializeApp({
 let bucket = admin.storage().bucket();
 
 let https = require('https');
+const fetch = require('node-fetch');
 
 let tags = [];
 let downloads;
@@ -80,25 +83,26 @@ const req = https.request(options, (resp) => {
 
     resp.on('end', () => {
         let json = JSON.parse(data);
+        let settings = { method: "Get" };
 
-        fs.readFile("downloads.json", (err, result) => {
-            if (err) return
-            downloads = JSON.parse(result)
-            json.forEach((item) => {
-                let release = item.release ?? {description: ""}
-                let link = downloads[item.name] ?? ""
-                let tag = {
-                    "Tag": item.name,
-                    "Notes": [release.description],
-                    "Link": link
-                };
-                tags.push(tag);
-            })
-            console.log(tags)
+        fetch(DOWNLOADS_JSON_URL, settings)
+            .then(res => res.json())
+            .then((downloadJson) => {
+                downloads = JSON.parse(JSON.stringify(downloadJson))
+                json.forEach((item) => {
+                    let release = item.release ?? {description: ""}
+                    let link = downloads[item.name] ?? ""
+                    let tag = {
+                        "Tag": item.name,
+                        "Notes": [release.description],
+                        "Link": link
+                    };
+                    tags.push(tag);
+                })
 
-            let tagName = tags[0].Tag
-            uploadJar(tagName)
-        })
+                let tagName = tags[0].Tag
+                uploadJar(tagName)
+            });
     });
 
 }).on("error", (err) => {
@@ -160,6 +164,9 @@ function uploadJar(tagName) {
     });
 }
 
+/**
+ * Upload downloads.json to firebase that contains download url for each jar version
+ */
 function uploadDownloads() {
     fs.writeFile(DOWNLOADS_FILE_NAME, JSON.stringify(downloads), (err) => {
         if (err) console.log("Error: " + err.message);
