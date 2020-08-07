@@ -1,5 +1,9 @@
-#### __Content__
-Description: (Concisely summarise what needs to be done)
+## __Issue for Code Development__
+### Description: 
+<!-- Please bullet point below what the bug involves -->
+- This is a issue for a bug
+- Which section / file of the code the bug occurs in 
+
 <br>
 
 #### __Information about the task:__
