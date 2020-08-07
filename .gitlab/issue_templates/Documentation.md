@@ -6,11 +6,13 @@
 
 <br>
 
-#### __Information about the Code:__
-_What the Code is doing currently:_  
+#### __Information about the Document:__
+_What the document currently contains:_  
 -  
 -  
--   
+-  
+
+
 <br>
 #### __Extra Information about the Documentation Task:__
 <!-- Take this  out if not relevant.-->
