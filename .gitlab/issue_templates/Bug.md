@@ -1,11 +1,18 @@
-#### __Content__
-Description: (Concisely summarise the bug encountered)
-<br>
+## __Content__
+### Description: 
+- This is a issue for a bug
+- 
 
 #### __Information about the bug:__
-__Steps to reproduce the bug:__ (In list form)
+_Steps to reproduce the bug:_  
+1.  
+2.  
+3.   
 <br>
-__What is the current *bug* behaviour:__ (What actually happens)
+
+__What is the current *bug* behaviour:__ 
+<!-- The first line is an example of how this section should be filled in. Please remove the example  -->
+- 
 <br>
 __What is the expected *correct* behavior:__ (What you should see instead)
 <br>
