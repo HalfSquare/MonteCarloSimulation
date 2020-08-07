@@ -1,4 +1,4 @@
-## __Content__
+## __Bug Issues__
 ### Description: 
 <!-- Please bullet point below what the bug involves -->
 - This is a issue for a bug
