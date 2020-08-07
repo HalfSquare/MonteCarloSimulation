@@ -14,12 +14,10 @@ _What the document currently contains:_
 
 
 <br>
-#### __Extra Information about the Documentation Task:__
-<!-- Take this  out if not relevant.-->
 
-#### Relevant logs, links and/or screenshots
+### Relevant logs and/or screenshots
 
-(Paste any relevant logs - please use code blocks ```` ``` ```` )
+<!--(Paste any relevant logs - please use code blocks ```` ``` ```` )-->
 <br>
 
 ### __Possible fixes__
