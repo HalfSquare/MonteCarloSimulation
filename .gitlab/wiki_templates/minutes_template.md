@@ -24,13 +24,15 @@ These are the tasks that have been completed since the task meeting.
 
 Ticket Number| Ticket Name | Person | Description
 ---- | ---- | ---- | ---- 
-Completes: #1| Write team contract | Justina Koh | • This is the team contract <br>• This is bound by law <br>• Everyone must sign this <br>
-: #| ---- | Name | • <br>• <br>• <br>• <br>
-: #| ---- | Name | • <br>• <br>• <br>• <br> 
-: #| ---- | Name | • <br>• <br>• <br>• <br> 
+Completes: #1| Write team contract | Alexander Pace | • This is the team contract <br>• This is bound by law <br>• Everyone must sign this <br>
+: #| ---- | Georgia Strongman | • <br>• <br>• <br>• <br>
+: #| ---- | Jacqui Dong | • <br>• <br>• <br>• <br>
+: #| ---- | Justina Koh | • <br>• <br>• <br>• <br>
+: #| ---- | Max McMurray  | • <br>• <br>• <br>• <br>
+: #| ---- | Michael Behan | • <br>• <br>• <br>• <br> 
 
 
-## Tasks To Be Done:
+## Tasks We Will do this week:
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the tasks that we anticipate to be completed before the next meeting. 
 
