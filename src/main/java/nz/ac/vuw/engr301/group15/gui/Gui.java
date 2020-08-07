@@ -50,7 +50,6 @@ public class Gui extends JFrame {
     public MissionControlSettings settingsMissionControl;
 
     public static final int NUM_ATTR = 13;
-    public int NUM_SIMS = 1000;
     private ArrayList<SimulationStatus> data;
 
     public enum GraphType {
@@ -82,7 +81,7 @@ public class Gui extends JFrame {
         simulationWindow.doUiStuff();
         graphWindow.doUiStuff();
 
-        settingsWindow.setNumSim(NUM_SIMS);
+        settingsWindow.setNumSim(0);
 
         setState(SETTINGS);
 
@@ -100,7 +99,7 @@ public class Gui extends JFrame {
         // Simulation Window
         this.add(simulationWindow.getRootPanel());
         simulationWindow.resetBar();
-        simulationWindow.setBar1Max(NUM_SIMS);
+        simulationWindow.setBar1Max(Integer.parseInt(settingsMissionControl.getNumSimulations()));
 
         // Simulation stuff
         SimulationRunner runner = new SimulationRunner();
@@ -118,14 +117,14 @@ public class Gui extends JFrame {
         graphWindow.setGraphTypeComboBoxListener(
                 e -> setState(GRAPH)); // redraws the graph if combobox was selected
         graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
-        graphWindow.setCsvButtonListener(e -> openFileManager());
+        graphWindow.setCsvButtonListener(e -> saveSettingsAsCSV());
         graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCSV(createList()));
         //createTable();
 
     }
 
     /**
-     * This creates a list of all the longitaude and latitude points, separated by a comma
+     * This creates a list of all the longitude and latitude points, separated by a comma
      * After each set of points, a new line is created
      *
      * @return list of all the points
@@ -174,6 +173,37 @@ public class Gui extends JFrame {
 
     }
 
+  /**
+   * This will open a filechooser to save the simulation settings as a CSV.
+   */
+  private void saveSettingsAsCSV() {
+      JFileChooser j = new JFileChooser();
+      j.showSaveDialog(null);
+      writeMissionControlSettings(j.getSelectedFile());
+    }
+
+  /**
+   * This will write the current simulation settings to a CSV file.
+   * @param file being created.
+   */
+  private void writeMissionControlSettings(File file) {
+      try {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        MissionControlSettings s = settingsWindow.getSettings();
+        writer.write("launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat," +
+                "launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations");
+        writer.write(s.getLaunchRodAngle() + "," + s.getLaunchRodLength() + "," + s.getLaunchRodDir() + "," +
+                s.getLaunchAlt() + "," + s.getLaunchLat() + "," + s.getLaunchLong() + "," + s.getMaxAngle() + "," +
+                s.getWindSpeed() + "," + s.getWindDir() + "," + s.getWindTurbulence() + "," + s.getLaunchTemp() + "," +
+                s.getLaunchAirPressure() + "," + s.getNumSimulations());
+        writer.close();
+      }
+      catch (Exception ex){
+        System.out.println("Uh oh! " + ex);
+      }
+
+    }
+
     /**
      * This opens up a fileChooser to open up a CSV file
      *
@@ -219,7 +249,7 @@ public class Gui extends JFrame {
         switch (name){
 			    case "numSimulations":
 			      settings.setNumSimulations(value);
-			      NUM_SIMS = Integer.parseInt(value);
+            settingsWindow.setNumSim(Integer.parseInt(value));
 				    break;
           case "launchRodAngle":
             settings.setLaunchRodAngle(value);
@@ -398,10 +428,10 @@ public class Gui extends JFrame {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
               if (rocketModelFile == null){
-                data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
+                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
               }
               else {
-                data = mcs.runSimulations(NUM_SIMS, rocketModelFile, settingsMissionControl);
+                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketModelFile, settingsMissionControl);
               }
 
             } catch (RocketLoadException e) {
