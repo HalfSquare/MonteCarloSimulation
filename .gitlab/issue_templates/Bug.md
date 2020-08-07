@@ -31,4 +31,9 @@ __What is the expected *correct* behavior:__
 (If you can, link to the line of code that might be responsible for the problem)
 <br>
 
-/label ~Bug
+### __Tags__
+
+/label ~Bug ~Doing <br>
+/estimate 2h <br>
+/epic &Monte Carlo Simulations Project<br>
+/assign @kohjust <br>
