@@ -50,7 +50,6 @@ public class Gui extends JFrame {
     public MissionControlSettings settingsMissionControl;
 
     public static final int NUM_ATTR = 13;
-    public int NUM_SIMS = 1000;
     private ArrayList<SimulationStatus> data;
 
     public enum GraphType {
@@ -82,7 +81,7 @@ public class Gui extends JFrame {
         simulationWindow.doUiStuff();
         graphWindow.doUiStuff();
 
-        settingsWindow.setNumSim(NUM_SIMS);
+        settingsWindow.setNumSim(0);
 
         setState(SETTINGS);
 
@@ -100,7 +99,7 @@ public class Gui extends JFrame {
         // Simulation Window
         this.add(simulationWindow.getRootPanel());
         simulationWindow.resetBar();
-        simulationWindow.setBar1Max(NUM_SIMS);
+        simulationWindow.setBar1Max(Integer.parseInt(settingsMissionControl.getNumSimulations()));
 
         // Simulation stuff
         SimulationRunner runner = new SimulationRunner();
@@ -223,7 +222,7 @@ public class Gui extends JFrame {
         switch (name){
 			    case "numSimulations":
 			      settings.setNumSimulations(value);
-			      NUM_SIMS = Integer.parseInt(value);
+            settingsWindow.setNumSim(Integer.parseInt(value));
 				    break;
           case "launchRodAngle":
             settings.setLaunchRodAngle(value);
@@ -402,10 +401,10 @@ public class Gui extends JFrame {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
               if (rocketModelFile == null){
-                data = mcs.runSimulations(NUM_SIMS, new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
+                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
               }
               else {
-                data = mcs.runSimulations(NUM_SIMS, rocketModelFile, settingsMissionControl);
+                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketModelFile, settingsMissionControl);
               }
 
             } catch (RocketLoadException e) {
