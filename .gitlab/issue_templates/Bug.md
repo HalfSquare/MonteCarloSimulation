@@ -23,18 +23,18 @@ __What is the expected *correct* behavior:__
 
 ### Relevant logs and/or screenshots
 
-(Paste any relevant logs - please use code blocks ```` ``` ```` )
+<!--(Paste any relevant logs - please use code blocks ```` ``` ```` )-->
 <br>
 
 ### Possible fixes
 
-(If you can, link to the line of code that might be responsible for the problem)
+<!--(If you can, link to the line of code that might be responsible for the problem)-->
 <br>
 
 ### __Tags__
 <!-- Please fill in this section accordingly. Make sure that you copy and paste this section into the comments section below in the issue template -->
 
 /label ~Bug ~Doing <br>
-/estimate 2h <br>
-/epic &Monte Carlo Simulations Project<br>
-/assign @kohjust <br>
+/estimate <!--Put in the time --> <br>
+/epic &<!--Put in epic here - this should autofill--><br>
+/assign @<!--put author's tag here--> <br>
