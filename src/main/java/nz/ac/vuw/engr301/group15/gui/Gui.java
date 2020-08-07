@@ -428,13 +428,16 @@ public class Gui extends JFrame {
             MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
             try {
               if (rocketModelFile == null){
-                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), new File("src/main/resources/rocket-1-1-9.ork"), settingsMissionControl);
+                ClassLoader classLoader = this.getClass().getClassLoader();
+                InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
               }
               else {
-                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketModelFile, settingsMissionControl);
+                InputStream rocketFile = new FileInputStream(rocketModelFile);
+                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
               }
 
-            } catch (RocketLoadException e) {
+            } catch (RocketLoadException | FileNotFoundException e) {
                 e.printStackTrace();
             }
 
