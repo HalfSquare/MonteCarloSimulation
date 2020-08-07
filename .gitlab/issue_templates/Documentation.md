@@ -1,20 +1,30 @@
-<!-- This is a template for all documentation things such as needing to do some documentation or fixing an error (bug) in a document-->
-#### __Content__
-Description: (Concisely summarise what needs to be done)
+## __Issue for Document Development__
+### Description: 
+<!-- Please bullet point below this document change involves -->
+- This is an issue for document development
+- Which section this document change will be implemented in 
+
 <br>
 
-#### __Extra Information about the Documentation Task:__
-<!-- Take this  out if not relevant.-->
+## __Information about the Document:__
+### _What the document currently contains:_  
+-  
+-  
+-  
 
-#### Relevant logs, links and/or screenshots
 
-(Paste any relevant logs - please use code blocks ```` ``` ```` )
 <br>
 
-### __Possible fixes__
-<!-- Take this section out if not relevant -->
-(If you can, link the document and section that needs attention)
+### Relevant logs and/or screenshots
+
+<!--(Paste any relevant logs - please use code blocks ```` ``` ```` )-->
 <br>
 
-/label ~Documentation <br>
-/epic <!-- Please apply the correct epic label -->
+
+## __Tags__
+<!-- Please fill in this section accordingly. Make sure that you copy and paste this section into the comments section below in the issue template -->
+
+/label ~Documentation ~Doing <br>
+/estimate <!--Put in the time --> <br>
+/epic &<!--Put in epic here - this should autofill--><br>
+/assign @<!--put author's tag here--> <br>

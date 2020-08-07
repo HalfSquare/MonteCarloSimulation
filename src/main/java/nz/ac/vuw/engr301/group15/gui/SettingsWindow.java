@@ -122,7 +122,7 @@ public class SettingsWindow {
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     numSimulations = new JFormattedTextField();
-    numSimulations.setText("");
+    numSimulations.setText("1000");
     panel2.add(numSimulations,
         new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null,
