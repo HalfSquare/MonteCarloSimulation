@@ -24,4 +24,11 @@ __What the code should be doing after we implement this issue:__
 (Paste any relevant logs - please use code blocks ```` ``` ```` )
 <br>
 
-/label ~Development
+### __Tags__
+<!-- Please fill in this section accordingly. Make sure that you copy and paste this section into the comments section below in the issue template -->
+
+/label ~Development ~Doing <br>
+/estimate <!--Put in the time --> <br>
+/epic &<!--Put in epic here - this should autofill--><br>
+/assign @<!--put author's tag here--> <br>
+
