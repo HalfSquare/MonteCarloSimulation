@@ -6,12 +6,16 @@
 
 ## Author's checklist 
 This is a checklist for the author(s) to ensure that the changes are of good quality and appropriate. All of the points must be ticked before the merge request can be submitted.
-- [ ] Apply the ~Documentation label
+- [ ] Apply the ~Documentation and ~Review label
 - [ ] Apply the appropriate epic to the related issue
 - [ ] Select correct sprint in the Milestone section
 - [ ] Select other appropriate labels in the Labels section
+- [ ] Assign the correct participants
+- [ ] Ensure time tracking estimates and expenditure are present and correct
 - [ ] Select ≥1 approval
 - [ ] Ensure pipeline passes in full
+- [ ] Ensure that the code is of high and respectable quality 
+
 
 <!--Do not add the ~"feature", ~"frontend", ~"backend", ~"bug", or ~"database" labels if you are only updating documentation. These labels will cause the MR to be added to code verification QA issues.-->
 
