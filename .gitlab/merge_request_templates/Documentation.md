@@ -31,3 +31,10 @@ Co-authored-by: <!-- Author's full name followed by a space and their correspond
 * [ ] The following changes to the documentation follows the [Documentation Guidelines](LINK)
 * [ ] The changes made in this request have been mutually agreed upon by the rest of the teammates
 
+
+## __Tags__
+<!-- Please fill in this section accordingly. Make sure that you copy and paste this section into the comments section below in the issue template -->
+
+/label ~Documentation ~Review <br>
+/spend <!--Put in the time spent --> <br>
+
