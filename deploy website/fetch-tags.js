@@ -1,8 +1,11 @@
 const FILE_NAME = "tags.json";
 const JAR_FILE_PATH = "../Group15Program/Group15Program.jar";
+const DOWNLOADS_FILE_NAME = "downloads.json"
 
 const token = getToken();
 const firebaseToken = getFirebaseToken();
+
+let fs = require('fs');
 
 /**
  * Parses argument for Gitlab api token
@@ -55,6 +58,7 @@ let bucket = admin.storage().bucket();
 let https = require('https');
 
 let tags = [];
+let downloads;
 
 const options = {
     hostname: "gitlab.ecs.vuw.ac.nz",
@@ -77,18 +81,24 @@ const req = https.request(options, (resp) => {
     resp.on('end', () => {
         let json = JSON.parse(data);
 
-        json.forEach((item) => {
-            let release = item.release ?? {description: ""}
-            let tag = {
-                "Tag": item.name,
-                "Notes": [release.description],
-                "Link": "https://www.example.com"
-            };
-            tags.push(tag);
-        })
+        fs.readFile("downloads.json", (err, result) => {
+            if (err) return
+            downloads = JSON.parse(result)
+            json.forEach((item) => {
+                let release = item.release ?? {description: ""}
+                let link = downloads[item.name] ?? ""
+                let tag = {
+                    "Tag": item.name,
+                    "Notes": [release.description],
+                    "Link": link
+                };
+                tags.push(tag);
+            })
+            console.log(tags)
 
-        let tagName = tags[0].Tag
-        uploadJar(tagName)
+            let tagName = tags[0].Tag
+            uploadJar(tagName)
+        })
     });
 
 }).on("error", (err) => {
@@ -135,8 +145,8 @@ function uploadJar(tagName) {
 
                 let index = tags.findIndex(findTag)
                 tags[index].Link = url[0]
-
-                let fs = require('fs');
+                downloads[tagName]= url[0]
+                uploadDownloads()
 
                 fs.writeFile(FILE_NAME, JSON.stringify(tags.reverse()), (err) => {
                     if (err) console.log("Error: " + err.message);
@@ -148,4 +158,18 @@ function uploadJar(tagName) {
             // Failed to upload to firebase
         }
     });
+}
+
+function uploadDownloads() {
+    fs.writeFile(DOWNLOADS_FILE_NAME, JSON.stringify(downloads), (err) => {
+        if (err) console.log("Error: " + err.message);
+        let options = {
+            destination: DOWNLOADS_FILE_NAME,
+        };
+        bucket.upload(DOWNLOADS_FILE_NAME, options, function(err) {
+            if (!err) {
+                console.log(console.log(`Uploaded ${DOWNLOADS_FILE_NAME}`))
+            }
+        })
+    })
 }
