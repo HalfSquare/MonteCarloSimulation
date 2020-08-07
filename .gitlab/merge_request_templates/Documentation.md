@@ -1,10 +1,8 @@
-## Summary of Merge Request
-
-<!-- BRIEFLY describe what this MR is about. Bullet points are okay -->
-<br>
-
+## Summary of Merge Request for Documentation
 <!-- What does this do to your issue? i.e. Fixes / Completes -->Closes #<!-- issue number. Make sure there is no space between the '#' and issue number-->
-<br>
+<!-- BRIEFLY describe what this MR is about. Bullet points are okay -->
+- 
+-  
 
 ## Author's checklist 
 This is a checklist for the author(s) to ensure that the changes are of good quality and appropriate. All of the points must be ticked before the merge request can be submitted.
