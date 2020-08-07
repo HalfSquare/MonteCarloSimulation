@@ -27,8 +27,12 @@ __What is the expected *correct* behavior:__
 <br>
 
 ### Possible fixes
-
 <!--(If you can, link to the line of code that might be responsible for the problem)-->
+1.  
+2.  
+3.  
+   
+
 <br>
 
 ### __Tags__
