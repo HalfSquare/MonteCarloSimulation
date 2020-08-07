@@ -63,7 +63,7 @@ deploy:
     - echo "deploy"
     - cd "deploy website"
     - npm install firebase-admin
-    - node GetReleaseNotes.js --token=$DEPLOY_API_TOKEN
+    - node get-release-notes.js --token=$DEPLOY_API_TOKEN
     - exit 0
   allow_failure: true
   
