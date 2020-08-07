@@ -6,11 +6,18 @@
 
 <br>
 
-#### __Information about the task:__
-__What is the final expected output / product after this code is implemented:__ (One sentence / list form)
+#### __Information about the Code:__
+_What the Code is doing currently:_  
+-  
+-  
+-   
 <br>
-__What is the code currently doing:__ (What actually happens)
-<br>
+
+__What the code should be doing after we implement this issue:__ 
+<!-- The first line is an example of how this section should be filled in. Please remove the example  -->
+- 
+
+
 
 ### Relevant logs and/or screenshots
 
