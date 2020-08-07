@@ -1,7 +1,8 @@
 ## __Content__
 ### Description: 
+<!-- Please bullet point below what the bug involves -->
 - This is a issue for a bug
-- 
+- Which section / file of the code the bug occurs in 
 
 #### __Information about the bug:__
 _Steps to reproduce the bug:_  
@@ -13,9 +14,12 @@ _Steps to reproduce the bug:_
 __What is the current *bug* behaviour:__ 
 <!-- The first line is an example of how this section should be filled in. Please remove the example  -->
 - 
-<br>
-__What is the expected *correct* behavior:__ (What you should see instead)
-<br>
+
+
+__What is the expected *correct* behavior:__  
+- 
+
+
 
 ### Relevant logs and/or screenshots
 
