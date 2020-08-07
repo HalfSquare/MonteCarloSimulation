@@ -21,7 +21,7 @@ __What the code should be doing after we implement this issue:__
 
 ### Relevant logs and/or screenshots
 
-(Paste any relevant logs - please use code blocks ```` ``` ```` )
+<!--(Paste any relevant logs - please use code blocks ```` ``` ```` )-->
 <br>
 
 ### __Tags__
