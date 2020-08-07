@@ -24,7 +24,7 @@
 <!--(Paste any relevant logs - please use code blocks ```` ``` ```` )-->
 <br>
 
-### __Tags__
+## __Tags__
 <!-- Please fill in this section accordingly. Make sure that you copy and paste this section into the comments section below in the issue template -->
 
 /label ~Development ~Doing <br>
