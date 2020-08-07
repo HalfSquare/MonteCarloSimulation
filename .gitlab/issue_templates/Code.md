@@ -6,14 +6,14 @@
 
 <br>
 
-#### __Information about the Code:__
-_What the Code is doing currently:_  
+## __Information about the Code:__
+### _What the Code is doing currently:_  
 -  
 -  
 -   
 <br>
 
-__What the code should be doing after we implement this issue:__ 
+### __What the code should be doing after we implement this issue:__ 
 <!-- The first line is an example of how this section should be filled in. Please remove the example  -->
 - 
 
