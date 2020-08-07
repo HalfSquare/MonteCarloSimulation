@@ -59,8 +59,16 @@
                 if (Array.isArray(version[property])) {
                   let smallTable = "";
                   version[property].forEach((note) => {
-                      smallTable += "- " + note;
-                      smallTable += "<br>"
+                      let issues = note.split("&#8195;")
+                      for (let note in issues) {
+                          if (issues.hasOwnProperty(note)) {
+                              let issue = issues[note]
+                              if (issue !== 'undefined') {
+                                  smallTable += "- " + issue;
+                                  smallTable += "<br>"
+                              }
+                          }
+                      }
                   });
                   cell.innerHTML = smallTable;
                 }
@@ -74,10 +82,10 @@
         });
     }
 
-    /**
-     * @deprecated
-     * uses a local file to retrieve tag info
-     */
+    ///**
+    // * @deprecated
+    // * uses a local file to retrieve tag info
+    // */
     // function readTextFile(fileName) {
     //     //https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file
     //     let file = new XMLHttpRequest();
