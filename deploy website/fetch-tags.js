@@ -83,19 +83,37 @@ const req = https.request(options, (resp) => {
 
     resp.on('end', () => {
         let json = JSON.parse(data);
-        let settings = { method: "Get" };
+        let settings = {method: "Get"};
 
         fetch(DOWNLOADS_JSON_URL, settings)
             .then(res => res.json())
             .then((downloadJson) => {
                 downloads = JSON.parse(JSON.stringify(downloadJson))
                 json.forEach((item) => {
-                    let release = item.release ?? {description: ""}
-                    let link = downloads[item.name] ?? ""
+                    let release;
+                    if (item.release && item.release.description) {
+                        //Get an array of the notes and remove the empty spaces
+                        let releases = item.release.description.split("\n").filter(x => x !== "");
+                        //Get rid of the title line
+                        releases.splice(0, 1);
+
+                        let description = [];
+                        for (let i = 0; i < releases.length; i += 2) {
+                            description[i / 2] = releases[i] + "&#8195;" + releases[i + 1];
+                        }
+                        release = {
+                            description: description
+                        }
+                    } else {
+                        release = {
+                            description: [""]
+                        };
+                    }
+                    // let release = item.release ?? {description: ""}
                     let tag = {
                         "Tag": item.name,
-                        "Notes": [release.description],
-                        "Link": link
+                        "Notes": release.description,
+                        "Link": "https://www.example.com"
                     };
                     tags.push(tag);
                 })
@@ -173,7 +191,7 @@ function uploadDownloads() {
         let options = {
             destination: DOWNLOADS_FILE_NAME,
         };
-        bucket.upload(DOWNLOADS_FILE_NAME, options, function(err) {
+        bucket.upload(DOWNLOADS_FILE_NAME, options, function (err) {
             if (!err) {
                 console.log(console.log(`Uploaded ${DOWNLOADS_FILE_NAME}`))
             }

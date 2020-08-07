@@ -139,15 +139,12 @@ function getIssues(milestoneId) {
             let releaseNotes = "Release Notes (" + tagName + "):\n\n";
             for (let issue in json) {
                 if (json.hasOwnProperty(issue)) {
-                    releaseNotes += "- " + json[issue]["title"] + "\n"
                     let assignees = json[issue]["assignees"]
-                    releaseNotes += "Contributor(s):"
-                    for (let person in assignees) {
-                        if (assignees.hasOwnProperty(person)) {
-                            releaseNotes += " " + assignees[person]["name"] + ","
-                        }
+
+                    if (assignees.length > 0) {
+                        releaseNotes += "- " + json[issue]["title"] + "\n"
+                        releaseNotes = releaseNotes.replace(/.$/, "\n\n")
                     }
-                    releaseNotes = releaseNotes.replace(/.$/, "\n\n")
                 }
             }
             updateTagReleaseNotes(releaseNotes)
