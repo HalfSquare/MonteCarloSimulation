@@ -1,7 +1,7 @@
 ## __Issue for Document Development__
 ### Description: 
 <!-- Please bullet point below this document change involves -->
-- This is a issue for document development
+- This is an issue for document development
 - Which section this document change will be implemented in 
 
 <br>
