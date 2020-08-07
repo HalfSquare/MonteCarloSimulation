@@ -46,17 +46,6 @@ Created: #54| Implement graphical display of data | Alexander Pace | • This sh
 : #| ---- | Michael Behan | • <br>• <br>• <br>• <br> 
 
 
-## Discussion Items
-<!-- The first line is an example of how it should be filled out. Please delete. -->
-These are the things that we have discussed in the meeting today.
-
-Item | Title | Person | Notes |
----- | ---- | ---- | ---- |
-#22 | We may have issues with unicorns later | Justina Koh | • Alex has been making lots of unicorns<br>• They might escape later<br>• This could be very dangerous for our GUI<br>|
-item | title | who | notes |
-item | title | who | notes |
-
-
-## Other Notes & Information
+## Other Notes & Information & Problems
 
 N/A
