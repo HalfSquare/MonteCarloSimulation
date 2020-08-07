@@ -1,23 +1,34 @@
 const token = getToken();
-// const token = "";
 const FILE_NAME = "tags.json";
-
+const firebaseToken = getFirebaseToken();
 
 function getToken() {
     let args = null;
-    process.argv
-        .slice(2, process.argv.length)
-        .forEach(arg => {
-            // long arg
-            if (arg.slice(0, 2) === '--') {
-                const longArg = arg.split('=');
-                longArg[0].slice(2, longArg[0].length);
-                args = longArg.length > 1 ? longArg[1] : true;
-            }
-        });
+    let arg = process.argv.slice(2, process.argv.length)[0]
+    if (arg.slice(0,2) === '--') {
+        const longArg = arg.split('=');
+        longArg[0].slice(2,longArg[0].length);
+        args = longArg.length > 1 ? longArg[1] : true;
+    }
     return args;
 }
 
+function getFirebaseToken() {
+    let args = '';
+    let arg = process.argv
+        .slice(2, process.argv.length)[1]
+    if (arg.slice(0,2) === '--') {
+        const longArg = arg.split('=')
+        longArg.shift()
+        for (let arg in longArg) {
+            args += longArg[arg] + "="
+        }
+        args = args.slice(0, -1)
+        args = args.replace(/'/g, '"')
+        args = args.replace(/\\s/g, ' ')
+    }
+    return JSON.parse(args);
+}
 
 let https = require('https');
 
@@ -77,13 +88,12 @@ const req = https.request(options, (resp) => {
         fs.writeFile(FILE_NAME, JSON.stringify(tags.reverse()), (err) => {
             if (err) console.log("Error: " + err.message);
             console.log('Saved!');
-            fs.readFile(FILE_NAME, (err, code) => {
+            fs.readFile(FILE_NAME, (err) => {
+                if (err != null) return;
                 let admin = require("firebase-admin");
 
-                let serviceAccount = "rocketboydeploy-firebase-adminsdk-3bq1k-a234d5bd98.json";
-
                 admin.initializeApp({
-                    credential: admin.credential.cert(serviceAccount),
+                    credential: admin.credential.cert(firebaseToken),
                     databaseURL: "https://rocketboydeploy.firebaseio.com",
                     storageBucket: "gs://rocketboydeploy.appspot.com"
                 });
@@ -92,7 +102,7 @@ const req = https.request(options, (resp) => {
                 let options = {
                     destination: FILE_NAME,
                 };
-                bucket.upload(FILE_NAME, options, function(err, remoteFile) {
+                bucket.upload(FILE_NAME, options, function(err) {
                     if (!err) {
                         console.log("Uploaded!");
                     } else {
