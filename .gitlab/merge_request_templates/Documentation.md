@@ -1,19 +1,21 @@
-## Summary of Merge Request
-
-<!-- BRIEFLY describe what this MR is about. Bullet points are okay -->
-<br>
-
+## Summary of Merge Request for Documentation
 <!-- What does this do to your issue? i.e. Fixes / Completes -->Closes #<!-- issue number. Make sure there is no space between the '#' and issue number-->
-<br>
+<!-- BRIEFLY describe what this MR is about. Bullet points are okay -->
+- 
+-  
 
 ## Author's checklist 
 This is a checklist for the author(s) to ensure that the changes are of good quality and appropriate. All of the points must be ticked before the merge request can be submitted.
-- [ ] Apply the ~Documentation label
+- [ ] Apply the ~Documentation and ~Review label
 - [ ] Apply the appropriate epic to the related issue
 - [ ] Select correct sprint in the Milestone section
 - [ ] Select other appropriate labels in the Labels section
+- [ ] Assign the correct participants
+- [ ] Ensure time tracking estimates and expenditure are present and correct
 - [ ] Select ≥1 approval
 - [ ] Ensure pipeline passes in full
+- [ ] Ensure that the code is of high and respectable quality 
+
 
 <!--Do not add the ~"feature", ~"frontend", ~"backend", ~"bug", or ~"database" labels if you are only updating documentation. These labels will cause the MR to be added to code verification QA issues.-->
 
@@ -28,4 +30,11 @@ Co-authored-by: <!-- Author's full name followed by a space and their correspond
 * [ ] I have checked this merge request for clarity, spelling, and grammar errors
 * [ ] The following changes to the documentation follows the [Documentation Guidelines](LINK)
 * [ ] The changes made in this request have been mutually agreed upon by the rest of the teammates
+
+
+## __Tags__
+<!-- Please fill in this section accordingly. Make sure that you copy and paste this section into the comments section below in the issue template -->
+
+/label ~Documentation ~Review <br>
+/spend <!--Put in the time spent --> <br>
 
