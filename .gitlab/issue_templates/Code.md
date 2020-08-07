@@ -1,8 +1,8 @@
 ## __Issue for Code Development__
 ### Description: 
 <!-- Please bullet point below what the bug involves -->
-- This is a issue for a bug
-- Which section / file of the code the bug occurs in 
+- This is a issue for code development
+- Which section this code change will be implemented in 
 
 <br>
 
