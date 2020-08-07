@@ -1,5 +1,6 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import java.io.InputStream;
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
 import net.sf.openrocket.file.RocketLoadException;
@@ -32,7 +33,7 @@ public class MonteCarloSimulation {
    * @param num Number of simulations to run
    * @return the simulations ran
    */
-  public ArrayList<SimulationStatus> runSimulations(int num, File file, MissionControlSettings settings) throws RocketLoadException {
+  public ArrayList<SimulationStatus> runSimulations(int num, InputStream file, MissionControlSettings settings) throws RocketLoadException {
     MissionControlSettings defaultSettings = loadDefaultSettings();
 
     // Extract mission control setting data, setting defaults if values are empty
@@ -53,7 +54,7 @@ public class MonteCarloSimulation {
     OpenRocketHelper helper = new OpenRocketHelper();
 
     // Opens open rocket document
-    OpenRocketDocument document = helper.loadORDocument(file.getPath());
+    OpenRocketDocument document = helper.loadORDocument(file);
 
     // Gets first simulation from the ork file
     Simulation simulation = document.getSimulation(0);
@@ -139,7 +140,9 @@ public class MonteCarloSimulation {
   public static void main(String[] args) {
     try {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
-      mcs.runSimulations(5, new File ("src/main/resources/rocket-1-1-9.ork"), new MissionControlSettings());
+      ClassLoader classLoader = mcs.getClass().getClassLoader();
+      InputStream rocketFile = classLoader.getResourceAsStream("src/main/resources/rocket-1-1-9.ork");
+      mcs.runSimulations(5, rocketFile, new MissionControlSettings());
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
