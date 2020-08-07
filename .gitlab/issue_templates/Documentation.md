@@ -1,8 +1,17 @@
-<!-- This is a template for all documentation things such as needing to do some documentation or fixing an error (bug) in a document-->
-#### __Content__
-Description: (Concisely summarise what needs to be done)
+## __Issue for Document Development__
+### Description: 
+<!-- Please bullet point below this document change involves -->
+- This is a issue for document development
+- Which section this document change will be implemented in 
+
 <br>
 
+#### __Information about the Code:__
+_What the Code is doing currently:_  
+-  
+-  
+-   
+<br>
 #### __Extra Information about the Documentation Task:__
 <!-- Take this  out if not relevant.-->
 
