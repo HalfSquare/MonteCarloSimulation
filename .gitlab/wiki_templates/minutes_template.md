@@ -36,13 +36,14 @@ Completes: #1| Write team contract | Alexander Pace | • This is the team contr
 <!-- The first line is an example of how it should be filled out. Please delete. -->
 These are the tasks that we anticipate to be completed before the next meeting. 
 
-
-Ticket Number| Ticket Name | Person | Description | Date to Complete By
----- | ---- | ---- | ---- | ----
-Created: #54| Implement graphical display of data | Justina Koh | • This should address the bug in our GUI <br>• The bug consists of the GUI appearing rainbow coloured <br>• I think Max caused this issue when he added in unicorn functionality <br> | 20/10/2024
-: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
-: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
-: #| ---- | Name | • <br>• <br>• <br>• <br> | DD/MM/YYYY
+Ticket Number| Ticket Name | Person | Description
+---- | ---- | ---- | ---- 
+Created: #54| Implement graphical display of data | Alexander Pace | • This should address the bug in our GUI <br>• The bug consists of the GUI appearing rainbow coloured <br>• I think Max caused this issue when he added in unicorn functionality <br> | 20/10/2024
+: #| ---- | Georgia Strongman | • <br>• <br>• <br>• <br>
+: #| ---- | Jacqui Dong | • <br>• <br>• <br>• <br>
+: #| ---- | Justina Koh | • <br>• <br>• <br>• <br>
+: #| ---- | Max McMurray  | • <br>• <br>• <br>• <br>
+: #| ---- | Michael Behan | • <br>• <br>• <br>• <br> 
 
 
 ## Discussion Items
