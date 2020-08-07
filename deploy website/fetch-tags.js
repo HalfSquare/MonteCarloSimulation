@@ -170,7 +170,7 @@ function uploadJar(tagName) {
                 downloads[tagName]= url[0]
                 uploadDownloads()
 
-                fs.writeFile(FILE_NAME, JSON.stringify(tags.reverse()), (err) => {
+                fs.writeFile(FILE_NAME, JSON.stringify(tags), (err) => {
                     if (err) console.log("Error: " + err.message);
                     uploadTags()
                 })
