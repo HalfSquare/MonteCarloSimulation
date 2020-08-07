@@ -6,8 +6,8 @@
 
 <br>
 
-#### __Information about the Document:__
-_What the document currently contains:_  
+## __Information about the Document:__
+### _What the document currently contains:_  
 -  
 -  
 -  
@@ -21,7 +21,7 @@ _What the document currently contains:_
 <br>
 
 
-### __Tags__
+## __Tags__
 <!-- Please fill in this section accordingly. Make sure that you copy and paste this section into the comments section below in the issue template -->
 
 /label ~Documentation ~Doing <br>
