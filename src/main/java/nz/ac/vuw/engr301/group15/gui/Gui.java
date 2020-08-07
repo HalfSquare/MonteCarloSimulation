@@ -118,7 +118,7 @@ public class Gui extends JFrame {
         graphWindow.setGraphTypeComboBoxListener(
                 e -> setState(GRAPH)); // redraws the graph if combobox was selected
         graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
-        graphWindow.setCsvButtonListener(e -> openFileManager());
+        graphWindow.setCsvButtonListener(e -> saveSettingsAsCSV());
         graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCSV(createList()));
         //createTable();
 
@@ -171,6 +171,10 @@ public class Gui extends JFrame {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void saveSettingsAsCSV() {
 
     }
 
