@@ -1,5 +1,6 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import java.io.InputStream;
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
 import net.sf.openrocket.simulation.exception.SimulationException;
@@ -23,8 +24,7 @@ public class OpenRocketHelper {
      *
      * @param fileName  Name of file to load
      */
-    public OpenRocketDocument loadORDocument(String fileName) throws RocketLoadException {
-        File rocketFile = new File(fileName);
+    public OpenRocketDocument loadORDocument(InputStream rocketFile) throws RocketLoadException {
         GeneralRocketLoader gen = new GeneralRocketLoader();
         return gen.load(rocketFile);
     }

@@ -1,5 +1,6 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import java.io.InputStream;
 import nz.ac.vuw.engr301.group15.gui.Gui;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 import org.junit.jupiter.api.Test;
@@ -38,7 +39,9 @@ public class TestOpenRocket {
 	public void Test3() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(1, new File("src/main/resources/rocket-1-1-9.ork"), settings);
+			ClassLoader classLoader = this.getClass().getClassLoader();
+			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+			sim.runSimulations(1, rocketFile, settings);
 		}
 		catch (Exception ex){
 			fail();
@@ -50,7 +53,9 @@ public class TestOpenRocket {
 	public void Test4(){
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try {
-			sim.runSimulations(-6, new File("src/main/resources/rocket-1-1-9.ork"), settings);
+			ClassLoader classLoader = this.getClass().getClassLoader();
+			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+			sim.runSimulations(-6, rocketFile, settings);
 		}
 		catch (Exception ex){
 			fail();
@@ -62,7 +67,9 @@ public class TestOpenRocket {
 	public void Test5() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
 		try{
-			sim.runSimulations(10, new File("src/main/resources/rocket-1-1-9.ork"), settings);
+			ClassLoader classLoader = this.getClass().getClassLoader();
+			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+			sim.runSimulations(10, rocketFile, settings);
 		}
 		catch (Exception ex){
 			fail();
