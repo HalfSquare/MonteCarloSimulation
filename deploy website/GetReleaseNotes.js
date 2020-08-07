@@ -7,18 +7,16 @@ function getToken () {
         .forEach( arg => {
             if (arg.slice(0,2) === '--') {
                 const longArg = arg.split('=');
-                const longArgValue = longArg.length > 1 ? longArg[1] : true;
-                args = longArgValue;
+                args = longArg[1];
             }
         });
     return args;
 }
 
 const token = getToken();
-const firebaseToken = "";
 let tagName;
-// getTags();
-// getMilestone();
+getTags();
+getMilestone();
 
 function getMilestone() {
     const options = {
@@ -70,16 +68,19 @@ function getIssues(milestoneId) {
         resp.on('end', () => {
             let json = JSON.parse(data)
 
-            var releaseNotes = "Release Notes (" + tagName + "):\n\n";
-            for (issueNum in json) {
-                let issue = json[issueNum]
-                releaseNotes += "- " + issue["title"] + "\n"
-                let assignees = issue["assignees"]
-                releaseNotes += "Contributor(s):"
-                for (person in assignees) {
-                    releaseNotes += " " + assignees[person]["name"] + ","
+            let releaseNotes = "Release Notes (" + tagName + "):\n\n";
+            for (let issue in json) {
+                if (json.hasOwnProperty(issue)) {
+                    releaseNotes += "- " + json[issue]["title"] + "\n"
+                    let assignees = json[issue]["assignees"]
+                    releaseNotes += "Contributor(s):"
+                    for (let person in assignees) {
+                        if (assignees.hasOwnProperty(person)) {
+                            releaseNotes += " " + assignees[person]["name"] + ","
+                        }
+                    }
+                    releaseNotes = releaseNotes.replace(/.$/, "\n\n")
                 }
-                releaseNotes = releaseNotes.replace(/.$/,"\n\n")
             }
             updateTagReleaseNotes(releaseNotes)
         });
@@ -94,8 +95,8 @@ function getIssues(milestoneId) {
 function updateTagReleaseNotes(releaseNotes) {
     const querystring = require('querystring');
 
-    var postData = querystring.stringify({
-        'description' : releaseNotes
+    const postData = querystring.stringify({
+        'description': releaseNotes
     });
 
     const options = {
@@ -107,28 +108,29 @@ function updateTagReleaseNotes(releaseNotes) {
         }
     };
 
-    const req = https.request(options).on("error", (err) => {
-        console.log("Error: " + err.message);
-    });
+    const { exec } = require("child_process");
+
+    const req = https.request(options, (res => {
+        if (res.statusCode !== 201) {
+            console.log(res.statusCode)
+            return
+        }
+        exec("node fetch-tags.js --token=$DEPLOY_API_TOKEN --firebase=$FIREBASE_API_KEY", (error, stdout, stderr) => {
+            if (error) {
+                console.log(`error: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.log(`stderr: ${stderr}`);
+                return;
+            }
+            console.log(`stdout: ${stdout}`);
+        });
+    })).on("error", (err) => {
+        console.log("Error1: " + err.message);
+    })
 
     req.write(postData)
-    req.end();
-}
-
-function deleteRelease() {
-    const options = {
-        hostname: "gitlab.ecs.vuw.ac.nz",
-        path: `/api/v4/projects/6908/releases/${tagName}`,
-        method: 'DELETE',
-        headers: {
-            Authorization: 'Bearer '+token
-        }
-    };
-
-    const req = https.request(options).on("error", (err) => {
-        console.log("Error: " + err.message);
-    });
-
     req.end();
 }
 
@@ -163,21 +165,20 @@ function getTags() {
     req.end();
 }
 
-var firebase = require("firebase/app");
-var admin = require("firebase-admin");
-require("firebase/storage")
 
-var serviceAccount = "rocketboydeploy-firebase-adminsdk-3bq1k-a234d5bd98.json";
+function deleteRelease() {
+    const options = {
+        hostname: "gitlab.ecs.vuw.ac.nz",
+        path: `/api/v4/projects/6908/releases/${tagName}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: 'Bearer '+token
+        }
+    };
 
-publishToFirebaseStorage()
-
-
-function publishToFirebaseStorage() {
-    firebase.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
-        databaseURL: "https://rocketboydeploy.firebaseio.com"
+    const req = https.request(options).on("error", (err) => {
+        console.log("Error: " + err.message);
     });
-    let storage = firebase.storage()
-    let path = storage.refFromURL("gs://rocketboydeploy.appspot.com")
-    console.log()
+
+    req.end();
 }
