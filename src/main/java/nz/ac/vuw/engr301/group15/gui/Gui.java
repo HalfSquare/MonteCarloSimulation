@@ -108,6 +108,7 @@ public class Gui extends JFrame {
     }
 
     private void startGraph() {
+      ClusterFactory.findClusters(data);
         this.add(graphWindow.getRootPanel());
         graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
         GraphCreator g = new GraphCreator();
@@ -521,6 +522,8 @@ public class Gui extends JFrame {
             dataset.addSeries(longAndLatPoints);
             return dataset;
         }
+
+
     }
 }
 
