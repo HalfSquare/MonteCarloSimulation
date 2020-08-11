@@ -1,28 +1,81 @@
 package nz.ac.vuw.engr301.group15.gui;
 
 import net.sf.openrocket.simulation.SimulationStatus;
-import java.util.ArrayList;
-import java.util.Arrays;
+import net.sf.openrocket.util.WorldCoordinate;
+import org.jfree.data.xy.XYSeries;
+
+import java.util.*;
 
 public class ClusterFactory {
+  private static final double lenience = 0.0001;
+  private static final double multitude = 1;
 
-  public static void findClusters(ArrayList<SimulationStatus> points) {
+  public static Set<SimulationStatus> findClusters(ArrayList<SimulationStatus> points) {
     double[][] distances = findDistances(points);
-
-    System.out.println("distances");
-    for (double[] d :
-            distances) {
-      System.out.println(Arrays.toString(d));
-    }
-
-    System.out.println("\nshortest distance");
     IndexedPair<SimulationStatus> shortestDistance = shortestDistance(distances, points);
-    System.out.printf("Point 1: %d, Point 2: %d\n", shortestDistance.ai, shortestDistance.bi);
-    System.out.printf("Distance 1: %.20f, Distance 2: %.20f\n", distances[shortestDistance.ai][shortestDistance.bi], distances[shortestDistance.ai][shortestDistance.bi]);
-    System.out.printf("Lat:%.20f\nLong:%.20f\n", shortestDistance.a.getRocketWorldPosition().getLatitudeDeg(), shortestDistance.a.getRocketWorldPosition().getLongitudeDeg());
-    System.out.printf("Lat:%.20f\nLong:%.20f\n", shortestDistance.b.getRocketWorldPosition().getLatitudeDeg(), shortestDistance.b.getRocketWorldPosition().getLongitudeDeg());
+    ArrayList<Boolean> inCluster = new ArrayList<>(Arrays.asList(new Boolean[points.size()]));
+    Collections.fill(inCluster, Boolean.FALSE);
+    inCluster.set(shortestDistance.ai, true);
 
+    HashSet<SimulationStatus> cluster = new HashSet<>();
+    cluster.add(points.get(shortestDistance.ai));
 
+//    System.out.println("distances");
+//    for (double[] d :
+//            distances) {
+//      System.out.println(Arrays.toString(d));
+//    }
+
+//    System.out.println("\nshortest distance");
+//    System.out.printf("Point 1: %d, Point 2: %d\n", shortestDistance.ai, shortestDistance.bi);
+//    System.out.printf("Distance 1: %.20f, Distance 2: %.20f\n", distances[shortestDistance.ai][shortestDistance.bi], distances[shortestDistance.ai][shortestDistance.bi]);
+//    System.out.printf("Lat:%.20f\nLong:%.20f\n", shortestDistance.a.getRocketWorldPosition().getLatitudeDeg(), shortestDistance.a.getRocketWorldPosition().getLongitudeDeg());
+//    System.out.printf("Lat:%.20f\nLong:%.20f\n", shortestDistance.b.getRocketWorldPosition().getLatitudeDeg(), shortestDistance.b.getRocketWorldPosition().getLongitudeDeg());
+    return getCluster(points, cluster, distances, inCluster, distances[shortestDistance.ai][shortestDistance.bi], shortestDistance.ai);
+  }
+
+  private static Set<SimulationStatus> getCluster(ArrayList<SimulationStatus> points, Set<SimulationStatus> cluster
+          , double[][] distances, ArrayList<Boolean> inCluster, double shortest, int i) {
+
+    for (int j = 0; j < points.size(); j++) {
+      if (!inCluster.get(j) && inRange(distances[i][j], shortest)) {
+        inCluster.set(j, true);
+        cluster.add(points.get(j));
+        getCluster(points, cluster, distances, inCluster, shortest, j);
+      }
+    }
+    return cluster;
+  }
+
+  private static boolean inRange(double distance, double shortest) {
+    return distance <= (multitude * shortest) + lenience;
+  }
+
+  public static XYSeries plotCluster(ArrayList<SimulationStatus> points) {
+    Set<SimulationStatus> ip = findClusters(points);
+    XYSeries cluster = new XYSeries("cluster");
+
+    double minlat = Double.MAX_VALUE;
+    double minlong = Double.MAX_VALUE;
+    double maxlat = Double.MIN_VALUE;
+    double maxlong = Double.MIN_VALUE;
+
+    for (SimulationStatus p : ip) {
+      WorldCoordinate landingPos = p.getRocketWorldPosition();
+      double x = landingPos.getLongitudeDeg();
+      double y = landingPos.getLatitudeDeg();
+      cluster.add(x, y);
+      maxlat = Double.max(maxlat, y);
+      maxlong = Double.max(maxlong, x);
+      minlat = Double.min(minlat, y);
+      minlong = Double.min(minlong, x);
+
+      System.out.println(x + ", " + y);
+    }
+    System.out.println("\nMin:" + minlong + ", " + minlat);
+    System.out.println("\nMax:" + maxlong + ", " + maxlat);
+
+    return cluster;
   }
 
   private static double[][] findDistances(ArrayList<SimulationStatus> points) {
