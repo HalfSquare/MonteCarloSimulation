@@ -431,11 +431,11 @@ public class Gui extends JFrame {
               if (rocketModelFile == null){
                 ClassLoader classLoader = this.getClass().getClassLoader();
                 InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                data = mcs.runSimulations(3000/*Integer.parseInt(settingsMissionControl.getNumSimulations())*/, rocketFile, settingsMissionControl);
               }
               else {
                 InputStream rocketFile = new FileInputStream(rocketModelFile);
-                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                data = mcs.runSimulations(3000/*Integer.parseInt(settingsMissionControl.getNumSimulations())*/, rocketFile, settingsMissionControl);
               }
 
             } catch (RocketLoadException | FileNotFoundException e) {
@@ -495,6 +495,11 @@ public class Gui extends JFrame {
             AbstractRenderer renderer = (AbstractRenderer) plot.getRenderer();
             renderer.setSeriesShape(0, shape);
 
+
+            //TODO: cluster testing code
+            renderer.setSeriesPaint(1, Color.BLUE);
+          renderer.setSeriesShape(0, shape);
+
             // Create Panel
             ChartPanel panel = new ChartPanel(chart);
             graphWindow.getGraphPanel().setLayout(new BorderLayout());
@@ -520,6 +525,10 @@ public class Gui extends JFrame {
 
             final XYSeriesCollection dataset = new XYSeriesCollection();
             dataset.addSeries(longAndLatPoints);
+
+            //TODO: cluster testing code
+            dataset.addSeries(ClusterFactory.plotCluster(data));
+
             return dataset;
         }
 
