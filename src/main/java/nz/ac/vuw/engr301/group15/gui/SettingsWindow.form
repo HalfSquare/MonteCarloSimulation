@@ -46,7 +46,7 @@
                       <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Max Rocket Angle"/>
+                      <text value="Max Rocket Angle (radians)"/>
                     </properties>
                   </component>
                   <component id="2ceb2" class="javax.swing.JLabel">
@@ -183,7 +183,7 @@
                       <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Wind Speed"/>
+                      <text value="Wind Speed (m/s)"/>
                     </properties>
                   </component>
                   <component id="b77f" class="javax.swing.JLabel">
@@ -191,7 +191,7 @@
                       <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Wind Direction"/>
+                      <text value="Wind Direction (radians)"/>
                     </properties>
                   </component>
                   <component id="4bfea" class="javax.swing.JLabel">
@@ -199,7 +199,7 @@
                       <grid row="3" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Launch Temperature"/>
+                      <text value="Launch Temperature (kelvin)"/>
                     </properties>
                   </component>
                   <component id="6f6d5" class="javax.swing.JLabel">
@@ -207,7 +207,7 @@
                       <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Wind Turbulence"/>
+                      <text value="Wind Turbulence (m/s)"/>
                     </properties>
                   </component>
                   <component id="aae1d" class="javax.swing.JFormattedTextField" binding="windTurbulence">
@@ -241,7 +241,7 @@
                       <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="10" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties>
-                      <text value="Launch Air Pressure"/>
+                      <text value="Launch Air Pressure (mbar)"/>
                     </properties>
                   </component>
                   <component id="d49c5" class="javax.swing.JLabel">
