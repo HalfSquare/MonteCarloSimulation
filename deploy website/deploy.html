@@ -14,8 +14,10 @@
 
 <header id="pageHeader">
   <div class="headingTitle" style="display: table-cell">
-    <h1 style="width: 100%">rocketboy deployment website.</h1>
-
+    <h1 style="width: 100%">rocketboy deploy.</h1>
+    Email any bugs or feedback to
+    <a href="mailto:gitlab-incoming+course-work-engr300-2020-group15-group-15-6908-issue-@ecs.vuw.ac.nz">this address</a>
+    <button onclick="copyEmail()">Copy to clipboard</button>
   </div>
   <div style="width: 50%; display: table;">
 
@@ -29,6 +31,7 @@
 
 <article id="mainArticle">
   <table id="releaseTable">
+    <th>LOADING...</th>
   </table>
 </article>
 
@@ -38,9 +41,7 @@
 </nav>
 
 <footer id="pageFooter">
-  Developed by Group 15 <br><a
-    href="mailto:gitlab-incoming+course-work-engr300-2020-group15-group-15-6908-issue-@ecs.vuw.ac.nz">Email
-  Problems here</a>
+  Developed by Group 15 <br>
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
@@ -149,8 +150,15 @@
             // Handle any errors
             // Basically cry
         });
+    }
 
-
+    function copyEmail() {
+      navigator.clipboard.writeText("gitlab-incoming+course-work-engr300-2020-group15-group-15-6908-issue-@ecs.vuw.ac.nz").then(function() {
+        alert("Copied email to clipboard - Love team 15 :)");
+      }, function(err) {
+        alert("Copy failed");
+        console.error('Async: Could not copy text: ', err);
+      });
     }
 
     window.onload = function () {
