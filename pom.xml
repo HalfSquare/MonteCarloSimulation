@@ -178,14 +178,15 @@
                         </goals>
                     </execution>
                 </executions>
-<!--                <dependencies>-->
-<!--                    <dependency>-->
-<!--                        <groupId>com.github.spotbugs</groupId>-->
-<!--                        <artifactId>spotbugs</artifactId>-->
-<!--                        <version>4.0.6</version>-->
-<!--                    </dependency>-->
-<!--                </dependencies>-->
             </plugin>
+<!--&lt;!&ndash;                <dependencies>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <groupId>com.github.spotbugs</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <artifactId>spotbugs</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <version>4.0.6</version>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;                </dependencies>&ndash;&gt;-->
+            <!--</plugin>-->
 
         </plugins>
     </build>
