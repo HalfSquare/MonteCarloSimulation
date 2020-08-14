@@ -2,6 +2,7 @@ package nz.ac.vuw.engr301.group15.montecarlo;
 
 import java.io.InputStream;
 import nz.ac.vuw.engr301.group15.gui.Gui;
+//import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +20,26 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 public class TestOpenRocket {
-	MissionControlSettings settings = new MissionControlSettings();
+
+	MissionControlSettings loadSettings() {
+		MissionControlSettings settings = new MissionControlSettings();
+		settings.setLaunchRodAngle("0.0");
+		settings.setLaunchRodLength("0.2");
+		settings.setLaunchRodDir("0.0");
+		settings.setLaunchAlt("159.0");
+		settings.setLaunchLat("-41.1283");
+		settings.setLaunchLong("175.0202");
+		settings.setMaxAngle("0.017453292519943295");
+		settings.setWindSpeed("6.0");
+		settings.setWindDir("0.0");
+		settings.setWindTurbulence("0.1");
+		settings.setLaunchTemp("284.15");
+		settings.setLaunchAirPressure("1010.0");
+		settings.setNumSimulations("1000");
+		return settings;
+	}
+
+
 	// Initial test to set up pipeline - should ALWAYS pass
 	@Test
 	public void Test1(){
@@ -38,13 +58,15 @@ public class TestOpenRocket {
 	@Test
 	public void Test3() {
 		MonteCarloSimulation sim = new MonteCarloSimulation();
-		try{
+		try {
 			ClassLoader classLoader = this.getClass().getClassLoader();
 			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(1, rocketFile, settings);
+			sim.runSimulations(1, rocketFile, loadSettings());
 		}
 		catch (Exception ex){
+			ex.printStackTrace();
 			fail();
+
 		}
 	}
 
@@ -55,7 +77,7 @@ public class TestOpenRocket {
 		try {
 			ClassLoader classLoader = this.getClass().getClassLoader();
 			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(-6, rocketFile, settings);
+			sim.runSimulations(-6, rocketFile, loadSettings());
 		}
 		catch (Exception ex){
 			fail();
@@ -69,7 +91,35 @@ public class TestOpenRocket {
 		try{
 			ClassLoader classLoader = this.getClass().getClassLoader();
 			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(10, rocketFile, settings);
+			sim.runSimulations(10, rocketFile, loadSettings());
+		}
+		catch (Exception ex){
+			fail();
+		}
+	}
+
+	// Stress test to check that simulation can run 100 instances
+	@Test
+	public void Test6() {
+		MonteCarloSimulation sim = new MonteCarloSimulation();
+		try{
+			ClassLoader classLoader = this.getClass().getClassLoader();
+			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+			sim.runSimulations(100, rocketFile, loadSettings());
+		}
+		catch (Exception ex){
+			fail();
+		}
+	}
+
+	// Stress test to check that simulation can run 500 instances
+	@Test
+	public void Test7() {
+		MonteCarloSimulation sim = new MonteCarloSimulation();
+		try{
+			ClassLoader classLoader = this.getClass().getClassLoader();
+			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+			sim.runSimulations(500, rocketFile, loadSettings());
 		}
 		catch (Exception ex){
 			fail();
