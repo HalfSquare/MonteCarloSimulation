@@ -59,7 +59,7 @@ public class Gui extends JFrame {
     /**
      * Creates a window that runs monte carlo simulations.
      */
-    public Gui(boolean show) {
+    public Gui(boolean show, File file) {
 
       if (show){
         this.data = new ArrayList<>();
@@ -90,6 +90,7 @@ public class Gui extends JFrame {
         this.setVisible(true);
       }
       else{
+        loadMissionControlData(file, false);
         SimulationRunner s = new SimulationRunner();
         s.show = false;
         s.start();
@@ -225,7 +226,7 @@ public class Gui extends JFrame {
         missionControlFile = j.getSelectedFile();
         // If a valid file has been given, parse & load data from the file
         if (j.getSelectedFile() != null) {
-          loadMissionControlData(j.getSelectedFile());
+          loadMissionControlData(j.getSelectedFile(), true);
       }
     }
 
@@ -234,7 +235,7 @@ public class Gui extends JFrame {
    *
    * @param file CSV file with mission control data, should follow the given template.
    */
-  public void loadMissionControlData(File file){
+  public void loadMissionControlData(File file, boolean show){
     MissionControlSettings settings = new MissionControlSettings();
 
     // Attempt to read data
@@ -257,7 +258,9 @@ public class Gui extends JFrame {
         switch (name){
 			    case "numSimulations":
 			      settings.setNumSimulations(value);
-            settingsWindow.setNumSim(Integer.parseInt(value));
+			      if (show){
+              settingsWindow.setNumSim(Integer.parseInt(value));
+            }
 				    break;
           case "launchRodAngle":
             settings.setLaunchRodAngle(value);
@@ -299,8 +302,11 @@ public class Gui extends JFrame {
       }
       // Copy settings to the public bean
       settingsMissionControl = settings;
-      settingsWindow.setData(settings);
+      if (show) {
+        settingsWindow.setData(settings);
+      }
       sc.close();
+      System.out.println(settings);
     }
       catch (Exception ex){
        System.out.println("Uh oh! " + ex);
@@ -414,11 +420,13 @@ public class Gui extends JFrame {
             e.printStackTrace();
         }
         String guiArg = args[0];
-        if (guiArg.equals("-gui")) {
-          Gui gui = new Gui(true);
+        File f = new File(args[1]);
+
+      if (guiArg.equals("-gui")) {
+          Gui gui = new Gui(true, null);
         }
-        else {
-          Gui gui = new Gui(false);
+        else { // no gui
+          Gui gui = new Gui(false, f);
         }
     }
 
@@ -454,7 +462,7 @@ public class Gui extends JFrame {
                   data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
                 }
                 else {
-                  data = mcs.runSimulations(20, rocketFile, mcs.loadDefaultSettings());
+                  data = mcs.runSimulations(20, rocketFile, settingsMissionControl);
                   savePointsAsCSV(createList());
                   System.exit(1);
                 }
@@ -465,7 +473,7 @@ public class Gui extends JFrame {
                   data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
                 }
                 else {
-                  data = mcs.runSimulations(20, rocketFile, mcs.loadDefaultSettings());
+                  data = mcs.runSimulations(20, rocketFile, settingsMissionControl);
                   savePointsAsCSV(createList());
                   System.exit(1);
                 }
