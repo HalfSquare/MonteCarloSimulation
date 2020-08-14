@@ -30,13 +30,13 @@ public class MonteCarloSimulation {
    * Runs a specified amount of Monte Carlo simulations
    * Currently takes about 10 seconds to run 1,000 simulations
    *
-   * @param num Number of simulations to run
    * @return the simulations ran
    */
-  public ArrayList<SimulationStatus> runSimulations(int num, InputStream file, MissionControlSettings settings) throws RocketLoadException {
+  public ArrayList<SimulationStatus> runSimulations(InputStream file, MissionControlSettings settings) throws RocketLoadException {
     MissionControlSettings defaultSettings = loadDefaultSettings();
 
     // Extract mission control setting data, setting defaults if values are empty
+    double numOfSimulations = settings.getNumSimulations().equals("") ? Double.parseDouble(defaultSettings.getNumSimulations()) : Double.parseDouble(settings.getNumSimulations());
     double launchRodAngle = settings.getLaunchRodAngle().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodAngle()) : Double.parseDouble(settings.getLaunchRodAngle());
     double launchRodLength = settings.getLaunchRodLength().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodLength()) : Double.parseDouble(settings.getLaunchRodLength());
     double launchRodDir = settings.getLaunchRodDir().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodDir()) : Double.parseDouble(settings.getLaunchRodDir());
@@ -85,7 +85,7 @@ public class MonteCarloSimulation {
 
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
     MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
-    for (int simNum = 1; simNum <= num; simNum++) {
+    for (int simNum = 1; simNum <= numOfSimulations; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
 			//simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
       simulationOptions.setWindSpeedAverage((rand.nextGaussian() * WIND_SPEED_SIGMA) + windSpeed);
@@ -147,7 +147,7 @@ public class MonteCarloSimulation {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
       InputStream rocketFile = classLoader.getResourceAsStream("src/main/resources/rocket-1-1-9.ork");
-      mcs.runSimulations(5, rocketFile, new MissionControlSettings());
+      mcs.runSimulations(rocketFile, new MissionControlSettings());
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }

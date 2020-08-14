@@ -41,7 +41,7 @@ public class TestOpenRocket {
 		try{
 			ClassLoader classLoader = this.getClass().getClassLoader();
 			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(1, rocketFile, settings);
+			sim.runSimulations(rocketFile, settings);
 		}
 		catch (Exception ex){
 			fail();
@@ -55,7 +55,7 @@ public class TestOpenRocket {
 		try {
 			ClassLoader classLoader = this.getClass().getClassLoader();
 			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(-6, rocketFile, settings);
+			sim.runSimulations(rocketFile, settings);
 		}
 		catch (Exception ex){
 			fail();
@@ -69,9 +69,10 @@ public class TestOpenRocket {
 		try{
 			ClassLoader classLoader = this.getClass().getClassLoader();
 			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(10, rocketFile, settings);
+			sim.runSimulations(rocketFile, settings);
 		}
 		catch (Exception ex){
+			ex.printStackTrace();
 			fail();
 		}
 	}
