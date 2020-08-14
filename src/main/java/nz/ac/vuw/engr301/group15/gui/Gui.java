@@ -317,6 +317,7 @@ public class Gui extends JFrame {
      *
      * @param chartPanel the chartPanel being saved
      */
+    //TODO doesn't work with 3D graph, problem is likely in GraphCreator.java
     private void saveGraphAsImage(ChartPanel chartPanel) {
         //Code adapted from https://stackoverflow.com/questions/34836338/how-to-save-current-chart-in-chartpanel-as-png-programmatically#34836396
         try {
