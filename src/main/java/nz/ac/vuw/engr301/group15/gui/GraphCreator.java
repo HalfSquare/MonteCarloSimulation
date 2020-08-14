@@ -13,6 +13,18 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.ShapeUtilities;
 
+import com.orsoncharts.Chart3DPanel;
+import com.orsoncharts.Chart3D;
+import com.orsoncharts.Chart3DFactory;
+import com.orsoncharts.axis.IntegerTickSelector;
+import com.orsoncharts.axis.NumberAxis3D;
+import com.orsoncharts.data.xyz.XYZDataset;
+import com.orsoncharts.data.xyz.XYZSeries;
+import com.orsoncharts.data.xyz.XYZSeriesCollection;
+import com.orsoncharts.graphics3d.Dimension3D;
+import com.orsoncharts.plot.XYZPlot;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
@@ -73,7 +85,9 @@ public class GraphCreator {
                 shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
                 break;
             case FLIGHTPATH:
-                //return make3Dgraph();
+                graphWindow.getGraphPanel().setLayout(new BorderLayout());
+                graphWindow.getGraphPanel().add(create3DGraph(), BorderLayout.CENTER);
+                graphWindow.getGraphPanel().validate();
                 break;
             default:
                 throw new RuntimeException("Help");
@@ -115,5 +129,59 @@ public class GraphCreator {
         return dataset;
     }
 
-    //private make3DGraph
+    /**
+     * Returns a panel containing the content for the demo.  This method is
+     * used across all the individual demo applications to allow aggregation
+     * into a single "umbrella" demo (OrsonChartsDemo).
+     *
+     * @return A panel containing the content for the demo.
+     */
+    public static JPanel create3DGraph() {
+        XYZDataset dataset = create3DDataset();
+        Chart3D chart = createChart(dataset);
+        Chart3DPanel chartPanel = new Chart3DPanel(chart);
+        return chartPanel;
+        //chartPanel.zoomToFit(OrsonChartsDemo.DEFAULT_CONTENT_SIZE);
+//        content.add(new DisplayPanel3D(chartPanel));
+//        return content;
+    }
+
+    private static Chart3D createChart(XYZDataset dataset) {
+        Chart3D chart = Chart3DFactory.createXYZLineChart("XYZ Line Chart Demo",
+                "Orson Charts", dataset, "Day", "Index", "Station");
+        chart.setChartBoxColor(new Color(255, 255, 255, 128));
+        XYZPlot plot = (XYZPlot) chart.getPlot();
+        plot.setDimensions(new Dimension3D(15, 3, 8));
+        NumberAxis3D zAxis = (NumberAxis3D) plot.getZAxis();
+        zAxis.setTickSelector(new IntegerTickSelector());
+        return chart;
+    }
+
+    /**
+     * Creates a sample dataset (hard-coded for the purpose of keeping the
+     * demo self-contained - in practice you would normally read your data
+     * from a file, database or other source).
+     *
+     * @return A sample dataset.
+     */
+    public static XYZDataset<String> create3DDataset() {
+        XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
+
+//        for (int s = 1; s < 1; s++) {
+//            XYZSeries<String> series = new XYZSeries<String>("Series " + s);
+//            double y = 1.0;
+//            for (int i = 0; i < 3000; i++) {
+//                y = y * (1.0 + (Math.random() - 0.499) / 10.0);
+//                series.add(i, y, s);
+//            }
+//            dataset.add(series);
+//        }
+
+        XYZSeries<String> series = new XYZSeries<String>("Series");
+        series.add(10,10,10);
+        series.add(40,40,40);
+        dataset.add(series);
+
+        return dataset;
+    }
 }
