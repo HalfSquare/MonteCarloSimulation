@@ -405,8 +405,13 @@ public class Gui extends JFrame {
                 | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+        String guiArg = args[0];
+        if (guiArg.equals("-gui")) {
+          Gui gui = new Gui();
+        }
+        else {
 
-        Gui gui = new Gui();
+        }
     }
 
     class SimulationRunner implements Runnable {
