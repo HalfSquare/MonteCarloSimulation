@@ -1,8 +1,6 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
 import java.io.InputStream;
-import nz.ac.vuw.engr301.group15.gui.Gui;
-//import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 import org.junit.jupiter.api.Test;
 
