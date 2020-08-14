@@ -476,14 +476,18 @@ public class Gui extends JFrame {
             Shape shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
 
             // Creates the plotting shape
-            if (CROSS.equals(graphType)) {
-                shape = ShapeUtilities.createDiagonalCross(1, 1);
-            }
-            if (SQUARE.equals(graphType)) {
-                shape = new Rectangle2D.Double(-3, -3, 3, 3);
-            }
-            if (CIRCLE.equals(graphType)) {
-                shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
+            switch(graphType){
+                case CROSS:
+                    shape = ShapeUtilities.createDiagonalCross(1, 1);
+                    break;
+                case SQUARE:
+                    shape = new Rectangle2D.Double(-3, -3, 3, 3);
+                    break;
+                case CIRCLE:
+                    shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
+                    break;
+                default:
+                    throw new RuntimeException("Help");
             }
 
             //Changes background color
