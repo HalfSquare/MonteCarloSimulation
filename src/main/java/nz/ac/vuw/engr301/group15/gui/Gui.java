@@ -53,7 +53,7 @@ public class Gui extends JFrame {
     private ArrayList<SimulationStatus> data;
 
     public enum GraphType {
-        CIRCLE, SQUARE, CROSS
+        CIRCLE, SQUARE, CROSS, FLIGHTPATH
     }
 
     /**
@@ -110,7 +110,7 @@ public class Gui extends JFrame {
     private void startGraph() {
         this.add(graphWindow.getRootPanel());
         graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
-        GraphCreator g = new GraphCreator();
+        GraphCreator g = new GraphCreator(graphWindow, data);
         ChartPanel chartPanel = g.createGraph();
 //    g.createGraph();
         graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
@@ -449,81 +449,6 @@ public class Gui extends JFrame {
                 thread = new Thread(this, "sim");
                 thread.start();
             }
-        }
-
-    }
-
-    class GraphCreator {
-        /**
-         * Constructor.
-         *
-         * @return created graph in ChartPanel form
-         */
-        public ChartPanel createGraph() {
-
-            GraphType graphType = GraphType.valueOf(graphWindow.getGraphTypeComboBox().toUpperCase());
-
-            // Create chart
-            JFreeChart chart = ChartFactory.createScatterPlot(
-                    "Longitude vs. Latitude Points",
-                    "Longitude",
-                    "Latitude",
-                    createDataset(),
-                    PlotOrientation.VERTICAL,
-                    true, true, false);
-
-            // Default circle shape
-            Shape shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
-
-            // Creates the plotting shape
-            switch(graphType){
-                case CROSS:
-                    shape = ShapeUtilities.createDiagonalCross(1, 1);
-                    break;
-                case SQUARE:
-                    shape = new Rectangle2D.Double(-3, -3, 3, 3);
-                    break;
-                case CIRCLE:
-                    shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
-                    break;
-                default:
-                    throw new RuntimeException("Help");
-            }
-
-            //Changes background color
-            XYPlot plot = (XYPlot) chart.getPlot();
-            plot.setBackgroundPaint(new Color(255, 228, 196));
-
-            // Renders the points
-            AbstractRenderer renderer = (AbstractRenderer) plot.getRenderer();
-            renderer.setSeriesShape(0, shape);
-
-            // Create Panel
-            ChartPanel panel = new ChartPanel(chart);
-            graphWindow.getGraphPanel().setLayout(new BorderLayout());
-            graphWindow.getGraphPanel().add(panel, BorderLayout.CENTER);
-            graphWindow.getGraphPanel().validate();
-
-            return panel;
-        }
-
-        /**
-         * This goes through all the simulation points and adds them to a list of longitude and latitude points
-         * @return
-         */
-        private XYDataset createDataset() {
-            // Create scatter points
-            final XYSeries longAndLatPoints = new XYSeries("longAndLatPoints");
-            for (SimulationStatus longAndLat : data) {
-                WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-                double x = landingPos.getLongitudeDeg();
-                double y = landingPos.getLatitudeDeg();
-                longAndLatPoints.add(x, y);
-            }
-
-            final XYSeriesCollection dataset = new XYSeriesCollection();
-            dataset.addSeries(longAndLatPoints);
-            return dataset;
         }
     }
 }
