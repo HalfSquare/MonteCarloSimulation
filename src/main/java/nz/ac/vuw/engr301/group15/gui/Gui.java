@@ -35,11 +35,11 @@ import org.jfree.util.ShapeUtilities;
 
 public class Gui extends JFrame {
 
-    private final SettingsWindow settingsWindow;
-    private final SimulationWindow simulationWindow;
-    private final GraphWindow graphWindow;
+    private SettingsWindow settingsWindow = null;
+    private SimulationWindow simulationWindow = null;
+    private GraphWindow graphWindow = null;
 
-    private final JFileChooser fileChooser;
+    private JFileChooser fileChooser = null;
 
     public static final String SETTINGS = "SETTINGS";
     public static final String SIMULATION = "SIMULATION";
@@ -59,7 +59,9 @@ public class Gui extends JFrame {
     /**
      * Creates a window that runs monte carlo simulations.
      */
-    public Gui() {
+    public Gui(boolean show) {
+
+      if (show){
         this.data = new ArrayList<>();
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -86,6 +88,12 @@ public class Gui extends JFrame {
         setState(SETTINGS);
 
         this.setVisible(true);
+      }
+      else{
+        SimulationRunner s = new SimulationRunner();
+        s.show = false;
+        s.start();
+      }
     }
 
     private void startSettings() {
@@ -407,15 +415,16 @@ public class Gui extends JFrame {
         }
         String guiArg = args[0];
         if (guiArg.equals("-gui")) {
-          Gui gui = new Gui();
+          Gui gui = new Gui(true);
         }
         else {
-
+          Gui gui = new Gui(false);
         }
     }
 
     class SimulationRunner implements Runnable {
         private Thread thread;
+        private boolean show = true;
 
         /**
          * When an object implementing interface <code>Runnable</code> is used
@@ -430,16 +439,34 @@ public class Gui extends JFrame {
          */
         @Override
         public void run() {
-            MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
+          MonteCarloSimulation mcs;
+          if (show){
+            mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
+          }
+          else{
+            mcs = new MonteCarloSimulation();
+          }
             try {
               if (rocketModelFile == null){
                 ClassLoader classLoader = this.getClass().getClassLoader();
                 InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                if (show){
+                  data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                }
+                else{
+                  data = mcs.runSimulations(999, rocketFile, mcs.loadDefaultSettings());
+
+                }
               }
               else {
                 InputStream rocketFile = new FileInputStream(rocketModelFile);
-                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                if (show){
+                  data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                }
+                else{
+                  data = mcs.runSimulations(999, rocketFile, mcs.loadDefaultSettings());
+
+                }
               }
 
             } catch (RocketLoadException | FileNotFoundException e) {
