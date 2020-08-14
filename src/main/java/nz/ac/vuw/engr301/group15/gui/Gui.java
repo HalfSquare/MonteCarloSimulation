@@ -174,7 +174,7 @@ public class Gui extends JFrame {
 
             // Writing to the print writer
             pw.write(sb.toString());
-
+            pw.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -453,9 +453,10 @@ public class Gui extends JFrame {
                 if (show){
                   data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
                 }
-                else{
-                  data = mcs.runSimulations(999, rocketFile, mcs.loadDefaultSettings());
-
+                else {
+                  data = mcs.runSimulations(20, rocketFile, mcs.loadDefaultSettings());
+                  savePointsAsCSV(createList());
+                  System.exit(1);
                 }
               }
               else {
@@ -463,17 +464,19 @@ public class Gui extends JFrame {
                 if (show){
                   data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
                 }
-                else{
-                  data = mcs.runSimulations(999, rocketFile, mcs.loadDefaultSettings());
-
+                else {
+                  data = mcs.runSimulations(20, rocketFile, mcs.loadDefaultSettings());
+                  savePointsAsCSV(createList());
+                  System.exit(1);
                 }
               }
 
             } catch (RocketLoadException | FileNotFoundException e) {
                 e.printStackTrace();
             }
-
-            setState(GRAPH);
+            if (show) {
+              setState(GRAPH);
+            }
         }
 
         public void start() {
