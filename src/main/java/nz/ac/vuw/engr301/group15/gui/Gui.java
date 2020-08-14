@@ -420,13 +420,13 @@ public class Gui extends JFrame {
             e.printStackTrace();
         }
         String guiArg = args[0];
-        File f = new File(args[1]);
 
       if (guiArg.equals("-gui")) {
           Gui gui = new Gui(true, null);
         }
         else { // no gui
-          Gui gui = new Gui(false, f);
+        File f = new File(args[1]);
+        Gui gui = new Gui(false, f);
         }
     }
 
