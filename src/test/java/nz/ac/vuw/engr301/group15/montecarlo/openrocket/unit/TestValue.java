@@ -6,7 +6,7 @@ import net.sf.openrocket.unit.UnitGroup;
 import net.sf.openrocket.unit.Value;
 import org.junit.Test;
 
-public class ValueTest {
+public class TestValue {
 	
 	@Test
 	public void testValues() {
