@@ -1,4 +1,4 @@
-package nz.ac.vuw.engr301.group15.montecarlo.openrocket.arch;
+package nz.ac.vuw.engr301.group15.openrocket.arch;
 
 import static org.junit.Assert.assertEquals;
 
