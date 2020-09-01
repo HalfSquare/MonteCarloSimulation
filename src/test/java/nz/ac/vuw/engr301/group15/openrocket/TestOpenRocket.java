@@ -1,7 +1,8 @@
-package nz.ac.vuw.engr301.group15.montecarlo;
+package nz.ac.vuw.engr301.group15.openrocket;
 
 import java.io.InputStream;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
+import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

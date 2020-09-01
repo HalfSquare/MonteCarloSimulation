@@ -1,4 +1,4 @@
-package nz.ac.vuw.engr301.group15.montecarlo.openrocket.unit;
+package nz.ac.vuw.engr301.group15.openrocket.unit;
 
 import static org.junit.Assert.*;
 
