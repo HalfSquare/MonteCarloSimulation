@@ -13,6 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * These tests are designed to test OpenRocket to make sure everything is working as expected,
  * and that no bugs have been introduced to the code.
  *
+ * IMPORTANT NOTE: the pipeline will crash if you run more than 500 simulations.
+ *
  * @author Georgia
  *
  */
@@ -109,17 +111,17 @@ public class TestOpenRocket {
 	}
 
 	// Stress test to check that simulation can run 500 instances
-//	@Test
-//	public void Test7() {
-//		MonteCarloSimulation sim = new MonteCarloSimulation();
-//		try{
-//			ClassLoader classLoader = this.getClass().getClassLoader();
-//			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-//			sim.runSimulations(500, rocketFile, loadSettings());
-//		}
-//		catch (Exception ex){
-//			fail();
-//		}
-//	}
+	@Test
+	public void Test7() {
+		MonteCarloSimulation sim = new MonteCarloSimulation();
+		try{
+			ClassLoader classLoader = this.getClass().getClassLoader();
+			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+			sim.runSimulations(250, rocketFile, loadSettings());
+		}
+		catch (Exception ex){
+			fail();
+		}
+	}
 
 }
