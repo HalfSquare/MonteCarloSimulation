@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.File;
 import java.io.InputStream;
 import nz.ac.vuw.engr301.group15.gui.Gui;
+import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import org.junit.jupiter.api.Test;
 
 
@@ -34,7 +35,7 @@ public class TestCSV {
 	 * Test 1: CSV imported correctly
 	 */
 	@Test
-	public void TestCSVConsoleImport()  {
+	public void TestCSVConsoleImport() {
 		Gui gui = new Gui(false, new File("src/main/resources/testMCData.csv"));
 		String numSims = gui.settingsMissionControl.getNumSimulations();
 		String rodAngle = gui.settingsMissionControl.getLaunchRodAngle();
@@ -67,6 +68,14 @@ public class TestCSV {
 	/**
 	 * Test 2: CSV exported correctly
 	 */
+	@Test
+	public void TestCSVConsoleExport() throws Exception {
+		Gui gui = new Gui(false, new File("src/main/resources/testMCData.csv"));
+		MonteCarloSimulation sim = new MonteCarloSimulation();
+		ClassLoader classLoader = this.getClass().getClassLoader();
+		InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+		sim.runSimulations(rocketFile, gui.settingsMissionControl);
+	}
 
 	/**
 	 * Test 3: Application runs with GUI
