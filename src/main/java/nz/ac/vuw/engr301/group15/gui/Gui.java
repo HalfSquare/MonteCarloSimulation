@@ -61,7 +61,7 @@ public class Gui extends JFrame {
      */
     public Gui(boolean show, File file) {
 
-      if (show){
+      if (show) {
         this.data = new ArrayList<>();
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -412,21 +412,30 @@ public class Gui extends JFrame {
      *
      * @param args args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
                 | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        String guiArg = args[0];
-
-      if (guiArg.equals("-gui")) {
-          Gui gui = new Gui(true, null);
+        if (args.length >= 1) {
+          String guiArg = args[0];
+          if (guiArg.equals("-nogui")) {
+            if (args.length > 1) {
+              File f = new File(args[1]);
+              new Gui(false, f);
+            }
+            else {
+              throw new Exception("Invalid arguments: Correct format e.g. -nogui src/main/resources/testMCData.csv");
+            }
+          }
+          else { // run with gui
+            new Gui(true, null);
+          }
         }
-        else { // no gui
-        File f = new File(args[1]);
-        Gui gui = new Gui(false, f);
+        else {
+          new Gui(true, null);
         }
     }
 
@@ -459,10 +468,10 @@ public class Gui extends JFrame {
                 ClassLoader classLoader = this.getClass().getClassLoader();
                 InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
                 if (show){
-                  data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
                 }
                 else {
-                  data = mcs.runSimulations(20, rocketFile, settingsMissionControl);
+                  data = mcs.runSimulations( rocketFile, settingsMissionControl);
                   savePointsAsCSV(createList());
                   System.exit(1);
                 }
@@ -470,10 +479,10 @@ public class Gui extends JFrame {
               else {
                 InputStream rocketFile = new FileInputStream(rocketModelFile);
                 if (show){
-                  data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
                 }
                 else {
-                  data = mcs.runSimulations(20, rocketFile, settingsMissionControl);
+                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
                   savePointsAsCSV(createList());
                   System.exit(1);
                 }
