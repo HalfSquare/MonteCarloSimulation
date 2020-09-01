@@ -2,10 +2,10 @@ package nz.ac.vuw.engr301.group15.gui;
 
 import java.io.InputStream;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
 
 /**
  * These tests are designed to test the mission control data to make sure everything is working as expected,
