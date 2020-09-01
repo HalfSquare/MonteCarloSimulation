@@ -109,11 +109,11 @@ const req = https.request(options, (resp) => {
                             description: [""]
                         };
                     }
-                    // let release = item.release ?? {description: ""}
+                    let link = downloads[item.name] ?? ""
                     let tag = {
                         "Tag": item.name,
                         "Notes": release.description,
-                        "Link": "https://www.example.com"
+                        "Link": link
                     };
                     tags.push(tag);
                 })

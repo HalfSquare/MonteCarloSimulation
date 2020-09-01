@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Roboto&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Roboto&display=swap');
 </style>
 
 <head>
@@ -14,8 +14,10 @@
 
 <header id="pageHeader">
   <div class="headingTitle" style="display: table-cell">
-    <h1 style="width: 100%">rocketboy deployment website.</h1>
-
+    <h1 style="width: 100%">rocketboy deploy.</h1>
+    Email any bugs or feedback to
+    <a href="mailto:gitlab-incoming+course-work-engr300-2020-group15-group-15-6908-issue-@ecs.vuw.ac.nz">this address</a>
+    <button onclick="copyEmail()">Copy to clipboard</button>
   </div>
   <div style="width: 50%; display: table;">
 
@@ -29,18 +31,27 @@
 
 <article id="mainArticle">
   <table id="releaseTable">
+    <th>LOADING...</th>
   </table>
 </article>
 
 <nav id="mainNav">
   <!--  <img src="img.jpg" alt="Image of big rocket">-->
   <img src="rocketCartoon.png" alt="Image of big rocket">
+  <div class="welcome">
+    <br>Welcome to rocketboy deploy, created by Group 15!
+  </div>
+  <div class="bio">
+    We are a group of Engineering students studying at Victoria University of Wellington who were given a project to design Monte Carlo simulations for Rockets. This simulation software currently statistically predicts the rocket's flight and landing performance, and automatically generates the control parameters for the avionics to aid in launching a hobby rocket. This website displays our current project releases, release notes and a download link to our current code.
+  </div>
+    <div class="feedback">
+   <br>We are constantly open to feedback during this current development cycle so feel free to email us with suggestions and improvements <a
+      href="mailto:gitlab-incoming+course-work-engr300-2020-group15-group-15-6908-issue-@ecs.vuw.ac.nz">here.</a>
+  </div>
 </nav>
 
 <footer id="pageFooter">
-  Developed by Group 15 <br><a
-    href="mailto:gitlab-incoming+course-work-engr300-2020-group15-group-15-6908-issue-@ecs.vuw.ac.nz">Email
-  Problems here</a>
+  Developed by Group 15 <br>
 </footer>
 
 <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
@@ -149,8 +160,15 @@
             // Handle any errors
             // Basically cry
         });
+    }
 
-
+    function copyEmail() {
+      navigator.clipboard.writeText("gitlab-incoming+course-work-engr300-2020-group15-group-15-6908-issue-@ecs.vuw.ac.nz").then(function() {
+        alert("Copied email to clipboard - Love team 15 :)");
+      }, function(err) {
+        alert("Copy failed");
+        console.error('Async: Could not copy text: ', err);
+      });
     }
 
     window.onload = function () {
