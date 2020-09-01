@@ -117,7 +117,7 @@ public class TestOpenRocket {
 		try{
 			ClassLoader classLoader = this.getClass().getClassLoader();
 			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(250, rocketFile, loadSettings());
+			sim.runSimulations(200, rocketFile, loadSettings());
 		}
 		catch (Exception ex){
 			fail();
