@@ -95,18 +95,4 @@ public class TestOpenRocket {
 			fail();
 		}
 	}
-
-	// Stress test to check that simulation can run 100 instances
-	@Test
-	public void Test6() {
-		MonteCarloSimulation sim = new MonteCarloSimulation();
-		try{
-			ClassLoader classLoader = this.getClass().getClassLoader();
-			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(100, rocketFile, loadSettings());
-		}
-		catch (Exception ex){
-			fail();
-		}
-	}
 }
