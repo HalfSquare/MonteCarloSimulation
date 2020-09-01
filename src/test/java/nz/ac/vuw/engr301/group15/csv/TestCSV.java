@@ -4,21 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import nz.ac.vuw.engr301.group15.gui.GraphWindow;
 import nz.ac.vuw.engr301.group15.gui.Gui;
-import nz.ac.vuw.engr301.group15.gui.SettingsWindow;
-import nz.ac.vuw.engr301.group15.gui.SimulationWindow;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import org.junit.jupiter.api.Test;
 
