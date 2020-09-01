@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * These tests are designed to test OpenRocket to make sure everything is working as expected,
  * and that no bugs have been introduced to the code.
  *
- * IMPORTANT NOTE: the pipeline will crash if you run more than 500 simulations.
+ * IMPORTANT NOTE: the pipeline will crash if you run more than 100 simulations.
  *
  * @author Georgia
  *
