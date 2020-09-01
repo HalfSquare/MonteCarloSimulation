@@ -37,7 +37,6 @@ public class TestOpenRocket {
 		return settings;
 	}
 
-
 	// Initial test to set up pipeline - should ALWAYS pass
 	@Test
 	public void Test1(){
@@ -64,7 +63,6 @@ public class TestOpenRocket {
 		catch (Exception ex){
 			ex.printStackTrace();
 			fail();
-
 		}
 	}
 
@@ -111,17 +109,17 @@ public class TestOpenRocket {
 	}
 
 	// Stress test to check that simulation can run 500 instances
-	@Test
-	public void Test7() {
-		MonteCarloSimulation sim = new MonteCarloSimulation();
-		try{
-			ClassLoader classLoader = this.getClass().getClassLoader();
-			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-			sim.runSimulations(500, rocketFile, loadSettings());
-		}
-		catch (Exception ex){
-			fail();
-		}
-	}
+//	@Test
+//	public void Test7() {
+//		MonteCarloSimulation sim = new MonteCarloSimulation();
+//		try{
+//			ClassLoader classLoader = this.getClass().getClassLoader();
+//			InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+//			sim.runSimulations(500, rocketFile, loadSettings());
+//		}
+//		catch (Exception ex){
+//			fail();
+//		}
+//	}
 
 }
