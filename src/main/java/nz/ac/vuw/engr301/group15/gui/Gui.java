@@ -56,9 +56,12 @@ public class Gui extends JFrame {
         CIRCLE, SQUARE, CROSS
     }
 
-    /**
-     * Creates a window that runs monte carlo simulations.
-     */
+  /**
+   * Creates a window that runs monte carlo simulations.
+   *
+   * @param show boolean to determine if should be run with GUI or not.
+   * @param file CSV file to import weather data.
+   */
     public Gui(boolean show, File file) {
 
       if (show) {
@@ -234,6 +237,7 @@ public class Gui extends JFrame {
    * Method to read and load the mission control data from a CSV into a bean.
    *
    * @param file CSV file with mission control data, should follow the given template.
+   * @param show boolean to determine if program should run with GUI or not.
    */
   public void loadMissionControlData(File file, boolean show){
     MissionControlSettings settings = new MissionControlSettings();
