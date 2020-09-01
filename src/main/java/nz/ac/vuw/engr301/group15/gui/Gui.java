@@ -91,6 +91,7 @@ public class Gui extends JFrame {
         setState(SETTINGS);
 
         this.setVisible(true);
+        this.setVisible(true);
       }
       else{
         loadMissionControlData(file, false);
@@ -117,6 +118,18 @@ public class Gui extends JFrame {
         SimulationRunner runner = new SimulationRunner();
         runner.start();
 
+    }
+
+    public SettingsWindow getSettingsWindow() {
+      return settingsWindow;
+    }
+
+    public SimulationWindow getSimulationWindow() {
+      return simulationWindow;
+    }
+
+    public GraphWindow getGraphWindow() {
+      return graphWindow;
     }
 
     private void startGraph() {
