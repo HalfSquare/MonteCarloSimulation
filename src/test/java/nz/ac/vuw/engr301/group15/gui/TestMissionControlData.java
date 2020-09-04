@@ -1,9 +1,12 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import java.io.File;
 import java.io.InputStream;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
+import nz.ac.vuw.engr301.group15.gui.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -22,6 +25,17 @@ public class TestMissionControlData {
 		int x = 1;
 		int y = 1;
 		assertEquals(x, y);
+	}
+
+	// Test reading in mission control settings
+	@Test
+	public void Test2(){
+		try {
+			Gui gui = new Gui();
+			gui.loadMissionControlData(new File("good.csv"));
+		} catch (Exception e){
+			fail();
+		}
 	}
 
 }
