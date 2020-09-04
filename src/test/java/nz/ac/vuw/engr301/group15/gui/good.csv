@@ -1,13 +1,2 @@
-LaunchRodAngle,0.0
-LaunchRodLength,0.2
-LaunchRodDirection,0.0
-LaunchAltitude,159.0
-LaunchLatitude,-41.1283
-LaunchLongitude,175.0202
-MaximumAngle,0.017453292519943295
-WindSpeed,6.0
-WindDirection,0.0
-WindTurbulence,0.1
-LaunchTemperature,284.15
-LaunchAirPressure,1010.0
-numSimulations,1000
+launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat,launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations
+0,0.2,0,159.0,-41.1283,175.0202,0.017453292519943295,6.0,0,0.1,284.15,1010,1000

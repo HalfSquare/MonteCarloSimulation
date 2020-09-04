@@ -1,13 +1,5 @@
 package nz.ac.vuw.engr301.group15;
 
-import nz.ac.vuw.engr301.group15.gui.TestMissionControlData;
-import nz.ac.vuw.engr301.group15.montecarlo.TestMonteCarlo;
-import nz.ac.vuw.engr301.group15.openrocket.TestOpenRocket;
-import nz.ac.vuw.engr301.group15.openrocket.arch.TestSystemInfo;
-import nz.ac.vuw.engr301.group15.openrocket.unit.TestValue;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-
 /**
  *  Ignore this
  */

@@ -32,7 +32,32 @@ public class TestMissionControlData {
 	public void Test2(){
 		try {
 			Gui gui = new Gui();
-			gui.loadMissionControlData(new File("good.csv"));
+			String path = System.getProperty("user.dir") + "/src/test/java/nz/ac/vuw/engr301/group15/gui/good.csv";
+			gui.loadMissionControlData(new File(path));
+		} catch (Exception e){
+			fail();
+		}
+	}
+
+	// Test wrong file path is dealt with
+	@Test
+	public void Test3(){
+		try {
+			Gui gui = new Gui();
+			String path = "thisisaninvalidpath";
+			gui.loadMissionControlData(new File(path));
+		} catch (Exception e){
+			fail();
+		}
+	}
+
+	// Test bad file format is dealt with
+	@Test
+	public void Test4(){
+		try {
+			Gui gui = new Gui();
+			String path = System.getProperty("user.dir") + "/src/test/java/nz/ac/vuw/engr301/group15/gui/bad.csv";
+			gui.loadMissionControlData(new File(path));
 		} catch (Exception e){
 			fail();
 		}

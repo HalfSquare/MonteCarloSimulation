@@ -1,4 +1,4 @@
-package nz.ac.vuw.engr301.group15.openrocket;
+package nz.ac.vuw.engr301.group15.montecarlo;
 
 import java.io.InputStream;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
