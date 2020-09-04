@@ -1,9 +1,10 @@
 package nz.ac.vuw.engr301.group15.csv;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,7 +13,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import nz.ac.vuw.engr301.group15.gui.Gui;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
-import org.junit.jupiter.api.Test;
 
 
 /**
@@ -81,10 +81,7 @@ public class TestCSV {
 	@Test
 	public void TestCSVConsoleExport() throws Exception {
 		Gui gui = new Gui(false, new File("src/main/resources/testMCData.csv"));
-		MonteCarloSimulation sim = new MonteCarloSimulation();
-		ClassLoader classLoader = this.getClass().getClassLoader();
-		InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-		sim.runSimulations(rocketFile, gui.settingsMissionControl);
+
 	}
 
 	/**

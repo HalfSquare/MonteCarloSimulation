@@ -108,7 +108,7 @@ public class MonteCarloSimulation {
     return simulationData;
   }
 
-  public MissionControlSettings loadDefaultSettings(){
+  public static MissionControlSettings loadDefaultSettings() {
     // Load in default mission control settings
     MissionControlSettings defaultSettingsMissionControl = new MissionControlSettings();
     defaultSettingsMissionControl.setLaunchRodAngle("0.0");
