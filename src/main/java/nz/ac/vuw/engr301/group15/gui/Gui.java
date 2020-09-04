@@ -41,7 +41,7 @@ import org.xml.sax.SAXException;
 
 public class Gui extends JFrame {
 
-    private final SettingsWindow settingsWindow;
+    public final SettingsWindow settingsWindow;
     private final SimulationWindow simulationWindow;
     private final GraphWindow graphWindow;
 
