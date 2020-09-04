@@ -1,5 +1,8 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import com.orsoncharts.renderer.xyz.LineXYZRenderer;
+import com.orsoncharts.style.ChartStyle;
+import com.orsoncharts.style.StandardChartStyle;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import org.jfree.chart.ChartFactory;
@@ -147,13 +150,24 @@ public class GraphCreator {
     }
 
     private static Chart3D createChart(XYZDataset dataset) {
-        Chart3D chart = Chart3DFactory.createXYZLineChart("XYZ Line Chart Demo",
-                "Orson Charts", dataset, "Day", "Index", "Station");
+        Chart3D chart = Chart3DFactory.createXYZLineChart("Flight paths",
+                "", dataset, "Latitude (?)", "Altitude", "Longitude (?)");
         chart.setChartBoxColor(new Color(255, 255, 255, 128));
         XYZPlot plot = (XYZPlot) chart.getPlot();
         plot.setDimensions(new Dimension3D(15, 3, 8));
+
+        //Customise axes
         NumberAxis3D zAxis = (NumberAxis3D) plot.getZAxis();
         zAxis.setTickSelector(new IntegerTickSelector());
+        zAxis.setRange(0, 20);
+        plot.getXAxis().setRange(5, 30);
+        plot.getYAxis().setRange(0, 100);
+
+        //Customise colours
+        LineXYZRenderer renderer = new LineXYZRenderer();
+        renderer.setColors(Color.BLUE, Color.RED);
+        plot.setRenderer(renderer);
+
         return chart;
     }
 
@@ -167,20 +181,29 @@ public class GraphCreator {
     public static XYZDataset<String> create3DDataset() {
         XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
 
-//        for (int s = 1; s < 1; s++) {
-//            XYZSeries<String> series = new XYZSeries<String>("Series " + s);
-//            double y = 1.0;
-//            for (int i = 0; i < 3000; i++) {
-//                y = y * (1.0 + (Math.random() - 0.499) / 10.0);
-//                series.add(i, y, s);
-//            }
-//            dataset.add(series);
-//        }
+        //TODO right now these are just example points
+        XYZSeries<String> series1 = new XYZSeries<String>("Series 1");
+        series1.add(10,10,10);
+        series1.add(12,40,11);
+        series1.add(15,80,10);
+        series1.add(18,40, 9);
+        series1.add(20,0,8);
+        dataset.add(series1);
 
-        XYZSeries<String> series = new XYZSeries<String>("Series");
-        series.add(10,10,10);
-        series.add(40,40,40);
-        dataset.add(series);
+        XYZSeries<String> series2 = new XYZSeries<String>("Series 2");
+        series2.add(10,10,10);
+        series2.add(12,40,9);
+        series2.add(18,10,10);
+        series2.add(19,0,10);
+        dataset.add(series2);
+
+        XYZSeries<String> series3 = new XYZSeries<String>("Series 3");
+        series3.add(10,10,10);
+        series3.add(13,70,10);
+        series3.add(14,65,10);
+        series3.add(16,20,10);
+        series3.add(20, 0, 11);
+        dataset.add(series3);
 
         return dataset;
     }
