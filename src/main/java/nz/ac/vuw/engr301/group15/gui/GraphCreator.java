@@ -1,5 +1,6 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import com.orsoncharts.graphics3d.World;
 import com.orsoncharts.renderer.xyz.LineXYZRenderer;
 import com.orsoncharts.style.ChartStyle;
 import com.orsoncharts.style.StandardChartStyle;
@@ -32,6 +33,7 @@ import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GraphCreator {
     private GraphWindow graphWindow;
@@ -57,6 +59,8 @@ public class GraphCreator {
 
         //TODO: major rewriting needed
         Gui.GraphType graphType;
+        JFreeChart chart;
+
         if(graphWindow.getGraphTypeComboBox().equals("3D")){
             graphType = Gui.GraphType.FLIGHTPATH;
         }
@@ -65,14 +69,13 @@ public class GraphCreator {
         }
 
         // Create chart
-        JFreeChart chart = ChartFactory.createScatterPlot(
+        chart = ChartFactory.createScatterPlot(
                 "Longitude vs. Latitude Points",
                 "Longitude",
                 "Latitude",
                 createDataset(),
                 PlotOrientation.VERTICAL,
                 true, true, false);
-
         // Default circle shape
         Shape shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
 
@@ -88,10 +91,11 @@ public class GraphCreator {
                 shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
                 break;
             case FLIGHTPATH:
+                ChartPanel panel = new ChartPanel(chart);
                 graphWindow.getGraphPanel().setLayout(new BorderLayout());
-                graphWindow.getGraphPanel().add(create3DGraph(), BorderLayout.CENTER);
+                graphWindow.getGraphPanel().add(create3DGraph(create3DDataset()), BorderLayout.CENTER);
                 graphWindow.getGraphPanel().validate();
-                break;
+                return panel;
             default:
                 throw new RuntimeException("Help");
         }
@@ -139,8 +143,7 @@ public class GraphCreator {
      *
      * @return A panel containing the content for the demo.
      */
-    public static JPanel create3DGraph() {
-        XYZDataset dataset = create3DDataset();
+    public static JPanel create3DGraph(XYZDataset dataset) {
         Chart3D chart = createChart(dataset);
         Chart3DPanel chartPanel = new Chart3DPanel(chart);
         return chartPanel;
@@ -178,10 +181,14 @@ public class GraphCreator {
      *
      * @return A sample dataset.
      */
-    public static XYZDataset<String> create3DDataset() {
+    public XYZDataset<String> create3DDataset() {
+        //Example from real sim
+        SimulationStatus sampleSim = data.get(0);
+        ArrayList<WorldCoordinate> coordPoints = (ArrayList<WorldCoordinate>)recordFlightpath(sampleSim);
+
+        //-------------------Example points----------------//
         XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
 
-        //TODO right now these are just example points
         XYZSeries<String> series1 = new XYZSeries<String>("Series 1");
         series1.add(10,10,10);
         series1.add(12,40,11);
@@ -206,5 +213,17 @@ public class GraphCreator {
         dataset.add(series3);
 
         return dataset;
+    }
+
+    /**
+     * Takes a single simulation an re-runs it, recording each coordinate along the way
+     * @param simulation the simulation to be recorded
+     * @return A list of each coordinate along the way
+     */
+    private List<WorldCoordinate> recordFlightpath(SimulationStatus simulation){
+        List<WorldCoordinate> points = new ArrayList<WorldCoordinate>();
+        //get config and run again
+
+        return points;
     }
 }
