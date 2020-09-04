@@ -89,11 +89,17 @@ public class TestMissionControlData {
 		try {
 			Gui gui = new Gui();
 			String path = System.getProperty("user.dir") + "/src/test/java/nz/ac/vuw/engr301/group15/gui/out.csv";
-			gui.settingsMissionControl = loadSettings();
+			gui.settingsWindow.setData(loadSettings());
 			gui.writeMissionControlSettings(new File(path));
 
-			Scanner sc = new Scanner(path);
+			Scanner sc = new Scanner(new File(path));
 			String[][] data = new String[2][13];
+			String[][] check = new String[2][13];
+			String lineOne = "launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat,launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations";
+			String lineTwo = "0.0,0.2,0.0,159.0,-41.1283,175.0202,0.017453292519943295,6.0,0.0,0.1,284.15,1010.0,1000";
+			check[0] = lineOne.split(",");
+			check[1] = lineTwo.split(",");
+
 			// Read data into 2D array, splitting at the commas (0 is data names, 1 is data values)
 			for (int i = 0; i < 2; i++){
 				if (sc.hasNext()){
@@ -101,8 +107,12 @@ public class TestMissionControlData {
 				}
 			}
 			sc.close();
-			System.out.println(data[0]);
-
+			System.out.println(data[0][1]);
+			for (int i = 0; i < 13; i++){
+				for (int y = 0; y < 2; y++){
+					assertEquals(data[y][i], check[y][i]);
+				}
+			}
 
 		} catch (Exception e){
 			fail();
