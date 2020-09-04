@@ -34,7 +34,6 @@ public class MonteCarloSimulation {
    */
   public ArrayList<SimulationStatus> runSimulations(InputStream file, MissionControlSettings settings) throws RocketLoadException {
     MissionControlSettings defaultSettings = loadDefaultSettings();
-
     // Extract mission control setting data, setting defaults if values are empty
     double numOfSimulations = settings.getNumSimulations().equals("") ? Double.parseDouble(defaultSettings.getNumSimulations()) : Double.parseDouble(settings.getNumSimulations());
     double launchRodAngle = settings.getLaunchRodAngle().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodAngle()) : Double.parseDouble(settings.getLaunchRodAngle());
@@ -155,8 +154,8 @@ public class MonteCarloSimulation {
     try {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
-      InputStream rocketFile = classLoader.getResourceAsStream("src/main/resources/rocket-1-1-9.ork");
-      mcs.runSimulations(rocketFile, new MissionControlSettings());
+      InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+      mcs.runSimulations(rocketFile, loadDefaultSettings());
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
