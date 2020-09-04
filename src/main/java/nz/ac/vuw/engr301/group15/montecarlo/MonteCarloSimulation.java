@@ -108,7 +108,7 @@ public class MonteCarloSimulation {
     return simulationData;
   }
 
-  private MissionControlSettings loadDefaultSettings(){
+  public static MissionControlSettings loadDefaultSettings(){
     // Load in default mission control settings
     MissionControlSettings defaultSettingsMissionControl = new MissionControlSettings();
     defaultSettingsMissionControl.setLaunchRodAngle("0.0");
@@ -143,8 +143,8 @@ public class MonteCarloSimulation {
     try {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
-      InputStream rocketFile = classLoader.getResourceAsStream("src/main/resources/rocket-1-1-9.ork");
-      mcs.runSimulations(5, rocketFile, new MissionControlSettings());
+      InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+      mcs.runSimulations(5, rocketFile, loadDefaultSettings());
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
