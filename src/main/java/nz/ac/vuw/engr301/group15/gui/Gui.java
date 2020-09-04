@@ -1,14 +1,5 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CIRCLE;
-import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CROSS;
-import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.SQUARE;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Shape;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,18 +11,8 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
-import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.AbstractRenderer;
-import org.jfree.data.xy.XYDataset;
-import org.jfree.data.xy.XYSeries;
-import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.util.ShapeUtilities;
-
 
 public class Gui extends JFrame {
 
@@ -129,8 +110,8 @@ public class Gui extends JFrame {
      *
      * @return list of all the points
      */
-    private ArrayList createList() {
-        ArrayList pointList = new ArrayList();
+    private ArrayList<String> createList() {
+        ArrayList<String> pointList = new ArrayList<>();
 
         //Adding in the column names
         pointList.add("Longitude");
@@ -139,8 +120,7 @@ public class Gui extends JFrame {
         pointList.add("\n");
 
         //Reading the points into an ArrayList
-        for (int i = 0; i < data.size(); i++) {
-            SimulationStatus longAndLat = data.get(i);
+        for (SimulationStatus longAndLat : data) {
             WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
             double x = landingPos.getLongitudeDeg();
             double y = landingPos.getLatitudeDeg();
@@ -155,13 +135,13 @@ public class Gui extends JFrame {
     /**
      * This saves all the points to a CSV file
      */
-    private void savePointsAsCSV(ArrayList list) {
+    private void savePointsAsCSV(ArrayList<String> list) {
         try {
             PrintWriter pw = new PrintWriter(new File("points.csv"));
             // Reading everything into a string
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < list.size(); i++) {
-                sb.append(list.get(i));
+            for (String s : list) {
+                sb.append(s);
             }
 
             // Writing to the print writer
