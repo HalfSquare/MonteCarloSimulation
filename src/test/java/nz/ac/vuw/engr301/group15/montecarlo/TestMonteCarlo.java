@@ -22,4 +22,12 @@ public class TestMonteCarlo {
 		assertEquals(x, y);
 	}
 
+	// Initial test to set up pipeline - should ALWAYS pass
+	@Test
+	public void Test2(){
+		String args[] = new String[0];
+		MonteCarloSimulation mcs = new MonteCarloSimulation();
+		mcs.main(args);
+	}
+
 }

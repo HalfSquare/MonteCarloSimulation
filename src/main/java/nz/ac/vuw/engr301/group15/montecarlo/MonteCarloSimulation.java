@@ -143,8 +143,8 @@ public class MonteCarloSimulation {
     try {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
-      InputStream rocketFile = classLoader.getResourceAsStream("src/main/resources/rocket-1-1-9.ork");
-      mcs.runSimulations(5, rocketFile, new MissionControlSettings());
+      InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+      mcs.runSimulations(5, rocketFile, loadDefaultSettings());
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
