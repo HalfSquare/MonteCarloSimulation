@@ -101,9 +101,9 @@ public class Gui extends JFrame {
       }
       else{
         loadMissionControlData(file, false);
-        SimulationRunner s = new SimulationRunner();
-        s.show = false;
-        s.start();
+        SimulationRunner simulationRunner = new SimulationRunner();
+        simulationRunner.show = false;
+        simulationRunner.start();
       }
     }
 
@@ -198,6 +198,7 @@ public class Gui extends JFrame {
             // Writing to the print writer
             pw.write(sb.toString());
             pw.close();
+            System.out.println("CSV file successfully exported");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -328,8 +329,10 @@ public class Gui extends JFrame {
       if (show) {
         settingsWindow.setData(settings);
       }
+      else {
+        System.out.println("CSV file successfully imported");
+      }
       sc.close();
-      System.out.println(settings);
     }
       catch (Exception ex){
        System.out.println("Uh oh! " + ex);
@@ -483,7 +486,7 @@ public class Gui extends JFrame {
           if (show){
             mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
           }
-          else{
+          else {
             mcs = new MonteCarloSimulation();
           }
             try {
@@ -494,7 +497,8 @@ public class Gui extends JFrame {
                   data = mcs.runSimulations(rocketFile, settingsMissionControl);
                 }
                 else {
-                  data = mcs.runSimulations( rocketFile, settingsMissionControl);
+                  System.out.println("Simulations started");
+                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
                   savePointsAsCSV(createList());
                   System.exit(1);
                 }

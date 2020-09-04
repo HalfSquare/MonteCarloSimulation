@@ -85,6 +85,10 @@ public class MonteCarloSimulation {
 
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
     MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
+
+    char[] animationChars = new char[]{'|', '/', '-', '\\'};
+    int loadingSpinIndex = 0;
+
     for (int simNum = 1; simNum <= numOfSimulations; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
 			//simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
@@ -99,12 +103,17 @@ public class MonteCarloSimulation {
       while (simulationListener.getSimulation() == null) {
         System.out.println("waiting");
       }
+      String progress = String.format("%.2f", (simNum/numOfSimulations)*100.0);
+      System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
+      loadingSpinIndex = loadingSpinIndex == 3 ? 0 : loadingSpinIndex + 1;
       simulationData.add(simulationListener.getSimulation());
       if (listener != null) {
         listener.run();
       }
 
     }
+    System.out.println("Simulating: Done!          ");
+    System.out.println("Simulations finished");
     return simulationData;
   }
 

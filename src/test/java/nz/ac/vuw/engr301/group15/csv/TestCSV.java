@@ -4,15 +4,15 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
+
 import nz.ac.vuw.engr301.group15.gui.Gui;
-import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 
 
 /**
@@ -22,8 +22,6 @@ import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
  * @author Michael & Jacqui
  *
  */
-
-
 public class TestCSV {
 
 	/**
@@ -76,23 +74,11 @@ public class TestCSV {
 	}
 
 	/**
-	 * Test 2: CSV exported correctly
-	 */
-	@Test
-	public void TestCSVConsoleExport() throws Exception {
-		Gui gui = new Gui(false, new File("src/main/resources/testMCData.csv"));
-
-	}
-
-	/**
-	 * Test 3: Application runs with GUI
+	 * Test 2: Application runs with GUI
 	 */
 	@Test
 	public void TestApplicationRunsGUI() {
 		Gui gui = new Gui(true, new File("src/main/resources/testMCData.csv"));
-		MonteCarloSimulation sim = new MonteCarloSimulation();
-		ClassLoader classLoader = this.getClass().getClassLoader();
-		InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
 
 		assertNotNull(gui.getGraphWindow());
 		assertNotNull(gui.getSettingsWindow());
@@ -100,17 +86,14 @@ public class TestCSV {
 	}
 
 	/**
-	 * Test 4: Application runs without GUI
+	 * Test 3: Application runs without GUI
 	 */
 
 	@Test
 	public void TestApplicationRunsNoGUI() {
 		Gui gui = new Gui(false, new File("src/main/resources/testMCData.csv"));
-		MonteCarloSimulation sim = new MonteCarloSimulation();
-		ClassLoader classLoader = this.getClass().getClassLoader();
-		InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
 
-		assertNull((gui.getGraphWindow()));
+		assertNull(gui.getGraphWindow());
 		assertNull(gui.getSettingsWindow());
 		assertNull(gui.getSimulationWindow());
 	}
