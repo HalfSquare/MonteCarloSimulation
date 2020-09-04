@@ -192,12 +192,12 @@ public class Gui extends JFrame {
    * This will write the current simulation settings to a CSV file.
    * @param file being created.
    */
-  private void writeMissionControlSettings(File file) {
+  public void writeMissionControlSettings(File file) {
       try {
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
         MissionControlSettings s = settingsWindow.getSettings();
         writer.write("launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat," +
-                "launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations");
+                "launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations\n");
         writer.write(s.getLaunchRodAngle() + "," + s.getLaunchRodLength() + "," + s.getLaunchRodDir() + "," +
                 s.getLaunchAlt() + "," + s.getLaunchLat() + "," + s.getLaunchLong() + "," + s.getMaxAngle() + "," +
                 s.getWindSpeed() + "," + s.getWindDir() + "," + s.getWindTurbulence() + "," + s.getLaunchTemp() + "," +
