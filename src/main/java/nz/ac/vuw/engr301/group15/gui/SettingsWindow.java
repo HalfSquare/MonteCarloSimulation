@@ -104,7 +104,7 @@ public class SettingsWindow {
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     final JLabel label2 = new JLabel();
-    label2.setText("Max Rocket Angle");
+    label2.setText("Max Rocket Angle (radians)");
     panel2.add(label2,
         new GridConstraints(1, 4, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
@@ -197,25 +197,25 @@ public class SettingsWindow {
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null,
             null, 0, false));
     final JLabel label7 = new JLabel();
-    label7.setText("Wind Speed");
+    label7.setText("Wind Speed (m/s)");
     panel4.add(label7,
         new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     final JLabel label8 = new JLabel();
-    label8.setText("Wind Direction");
+    label8.setText("Wind Direction (radians)");
     panel4.add(label8,
         new GridConstraints(1, 4, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     final JLabel label9 = new JLabel();
-    label9.setText("Launch Temperature");
+    label9.setText("Launch Temperature (kelvin)");
     panel4.add(label9,
         new GridConstraints(3, 4, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     final JLabel label10 = new JLabel();
-    label10.setText("Wind Turbulence");
+    label10.setText("Wind Turbulence (m/s)");
     panel4.add(label10,
         new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
@@ -237,7 +237,7 @@ public class SettingsWindow {
             GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null,
             new Dimension(150, -1), null, 0, false));
     final JLabel label11 = new JLabel();
-    label11.setText("Launch Air Pressure");
+    label11.setText("Launch Air Pressure (mbar)");
     panel4.add(label11,
         new GridConstraints(5, 2, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
@@ -293,25 +293,25 @@ public class SettingsWindow {
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null,
             null, 0, false));
     final JLabel label13 = new JLabel();
-    label13.setText("Launch Rod Angle");
+    label13.setText("Launch Rod Angle (radians)");
     panel6.add(label13,
         new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     final JLabel label14 = new JLabel();
-    label14.setText("Launch Rod Length");
+    label14.setText("Launch Rod Length (m)");
     panel6.add(label14,
         new GridConstraints(1, 4, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     final JLabel label15 = new JLabel();
-    label15.setText("Launch Altitude");
+    label15.setText("Launch Altitude (m)");
     panel6.add(label15,
         new GridConstraints(3, 4, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     final JLabel label16 = new JLabel();
-    label16.setText("Launch Rod Direction");
+    label16.setText("Launch Rod Direction (radians)");
     panel6.add(label16,
         new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
@@ -328,13 +328,13 @@ public class SettingsWindow {
             GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null,
             new Dimension(150, -1), null, 0, false));
     final JLabel label17 = new JLabel();
-    label17.setText("Launch Latitude");
+    label17.setText("Launch Latitude (N+, S-)");
     panel6.add(label17,
         new GridConstraints(5, 2, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
             false));
     final JLabel label18 = new JLabel();
-    label18.setText("Launch Longitude");
+    label18.setText("Launch Longitude (E+, W-)");
     panel6.add(label18,
         new GridConstraints(5, 4, 1, 1, GridConstraints.ANCHOR_SOUTHWEST, GridConstraints.FILL_NONE,
             GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0,
