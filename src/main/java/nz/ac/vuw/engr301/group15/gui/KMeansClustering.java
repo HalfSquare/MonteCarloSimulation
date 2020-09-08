@@ -1,9 +1,10 @@
 package nz.ac.vuw.engr301.group15.gui;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import org.apache.spark.ml.clustering.KMeans;
 import org.apache.spark.ml.clustering.KMeansModel;
 import org.apache.spark.ml.evaluation.ClusteringEvaluator;
@@ -31,8 +32,9 @@ public class KMeansClustering {
    * Calculate the clusters.
    *
    * @param path csv file
+   * @return a set of the centers of the clusters
    */
-  public void calculateClusters(String path, int clusters) {
+  public Set<LatLongBean> calculateClusters(String path, int clusters) {
     // Start spark session
     SparkSession spark = SparkSession
             .builder()
@@ -92,8 +94,13 @@ public class KMeansClustering {
     Vector[] centers = model.clusterCenters();
     System.out.println(model.summary().predictions().toString());
     System.out.println("Cluster Centers: ");
+
+    Set<LatLongBean> centersSet = new HashSet<>();
+
     for (Vector center: centers) {
-      System.out.println(center);
+      centersSet.add(new LatLongBean(center.toArray()[0], center.toArray()[1]));
     }
+
+    return centersSet;
   }
 }
