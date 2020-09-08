@@ -174,9 +174,9 @@ public class GraphCreator {
     //Customise axes
     NumberAxis3D zAxis = (NumberAxis3D) plot.getZAxis();
     zAxis.setTickSelector(new IntegerTickSelector());
-    zAxis.setRange(0, 20);
-    plot.getXAxis().setRange(5, 30);
-    plot.getYAxis().setRange(0, 100);
+//    zAxis.setRange(0, 20);
+//    plot.getXAxis().setRange(5, 30);
+//    plot.getYAxis().setRange(0, 100);
 
     //Customise colours
     LineXYZRenderer renderer = new LineXYZRenderer();
@@ -199,35 +199,55 @@ public class GraphCreator {
     //run the simulations again and record each point in the flight path
     //Graph those points
 
-    //Test code
+    //Test code to get first simulation TODO get from kMeans
     SimulationStatus sampleSim = data.get(0);
     ArrayList<WorldCoordinate> coordPoints = (ArrayList<WorldCoordinate>)recordFlightpath(sampleSim);
 
-    //-------------------Example points----------------//
     XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
-
     XYZSeries<String> series1 = new XYZSeries<String>("Series 1");
-    series1.add(10,10,10);
-    series1.add(12,40,11);
-    series1.add(15,80,10);
-    series1.add(18,40, 9);
-    series1.add(20,0,8);
+    XYZSeries<String> series2 = new XYZSeries<String>("Series 2");
+    XYZSeries<String> series3 = new XYZSeries<String>("Series 3");
+
+    for (WorldCoordinate c : coordPoints){
+      series1.add(c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
+    }
     dataset.add(series1);
 
-    XYZSeries<String> series2 = new XYZSeries<String>("Series 2");
-    series2.add(10,10,10);
-    series2.add(12,40,9);
-    series2.add(18,10,10);
-    series2.add(19,0,10);
-    dataset.add(series2);
+//    for (WorldCoordinate c : coordPoints){
+//      series2.add(c.getLatitudeDeg(), c.getLongitudeDeg(), c.getAltitude());
+//    }
+//    dataset.add(series2);
+//
+//    for (WorldCoordinate c : coordPoints){
+//      series3.add(c.getAltitude(), c.getLatitudeDeg(), c.getLongitudeDeg());
+//    }
+//    dataset.add(series3);
 
-    XYZSeries<String> series3 = new XYZSeries<String>("Series 3");
-    series3.add(10,10,10);
-    series3.add(13,70,10);
-    series3.add(14,65,10);
-    series3.add(16,20,10);
-    series3.add(20, 0, 11);
-    dataset.add(series3);
+    //-------------------Example points----------------//
+//    XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
+//
+//
+//    series1.add(10,10,10);
+//    series1.add(12,40,11);
+//    series1.add(15,80,10);
+//    series1.add(18,40, 9);
+//    series1.add(20,0,8);
+//    dataset.add(series1);
+//
+//    XYZSeries<String> series2 = new XYZSeries<String>("Series 2");
+//    series2.add(10,10,10);
+//    series2.add(12,40,9);
+//    series2.add(18,10,10);
+//    series2.add(19,0,10);
+//    dataset.add(series2);
+//
+//    XYZSeries<String> series3 = new XYZSeries<String>("Series 3");
+//    series3.add(10,10,10);
+//    series3.add(13,70,10);
+//    series3.add(14,65,10);
+//    series3.add(16,20,10);
+//    series3.add(20, 0, 11);
+//    dataset.add(series3);
 
     return dataset;
   }
