@@ -453,7 +453,7 @@ public class Gui extends JFrame {
               new Gui(false, f);
             }
             else {
-              throw new Exception("Invalid arguments: Correct format e.g. -nogui src/main/resources/testMCData.csv");
+              throw new RuntimeException("Invalid arguments: Correct format e.g. -nogui src/main/resources/testMCData.csv");
             }
           }
           else { // run with gui
@@ -500,7 +500,7 @@ public class Gui extends JFrame {
                   System.out.println("Simulations started");
                   data = mcs.runSimulations(rocketFile, settingsMissionControl);
                   savePointsAsCSV(createList());
-                  System.exit(1);
+                  System.exit(0);
                 }
               }
               else {
@@ -511,7 +511,7 @@ public class Gui extends JFrame {
                 else {
                   data = mcs.runSimulations(rocketFile, settingsMissionControl);
                   savePointsAsCSV(createList());
-                  System.exit(1);
+                  System.exit(0);
                 }
               }
 
