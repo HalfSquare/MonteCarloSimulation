@@ -26,6 +26,8 @@ public class MonteCarloSimulation {
 
   private final Runnable listener;
 
+  private boolean doRandom;
+
   /**
    * Runs a specified amount of Monte Carlo simulations
    * Currently takes about 10 seconds to run 1,000 simulations
@@ -88,10 +90,18 @@ public class MonteCarloSimulation {
     for (int simNum = 1; simNum <= num; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
 			//simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
-      simulationOptions.setWindSpeedAverage((rand.nextGaussian() * WIND_SPEED_SIGMA) + windSpeed);
-      simulationOptions.setWindTurbulenceIntensity((rand.nextGaussian() * WIND_TURB_SIGMA) + windTurb);
-      simulationOptions.setLaunchTemperature((rand.nextGaussian() * LAUNCH_TEMP_SIGMA) + launchTemp);
-      simulationOptions.setLaunchPressure((rand.nextGaussian() * LAUNCH_AIR_PRES_SIGMA) + launchAirPres);
+      if (doRandom) {
+        simulationOptions.setWindSpeedAverage((rand.nextGaussian() * WIND_SPEED_SIGMA) + windSpeed);
+        simulationOptions.setWindTurbulenceIntensity((rand.nextGaussian() * WIND_TURB_SIGMA) + windTurb);
+        simulationOptions.setLaunchTemperature((rand.nextGaussian() * LAUNCH_TEMP_SIGMA) + launchTemp);
+        simulationOptions.setLaunchPressure((rand.nextGaussian() * LAUNCH_AIR_PRES_SIGMA) + launchAirPres);
+      }
+      else{
+        simulationOptions.setWindSpeedAverage(windSpeed);
+        simulationOptions.setWindTurbulenceIntensity(windTurb);
+        simulationOptions.setLaunchTemperature(launchTemp);
+        simulationOptions.setLaunchPressure(launchAirPres);
+      }
 
       simulationListener.reset();
       helper.runSimulation(simulation, simulationListener);
@@ -133,10 +143,12 @@ public class MonteCarloSimulation {
   }
 
   public MonteCarloSimulation(Runnable runnable) {
+    this.doRandom = true;
     this.listener = runnable;
     Startup.initializeLogging();
     Startup.initializeL10n();
     Startup2.loadMotor();
+
   }
 
   public static void main(String[] args) {
@@ -151,4 +163,11 @@ public class MonteCarloSimulation {
   }
 
 
+  public boolean isDoRandom() {
+    return doRandom;
+  }
+
+  public void setDoRandom(boolean doRandom) {
+    this.doRandom = doRandom;
+  }
 }

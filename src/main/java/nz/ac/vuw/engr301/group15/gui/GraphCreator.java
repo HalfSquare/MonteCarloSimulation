@@ -4,8 +4,17 @@ import com.orsoncharts.graphics3d.World;
 import com.orsoncharts.renderer.xyz.LineXYZRenderer;
 import com.orsoncharts.style.ChartStyle;
 import com.orsoncharts.style.StandardChartStyle;
+import net.sf.openrocket.document.Simulation;
+import net.sf.openrocket.file.RocketLoadException;
+import net.sf.openrocket.rocketcomponent.Configuration;
+import net.sf.openrocket.rocketcomponent.Rocket;
 import net.sf.openrocket.simulation.SimulationStatus;
+import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.util.WorldCoordinate;
+import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
+import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulationExtensionListener;
+import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulationExtensionListenerRecordPath;
+import nz.ac.vuw.engr301.group15.montecarlo.OpenRocketHelper;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -32,6 +41,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,8 +194,13 @@ public class GraphCreator {
    * @return A sample dataset.
    */
   public XYZDataset<String> create3DDataset() {
-    //Example from real sim
-    SimulationStatus sampleSim = data.get(0); //TODO should get this from clusters
+    //TODO This method should get the set of latLongBeans from the kmeans clustering algorithm
+    //Find the closest simulation endpoints to those beans
+    //run the simulations again and record each point in the flight path
+    //Graph those points
+
+    //Test code
+    SimulationStatus sampleSim = data.get(0);
     ArrayList<WorldCoordinate> coordPoints = (ArrayList<WorldCoordinate>)recordFlightpath(sampleSim);
 
     //-------------------Example points----------------//
@@ -223,6 +240,20 @@ public class GraphCreator {
   private List<WorldCoordinate> recordFlightpath(SimulationStatus simulation){
     List<WorldCoordinate> points = new ArrayList<WorldCoordinate>();
     //get config and run again
+    Configuration config = simulation.getConfiguration();
+    OpenRocketHelper helper = new OpenRocketHelper();
+    Simulation sim = new Simulation(config.getRocket());
+    MonteCarloSimulation mcs = new MonteCarloSimulation();
+    mcs.setDoRandom(false);
+    MonteCarloSimulationExtensionListenerRecordPath simulationListener =  new MonteCarloSimulationExtensionListenerRecordPath();
+
+    try {
+      sim.simulate(simulationListener);
+    } catch (SimulationException exception) {
+      exception.printStackTrace();
+    }
+
+    points = simulationListener.getPathPoints();
 
     return points;
   }
