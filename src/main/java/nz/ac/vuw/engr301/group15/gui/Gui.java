@@ -41,11 +41,11 @@ import org.xml.sax.SAXException;
 
 public class Gui extends JFrame {
 
-    public final SettingsWindow settingsWindow;
-    private final SimulationWindow simulationWindow;
-    private final GraphWindow graphWindow;
+    private SettingsWindow settingsWindow = null;
+    private SimulationWindow simulationWindow = null;
+    private GraphWindow graphWindow = null;
 
-    private final JFileChooser fileChooser;
+    private JFileChooser fileChooser = null;
 
     public static final String SETTINGS = "SETTINGS";
     public static final String SIMULATION = "SIMULATION";
@@ -62,10 +62,15 @@ public class Gui extends JFrame {
         CIRCLE, SQUARE, CROSS
     }
 
-    /**
-     * Creates a window that runs monte carlo simulations.
-     */
-    public Gui() {
+  /**
+   * Creates a window that runs monte carlo simulations.
+   *
+   * @param show boolean to determine if should be run with GUI or not.
+   * @param file CSV file to import weather data.
+   */
+    public Gui(boolean show, File file) {
+
+      if (show) {
         this.data = new ArrayList<>();
 
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -92,6 +97,14 @@ public class Gui extends JFrame {
         setState(SETTINGS);
 
         this.setVisible(true);
+        this.setVisible(true);
+      }
+      else{
+        loadMissionControlData(file, false);
+        SimulationRunner simulationRunner = new SimulationRunner();
+        simulationRunner.show = false;
+        simulationRunner.start();
+      }
     }
 
     private void startSettings() {
@@ -111,6 +124,18 @@ public class Gui extends JFrame {
         SimulationRunner runner = new SimulationRunner();
         runner.start();
 
+    }
+
+    public SettingsWindow getSettingsWindow() {
+      return settingsWindow;
+    }
+
+    public SimulationWindow getSimulationWindow() {
+      return simulationWindow;
+    }
+
+    public GraphWindow getGraphWindow() {
+      return graphWindow;
     }
 
     private void startGraph() {
@@ -172,7 +197,8 @@ public class Gui extends JFrame {
 
             // Writing to the print writer
             pw.write(sb.toString());
-
+            pw.close();
+            System.out.println("CSV file successfully exported");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -195,7 +221,7 @@ public class Gui extends JFrame {
   public void writeMissionControlSettings(File file) {
       try {
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        MissionControlSettings s = settingsWindow.getSettings();
+        MissionControlSettings s = settingsMissionControl;
         writer.write("launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat," +
                 "launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations\n");
         writer.write(s.getLaunchRodAngle() + "," + s.getLaunchRodLength() + "," + s.getLaunchRodDir() + "," +
@@ -223,7 +249,7 @@ public class Gui extends JFrame {
         missionControlFile = j.getSelectedFile();
         // If a valid file has been given, parse & load data from the file
         if (j.getSelectedFile() != null) {
-          loadMissionControlData(j.getSelectedFile());
+          loadMissionControlData(j.getSelectedFile(), true);
       }
     }
 
@@ -231,8 +257,9 @@ public class Gui extends JFrame {
    * Method to read and load the mission control data from a CSV into a bean.
    *
    * @param file CSV file with mission control data, should follow the given template.
+   * @param show boolean to determine if program should run with GUI or not.
    */
-  public void loadMissionControlData(File file){
+  public void loadMissionControlData(File file, boolean show){
     MissionControlSettings settings = new MissionControlSettings();
 
     // Attempt to read data
@@ -255,7 +282,9 @@ public class Gui extends JFrame {
         switch (name){
 			    case "numSimulations":
 			      settings.setNumSimulations(value);
-            settingsWindow.setNumSim(Integer.parseInt(value));
+			      if (show){
+              settingsWindow.setNumSim(Integer.parseInt(value));
+            }
 				    break;
           case "launchRodAngle":
             settings.setLaunchRodAngle(value);
@@ -297,7 +326,12 @@ public class Gui extends JFrame {
       }
       // Copy settings to the public bean
       settingsMissionControl = settings;
-      settingsWindow.setData(settings);
+      if (show) {
+        settingsWindow.setData(settings);
+      }
+      else {
+        System.out.println("CSV file successfully imported");
+      }
       sc.close();
     }
       catch (Exception ex){
@@ -404,19 +438,36 @@ public class Gui extends JFrame {
      *
      * @param args args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
                 | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-
-        Gui gui = new Gui();
+        if (args.length >= 1) {
+          String guiArg = args[0];
+          if (guiArg.equals("-nogui")) {
+            if (args.length > 1) {
+              File f = new File(args[1]);
+              new Gui(false, f);
+            }
+            else {
+              throw new RuntimeException("Invalid arguments: Correct format e.g. -nogui src/main/resources/testMCData.csv");
+            }
+          }
+          else { // run with gui
+            new Gui(true, null);
+          }
+        }
+        else {
+          new Gui(true, null);
+        }
     }
 
     class SimulationRunner implements Runnable {
         private Thread thread;
+        private boolean show = true;
 
         /**
          * When an object implementing interface <code>Runnable</code> is used
@@ -431,23 +482,45 @@ public class Gui extends JFrame {
          */
         @Override
         public void run() {
-            MonteCarloSimulation mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
+          MonteCarloSimulation mcs;
+          if (show){
+            mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
+          }
+          else {
+            mcs = new MonteCarloSimulation();
+          }
             try {
               if (rocketModelFile == null){
                 ClassLoader classLoader = this.getClass().getClassLoader();
                 InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                if (show){
+                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                }
+                else {
+                  System.out.println("Simulations started");
+                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                  savePointsAsCSV(createList());
+                  System.exit(0);
+                }
               }
               else {
                 InputStream rocketFile = new FileInputStream(rocketModelFile);
-                data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+                if (show){
+                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                }
+                else {
+                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                  savePointsAsCSV(createList());
+                  System.exit(0);
+                }
               }
 
             } catch (RocketLoadException | FileNotFoundException e) {
                 e.printStackTrace();
             }
-
-            setState(GRAPH);
+            if (show) {
+              setState(GRAPH);
+            }
         }
 
         public void start() {

@@ -1,11 +1,7 @@
 package nz.ac.vuw.engr301.group15.gui;
 
 import java.io.File;
-import java.io.InputStream;
 import java.util.Scanner;
-
-import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
-import nz.ac.vuw.engr301.group15.gui.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -51,9 +47,7 @@ public class TestMissionControlData {
 	@Test
 	public void Test2(){
 		try {
-			Gui gui = new Gui();
-			String path = System.getProperty("user.dir") + "/src/test/java/nz/ac/vuw/engr301/group15/gui/good.csv";
-			gui.loadMissionControlData(new File(path));
+			new Gui(false, new File("src/test/java/nz/ac/vuw/engr301/group15/gui/bad.csv"));
 		} catch (Exception e){
 			fail();
 		}
@@ -63,9 +57,7 @@ public class TestMissionControlData {
 	@Test
 	public void Test3(){
 		try {
-			Gui gui = new Gui();
-			String path = "thisisaninvalidpath";
-			gui.loadMissionControlData(new File(path));
+			new Gui(false, new File("thisisaninvalidpath"));
 		} catch (Exception e){
 			fail();
 		}
@@ -75,9 +67,7 @@ public class TestMissionControlData {
 	@Test
 	public void Test4(){
 		try {
-			Gui gui = new Gui();
-			String path = System.getProperty("user.dir") + "/src/test/java/nz/ac/vuw/engr301/group15/gui/bad.csv";
-			gui.loadMissionControlData(new File(path));
+			new Gui(false, new File("src/test/java/nz/ac/vuw/engr301/group15/gui/bad.csv"));
 		} catch (Exception e){
 			fail();
 		}
@@ -87,9 +77,9 @@ public class TestMissionControlData {
 	@Test
 	public void Test5(){
 		try {
-			Gui gui = new Gui();
+			Gui gui = new Gui(false, new File("src/test/java/nz/ac/vuw/engr301/group15/gui/good.csv"));
+			gui.settingsMissionControl = loadSettings();
 			String path = System.getProperty("user.dir") + "/src/test/java/nz/ac/vuw/engr301/group15/gui/out.csv";
-			gui.settingsWindow.setData(loadSettings());
 			gui.writeMissionControlSettings(new File(path));
 
 			Scanner sc = new Scanner(new File(path));
