@@ -1,5 +1,8 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  Mission Control Settings contains the values that can be inputted into the simulation to
  change the simulation results to be more accurate to flight conditions.
@@ -56,10 +59,38 @@ public class MissionControlSettings {
   private String launchLong;
   private String launchLat;
   private String numSimulations;
+  private HashMap<String, String> errorMap= new HashMap<>(); // hash map storing the errors
 
   public MissionControlSettings() {
   }
 
+  public HashMap<String, String> getErrorMap() {
+    return errorMap;
+  }
+
+  public void setErrorMap(HashMap<String, String> errorMap) {
+    this.errorMap = errorMap;
+  }
+
+  public boolean isErrorsFound() {
+    return errorsFound;
+  }
+
+  public void setErrorsFound(boolean errorsFound) {
+    this.errorsFound = errorsFound;
+  }
+
+  private boolean errorsFound = false; // error checker
+
+
+  /**
+   * Adds the invalid value to the errorMap
+   * @param type Type of Data
+   * @param value Invalid data value
+   */
+  public void addError(String type, String value){
+
+  }
   public String getMaxAngle() {
     return maxAngle;
   }
@@ -161,6 +192,12 @@ public class MissionControlSettings {
   }
 
   public void setNumSimulations(final String numSimulations) {
-    this.numSimulations = numSimulations;
+    if (Integer.parseInt(numSimulations) > 0){
+      this.numSimulations = numSimulations;
+    }
+    else{
+      System.out.println("Invalid num simulations");
+      this.numSimulations = "0";
+    }
   }
 }
