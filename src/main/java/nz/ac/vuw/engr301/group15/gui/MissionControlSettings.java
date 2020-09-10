@@ -64,13 +64,17 @@ public class MissionControlSettings {
   private String launchLong;
   private String launchLat;
   private String numSimulations;
-  private HashMap<String, ArrayList<String>> errorMap = new HashMap<>(); // hash map storing the errors
+  private HashMap<String, String> errorMap = new HashMap<>(); // hash map storing the errors
 
   public MissionControlSettings() {
   }
 
-  public HashMap<String, ArrayList<String>> getErrorMap() {
-    return errorMap;
+  public ArrayList<String> getErrors() {
+    ArrayList<String> e = new ArrayList<>();
+    for (HashMap.Entry<String, String> entry : errorMap.entrySet()){
+      e.add(entry.getKey() + ": " + entry.getValue());
+    }
+    return e;
   }
 
   public boolean hasErrors() {
@@ -97,12 +101,7 @@ public class MissionControlSettings {
     setErrorsFound(true);
     System.out.println(hasErrors());
     System.out.println("ERROR:" + type + ": " + value);
-    // create a new arrayList if the error type is new
-    if (!errorMap.containsKey(type)) {
-      errorMap.put(type, new ArrayList<>());
-    }
-    // add the value to the arrayList
-    errorMap.get(type).add(value);
+    errorMap.put(type, value);
   }
 
   public boolean isBetween(Double min, Double max, String stringValue) {
