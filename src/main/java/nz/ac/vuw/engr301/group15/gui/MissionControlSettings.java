@@ -59,17 +59,13 @@ public class MissionControlSettings {
   private String launchLong;
   private String launchLat;
   private String numSimulations;
-  private HashMap<String, String> errorMap= new HashMap<>(); // hash map storing the errors
+  private HashMap<String, ArrayList<String>> errorMap= new HashMap<>(); // hash map storing the errors
 
   public MissionControlSettings() {
   }
 
-  public HashMap<String, String> getErrorMap() {
+  public HashMap<String, ArrayList<String>> getErrorMap() {
     return errorMap;
-  }
-
-  public void setErrorMap(HashMap<String, String> errorMap) {
-    this.errorMap = errorMap;
   }
 
   public boolean isErrorsFound() {
@@ -89,8 +85,15 @@ public class MissionControlSettings {
    * @param value Invalid data value
    */
   public void addError(String type, String value){
-
+    System.out.println(type + " " + value);
+    // create a new arrayList if the error type is new
+    if (!errorMap.containsKey(type)){
+      errorMap.put(type, new ArrayList<>());
+    }
+    // add the value to the arrayList
+    errorMap.get(type).add(value);
   }
+
   public String getMaxAngle() {
     return maxAngle;
   }
@@ -196,7 +199,8 @@ public class MissionControlSettings {
       this.numSimulations = numSimulations;
     }
     else{
-      System.out.println("Invalid num simulations");
+      addError("Number of Simulations", numSimulations);
+//      System.out.println("Invalid num simulations");
       this.numSimulations = "0";
     }
   }
