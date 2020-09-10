@@ -103,8 +103,11 @@ public class MissionControlSettings {
   }
 
   public boolean isBetween(Double min, Double max, String stringValue) {
+    if (stringValue.equals("")){
+      return true;
+    }
     double value = Double.parseDouble(stringValue);
-    return (min <= value && value <= max);
+    return ((min <= value && value <= max));
   }
 
   public String getMaxAngle() {
