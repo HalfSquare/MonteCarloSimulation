@@ -430,7 +430,9 @@ public class Gui extends JFrame {
           }
           else{
             settingsWindow.setVisible(true);
-            System.out.println("not allowed to run");
+            // creates a list of errors and outputs onto the screen
+            JList errorsList = new JList(settingsMissionControl.getErrors().toArray(new String[0]));
+            JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
           }
 
         } else if (GRAPH.equals(state)) {
