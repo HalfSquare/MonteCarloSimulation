@@ -326,6 +326,7 @@ public class Gui extends JFrame {
       }
       // Copy settings to the public bean
       settingsMissionControl = settings;
+
       if (show) {
         settingsWindow.setData(settings);
       }
@@ -494,24 +495,44 @@ public class Gui extends JFrame {
                 ClassLoader classLoader = this.getClass().getClassLoader();
                 InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
                 if (show){
-                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                  if (!settingsMissionControl.hasErrors()){
+                    data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                  }
+                  else{
+                    System.out.println("NOT RUNNING THERES ERRORS");
+                  }
                 }
                 else {
                   System.out.println("Simulations started");
-                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
-                  savePointsAsCSV(createList());
-                  System.exit(0);
+                  if (!settingsMissionControl.hasErrors()){
+                    data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                    savePointsAsCSV(createList());
+                    System.exit(0);
+                  }
+                  else{
+                    System.out.println("NOT RUNNING THERES ERRORS");
+                  }
                 }
               }
               else {
                 InputStream rocketFile = new FileInputStream(rocketModelFile);
                 if (show){
-                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                  if (!settingsMissionControl.hasErrors()) {
+                    data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                  }
+                  else{
+                    System.out.println("NOT RUNNIN");
+                  }
                 }
                 else {
-                  data = mcs.runSimulations(rocketFile, settingsMissionControl);
-                  savePointsAsCSV(createList());
-                  System.exit(0);
+                  if (!settingsMissionControl.hasErrors()) {
+                    data = mcs.runSimulations(rocketFile, settingsMissionControl);
+                    savePointsAsCSV(createList());
+                    System.exit(0);
+                  }
+                  else{
+                    System.out.println("NOT RUNNING");
+                  }
                 }
               }
 
