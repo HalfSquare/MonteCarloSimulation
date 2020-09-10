@@ -20,7 +20,8 @@ import java.util.HashMap;
  * (average * turbulence). Percentage value, 100% = 2.0 m/s standard deviation, 10% = 0.2 m/s
  * standard deviation - however should be handed to OpenRocket as a decimal.
  * <p>
- * Wind Speed: average wind speed of launch site, measured in m/s.
+ * Wind Speed: average wind speed of launch site, measured in m/s. Min value = 0.0, Max value =
+ * 135.
  * <p>
  * Launch Temperature: temperature of the launch site. Read in as a Celcius value, should be
  * converted to kelvin before handing to OpenRocket.
@@ -101,7 +102,7 @@ public class MissionControlSettings {
     errorMap.get(type).add(value);
   }
 
-  public boolean isBetween(Double min, Double max, String stringValue){
+  public boolean isBetween(Double min, Double max, String stringValue) {
     double value = Double.parseDouble(stringValue);
     return (min <= value && value <= max);
   }
@@ -141,7 +142,12 @@ public class MissionControlSettings {
   }
 
   public void setWindSpeed(final String windSpeed) {
-    this.windSpeed = windSpeed;
+    if (isBetween(0.0, 135.0, windSpeed)) {
+      this.windSpeed = windSpeed;
+    } else {
+      addError("Wind Speed", windSpeed);
+      this.windSpeed = ""; // default?
+    }
   }
 
   public String getLaunchTemp() {
@@ -165,7 +171,12 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodLength(final String launchRodLength) {
-    this.launchRodLength = launchRodLength;
+    if (isBetween(0.0, 1.0471975511965976, launchRodLength)) {
+      this.launchRodLength = launchRodLength;
+    } else {
+      addError("Launch Rod Length", launchRodLength);
+      this.launchRodLength = ""; // default?
+    }
   }
 
   public String getLaunchRodDir() {
@@ -181,7 +192,12 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodAngle(final String launchRodAngle) {
-    this.launchRodAngle = launchRodAngle;
+    if (isBetween(0.0, 1.0471975511965976, launchRodAngle)) {
+      this.launchRodAngle = launchRodAngle;
+    } else {
+      addError("Launch Rod Angle", launchRodAngle);
+      this.launchRodAngle = ""; // default?
+    }
   }
 
   public String getLaunchAlt() {
