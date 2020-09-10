@@ -92,7 +92,10 @@ public class MissionControlSettings {
    */
   public void addError(String type, String value) {
     // set errors found
+    System.out.println(hasErrors());
+
     setErrorsFound(true);
+    System.out.println(hasErrors());
     System.out.println("ERROR:" + type + ": " + value);
     // create a new arrayList if the error type is new
     if (!errorMap.containsKey(type)) {

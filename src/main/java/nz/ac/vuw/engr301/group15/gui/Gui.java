@@ -422,10 +422,17 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
-        		// Get simulation settings from the GUI
-						settingsMissionControl = settingsWindow.getSettings();
+          if (!settingsMissionControl.hasErrors()){
+            // Get simulation settings from the GUI
+            settingsMissionControl = settingsWindow.getSettings();
             startSimulation();
             simulationWindow.setVisible(true);
+          }
+          else{
+            settingsWindow.setVisible(true);
+            System.out.println("not allowed to run");
+          }
+
         } else if (GRAPH.equals(state)) {
             startGraph();
             graphWindow.setVisible(true);
@@ -496,6 +503,7 @@ public class Gui extends JFrame {
                 InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
                 if (show){
                   if (!settingsMissionControl.hasErrors()){
+                    System.out.println("running");
                     data = mcs.runSimulations(rocketFile, settingsMissionControl);
                   }
                   else{
