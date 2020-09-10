@@ -112,7 +112,6 @@ public class MissionControlSettings {
   }
 
   public void setMaxAngle(final String maxAngle) {
-//    System.out.println("idk when: "  + maxAngle);
     if (isBetween(0.017453292519943295, 0.3490658503988659, maxAngle)) {
       this.maxAngle = maxAngle;
     } else {
