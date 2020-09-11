@@ -24,8 +24,8 @@ styletest:
     - shell
   script:
     - echo "Beginning Checkstyle test"
-#    - mvn checkstyle:checkstyle
-  allow_failure: true  
+    - mvn checkstyle:checkstyle
+  allow_failure: true
 
 bugtest:
   stage: Validate
@@ -33,8 +33,7 @@ bugtest:
     - shell
   script:
     - echo "Beginning SpotBugs test"
-#    - mvn $MAVEN_CLI_OPTS spotbugs:check
-#    - mvn spotbugs:check
+    - mvn spotbugs:check
   allow_failure: true
 
 build:
@@ -52,7 +51,6 @@ unittest:
     - shell
   script:
     - echo "Beginning unit tests"
-    - mvn clean install
     - mvn test
   allow_failure: false
 
