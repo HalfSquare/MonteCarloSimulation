@@ -33,7 +33,7 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
         if (simulationStatus == null) {
             return null;
         } else {
-            return new SimulationDuple(simulationOptions, simulationStatus);
+            return new SimulationDuple(simulationOptions.clone(), simulationStatus);
         }
     }
 

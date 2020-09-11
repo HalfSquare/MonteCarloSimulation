@@ -1,9 +1,8 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import java.util.ArrayList;
 import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
-
-import java.util.ArrayList;
 
 public class SimulationDuple {
   private SimulationOptions simulationOptions;
@@ -30,7 +29,15 @@ public class SimulationDuple {
     this.simulationStatus = simulationStatus;
   }
 
-  public static ArrayList<SimulationStatus> getStatuses(ArrayList<SimulationDuple> simulationDuples) {
+  /**
+   * Gets the statuses from a list of duples.
+   *
+   * @param simulationDuples the duple list
+   * @return a list of statuses
+   */
+  public static ArrayList<SimulationStatus> getStatuses(
+          ArrayList<SimulationDuple> simulationDuples
+  ) {
     ArrayList<SimulationStatus> simulationStatuses = new ArrayList<>();
 
     for (SimulationDuple simulationDuple : simulationDuples) {
@@ -40,7 +47,15 @@ public class SimulationDuple {
     return simulationStatuses;
   }
 
-  public static ArrayList<SimulationOptions> getOptions(ArrayList<SimulationDuple> simulationDuples) {
+  /**
+   * Gets the options from a list of duples.
+   *
+   * @param simulationDuples the duple list
+   * @return a list of options
+   */
+  public static ArrayList<SimulationOptions> getOptions(
+          ArrayList<SimulationDuple> simulationDuples
+  ) {
     ArrayList<SimulationOptions> simulationOptions = new ArrayList<>();
 
     for (SimulationDuple simulationDuple : simulationDuples) {
