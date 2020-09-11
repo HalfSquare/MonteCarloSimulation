@@ -22,6 +22,7 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
+import nz.ac.vuw.engr301.group15.montecarlo.SimulationDuple;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 
@@ -43,7 +44,7 @@ public class Gui extends JFrame {
   public MissionControlSettings settingsMissionControl;
 
   public static final int NUM_ATTR = 13;
-  private ArrayList<SimulationStatus> data;
+  private ArrayList<SimulationDuple> data;
 
 
   public enum GraphType {
@@ -135,7 +136,7 @@ public class Gui extends JFrame {
     pointList.add("\n");
 
     //Reading the points into an ArrayList
-    for (SimulationStatus longAndLat : data) {
+    for (SimulationStatus longAndLat : SimulationDuple.getStatuses(data)) {
       WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
       double x = landingPos.getLongitudeDeg();
       double y = landingPos.getLatitudeDeg();
@@ -359,7 +360,7 @@ public class Gui extends JFrame {
 
     //reading the points into the List
     for (int i = 0; i < data.size(); i++) {
-      SimulationStatus longAndLat = data.get(i);
+      SimulationStatus longAndLat = SimulationDuple.getStatuses(data).get(i);
       WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
       double x = landingPos.getLongitudeDeg();
       double y = landingPos.getLatitudeDeg();

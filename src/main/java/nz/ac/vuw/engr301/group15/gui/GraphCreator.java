@@ -1,22 +1,33 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import com.orsoncharts.graphics3d.World;
+import com.orsoncharts.Chart3D;
+import com.orsoncharts.Chart3DFactory;
+import com.orsoncharts.Chart3DPanel;
+import com.orsoncharts.axis.IntegerTickSelector;
+import com.orsoncharts.axis.NumberAxis3D;
+import com.orsoncharts.data.xyz.XYZDataset;
+import com.orsoncharts.data.xyz.XYZSeries;
+import com.orsoncharts.data.xyz.XYZSeriesCollection;
+import com.orsoncharts.graphics3d.Dimension3D;
+import com.orsoncharts.plot.XYZPlot;
 import com.orsoncharts.renderer.xyz.LineXYZRenderer;
-import com.orsoncharts.style.ChartStyle;
-import com.orsoncharts.style.StandardChartStyle;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JPanel;
 import net.sf.openrocket.document.Simulation;
-import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.rocketcomponent.Configuration;
-import net.sf.openrocket.rocketcomponent.Rocket;
-import net.sf.openrocket.simulation.SimulationConditions;
 import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
-import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulationExtensionListener;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulationExtensionListenerRecordPath;
-import nz.ac.vuw.engr301.group15.montecarlo.OpenRocketHelper;
+import nz.ac.vuw.engr301.group15.montecarlo.SimulationDuple;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -28,38 +39,18 @@ import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.ShapeUtilities;
 
-import com.orsoncharts.Chart3DPanel;
-import com.orsoncharts.Chart3D;
-import com.orsoncharts.Chart3DFactory;
-import com.orsoncharts.axis.IntegerTickSelector;
-import com.orsoncharts.axis.NumberAxis3D;
-import com.orsoncharts.data.xyz.XYZDataset;
-import com.orsoncharts.data.xyz.XYZSeries;
-import com.orsoncharts.data.xyz.XYZSeriesCollection;
-import com.orsoncharts.graphics3d.Dimension3D;
-import com.orsoncharts.plot.XYZPlot;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GraphCreator {
-  private GraphWindow graphWindow;
-  private ArrayList<SimulationStatus> data;
+  private final GraphWindow graphWindow;
+  private final ArrayList<SimulationDuple> data;
 
   /**
-   * Constructor
+   * Constructor.
    *
    * @param graphWindow the graph JFrame
-   * @param data  ArrayList of SimulationStatus
+   * @param data        ArrayList of SimulationStatus
    */
-  public GraphCreator(GraphWindow graphWindow, ArrayList<SimulationStatus> data){
+  public GraphCreator(GraphWindow graphWindow, ArrayList<SimulationDuple> data) {
     this.graphWindow = graphWindow;
     this.data = data;
   }
@@ -75,10 +66,9 @@ public class GraphCreator {
     Gui.GraphType graphType;
     JFreeChart chart;
 
-    if(graphWindow.getGraphTypeComboBox().equals("3D")){
+    if (graphWindow.getGraphTypeComboBox().equals("3D")) {
       graphType = Gui.GraphType.FLIGHTPATH;
-    }
-    else {
+    } else {
       graphType = Gui.GraphType.valueOf(graphWindow.getGraphTypeComboBox().toUpperCase());
     }
 
@@ -91,10 +81,10 @@ public class GraphCreator {
             PlotOrientation.VERTICAL,
             true, true, false);
     // Default circle shape
-    Shape shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
+    Shape shape;
 
     // Creates the plotting shape
-    switch(graphType){
+    switch (graphType) {
       case CROSS:
         shape = ShapeUtilities.createDiagonalCross(1, 1);
         break;
@@ -105,11 +95,10 @@ public class GraphCreator {
         shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
         break;
       case FLIGHTPATH:
-        ChartPanel panel = new ChartPanel(chart);
         graphWindow.getGraphPanel().setLayout(new BorderLayout());
         graphWindow.getGraphPanel().add(create3DGraph(create3DDataset()), BorderLayout.CENTER);
         graphWindow.getGraphPanel().validate();
-        return panel;
+        return new ChartPanel(chart);
       default:
         throw new RuntimeException("Help");
     }
@@ -132,13 +121,15 @@ public class GraphCreator {
   }
 
   /**
-   * This goes through all the simulation points and adds them to a list of longitude and latitude points
-   * @return
+   * This goes through all the simulation points and adds them
+   * to a list of longitude and latitude points.
+   *
+   * @return the dataset
    */
   private XYDataset createDataset() {
     // Create scatter points
     final XYSeries longAndLatPoints = new XYSeries("longAndLatPoints");
-    for (SimulationStatus longAndLat : data) {
+    for (SimulationStatus longAndLat : SimulationDuple.getStatuses(data)) {
       WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
       double x = landingPos.getLongitudeDeg();
       double y = landingPos.getLatitudeDeg();
@@ -157,16 +148,21 @@ public class GraphCreator {
    *
    * @return A panel containing the content for the demo.
    */
-  public static JPanel create3DGraph(XYZDataset dataset) {
+  public static JPanel create3DGraph(XYZDataset<String> dataset) {
     Chart3D chart = createChart(dataset);
-    Chart3DPanel chartPanel = new Chart3DPanel(chart);
-    return chartPanel;
+    return new Chart3DPanel(chart);
     //chartPanel.zoomToFit(OrsonChartsDemo.DEFAULT_CONTENT_SIZE);
-//        content.add(new DisplayPanel3D(chartPanel));
-//        return content;
+    //content.add(new DisplayPanel3D(chartPanel));
+    //return content;
   }
 
-  private static Chart3D createChart(XYZDataset dataset) {
+  /**
+   * Makes a 3D chart.
+   *
+   * @param dataset the points to graph
+   * @return the 3D chart
+   */
+  private static Chart3D createChart(XYZDataset<String> dataset) {
     Chart3D chart = Chart3DFactory.createXYZLineChart("Flight paths",
             "", dataset, "Latitude (?)", "Altitude", "Longitude (?)");
     chart.setChartBoxColor(new Color(255, 255, 255, 128));
@@ -174,11 +170,11 @@ public class GraphCreator {
     plot.setDimensions(new Dimension3D(15, 3, 8));
 
     //Customise axes
-    NumberAxis3D zAxis = (NumberAxis3D) plot.getZAxis();
-    zAxis.setTickSelector(new IntegerTickSelector());
-//    zAxis.setRange(0, 20);
-//    plot.getXAxis().setRange(5, 30);
-//    plot.getYAxis().setRange(0, 100);
+    NumberAxis3D plotZAxis = (NumberAxis3D) plot.getZAxis();
+    plotZAxis.setTickSelector(new IntegerTickSelector());
+    //zAxis.setRange(0, 20);
+    //plot.getXAxis().setRange(5, 30);
+    //plot.getYAxis().setRange(0, 100);
 
     //Customise colours
     LineXYZRenderer renderer = new LineXYZRenderer();
@@ -202,84 +198,99 @@ public class GraphCreator {
     //Graph those points
 
     //Test code to get first simulation TODO get from kMeans
-    SimulationStatus sampleSim = data.get(0);
-    sampleSim.
-    ArrayList<WorldCoordinate> coordPoints = (ArrayList<WorldCoordinate>)recordFlightpath(sampleSim);
+    SimulationDuple simulationDuple = data.get(0);
+    SimulationStatus sampleSim = simulationDuple.getSimulationStatus();
+    SimulationOptions sampleOptions = simulationDuple.getSimulationOptions();
+    ArrayList<WorldCoordinate> coordPoints =
+            (ArrayList<WorldCoordinate>) recordFlightpath(sampleSim, sampleOptions);
 
-    XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
-    XYZSeries<String> series1 = new XYZSeries<String>("Series 1");
+    XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
+    XYZSeries<String> series1 = new XYZSeries<>("Series 1");
 
-    for (WorldCoordinate c : coordPoints){
+    for (WorldCoordinate c : coordPoints) {
       series1.add(c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
-      System.out.printf("Lat: %.10f, Alt: %.10f, Long: %.10f\n", c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
+
+      //System.out.printf("Lat: %.10f, Alt: %.10f, Long: %.10f\n"
+      // , c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
     }
     dataset.add(series1);
-
-    //-------------------Example points----------------//
-//    XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
-//
-//
-//    series1.add(10,10,10);
-//    series1.add(12,40,11);
-//    series1.add(15,80,10);
-//    series1.add(18,40, 9);
-//    series1.add(20,0,8);
-//    dataset.add(series1);
-//
-//    XYZSeries<String> series2 = new XYZSeries<String>("Series 2");
-//    series2.add(10,10,10);
-//    series2.add(12,40,9);
-//    series2.add(18,10,10);
-//    series2.add(19,0,10);
-//    dataset.add(series2);
-//
-//    XYZSeries<String> series3 = new XYZSeries<String>("Series 3");
-//    series3.add(10,10,10);
-//    series3.add(13,70,10);
-//    series3.add(14,65,10);
-//    series3.add(16,20,10);
-//    series3.add(20, 0, 11);
-//    dataset.add(series3);
 
     return dataset;
   }
 
   /**
-   * Takes a single simulation an re-runs it, recording each coordinate along the way
+   * Takes a single simulation an re-runs it, recording each coordinate along the way.
+   * The simulated flight has a variation of 3-8 cm which is almost as small as the rocket.
+   *
    * @param simulationStatus the simulation to be recorded
    * @return A list of each coordinate along the way
    */
-  private List<WorldCoordinate> recordFlightpath(SimulationStatus simulationStatus){
-    List<WorldCoordinate> points;
-    //get config and run again
-    SimulationConditions simulationConditions = simulationStatus.getSimulationConditions();
+  private List<WorldCoordinate> recordFlightpath(SimulationStatus simulationStatus,
+                                                 SimulationOptions simulationOptions) {
+    // Get config and copy it to new options
     Configuration configuration = simulationStatus.getConfiguration();
-
     Simulation simulation = new Simulation(configuration.getRocket());
-    SimulationOptions simulationOptions = simulation.getOptions();
-    setSimulationOptions(simulation, simulationConditions, configuration);
+    simulation.getOptions().copyFrom(simulationOptions);
 
-    simulationStatus.
-
+    // Create the new simulation
     MonteCarloSimulation mcs = new MonteCarloSimulation();
     mcs.setDoRandom(false);
-    MonteCarloSimulationExtensionListenerRecordPath simulationListener =  new MonteCarloSimulationExtensionListenerRecordPath();
+    MonteCarloSimulationExtensionListenerRecordPath simulationListener =
+            new MonteCarloSimulationExtensionListenerRecordPath();
 
+    // Run the new simulation
     try {
       simulation.simulate(simulationListener);
     } catch (SimulationException exception) {
       exception.printStackTrace();
     }
 
+    // Get the points from the simulation
+    List<WorldCoordinate> points;
     points = simulationListener.getPathPoints();
+
+    // *** Debugging printouts ***
+    //System.out.println("Start to fin Distance:");
+    //System.out.println(distance(points.get(0), points.get(points.size() - 1)) * 100_000);
+
+    //System.out.println("Distance:");
+    //System.out.println(distance(simulationStatus.getRocketWorldPosition(),
+    // points.get(points.size() - 1)) * 100_000);
+
+    //System.out.printf("Initial: %.20f, %.20f\n",
+    // simulationStatus.getRocketWorldPosition().getLatitudeDeg(),
+    // simulationStatus.getRocketWorldPosition().getLongitudeDeg());
+    //System.out.printf("ReRun:   %.20f, %.20f\n", points.get(points.size() - 1).getLatitudeDeg(),
+    // points.get(points.size() - 1).getLongitudeDeg());
 
     return points;
   }
 
-  private void setSimulationOptions(Simulation simulation, SimulationConditions simulationConditions, Configuration configuration) {
-    SimulationOptions s = simulation.getSimulatedConditions();
-    s.setLaunchPressure();
-    s.setWindSpeedAverage(simulationConditions.getWindModel().getWindVelocity(help));
-    //TODO: instead, we should save each sim's options and vars before each sim is run in the normal MonteCarlo section
+  /**
+   * Calculates the distance between two WorldCoordinates.
+   *
+   * @param first the first lat/long coord
+   * @param second the second lat/long coord
+   * @return the distance in meters between <code>first</code> and <code>second</code>
+   */
+  public static double distance(WorldCoordinate first, WorldCoordinate second) {
+    //https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula
+    int radius = 6371; // Radius of the earth in km
+
+    double lat1 = first.getLatitudeRad();
+    double long1 = first.getLongitudeRad();
+    double lat2 = second.getLatitudeRad();
+    double long2 = second.getLongitudeRad();
+
+    double difLat = Math.abs(lat2 - lat1);
+    double difLon = Math.abs(long2 - long1);
+
+    // Haversine formula
+    double a =
+            Math.sin(difLat / 2) * Math.sin(difLat / 2)
+                    + Math.cos(lat1) * Math.cos(lat2)
+                    * Math.sin(difLon / 2) * Math.sin(difLon / 2);
+    double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return radius * c;
   }
 }

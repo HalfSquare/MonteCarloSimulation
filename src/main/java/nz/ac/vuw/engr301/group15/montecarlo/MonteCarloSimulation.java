@@ -35,7 +35,7 @@ public class MonteCarloSimulation {
    * @param num Number of simulations to run
    * @return the simulations ran
    */
-  public ArrayList<SimulationStatus> runSimulations(int num, InputStream file, MissionControlSettings settings) throws RocketLoadException {
+  public ArrayList<SimulationDuple> runSimulations(int num, InputStream file, MissionControlSettings settings) throws RocketLoadException {
     MissionControlSettings defaultSettings = loadDefaultSettings();
 
     // Extract mission control setting data, setting defaults if values are empty
@@ -85,8 +85,8 @@ public class MonteCarloSimulation {
     simulationOptions.setLaunchTemperature(launchTemp);
     simulationOptions.setLaunchPressure(launchAirPres);
 
-    ArrayList<SimulationStatus> simulationData = new ArrayList<>();
-    MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
+    ArrayList<SimulationDuple> simulationData = new ArrayList<>();
+    MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener(simulationOptions);
     for (int simNum = 1; simNum <= num; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
 			//simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
