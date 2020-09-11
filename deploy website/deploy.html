@@ -93,6 +93,8 @@
                 }
                 else if (property === "Link") {
                     cell.innerHTML = "<a href='" + version[property] + "'><i>Download</i></a>"
+                    let cell2 = row.insertCell();
+                    cell2.innerHTML = "<a href='" + version[property] + "'><i>User Guide</i></a>"
                 }
                 else {
                     cell.innerHTML = version[property];
