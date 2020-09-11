@@ -89,10 +89,11 @@ public class MonteCarloSimulation {
     simulationOptions.setLaunchPressure(launchAirPres);
 
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
-    MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
 
     char[] animationChars = new char[]{'|', '/', '-', '\\'};
     int loadingSpinIndex = 0;
+
+    MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
 
     for (int simNum = 1; simNum <= numOfSimulations; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
@@ -102,10 +103,10 @@ public class MonteCarloSimulation {
       simulationOptions.setLaunchTemperature((rand.nextGaussian() * LAUNCH_TEMP_SIGMA) + launchTemp);
       simulationOptions.setLaunchPressure((rand.nextGaussian() * LAUNCH_AIR_PRES_SIGMA) + launchAirPres);
 
-      simulationListener.reset();
+//      simulationListener.reset();
       helper.runSimulation(simulation, simulationListener);
       while (simulationListener.getSimulation() == null) {
-//        System.out.println("waiting");
+          System.out.println("waiting");
       }
       String progress = String.format("%.2f", (simNum/numOfSimulations)*100.0);
       System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
@@ -147,7 +148,6 @@ public class MonteCarloSimulation {
     SwingExceptionHandler exceptionHandler = new SwingExceptionHandler();
     Application.setExceptionHandler(exceptionHandler);
     exceptionHandler.registerExceptionHandler();
-    // Load motors etc.log.info("Loading databases");
     GuiModule guiModule = new GuiModule();
     Module pluginModule = new PluginModule();
     Injector injector = Guice.createInjector(guiModule, pluginModule);
@@ -161,7 +161,6 @@ public class MonteCarloSimulation {
     SwingExceptionHandler exceptionHandler = new SwingExceptionHandler();
     Application.setExceptionHandler(exceptionHandler);
     exceptionHandler.registerExceptionHandler();
-    // Load motors etc.log.info("Loading databases");
     GuiModule guiModule = new GuiModule();
     Module pluginModule = new PluginModule();
     Injector injector = Guice.createInjector(guiModule, pluginModule);
