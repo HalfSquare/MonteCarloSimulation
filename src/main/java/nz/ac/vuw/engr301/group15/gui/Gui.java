@@ -10,7 +10,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -95,7 +97,7 @@ public class Gui extends JFrame {
     // Simulation Window
     this.add(simulationWindow.getRootPanel());
     simulationWindow.resetBar();
-    simulationWindow.setBar1Max(Integer.parseInt(settingsMissionControl.getNumSimulations()));
+    simulationWindow.setBar1Max(settingsMissionControl.getNumSimulationsAsInteger());
 
     // Simulation stuff
     SimulationRunner runner = new SimulationRunner();
@@ -115,7 +117,7 @@ public class Gui extends JFrame {
             setState(GRAPH)); // redraws the graph if combobox was selected
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
-    graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCsv(createList()));
+    graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCsv(createList(data)));
     //createTable();
 
   }
@@ -126,7 +128,7 @@ public class Gui extends JFrame {
    *
    * @return list of all the points
    */
-  private ArrayList<String> createList() {
+  public static ArrayList<String> createList(ArrayList<SimulationDuple> data) {
     ArrayList<String> pointList = new ArrayList<>();
 
     //Adding in the column names
@@ -151,10 +153,14 @@ public class Gui extends JFrame {
 
   /**
    * This saves all the points to a CSV file.
+   *
+   * @return filepath
    */
-  private void savePointsAsCsv(ArrayList<String> list) {
+  public static String savePointsAsCsv(ArrayList<String> list) {
+    System.out.println("### list: "+Arrays.toString(list.toArray()));
     try {
-      PrintWriter pw = new PrintWriter(new File("points.csv"));
+      File file = new File("points.csv");
+      PrintWriter pw = new PrintWriter(file);
       // Reading everything into a string
       StringBuilder sb = new StringBuilder();
       for (String s : list) {
@@ -163,9 +169,14 @@ public class Gui extends JFrame {
 
       // Writing to the print writer
       pw.write(sb.toString());
+      pw.close();
+      System.out.println("### Filepath: "+file.getAbsolutePath());
+
+      return file.getAbsolutePath();
 
     } catch (FileNotFoundException e) {
       e.printStackTrace();
+      return null;
     }
   }
 
@@ -436,10 +447,10 @@ public class Gui extends JFrame {
         if (rocketModelFile == null) {
           ClassLoader classLoader = this.getClass().getClassLoader();
           InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-          data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+          data = mcs.runSimulations(settingsMissionControl.getNumSimulationsAsInteger(), rocketFile, settingsMissionControl);
         } else {
           InputStream rocketFile = new FileInputStream(rocketModelFile);
-          data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
+          data = mcs.runSimulations(settingsMissionControl.getNumSimulationsAsInteger(), rocketFile, settingsMissionControl);
         }
 
       } catch (RocketLoadException | FileNotFoundException e) {
