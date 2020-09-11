@@ -25,11 +25,11 @@
         </dependency>
 
         <!-- modified open rocket -->
-        <dependency>
+        <!-- <dependency>
             <groupId>net.sf.openrocket</groupId>
             <artifactId>modified-openrocket</artifactId>
             <version>1.0</version>
-        </dependency>
+        </dependency> -->
         <!--log4j dependency-->
         <dependency>
             <groupId>log4j</groupId>
@@ -59,7 +59,7 @@
     <build>
         <finalName>maven-unit-test</finalName>
         <plugins>
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
                 <version>3.0.0-M1</version>
@@ -79,7 +79,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
