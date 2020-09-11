@@ -22,10 +22,10 @@ public class OpenRocketHelper {
     /**
      * Load .ork document.
      *
-     * @param fileName  Name of file to load
+     * @param rocketFile  Name of file to load
      */
     public OpenRocketDocument loadORDocument(InputStream rocketFile) throws RocketLoadException {
-        GeneralRocketLoader gen = new GeneralRocketLoader();
+        GeneralRocketLoader gen = new GeneralRocketLoader(new File("rocket-1-1-9.ork"));
         return gen.load(rocketFile);
     }
 
