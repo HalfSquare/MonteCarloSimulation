@@ -34,7 +34,7 @@ public class KMeansClustering {
    * @param path csv file
    * @return a set of the centers of the clusters
    */
-  public Set<LatLongBean> calculateClusters(String path, int clusters) {
+  public static Set<LatLongBean> calculateClusters(String path, int clusters) {
     // Start spark session
     SparkSession spark = SparkSession
             .builder()
@@ -99,6 +99,7 @@ public class KMeansClustering {
 
     for (Vector center: centers) {
       centersSet.add(new LatLongBean(center.toArray()[0], center.toArray()[1]));
+      System.out.printf("Lat: %.20f, Long: %.20f\n", center.toArray()[0], center.toArray()[1]);
     }
 
     return centersSet;
