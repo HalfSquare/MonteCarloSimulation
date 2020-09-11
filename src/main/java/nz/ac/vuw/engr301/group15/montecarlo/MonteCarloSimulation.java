@@ -116,6 +116,51 @@ public class MonteCarloSimulation {
     return simulationData;
   }
 
+  public ArrayList<SimulationStatus> runSimulationsPID(InputStream file, int numOfSimulations) throws RocketLoadException {
+    // Create helper object
+    OpenRocketHelper helper = new OpenRocketHelper();
+
+    // Opens open rocket document
+    OpenRocketDocument document = helper.loadORDocument(file);
+
+    // Gets first simulation from the ork file
+    Simulation simulation = document.getSimulation(0);
+
+    Rocket rocket = simulation.getRocket();
+
+    // Change simulation options
+    SimulationOptions simulationOptions = simulation.getOptions();
+
+    // Time between simulation steps (A smaller time step results in a more accurate but slower simulation)
+    simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
+
+    ArrayList<SimulationStatus> simulationData = new ArrayList<>();
+    RollControlExtensionListener simulationListener =  new RollControlExtensionListener();
+
+    char[] animationChars = new char[]{'|', '/', '-', '\\'};
+    int loadingSpinIndex = 0;
+
+    for (int simNum = 1; simNum <= numOfSimulations; simNum++) {
+      simulationListener.reset();
+      helper.runSimulation(simulation, simulationListener);
+
+      while (simulationListener.getSimulation() == null) {
+        System.out.println("waiting");
+      }
+      String progress = String.format("%.2f", (simNum/numOfSimulations)*100.0);
+      System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
+      loadingSpinIndex = loadingSpinIndex == 3 ? 0 : loadingSpinIndex + 1;
+      simulationData.add(simulationListener.getSimulation());
+      if (listener != null) {
+        listener.run();
+      }
+
+    }
+    System.out.println("Simulating: Done!          ");
+    System.out.println("Simulations finished");
+    return simulationData;
+  }
+
   public static MissionControlSettings loadDefaultSettings() {
     // Load in default mission control settings
     MissionControlSettings defaultSettingsMissionControl = new MissionControlSettings();
@@ -152,10 +197,16 @@ public class MonteCarloSimulation {
 
   public static void main(String[] args) {
     try {
+      /*
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
       InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
       mcs.runSimulations(rocketFile, loadDefaultSettings());
+       */
+      MonteCarloSimulation mcs = new MonteCarloSimulation();
+      ClassLoader classLoader = mcs.getClass().getClassLoader();
+      InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+      mcs.runSimulationsPID(rocketFile, 1000);
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
