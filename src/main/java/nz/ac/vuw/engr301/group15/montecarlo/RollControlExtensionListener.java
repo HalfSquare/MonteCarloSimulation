@@ -7,6 +7,14 @@ import net.sf.openrocket.simulation.listeners.example.RollControlListener;
 public class RollControlExtensionListener extends RollControlListener {
 	private SimulationStatus simulationStatus;
 
+	public void setProportionalValue(double pVal) {
+		this.KP = pVal;
+	}
+
+	public void setIntegralValue(double iVal) {
+		this.KI = iVal;
+	}
+
 	public void endSimulation(SimulationStatus status, SimulationException exception) {
 		simulationStatus = status;
 	}
@@ -19,9 +27,6 @@ public class RollControlExtensionListener extends RollControlListener {
 		}
 	}
 
-	public void setProportionalValue(double pVal) {
-		this.KP = pVal;
-	}
 
 	public void reset() {
 		simulationStatus = null;

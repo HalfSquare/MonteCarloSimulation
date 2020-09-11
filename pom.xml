@@ -176,6 +176,7 @@
                     </execution>
                 </executions>
             </plugin>
+
 <!--&lt;!&ndash;                <dependencies>&ndash;&gt;-->
 <!--&lt;!&ndash;                    <dependency>&ndash;&gt;-->
 <!--&lt;!&ndash;                        <groupId>com.github.spotbugs</groupId>&ndash;&gt;-->
