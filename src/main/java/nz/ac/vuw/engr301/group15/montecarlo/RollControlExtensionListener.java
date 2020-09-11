@@ -19,6 +19,10 @@ public class RollControlExtensionListener extends RollControlListener {
 		}
 	}
 
+	public void setProportionalValue(double pVal) {
+		this.KP = pVal;
+	}
+
 	public void reset() {
 		simulationStatus = null;
 	}
