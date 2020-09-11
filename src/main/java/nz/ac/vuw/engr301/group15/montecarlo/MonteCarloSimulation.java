@@ -116,7 +116,7 @@ public class MonteCarloSimulation {
     return simulationData;
   }
 
-  public ArrayList<SimulationStatus> runSimulationsPID(InputStream file, int numOfSimulations) throws RocketLoadException {
+  public ArrayList<SimulationStatus> runPITuning(InputStream file, int numOfSimulations) throws RocketLoadException {
     // Create helper object
     OpenRocketHelper helper = new OpenRocketHelper();
 
@@ -206,7 +206,7 @@ public class MonteCarloSimulation {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
       InputStream rocketFile = classLoader.getResourceAsStream("pid_rocket.ork");
-      mcs.runSimulationsPID(rocketFile, 1);
+      mcs.runPITuning(rocketFile, 1);
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
