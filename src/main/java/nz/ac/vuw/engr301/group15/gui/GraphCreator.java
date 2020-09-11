@@ -8,6 +8,8 @@ import net.sf.openrocket.document.Simulation;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.rocketcomponent.Configuration;
 import net.sf.openrocket.rocketcomponent.Rocket;
+import net.sf.openrocket.simulation.SimulationConditions;
+import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.util.WorldCoordinate;
@@ -201,27 +203,17 @@ public class GraphCreator {
 
     //Test code to get first simulation TODO get from kMeans
     SimulationStatus sampleSim = data.get(0);
+    sampleSim.
     ArrayList<WorldCoordinate> coordPoints = (ArrayList<WorldCoordinate>)recordFlightpath(sampleSim);
 
     XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
     XYZSeries<String> series1 = new XYZSeries<String>("Series 1");
-    XYZSeries<String> series2 = new XYZSeries<String>("Series 2");
-    XYZSeries<String> series3 = new XYZSeries<String>("Series 3");
 
     for (WorldCoordinate c : coordPoints){
       series1.add(c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
+      System.out.printf("Lat: %.10f, Alt: %.10f, Long: %.10f\n", c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
     }
     dataset.add(series1);
-
-//    for (WorldCoordinate c : coordPoints){
-//      series2.add(c.getLatitudeDeg(), c.getLongitudeDeg(), c.getAltitude());
-//    }
-//    dataset.add(series2);
-//
-//    for (WorldCoordinate c : coordPoints){
-//      series3.add(c.getAltitude(), c.getLatitudeDeg(), c.getLongitudeDeg());
-//    }
-//    dataset.add(series3);
 
     //-------------------Example points----------------//
 //    XYZSeriesCollection<String> dataset = new XYZSeriesCollection<String>();
@@ -254,21 +246,27 @@ public class GraphCreator {
 
   /**
    * Takes a single simulation an re-runs it, recording each coordinate along the way
-   * @param simulation the simulation to be recorded
+   * @param simulationStatus the simulation to be recorded
    * @return A list of each coordinate along the way
    */
-  private List<WorldCoordinate> recordFlightpath(SimulationStatus simulation){
-    List<WorldCoordinate> points = new ArrayList<WorldCoordinate>();
+  private List<WorldCoordinate> recordFlightpath(SimulationStatus simulationStatus){
+    List<WorldCoordinate> points;
     //get config and run again
-    Configuration config = simulation.getConfiguration();
-    OpenRocketHelper helper = new OpenRocketHelper();
-    Simulation sim = new Simulation(config.getRocket());
+    SimulationConditions simulationConditions = simulationStatus.getSimulationConditions();
+    Configuration configuration = simulationStatus.getConfiguration();
+
+    Simulation simulation = new Simulation(configuration.getRocket());
+    SimulationOptions simulationOptions = simulation.getOptions();
+    setSimulationOptions(simulation, simulationConditions, configuration);
+
+    simulationStatus.
+
     MonteCarloSimulation mcs = new MonteCarloSimulation();
     mcs.setDoRandom(false);
     MonteCarloSimulationExtensionListenerRecordPath simulationListener =  new MonteCarloSimulationExtensionListenerRecordPath();
 
     try {
-      sim.simulate(simulationListener);
+      simulation.simulate(simulationListener);
     } catch (SimulationException exception) {
       exception.printStackTrace();
     }
@@ -276,5 +274,12 @@ public class GraphCreator {
     points = simulationListener.getPathPoints();
 
     return points;
+  }
+
+  private void setSimulationOptions(Simulation simulation, SimulationConditions simulationConditions, Configuration configuration) {
+    SimulationOptions s = simulation.getSimulatedConditions();
+    s.setLaunchPressure();
+    s.setWindSpeedAverage(simulationConditions.getWindModel().getWindVelocity(help));
+    //TODO: instead, we should save each sim's options and vars before each sim is run in the normal MonteCarlo section
   }
 }

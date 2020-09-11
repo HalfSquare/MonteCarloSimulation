@@ -435,10 +435,10 @@ public class Gui extends JFrame {
         if (rocketModelFile == null) {
           ClassLoader classLoader = this.getClass().getClassLoader();
           InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-          data = mcs.runSimulations(3000/*Integer.parseInt(settingsMissionControl.getNumSimulations())*/, rocketFile, settingsMissionControl);
+          data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
         } else {
           InputStream rocketFile = new FileInputStream(rocketModelFile);
-          data = mcs.runSimulations(3000/*Integer.parseInt(settingsMissionControl.getNumSimulations())*/, rocketFile, settingsMissionControl);
+          data = mcs.runSimulations(Integer.parseInt(settingsMissionControl.getNumSimulations()), rocketFile, settingsMissionControl);
         }
 
       } catch (RocketLoadException | FileNotFoundException e) {
