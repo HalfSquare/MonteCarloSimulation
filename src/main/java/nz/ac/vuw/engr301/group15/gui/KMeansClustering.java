@@ -16,17 +16,17 @@ import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.types.StructType;
 
 public class KMeansClustering {
-  /**
-   * An example of using the kmeans.
-   *
-   * @param args args
-   */
-  public static void main(String[] args) {
-    KMeansClustering km = new KMeansClustering();
-    String exampleData = "C:\\Users\\Max\\Documents\\Vic\\ENGR301\\group-15\\points.csv";
-
-    km.calculateClusters(exampleData, 2);
-  }
+  //  /**
+  //   * An example of using the kmeans.
+  //   *
+  //   * @param args args
+  //   */
+  //  public static void main(String[] args) {
+  //    KMeansClustering km = new KMeansClustering();
+  //    String exampleData = "C:\\Users\\Max\\Documents\\Vic\\ENGR301\\group-15\\points.csv";
+  //
+  //    km.calculateClusters(exampleData, 2);
+  //  }
 
   /**
    * Calculate the clusters.
@@ -98,7 +98,7 @@ public class KMeansClustering {
     Set<LatLongBean> centersSet = new HashSet<>();
 
     for (Vector center: centers) {
-      centersSet.add(new LatLongBean(center.toArray()[0], center.toArray()[1]));
+      centersSet.add(new LatLongBean(center.toArray()[1], center.toArray()[0]));
       System.out.printf("Lat: %.20f, Long: %.20f\n", center.toArray()[0], center.toArray()[1]);
     }
 

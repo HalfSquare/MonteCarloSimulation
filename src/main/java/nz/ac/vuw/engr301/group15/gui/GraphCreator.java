@@ -179,7 +179,7 @@ public class GraphCreator {
 
     //Customise colours
     LineXYZRenderer renderer = new LineXYZRenderer();
-    renderer.setColors(Color.BLUE, Color.RED);
+    renderer.setColors(Color.BLUE, Color.RED, Color.GREEN.darker(), Color.MAGENTA);
     plot.setRenderer(renderer);
 
     return chart;
@@ -193,19 +193,25 @@ public class GraphCreator {
    * @return A sample dataset.
    */
   public XYZDataset<String> create3DDataset() {
+    XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
+    double groundAlt = data.get(0).getSimulationStatus().getRocketWorldPosition().getAltitude();
+
     //Gets cluster points from the data
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
     Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
+    XYZSeries<String> clusterSeries = new XYZSeries<>("Clusters");
 
-    XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
     //Find closest SimulationDuple to each cluster center
     int n = 1;
     for (LatLongBean coord : clusters) {
+      clusterSeries.add(coord.getLatitude(), groundAlt, coord.getLongitude());
+
       double smallestDistance = Double.MAX_VALUE;
       SimulationDuple closestPoint = data.get(0);
       //Find closest endpoint to the coord
       for (SimulationDuple endpoint : data) {
-        double distanceBetween = distance(coord, LatLongBean.fromSimulationStatus(endpoint.getSimulationStatus()));
+        LatLongBean endPointBean = LatLongBean.fromSimulationStatus(endpoint.getSimulationStatus());
+        double distanceBetween = distance(coord, endPointBean);
         if (distanceBetween < smallestDistance) {
           closestPoint = endpoint;
           smallestDistance = distanceBetween;
@@ -220,8 +226,7 @@ public class GraphCreator {
       ArrayList<WorldCoordinate> coordPoints =
               (ArrayList<WorldCoordinate>) recordFlightpath(sampleSim, sampleOptions);
 
-      System.out.printf("Closest Point: %d\nLat: %.20f, Long: %.20f\n", n, sampleSim.getRocketWorldPosition().getLatitudeDeg(), sampleSim.getRocketWorldPosition().getLongitudeDeg());
-      XYZSeries<String> series = new XYZSeries<>("Center "+n);
+      XYZSeries<String> series = new XYZSeries<>("Center " + n);
       n++;
 
 
@@ -235,6 +240,7 @@ public class GraphCreator {
 
     }
 
+    dataset.add(clusterSeries);
     return dataset;
   }
 
@@ -258,12 +264,15 @@ public class GraphCreator {
     MonteCarloSimulationExtensionListenerRecordPath simulationListener =
             new MonteCarloSimulationExtensionListenerRecordPath();
 
+    System.out.printf("Seed before: %d\n", simulationOptions.getRandomSeed());
+
     // Run the new simulation
     try {
       simulation.simulate(simulationListener);
     } catch (SimulationException exception) {
       exception.printStackTrace();
     }
+    System.out.printf("Seed after: %d\n", simulationOptions.getRandomSeed());
 
     // Get the points from the simulation
     List<WorldCoordinate> points;
@@ -314,9 +323,18 @@ public class GraphCreator {
     return radius * c;
   }
 
-  public static double distance(LatLongBean first, LatLongBean second){
-    WorldCoordinate firstCoord = new WorldCoordinate(first.getLatitude(), first.getLongitude(), 0);
-    WorldCoordinate secondCoord = new WorldCoordinate(second.getLatitude(), second.getLongitude(), 0);
+  /**
+   * Calculates the distance between two LatLongBeans.
+   *
+   * @param first the first lat/long coord
+   * @param second the second lat/long coord
+   * @return the distance in meters between <code>first</code> and <code>second</code>
+   */
+  public static double distance(LatLongBean first, LatLongBean second) {
+    WorldCoordinate firstCoord =
+            new WorldCoordinate(first.getLatitude(), first.getLongitude(), 0);
+    WorldCoordinate secondCoord =
+            new WorldCoordinate(second.getLatitude(), second.getLongitude(), 0);
     return distance(firstCoord, secondCoord);
   }
 }
