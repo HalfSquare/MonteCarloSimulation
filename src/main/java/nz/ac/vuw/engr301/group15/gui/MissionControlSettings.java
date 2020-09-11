@@ -65,13 +65,15 @@ public class MissionControlSettings {
   private String launchLat;
   private String numSimulations;
   private HashMap<String, String> errorMap = new HashMap<>(); // hash map storing the errors
+  private boolean errorsFound = false; // error checker
+
 
   public MissionControlSettings() {
   }
 
   public ArrayList<String> getErrors() {
     ArrayList<String> e = new ArrayList<>();
-    for (HashMap.Entry<String, String> entry : errorMap.entrySet()){
+    for (HashMap.Entry<String, String> entry : errorMap.entrySet()) {
       e.add(entry.getKey() + ": " + entry.getValue());
     }
     return e;
@@ -84,9 +86,6 @@ public class MissionControlSettings {
   public void setErrorsFound(boolean errorsFound) {
     this.errorsFound = errorsFound;
   }
-
-  private boolean errorsFound = false; // error checker
-
 
   /**
    * Adds the invalid value to the errorMap
@@ -105,7 +104,7 @@ public class MissionControlSettings {
   }
 
   public boolean isBetween(Double min, Double max, String stringValue) {
-    if (stringValue.equals("")){
+    if (stringValue.equals("")) {
       return true;
     }
     double value = Double.parseDouble(stringValue);
@@ -117,12 +116,12 @@ public class MissionControlSettings {
   }
 
   public void setMaxAngle(final String maxAngle) {
-    if (isBetween(0.017453292519943295, 0.3490658503988659, maxAngle)) {
-      this.maxAngle = maxAngle;
-    } else {
+    System.out.println("max angle: " + maxAngle);
+    if (!isBetween(0.017453292519943295, 0.3490658503988659, maxAngle)) {
       addError("Max Angle", maxAngle);
-      this.maxAngle = ""; // default?
     }
+    this.maxAngle = maxAngle;
+
   }
 
   public String getWindDir() {
@@ -146,12 +145,11 @@ public class MissionControlSettings {
   }
 
   public void setWindSpeed(final String windSpeed) {
-    if (isBetween(0.0, 135.0, windSpeed)) {
-      this.windSpeed = windSpeed;
-    } else {
+    if (!isBetween(0.0, 135.0, windSpeed)) {
       addError("Wind Speed", windSpeed);
-      this.windSpeed = ""; // default?
     }
+    this.windSpeed = windSpeed;
+
   }
 
   public String getLaunchTemp() {
@@ -175,12 +173,11 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodLength(final String launchRodLength) {
-    if (isBetween(0.0, 1.0471975511965976, launchRodLength)) {
-      this.launchRodLength = launchRodLength;
-    } else {
+    if (!isBetween(0.0, 1.0471975511965976, launchRodLength)) {
       addError("Launch Rod Length", launchRodLength);
-      this.launchRodLength = ""; // default?
     }
+    this.launchRodLength = launchRodLength;
+
   }
 
   public String getLaunchRodDir() {
@@ -196,12 +193,10 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodAngle(final String launchRodAngle) {
-    if (isBetween(0.0, 1.0471975511965976, launchRodAngle)) {
-      this.launchRodAngle = launchRodAngle;
-    } else {
+    if (!isBetween(0.0, 1.0471975511965976, launchRodAngle)) {
       addError("Launch Rod Angle", launchRodAngle);
-      this.launchRodAngle = ""; // default?
     }
+    this.launchRodAngle = launchRodAngle;
   }
 
   public String getLaunchAlt() {
@@ -233,11 +228,10 @@ public class MissionControlSettings {
   }
 
   public void setNumSimulations(final String numSimulations) {
-    if (Integer.parseInt(numSimulations) > 0) {
-      this.numSimulations = numSimulations;
-    } else {
+    if (Integer.parseInt(numSimulations) < 0) {
       addError("Number of Simulations", numSimulations);
-      this.numSimulations = "0";
     }
+    this.numSimulations = numSimulations;
+
   }
 }
