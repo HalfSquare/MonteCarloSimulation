@@ -283,7 +283,13 @@ public class Gui extends JFrame {
 			    case "numSimulations":
 			      settings.setNumSimulations(value);
 			      if (show){
-              settingsWindow.setNumSim(Integer.parseInt(value));
+			        if (Integer.parseInt(value) > 0){
+                settingsWindow.setNumSim(Integer.parseInt(value));
+              }
+			        else{
+                JOptionPane.showMessageDialog(null, "Enter a simulation number larger than 0", "Following error found", JOptionPane.ERROR_MESSAGE);
+
+              }
             }
 				    break;
           case "launchRodAngle":
@@ -422,17 +428,29 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
-          if (!settingsMissionControl.hasErrors()){
+          // og code
+//          settingsMissionControl = settingsWindow.getSettings();
+//          startSimulation();
+//          simulationWindow.setVisible(true);
+
+          System.out.println("error value: " + settingsWindow.getSettings().hasErrors());
+
+          // has errors so dont allow
+          if (settingsWindow.getSettings().hasErrors()){
+            System.out.println("has errors");
             // Get simulation settings from the GUI
+            settingsWindow.setVisible(true);
+            // creates a list of errors and outputs onto the screen
+
+            JList errorsList = new JList(settingsWindow.getSettings().getErrors().toArray(new String[0]));
+            JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
+            // TODO need to add feedback to the errors
+          }
+          else{
             settingsMissionControl = settingsWindow.getSettings();
             startSimulation();
             simulationWindow.setVisible(true);
-          }
-          else{
-            settingsWindow.setVisible(true);
-            // creates a list of errors and outputs onto the screen
-            JList errorsList = new JList(settingsMissionControl.getErrors().toArray(new String[0]));
-            JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
+
           }
 
         } else if (GRAPH.equals(state)) {
@@ -509,6 +527,8 @@ public class Gui extends JFrame {
                     data = mcs.runSimulations(rocketFile, settingsMissionControl);
                   }
                   else{
+                    JList errorsList = new JList(settingsMissionControl.getErrors().toArray(new String[0]));
+                    JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
                     System.out.println("NOT RUNNING THERES ERRORS");
                   }
                 }
