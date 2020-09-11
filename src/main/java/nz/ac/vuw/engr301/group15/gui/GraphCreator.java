@@ -18,6 +18,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JPanel;
 import net.sf.openrocket.document.Simulation;
 import net.sf.openrocket.rocketcomponent.Configuration;
@@ -192,28 +193,47 @@ public class GraphCreator {
    * @return A sample dataset.
    */
   public XYZDataset<String> create3DDataset() {
-    //TODO This method should get the set of latLongBeans from the kmeans clustering algorithm
-    //Find the closest simulation endpoints to those beans
-    //run the simulations again and record each point in the flight path
-    //Graph those points
-
-    //Test code to get first simulation TODO get from kMeans
-    SimulationDuple simulationDuple = data.get(0);
-    SimulationStatus sampleSim = simulationDuple.getSimulationStatus();
-    SimulationOptions sampleOptions = simulationDuple.getSimulationOptions();
-    ArrayList<WorldCoordinate> coordPoints =
-            (ArrayList<WorldCoordinate>) recordFlightpath(sampleSim, sampleOptions);
+    //Gets cluster points from the data
+    String filePath = Gui.savePointsAsCsv(Gui.createList(data));
+    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
 
     XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
-    XYZSeries<String> series1 = new XYZSeries<>("Series 1");
+    //Find closest SimulationDuple to each cluster center
+    int n = 1;
+    for (LatLongBean coord : clusters) {
+      double smallestDistance = Double.MAX_VALUE;
+      SimulationDuple closestPoint = data.get(0);
+      //Find closest endpoint to the coord
+      for (SimulationDuple endpoint : data) {
+        double distanceBetween = distance(coord, LatLongBean.fromSimulationStatus(endpoint.getSimulationStatus()));
+        if (distanceBetween < smallestDistance) {
+          closestPoint = endpoint;
+          smallestDistance = distanceBetween;
+        }
+      }
 
-    for (WorldCoordinate c : coordPoints) {
-      series1.add(c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
 
-      //System.out.printf("Lat: %.10f, Alt: %.10f, Long: %.10f\n"
-      // , c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
+
+      //Record flight path
+      SimulationStatus sampleSim = closestPoint.getSimulationStatus();
+      SimulationOptions sampleOptions = closestPoint.getSimulationOptions();
+      ArrayList<WorldCoordinate> coordPoints =
+              (ArrayList<WorldCoordinate>) recordFlightpath(sampleSim, sampleOptions);
+
+      System.out.printf("Closest Point: %d\nLat: %.20f, Long: %.20f\n", n, sampleSim.getRocketWorldPosition().getLatitudeDeg(), sampleSim.getRocketWorldPosition().getLongitudeDeg());
+      XYZSeries<String> series = new XYZSeries<>("Center "+n);
+      n++;
+
+
+      //Add each series to the dataset
+      for (WorldCoordinate c : coordPoints) {
+        series.add(c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
+        //System.out.printf("Lat: %.10f, Alt: %.10f, Long: %.10f\n"
+        // , c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
+      }
+      dataset.add(series);
+
     }
-    dataset.add(series1);
 
     return dataset;
   }
@@ -292,5 +312,11 @@ public class GraphCreator {
                     * Math.sin(difLon / 2) * Math.sin(difLon / 2);
     double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     return radius * c;
+  }
+
+  public static double distance(LatLongBean first, LatLongBean second){
+    WorldCoordinate firstCoord = new WorldCoordinate(first.getLatitude(), first.getLongitude(), 0);
+    WorldCoordinate secondCoord = new WorldCoordinate(second.getLatitude(), second.getLongitude(), 0);
+    return distance(firstCoord, secondCoord);
   }
 }
