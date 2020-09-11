@@ -71,7 +71,7 @@
                             <groupId>net.sf.openrocket</groupId>
                             <artifactId>modified-openrocket</artifactId>
                             <version>1.0</version>
-                            <file>${pom.basedir}/src/main/resources/OpenRocket-Core.jar</file>
+                            <file>${pom.basedir}/src/main/resources/combined.jar</file>
                             <packaging>jar</packaging>
                         </configuration>
                         <goals>

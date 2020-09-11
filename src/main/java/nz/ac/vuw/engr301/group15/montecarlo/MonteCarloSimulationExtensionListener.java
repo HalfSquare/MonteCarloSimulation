@@ -6,14 +6,7 @@ import net.sf.openrocket.simulation.listeners.AbstractSimulationListener;
 import net.sf.openrocket.util.WorldCoordinate;
 
 public class MonteCarloSimulationExtensionListener extends AbstractSimulationListener {
-    private SimulationStatus simulationStatus;
-
-    @Override
-    public void startSimulation(SimulationStatus status) throws SimulationException {
-        super.startSimulation(status);
-        System.out.println("Start");
-    }
-
+    private static SimulationStatus simulationStatus;
 
     @Override
     public void endSimulation(SimulationStatus status, SimulationException exception) {
@@ -26,7 +19,6 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
 
         // Latitude Difference
 //        System.out.println(landingPos.getLatitudeDeg() - launchPos.getLatitudeDeg());
-        System.out.println(status);
         simulationStatus = status;
     }
 
