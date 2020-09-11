@@ -30,7 +30,7 @@
             <artifactId>modified-openrocket</artifactId>
             <version>1.0</version>
         </dependency>
-        <!--log4j dependency-->
+        <!--log4j dependency -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>apache-log4j-extras</artifactId>
