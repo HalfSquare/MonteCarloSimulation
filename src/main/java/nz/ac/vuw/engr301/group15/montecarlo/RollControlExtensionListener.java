@@ -8,11 +8,11 @@ public class RollControlExtensionListener extends RollControlListener {
 	private SimulationStatus simulationStatus;
 
 	public void setProportionalValue(double pVal) {
-		this.KP = pVal;
+		//this.KP = pVal;
 	}
 
 	public void setIntegralValue(double iVal) {
-		this.KI = iVal;
+		//this.KI = iVal;
 	}
 
 	public void endSimulation(SimulationStatus status, SimulationException exception) {
