@@ -123,7 +123,7 @@ public class Gui extends JFrame {
   private void compute3dData() {
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
 
-    simulationWindow.setBar2Max(8);
+    simulationWindow.setBar2Max(5);
     Set<LatLongBean> clusters = KMeansClustering.calculateClusters(
             filePath, numberOfClusters, simulationWindow::uptickBar2);
 
@@ -194,7 +194,6 @@ public class Gui extends JFrame {
    * @return filepath
    */
   public static String savePointsAsCsv(ArrayList<String> list) {
-    System.out.println("### list: " + Arrays.toString(list.toArray()));
     try {
       File file = new File("points.csv");
       PrintWriter pw = new PrintWriter(file);
