@@ -64,7 +64,7 @@ public class MissionControlSettings {
   private String launchLong;
   private String launchLat;
   private String numSimulations;
-  private HashMap<String, String> errorMap = new HashMap<>(); // hash map storing the errors
+  private ArrayList<String> errorList = new ArrayList<>(); // hash map storing the errors
   private boolean errorsFound = false; // error checker
 
 
@@ -72,11 +72,7 @@ public class MissionControlSettings {
   }
 
   public ArrayList<String> getErrors() {
-    ArrayList<String> e = new ArrayList<>();
-    for (HashMap.Entry<String, String> entry : errorMap.entrySet()) {
-      e.add(entry.getKey() + ": " + entry.getValue());
-    }
-    return e;
+    return errorList;
   }
 
   public boolean hasErrors() {
@@ -87,28 +83,27 @@ public class MissionControlSettings {
     this.errorsFound = errorsFound;
   }
 
-  /**
-   * Adds the invalid value to the errorMap
-   *
-   * @param type  Type of Data
-   * @param value Invalid data value
-   */
-  public void addError(String type, String value) {
-    // set errors found
-    System.out.println(hasErrors());
 
-    setErrorsFound(true);
-    System.out.println(hasErrors());
-    System.out.println("ERROR:" + type + ": " + value);
-    errorMap.put(type, value);
-  }
+  private void isValidCheck(Double min, Double max, String stringValue, String type) {
+    double value = 0;
+    if (!stringValue.equals("")) {
+      try {
+        value = Double.parseDouble(stringValue);
+      } catch (NumberFormatException e) {
+        System.out.println("invalid");
+        setErrorsFound(true);
+        errorList
+          .add("Invalid " + type + " value. Must be a number");
+        return;
+      }
+//       value = Double.parseDouble(stringValue);
+      if (max <= value || value <= min) {
+        setErrorsFound(true);
+        errorList
+          .add("Invalid " + type + " value of " + value + ". Must be between " + min + " and " + max);
 
-  public boolean isBetween(Double min, Double max, String stringValue) {
-    if (stringValue.equals("")) {
-      return true;
+      }
     }
-    double value = Double.parseDouble(stringValue);
-    return ((min <= value && value <= max));
   }
 
   public String getMaxAngle() {
@@ -116,12 +111,8 @@ public class MissionControlSettings {
   }
 
   public void setMaxAngle(final String maxAngle) {
-    System.out.println("max angle: " + maxAngle);
-    if (!isBetween(0.017453292519943295, 0.3490658503988659, maxAngle)) {
-      addError("Max Angle", maxAngle);
-    }
+    isValidCheck(0.017453292519943295, 0.3490658503988659, maxAngle, "Max Angle");
     this.maxAngle = maxAngle;
-
   }
 
   public String getWindDir() {
@@ -145,9 +136,7 @@ public class MissionControlSettings {
   }
 
   public void setWindSpeed(final String windSpeed) {
-    if (!isBetween(0.0, 135.0, windSpeed)) {
-      addError("Wind Speed", windSpeed);
-    }
+    isValidCheck(0.0, 135.0, windSpeed, "Wind Speed");
     this.windSpeed = windSpeed;
 
   }
@@ -173,9 +162,7 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodLength(final String launchRodLength) {
-    if (!isBetween(0.0, 1.0471975511965976, launchRodLength)) {
-      addError("Launch Rod Length", launchRodLength);
-    }
+    isValidCheck(0.0, 1.0471975511965976, launchRodLength, "Launch Rod Length");
     this.launchRodLength = launchRodLength;
 
   }
@@ -193,9 +180,7 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodAngle(final String launchRodAngle) {
-    if (!isBetween(0.0, 1.0471975511965976, launchRodAngle)) {
-      addError("Launch Rod Angle", launchRodAngle);
-    }
+    isValidCheck(0.0, 1.0471975511965976, launchRodAngle, "Launch Rod Angle");
     this.launchRodAngle = launchRodAngle;
   }
 
@@ -229,9 +214,10 @@ public class MissionControlSettings {
 
   public void setNumSimulations(final String numSimulations) {
     if (Integer.parseInt(numSimulations) < 0) {
-      addError("Number of Simulations", numSimulations);
+      setErrorsFound(true);
+      errorList
+        .add("Invalid Number of Simulations value of " + numSimulations + ". Must be between 0 and 2000");
     }
     this.numSimulations = numSimulations;
-
   }
 }
