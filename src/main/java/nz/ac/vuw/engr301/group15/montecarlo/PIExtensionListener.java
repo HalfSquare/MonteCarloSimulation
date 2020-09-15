@@ -1,10 +1,15 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import net.sf.openrocket.rocketcomponent.FinSet;
+import net.sf.openrocket.rocketcomponent.RocketComponent;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
-import net.sf.openrocket.simulation.listeners.example.RollControlListener;
+import net.sf.openrocket.util.MathUtil;
 
-public class RollControlExtensionListener extends RollControlListener {
+import java.util.HashMap;
+import java.util.Iterator;
+
+public class PIExtensionListener extends PIListener {
 	private SimulationStatus simulationStatus;
 
 	public void setProportionalValue(double pVal) {
@@ -21,6 +26,10 @@ public class RollControlExtensionListener extends RollControlListener {
 
 	public double getIntegralValue() {
 		return this.KI;
+	}
+
+	public HashMap<Double, Double> getRocketAngles() {
+		return this.rocketAngle;
 	}
 
 	public void endSimulation(SimulationStatus status, SimulationException exception) {
