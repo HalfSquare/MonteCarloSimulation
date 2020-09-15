@@ -14,6 +14,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Set;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -47,6 +48,8 @@ public class Gui extends JFrame {
 
   public static final int NUM_ATTR = 13;
   private ArrayList<SimulationDuple> data;
+  private Set<LatLongBean> clusters;
+  public int numberOfClusters = 3;
 
 
   public enum GraphType {
@@ -100,16 +103,23 @@ public class Gui extends JFrame {
     simulationWindow.setBar1Max(settingsMissionControl.getNumSimulationsAsInteger());
 
     // Simulation stuff
-    SimulationRunner runner = new SimulationRunner(() -> setState(GRAPH));
-    runner.start();
+    SimulationRunner runner = new SimulationRunner(() -> {
+      generateKMeans();
+      setState(GRAPH);
+    });
 
+    runner.start();
   }
 
+  private void generateKMeans() {
+    String filePath = Gui.savePointsAsCsv(Gui.createList(data));
+    this.clusters = KMeansClustering.calculateClusters(filePath, numberOfClusters);
+  }
 
   private void startGraph() {
     this.add(graphWindow.getRootPanel());
     graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
-    GraphCreator g = new GraphCreator(graphWindow, data);
+    GraphCreator g = new GraphCreator(graphWindow, data, clusters);
     ChartPanel chartPanel = g.createGraph();
 
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));

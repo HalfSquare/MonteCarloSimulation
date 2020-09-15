@@ -44,6 +44,7 @@ import org.jfree.util.ShapeUtilities;
 public class GraphCreator {
   private final GraphWindow graphWindow;
   private final ArrayList<SimulationDuple> data;
+  private final Set<LatLongBean> clusters;
 
   /**
    * Constructor.
@@ -51,9 +52,10 @@ public class GraphCreator {
    * @param graphWindow the graph JFrame
    * @param data        ArrayList of SimulationStatus
    */
-  public GraphCreator(GraphWindow graphWindow, ArrayList<SimulationDuple> data) {
+  public GraphCreator(GraphWindow graphWindow, ArrayList<SimulationDuple> data, Set<LatLongBean> clusters) {
     this.graphWindow = graphWindow;
     this.data = data;
+    this.clusters = clusters;
   }
 
   /**
@@ -196,9 +198,7 @@ public class GraphCreator {
     XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
     double groundAlt = data.get(0).getSimulationStatus().getRocketWorldPosition().getAltitude();
 
-    //Gets cluster points from the data
-    String filePath = Gui.savePointsAsCsv(Gui.createList(data));
-    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
+    // Create series for clusters
     XYZSeries<String> clusterSeries = new XYZSeries<>("Clusters");
 
     //Find closest SimulationDuple to each cluster center
