@@ -271,15 +271,12 @@ public class GraphCreator {
     MonteCarloSimulationExtensionListenerRecordPath simulationListener =
             new MonteCarloSimulationExtensionListenerRecordPath();
 
-    System.out.printf("Seed before: %d\n", simulationOptions.getRandomSeed());
-
     // Run the new simulation
     try {
       simulation.simulate(simulationListener);
     } catch (SimulationException exception) {
       exception.printStackTrace();
     }
-    System.out.printf("Seed after: %d\n", simulationOptions.getRandomSeed());
 
     // Get the points from the simulation
     List<WorldCoordinate> points;

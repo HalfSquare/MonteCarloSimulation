@@ -34,10 +34,13 @@ public class KMeansClustering {
    * @param path csv file
    * @return a set of the centers of the clusters
    */
-  public static Set<LatLongBean> calculateClusters(String path, int clusters, Runnable onFinishStep) {
+  public static Set<LatLongBean> calculateClusters(
+          String path, int clusters, Runnable onFinishStep) {
     boolean runnableNotNull = onFinishStep != null;
 
-    if (runnableNotNull) onFinishStep.run();
+    if (runnableNotNull) {
+      onFinishStep.run();
+    }
 
     // Start spark session
     SparkSession spark = SparkSession
@@ -58,7 +61,9 @@ public class KMeansClustering {
             .schema(cvsSchema)
             .csv(path);
 
-    if (runnableNotNull) onFinishStep.run();
+    if (runnableNotNull) {
+      onFinishStep.run();
+    }
 
     // Convert into k-means readable points
     List<LatLongBean> data2 = new ArrayList<>();
@@ -72,7 +77,9 @@ public class KMeansClustering {
     }
     Dataset<LatLongBean> dataset = spark.createDataset(data2, Encoders.bean(LatLongBean.class));
 
-    if (runnableNotNull) onFinishStep.run();
+    if (runnableNotNull) {
+      onFinishStep.run();
+    }
 
     // Train a k-means model
     KMeans kmeans = new KMeans()
@@ -81,45 +88,23 @@ public class KMeansClustering {
             .setFeaturesCol("value");
     KMeansModel model = kmeans.fit(dataset);
 
-    if (runnableNotNull) onFinishStep.run();
-
-
-    // Make predictions
-    Dataset<Row> predictions = model.transform(dataset);
-
-    if (runnableNotNull) onFinishStep.run();
-
-    // Evaluate clustering by computing Silhouette score
-    ClusteringEvaluator evaluator = new ClusteringEvaluator();
-
-    if (runnableNotNull) onFinishStep.run();
-
-    double silhouette = evaluator
-            .setFeaturesCol("value")
-            .evaluate(predictions);
-    System.out.println("Silhouette with squared euclidean distance = " + silhouette);
-
-    if (runnableNotNull) onFinishStep.run();
+    if (runnableNotNull) {
+      onFinishStep.run();
+    }
 
     // Shows the result.
     Vector[] centers = model.clusterCenters();
-    System.out.println(model.summary().predictions().toString());
-    System.out.println("Cluster Centers: ");
 
     Set<LatLongBean> centersSet = new HashSet<>();
 
-
-
     for (Vector center: centers) {
       centersSet.add(new LatLongBean(center.toArray()[1], center.toArray()[0]));
-      System.out.printf("Lat: %.20f, Long: %.20f\n", center.toArray()[0], center.toArray()[1]);
     }
 
     spark.close();
-    if (runnableNotNull) onFinishStep.run();
-
-    
-
+    if (runnableNotNull) {
+      onFinishStep.run();
+    }
 
     return centersSet;
   }
