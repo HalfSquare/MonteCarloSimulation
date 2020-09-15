@@ -14,12 +14,15 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Set;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+
+import com.orsoncharts.data.xyz.XYZDataset;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
@@ -47,6 +50,9 @@ public class Gui extends JFrame {
 
   public static final int NUM_ATTR = 13;
   private ArrayList<SimulationDuple> data;
+  private Set<LatLongBean> clusters;
+  public int numberOfClusters = 3;
+  private XYZDataset<String> dataset3d;
 
 
   public enum GraphType {
@@ -100,16 +106,27 @@ public class Gui extends JFrame {
     simulationWindow.setBar1Max(settingsMissionControl.getNumSimulationsAsInteger());
 
     // Simulation stuff
-    SimulationRunner runner = new SimulationRunner();
-    runner.start();
+    SimulationRunner runner = new SimulationRunner(() -> {
+      compute3dData();
+      setState(GRAPH);
+    });
 
+    runner.start();
   }
 
+  private void compute3dData() {
+    String filePath = Gui.savePointsAsCsv(Gui.createList(data));
+
+    simulationWindow.setBar2Max(8);
+    this.clusters = KMeansClustering.calculateClusters(filePath, numberOfClusters, simulationWindow::uptickBar2);
+
+    this.dataset3d = GraphCreator.create3DDataset(data, clusters);
+  }
 
   private void startGraph() {
     this.add(graphWindow.getRootPanel());
     graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
-    GraphCreator g = new GraphCreator(graphWindow, data);
+    GraphCreator g = new GraphCreator(graphWindow, data, dataset3d);
     ChartPanel chartPanel = g.createGraph();
 
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
@@ -427,6 +444,15 @@ public class Gui extends JFrame {
 
   class SimulationRunner implements Runnable {
     private Thread thread;
+    private Runnable onFinish;
+
+    SimulationRunner() {
+      this(null);
+    }
+
+    SimulationRunner(Runnable onFinish) {
+      this.onFinish = onFinish;
+    }
 
     /**
      * When an object implementing interface <code>Runnable</code> is used
@@ -457,7 +483,9 @@ public class Gui extends JFrame {
         e.printStackTrace();
       }
 
-      setState(GRAPH);
+      if (onFinish != null) {
+        onFinish.run();
+      }
     }
 
     public void start() {

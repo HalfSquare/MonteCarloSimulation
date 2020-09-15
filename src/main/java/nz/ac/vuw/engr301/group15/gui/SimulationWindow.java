@@ -30,8 +30,16 @@ public class SimulationWindow {
         progressBar1.setValue(progressBar1.getValue() + 1);
     }
 
+    public void uptickBar2() {
+        progressBar2.setValue(progressBar2.getValue() + 1);
+    }
+
     public void setBar1Max(int max) {
         this.progressBar1.setMaximum(max);
+    }
+
+    public void setBar2Max(int max) {
+        this.progressBar2.setMaximum(max);
     }
 
     public void resetBar() {
