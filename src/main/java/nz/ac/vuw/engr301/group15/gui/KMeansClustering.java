@@ -102,6 +102,8 @@ public class KMeansClustering {
       System.out.printf("Lat: %.20f, Long: %.20f\n", center.toArray()[0], center.toArray()[1]);
     }
 
+    spark.close();
+
     return centersSet;
   }
 }
