@@ -49,15 +49,18 @@ public class GraphCreator {
   private final GraphWindow graphWindow;
   private final ArrayList<SimulationDuple> data;
 
+  private final XYZDataset<String> dataset3d;
+
   /**
    * Constructor.
    *
    * @param graphWindow the graph JFrame
    * @param data        ArrayList of SimulationStatus
    */
-  public GraphCreator(GraphWindow graphWindow, ArrayList<SimulationDuple> data) {
+  public GraphCreator(GraphWindow graphWindow, ArrayList<SimulationDuple> data, XYZDataset<String> dataset3d) {
     this.graphWindow = graphWindow;
     this.data = data;
+    this.dataset3d = dataset3d;
   }
 
   /**
@@ -101,7 +104,7 @@ public class GraphCreator {
         break;
       case FLIGHTPATH:
         graphWindow.getGraphPanel().setLayout(new BorderLayout());
-        graphWindow.getGraphPanel().add(create3DGraph(create3DDataset()), BorderLayout.CENTER);
+        graphWindow.getGraphPanel().add(create3DGraph(dataset3d), BorderLayout.CENTER);
         graphWindow.getGraphPanel().validate();
         return new ChartPanel(chart);
       default:
@@ -191,13 +194,13 @@ public class GraphCreator {
    *
    * @return A sample dataset.
    */
-  public XYZDataset<String> create3DDataset() {
+  public static XYZDataset<String> create3DDataset(ArrayList<SimulationDuple> data, Set<LatLongBean> clusters) {
     XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
     double groundAlt = data.get(0).getSimulationStatus().getRocketWorldPosition().getAltitude();
 
     //Gets cluster points from the data
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
-    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
+//    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
     //XYZSeries<String> clusterSeries = new XYZSeries<>("Clusters");
 
     //TESTING: draw every endpoint
@@ -255,7 +258,7 @@ public class GraphCreator {
    * @param simulationStatus the simulation to be recorded
    * @return A list of each coordinate along the way
    */
-  private List<WorldCoordinate> recordFlightpath(SimulationStatus simulationStatus,
+  private static List<WorldCoordinate> recordFlightpath(SimulationStatus simulationStatus,
                                                  SimulationOptions simulationOptions) {
     // Get config and copy it to new options
     Configuration configuration = simulationStatus.getConfiguration();
