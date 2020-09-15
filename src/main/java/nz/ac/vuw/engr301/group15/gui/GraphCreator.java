@@ -5,10 +5,12 @@ import com.orsoncharts.Chart3DFactory;
 import com.orsoncharts.Chart3DPanel;
 import com.orsoncharts.axis.IntegerTickSelector;
 import com.orsoncharts.axis.NumberAxis3D;
+import com.orsoncharts.axis.NumberTickSelector;
 import com.orsoncharts.data.xyz.XYZDataset;
 import com.orsoncharts.data.xyz.XYZSeries;
 import com.orsoncharts.data.xyz.XYZSeriesCollection;
 import com.orsoncharts.graphics3d.Dimension3D;
+import com.orsoncharts.graphics3d.ViewPoint3D;
 import com.orsoncharts.plot.XYZPlot;
 import com.orsoncharts.renderer.xyz.LineXYZRenderer;
 import java.awt.BorderLayout;
@@ -16,6 +18,8 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.text.Format;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -146,46 +150,41 @@ public class GraphCreator {
   }
 
   /**
-   * Returns a panel containing the content for the demo.  This method is
-   * used across all the individual demo applications to allow aggregation
-   * into a single "umbrella" demo (OrsonChartsDemo).
+   * Creates a 3D graph and returns it as a JPanel
    *
-   * @return A panel containing the content for the demo.
+   * @param dataset the dataset
+   * @return A panel containing the 3D chart.
    */
   public static JPanel create3DGraph(XYZDataset<String> dataset) {
-    Chart3D chart = createChart(dataset);
-    return new Chart3DPanel(chart);
-    //chartPanel.zoomToFit(OrsonChartsDemo.DEFAULT_CONTENT_SIZE);
-    //content.add(new DisplayPanel3D(chartPanel));
-    //return content;
-  }
-
-  /**
-   * Makes a 3D chart.
-   *
-   * @param dataset the points to graph
-   * @return the 3D chart
-   */
-  private static Chart3D createChart(XYZDataset<String> dataset) {
     Chart3D chart = Chart3DFactory.createXYZLineChart("Flight paths",
-            "", dataset, "Latitude (?)", "Altitude", "Longitude (?)");
+            "", dataset, "Latitude", "Altitude", "Longitude");
     chart.setChartBoxColor(new Color(255, 255, 255, 128));
     XYZPlot plot = (XYZPlot) chart.getPlot();
-    plot.setDimensions(new Dimension3D(15, 3, 8));
 
     //Customise axes
+    NumberFormat format = NumberFormat.getNumberInstance();
+    format.setMaximumFractionDigits(8);
+
+    NumberAxis3D plotXAxis = (NumberAxis3D) plot.getXAxis();
+    plotXAxis.setTickSelector(new NumberTickSelector());
+    plotXAxis.setTickLabelFormatter(format);
+
+    NumberAxis3D plotYAxis = (NumberAxis3D) plot.getYAxis();
+    plotYAxis.setTickSelector(new NumberTickSelector());
+    format.setMaximumFractionDigits(1);
+    plotXAxis.setTickLabelFormatter(format);
+
     NumberAxis3D plotZAxis = (NumberAxis3D) plot.getZAxis();
-    plotZAxis.setTickSelector(new IntegerTickSelector());
-    //zAxis.setRange(0, 20);
-    //plot.getXAxis().setRange(5, 30);
-    //plot.getYAxis().setRange(0, 100);
+    plotZAxis.setTickSelector(new NumberTickSelector());
+    format.setMaximumFractionDigits(8);
+    plotXAxis.setTickLabelFormatter(format);
 
     //Customise colours
     LineXYZRenderer renderer = new LineXYZRenderer();
-    renderer.setColors(Color.BLUE, Color.RED, Color.GREEN.darker(), Color.MAGENTA);
+    renderer.setColors(Color.BLUE, Color.RED, Color.GREEN.darker(), Color.MAGENTA, Color.BLACK); //TODO change to method that returns a number of nice looking unique colours depending on how many clusters there are (could do this just m,y getting the size of the clusters dataset)
     plot.setRenderer(renderer);
 
-    return chart;
+    return new Chart3DPanel(chart);
   }
 
   /**
@@ -199,13 +198,22 @@ public class GraphCreator {
     XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
     double groundAlt = data.get(0).getSimulationStatus().getRocketWorldPosition().getAltitude();
 
-    // Create series for clusters
-    XYZSeries<String> clusterSeries = new XYZSeries<>("Clusters");
+    //Gets cluster points from the data
+    String filePath = Gui.savePointsAsCsv(Gui.createList(data));
+    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
+    //XYZSeries<String> clusterSeries = new XYZSeries<>("Clusters");
+
+    //TESTING: draw every endpoint
+//    XYZSeries<String> endpointSeries = new XYZSeries<>("Endpoints");
+//    for (SimulationStatus s : SimulationDuple.getStatuses(data)){
+//      WorldCoordinate wc = s.getRocketWorldPosition();
+//      endpointSeries.add(wc.getLatitudeDeg(), wc.getAltitude(), wc.getLongitudeDeg());
+//    }
 
     //Find closest SimulationDuple to each cluster center
     int n = 1;
     for (LatLongBean coord : clusters) {
-      clusterSeries.add(coord.getLatitude(), groundAlt, coord.getLongitude());
+      //clusterSeries.add(coord.getLatitude(), groundAlt, coord.getLongitude());
 
       double smallestDistance = Double.MAX_VALUE;
       SimulationDuple closestPoint = data.get(0);
@@ -218,8 +226,6 @@ public class GraphCreator {
           smallestDistance = distanceBetween;
         }
       }
-
-
 
       //Record flight path
       SimulationStatus sampleSim = closestPoint.getSimulationStatus();
@@ -238,10 +244,10 @@ public class GraphCreator {
         // , c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
       }
       dataset.add(series);
-
     }
 
-    dataset.add(clusterSeries);
+    //dataset.add(clusterSeries);
+    //dataset.add(endpointSeries);
     return dataset;
   }
 
