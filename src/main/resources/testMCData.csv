@@ -1,0 +1,2 @@
+launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat,launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations
+0,0.2,0,0,30,-50,0.018,3,0,0.1,285,1010,10
