@@ -109,11 +109,15 @@ const req = https.request(options, (resp) => {
                             description: [""]
                         };
                     }
-                    let link = downloads[item.name].jar ?? ""
-                    if (link === "") {
-                        link = downloads[item.name] ?? ""
+                    let version = downloads[item.name]
+                    let link = version
+                    if (version && version.hasOwnProperty('jar')) {
+                        link = version["jar"] ?? ""
                     }
-                    let guide = downloads[item.name].guide ?? ""
+                    let guide = ""
+                    if (version && version.hasOwnProperty('guide')) {
+                        guide = version["guide"] ?? ""
+                    }
                     let tag = {
                         "Tag": item.name,
                         "Notes": release.description,
