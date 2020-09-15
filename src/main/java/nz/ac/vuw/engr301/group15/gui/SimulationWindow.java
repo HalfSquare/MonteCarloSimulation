@@ -38,6 +38,10 @@ public class SimulationWindow {
         this.progressBar1.setMaximum(max);
     }
 
+    public void setBar2Max(int max) {
+        this.progressBar2.setMaximum(max);
+    }
+
     public void resetBar() {
         this.progressBar1.setValue(0);
     }
