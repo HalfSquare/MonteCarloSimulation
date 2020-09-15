@@ -11,8 +11,8 @@ import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.startup.Startup2;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class MonteCarloSimulation {
@@ -135,7 +135,7 @@ public class MonteCarloSimulation {
     simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
-    RollControlExtensionListener simulationListener =  new RollControlExtensionListener();
+    PIExtensionListener simulationListener =  new PIExtensionListener();
 
     char[] animationChars = new char[]{'|', '/', '-', '\\'};
     int loadingSpinIndex = 0;
@@ -158,6 +158,7 @@ public class MonteCarloSimulation {
     }
     System.out.println("Simulating: Done!          ");
     System.out.println("Simulations finished");
+    HashMap<Double, Double> rocketAngles = simulationListener.getRocketAngles();
     return simulationData;
   }
 
