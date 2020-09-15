@@ -116,7 +116,9 @@ public class Gui extends JFrame {
 
   private void compute3dData() {
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
-    this.clusters = KMeansClustering.calculateClusters(filePath, numberOfClusters);
+
+    simulationWindow.setBar2Max(8);
+    this.clusters = KMeansClustering.calculateClusters(filePath, numberOfClusters, simulationWindow::uptickBar2);
 
     this.dataset3d = GraphCreator.create3DDataset(data, clusters);
   }
