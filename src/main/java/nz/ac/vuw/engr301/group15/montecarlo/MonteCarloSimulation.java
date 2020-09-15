@@ -159,6 +159,9 @@ public class MonteCarloSimulation {
     System.out.println("Simulating: Done!          ");
     System.out.println("Simulations finished");
     HashMap<Double, Double> rocketAngles = simulationListener.getRocketAngles();
+    //for (double time : rocketAngles.keySet()){
+    //  System.out.println(time + "," + rocketAngles.get(time));
+    //}
     return simulationData;
   }
 
