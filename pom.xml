@@ -17,6 +17,19 @@
 
     <dependencies>
         <!-- OpenStreet View Map (OSV)-->
+        <dependency>
+            <groupId>org.openstreetmap.osmosis</groupId>
+            <artifactId>osmosis-osm-binary</artifactId>
+            <version>0.48.3</version>
+        </dependency>
+        <!-- Helper OSM Depenedency-->
+        <dependency>
+            <groupId>org.mapsforge</groupId>
+            <artifactId>mapsforge-core</artifactId>
+            <version>0.14.0</version>
+        </dependency>
+
+
 
         <!-- junit 5, unit test -->
         <dependency>
