@@ -21,6 +21,8 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+
+import com.orsoncharts.data.xyz.XYZDataset;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
@@ -50,6 +52,7 @@ public class Gui extends JFrame {
   private ArrayList<SimulationDuple> data;
   private Set<LatLongBean> clusters;
   public int numberOfClusters = 3;
+  private XYZDataset<String> dataset3d;
 
 
   public enum GraphType {
@@ -104,22 +107,24 @@ public class Gui extends JFrame {
 
     // Simulation stuff
     SimulationRunner runner = new SimulationRunner(() -> {
-      generateKMeans();
+      compute3dData();
       setState(GRAPH);
     });
 
     runner.start();
   }
 
-  private void generateKMeans() {
+  private void compute3dData() {
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
     this.clusters = KMeansClustering.calculateClusters(filePath, numberOfClusters);
+
+    this.dataset3d = GraphCreator.create3DDataset(data, clusters);
   }
 
   private void startGraph() {
     this.add(graphWindow.getRootPanel());
     graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
-    GraphCreator g = new GraphCreator(graphWindow, data, clusters);
+    GraphCreator g = new GraphCreator(graphWindow, data, dataset3d);
     ChartPanel chartPanel = g.createGraph();
 
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
