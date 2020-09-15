@@ -17,11 +17,6 @@
 
     <dependencies>
         <!-- OpenStreet View Map (OSV)-->
-        <dependency>
-            <groupId>de.westnordost</groupId>
-            <artifactId>osmapi</artifactId>
-            <version>3.7</version>
-        </dependency>
 
         <!-- junit 5, unit test -->
         <dependency>
