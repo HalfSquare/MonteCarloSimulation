@@ -50,7 +50,7 @@ unittest:
   tags:
     - shell
   script:
-    - mvn clean install
+    #- mvn clean install
     - echo "Beginning unit tests"
     - mvn test
   allow_failure: false
