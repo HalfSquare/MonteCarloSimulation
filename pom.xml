@@ -29,7 +29,10 @@
             <groupId>net.sf.openrocket</groupId>
             <artifactId>modified-openrocket</artifactId>
             <version>1.0</version>
+<!--            <systemPath>${project.basedir}/src/main/resources/OpenRocket.jar</systemPath>-->
+<!--            <scope>system</scope>-->
         </dependency>
+
         <!--log4j dependency-->
         <dependency>
             <groupId>log4j</groupId>
@@ -71,7 +74,7 @@
                             <groupId>net.sf.openrocket</groupId>
                             <artifactId>modified-openrocket</artifactId>
                             <version>1.0</version>
-                            <file>${pom.basedir}/src/main/resources/combined.jar</file>
+                            <file>${pom.basedir}/src/main/resources/OpenRocket.jar</file>
                             <packaging>jar</packaging>
                         </configuration>
                         <goals>
