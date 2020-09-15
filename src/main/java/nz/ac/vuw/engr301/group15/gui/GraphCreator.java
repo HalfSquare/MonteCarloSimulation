@@ -200,7 +200,7 @@ public class GraphCreator {
 
     //Gets cluster points from the data
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
-    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
+//    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
     //XYZSeries<String> clusterSeries = new XYZSeries<>("Clusters");
 
     //TESTING: draw every endpoint
