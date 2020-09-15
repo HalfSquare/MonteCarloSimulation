@@ -100,7 +100,7 @@ public class Gui extends JFrame {
     simulationWindow.setBar1Max(settingsMissionControl.getNumSimulationsAsInteger());
 
     // Simulation stuff
-    SimulationRunner runner = new SimulationRunner();
+    SimulationRunner runner = new SimulationRunner(() -> setState(GRAPH));
     runner.start();
 
   }
@@ -427,6 +427,15 @@ public class Gui extends JFrame {
 
   class SimulationRunner implements Runnable {
     private Thread thread;
+    private Runnable onFinish;
+
+    SimulationRunner() {
+      this(null);
+    }
+
+    SimulationRunner(Runnable onFinish) {
+      this.onFinish = onFinish;
+    }
 
     /**
      * When an object implementing interface <code>Runnable</code> is used
@@ -457,7 +466,9 @@ public class Gui extends JFrame {
         e.printStackTrace();
       }
 
-      setState(GRAPH);
+      if (onFinish != null) {
+        onFinish.run();
+      }
     }
 
     public void start() {
