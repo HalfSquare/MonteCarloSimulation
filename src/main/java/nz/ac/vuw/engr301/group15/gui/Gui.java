@@ -543,7 +543,7 @@ public class Gui extends JFrame {
     /**
      * This goes through all the simulation points and adds them to a list of longitude and latitude points
      *
-     * @return
+     * @return the dataset
      */
     private XYDataset createDataset() {
       // Create scatter points
