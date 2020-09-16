@@ -132,15 +132,13 @@ public class Gui extends JFrame {
     graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
     GraphCreator g = new GraphCreator();
     ChartPanel chartPanel = g.createGraph();
-//    g.createGraph();
+
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
     graphWindow.setGraphTypeComboBoxListener(
             e -> setState(GRAPH)); // redraws the graph if combobox was selected
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCSV());
     graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCSV(createList()));
-    //createTable();
-
   }
 
   /**
@@ -230,11 +228,13 @@ public class Gui extends JFrame {
    */
   private void openFileManager() {
     JFileChooser j = new JFileChooser();
+
     // Filter for CSV files only
     FileNameExtensionFilter filter = new FileNameExtensionFilter("CSV files", "csv", "CSV");
     j.setFileFilter(filter);
     j.showSaveDialog(null);
     missionControlFile = j.getSelectedFile();
+
     // If a valid file has been given, parse & load data from the file
     if (j.getSelectedFile() != null) {
       loadMissionControlData(j.getSelectedFile(), true);
@@ -330,6 +330,7 @@ public class Gui extends JFrame {
    */
   private void openFileManagerORK() {
     JFileChooser j = new JFileChooser();
+
     //Filter for ORK files only
     FileNameExtensionFilter filter = new FileNameExtensionFilter("ORK files", "ork", "ORK");
     j.setFileFilter(filter);
@@ -343,7 +344,6 @@ public class Gui extends JFrame {
    * @param chartPanel the chartPanel being saved
    */
   private void saveGraphAsImage(ChartPanel chartPanel) {
-    //Code adapted from https://stackoverflow.com/questions/34836338/how-to-save-current-chart-in-chartpanel-as-png-programmatically#34836396
     try {
       File file = new File("chart.png"); //default filename
       fileChooser.setSelectedFile(file);
