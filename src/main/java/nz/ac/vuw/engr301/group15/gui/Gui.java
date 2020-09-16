@@ -367,36 +367,7 @@ public class Gui extends JFrame {
       throw new Error("IO Exception");
     }
   }
-
-  /**
-   * Table containing all longitude and latitude data points
-   * Uncomment if you wish to view it. Additionally, you should go to GraphWindow.form
-   * and create a new JTable called simulationTable after double cliking on the centre of the
-   * page
-   */
-  private void createTable() {
-    String[][] pointArray = new String[data.size()][2];
-    String[] columnNames = {"Longitude", "Latitude"};
-
-    //reading the points into the List
-    for (int i = 0; i < data.size(); i++) {
-      SimulationStatus longAndLat = data.get(i);
-      WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-      double x = landingPos.getLongitudeDeg();
-      double y = landingPos.getLatitudeDeg();
-      pointArray[i][0] = String.valueOf(x);
-      pointArray[i][1] = String.valueOf(y);
-    }
-
-    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames) {
-      @Override
-      public boolean isCellEditable(int row, int column) {
-        return false;
-      }
-    };
-    graphWindow.getSimulationTable().setModel(tableModel);
-  }
-
+  
   private void setState(String state) {
     settingsWindow.setVisible(false);
     simulationWindow.setVisible(false);
