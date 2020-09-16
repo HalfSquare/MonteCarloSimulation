@@ -16,32 +16,32 @@ import java.io.InputStream;
  */
 public class OpenRocketHelper {
 
-    public OpenRocketHelper() {
-    }
+  public OpenRocketHelper() {
+  }
 
-    /**
-     * Load .ork document.
-     *
-     * @param fileName  Name of file to load
-     */
-    public OpenRocketDocument loadORDocument(InputStream rocketFile) throws RocketLoadException {
-        GeneralRocketLoader gen = new GeneralRocketLoader();
-        return gen.load(rocketFile);
-    }
+  /**
+   * Load .ork document.
+   *
+   * @param fileName Name of file to load
+   */
+  public OpenRocketDocument loadORDocument(InputStream rocketFile) throws RocketLoadException {
+    GeneralRocketLoader gen = new GeneralRocketLoader();
+    return gen.load(rocketFile);
+  }
 
-    /**
-     * Runs a single simulation.
-     *
-     * @param simulation    Simulation object to run
-     * @param listener      Listener to add to simulation
-     */
-    public void runSimulation(Simulation simulation, AbstractSimulationListener listener) {
-        simulation.getOptions().randomizeSeed();
-        try {
-            simulation.simulate(listener);
-        } catch (SimulationException exception) {
-            exception.printStackTrace();
-        }
+  /**
+   * Runs a single simulation.
+   *
+   * @param simulation Simulation object to run
+   * @param listener   Listener to add to simulation
+   */
+  public void runSimulation(Simulation simulation, AbstractSimulationListener listener) {
+    simulation.getOptions().randomizeSeed();
+    try {
+      simulation.simulate(listener);
+    } catch (SimulationException exception) {
+      exception.printStackTrace();
     }
+  }
 
 }
