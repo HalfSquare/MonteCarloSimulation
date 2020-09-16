@@ -80,13 +80,13 @@ public class Gui extends JFrame {
       settingsWindow.doUiStuff();
       simulationWindow.doUiStuff();
       graphWindow.doUiStuff();
-
       settingsWindow.setNumSim(0);
 
       setState(SETTINGS);
 
       this.setVisible(true);
       this.setVisible(true);
+
     } else {
       loadMissionControlData(file, false);
       SimulationRunner simulationRunner = new SimulationRunner();
@@ -95,6 +95,9 @@ public class Gui extends JFrame {
     }
   }
 
+  /**
+   * This method setups the settings
+   */
   private void startSettings() {
     settingsWindow.setImportCsvButton(e -> openFileManager());
     settingsWindow.setImportOrkButton(e -> openFileManagerORK());
@@ -102,17 +105,21 @@ public class Gui extends JFrame {
     this.add(settingsWindow.getRootPanel());
   }
 
+  /**
+   * This method setups the simulation window
+   */
   private void startSimulation() {
     // Simulation Window
     this.add(simulationWindow.getRootPanel());
     simulationWindow.resetBar();
     simulationWindow.setBar1Max(Integer.parseInt(settingsMissionControl.getNumSimulations()));
 
-    // Simulation stuff
+    // Simulation runs
     SimulationRunner runner = new SimulationRunner();
     runner.start();
 
   }
+
 
   public SettingsWindow getSettingsWindow() {
     return settingsWindow;
@@ -126,6 +133,9 @@ public class Gui extends JFrame {
     return graphWindow;
   }
 
+  /**
+   * This method starts the graph
+   */
   private void startGraph() {
     this.add(graphWindow.getRootPanel());
     graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
