@@ -16,12 +16,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.tomtom.speedtools</groupId>
-            <artifactId>geo</artifactId>
-            <version>3.2.21</version>
-        </dependency>
-
         <!-- OpenStreet View Map (OSV)-->
         <dependency>
             <groupId>org.openstreetmap.osmosis</groupId>
