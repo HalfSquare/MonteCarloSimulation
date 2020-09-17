@@ -30,14 +30,16 @@ public class Map{
    */
   public String createURL(){
     String URL = "http://api.tomtom.com/map/1/staticimage?" +
-            "key" + API_Key + "&" +
-            "zoom" + zoom + "&" +
-            "" +
-            "" +
-            "" +
-            "" +
-            "" + ""
-
+            "key=" + API_Key + "&" +
+            "zoom=" + zoom + "&" +
+            "center=" + cenLeft + "," + cenRight +
+            "format=" + format + "&" +
+            "layer=" + layer + "&" +
+            "style=" + style + "&" +
+            "width=" + width + "&" +
+            "height=" + height + "&" +
+            "view=" + view + "&" +
+            "language=" + language;
     return URL;
   }
 }
