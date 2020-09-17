@@ -3,12 +3,7 @@ package nz.ac.vuw.engr301.group15.gui;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.Objects;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.*;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -25,6 +20,7 @@ public class GraphWindow {
   private JButton saveImageToFileButton;
   private JButton csvExportButton;
   private JButton savePointsAsCSVButton;
+  private JButton viewOnMapButton;
 
   private JTable simulationTable;
 
@@ -81,6 +77,10 @@ public class GraphWindow {
 
   public void setSavePointsAsCSVButton(ActionListener listener) {
     this.savePointsAsCSVButton.addActionListener(listener);
+  }
+
+  public void setViewOnMapButton(ActionListener listener){
+    this.viewOnMapButton.addActionListener(listener);
   }
 
   public void doUiStuff() {
