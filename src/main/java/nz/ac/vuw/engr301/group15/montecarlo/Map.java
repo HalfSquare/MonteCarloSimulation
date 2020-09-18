@@ -1,12 +1,16 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
 
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -61,13 +65,18 @@ public class Map extends JPanel{
     URL url = createURL();
     HttpURLConnection con = (HttpURLConnection) url.openConnection();
     con.setRequestMethod("GET");
+    con.setDoOutput(true);
 
-    BufferedImage image = ImageIO.read(url);
-    if(image != null) {
-      return image;
-    } else {
-      throw new RuntimeException("Image is null");
-    }
+    System.out.println("status " + con.getResponseCode());
+
+      BufferedImage image = ImageIO.read(con.getInputStream());
+      con.disconnect();
+      if(image != null) {
+        System.out.println(image.toString());
+        return image;
+      } else {
+        throw new RuntimeException("Image is null");
+      }
   }
 
 
@@ -82,11 +91,6 @@ public class Map extends JPanel{
   public static void main(String[] args){
     try {
       createMap();
-//      Map m = new Map();
-//      JFrame f = new JFrame();
-////      f.add(m);
-//      f.setSize(400,400);
-//      f.setVisible(true);
     } catch (IOException e) {
       System.out.println("Didn't work");
       e.printStackTrace();
