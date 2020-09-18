@@ -1,11 +1,18 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.simulation.listeners.AbstractSimulationListener;
 
 public class MonteCarloSimulationExtensionListener extends AbstractSimulationListener {
   private SimulationStatus simulationStatus;
+  private SimulationOptions simulationOptions;
+
+  public MonteCarloSimulationExtensionListener(SimulationOptions simulationOptions) {
+    super();
+    this.simulationOptions = simulationOptions;
+  }
 
   @Override
   public void endSimulation(SimulationStatus status, SimulationException exception) {
@@ -21,11 +28,16 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
     simulationStatus = status;
   }
 
-  public SimulationStatus getSimulation() {
+  /**
+   * Gets a simulationDuple.
+   *
+   * @return simulationDuple containing SimulationOptions and simulationStatus of the endpoint.
+   */
+  public SimulationDuple getSimulation() {
     if (simulationStatus == null) {
       return null;
     } else {
-      return simulationStatus;
+      return new SimulationDuple(simulationOptions.clone(), simulationStatus);
     }
   }
 
