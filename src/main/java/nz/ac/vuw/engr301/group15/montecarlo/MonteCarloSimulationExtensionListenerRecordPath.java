@@ -1,18 +1,15 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
-import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.simulation.listeners.AbstractSimulationListener;
+import net.sf.openrocket.util.ArrayList;
+import net.sf.openrocket.util.WorldCoordinate;
 
-public class MonteCarloSimulationExtensionListener extends AbstractSimulationListener {
+public class MonteCarloSimulationExtensionListenerRecordPath extends AbstractSimulationListener {
   private SimulationStatus simulationStatus;
-  private SimulationOptions simulationOptions;
 
-  public MonteCarloSimulationExtensionListener(SimulationOptions simulationOptions) {
-    super();
-    this.simulationOptions = simulationOptions;
-  }
+  private ArrayList<WorldCoordinate> pathPoints = new ArrayList<>();
 
   @Override
   public void endSimulation(SimulationStatus status, SimulationException exception) {
@@ -28,20 +25,20 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
     simulationStatus = status;
   }
 
-  /**
-   * Gets a simulationDuple.
-   *
-   * @return simulationDuple containing SimulationOptions and simulationStatus of the endpoint.
-   */
-  public SimulationDuple getSimulation() {
-    if (simulationStatus == null) {
-      return null;
-    } else {
-      return new SimulationDuple(simulationOptions.clone(), simulationStatus);
-    }
+  @Override
+  public void postStep(SimulationStatus status) throws SimulationException {
+    pathPoints.add(status.getRocketWorldPosition());
   }
 
   public void reset() {
     simulationStatus = null;
+  }
+
+  public ArrayList<WorldCoordinate> getPathPoints() {
+    return pathPoints;
+  }
+
+  public void setPathPoints(ArrayList<WorldCoordinate> pathPoints) {
+    this.pathPoints = pathPoints;
   }
 }
