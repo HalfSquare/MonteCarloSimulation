@@ -46,11 +46,22 @@ public class Map{
             "view=" + view + "&" +
             "language=" + language;
 
+    System.out.println("URL IS: " + urlString );
     return new URL(urlString);
   }
 
-  public void createMap(){
+  public static void createMap() throws IOException {
+    URL url = createURL();
+    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+    con.setRequestMethod("GET");
+  }
 
+  public static void main(String[] args){
+    try {
+      createMap();
+    } catch (IOException e) {
+      System.out.println("Didn't work");
+      e.printStackTrace();
+    }
   }
 }
-
