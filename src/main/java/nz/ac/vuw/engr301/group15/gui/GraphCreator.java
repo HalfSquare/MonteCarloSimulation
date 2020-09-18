@@ -68,7 +68,7 @@ public class GraphCreator {
    *
    * @return created graph in ChartPanel form
    */
-  public ChartPanel createGraph() {
+  public ChartPanel createGraph(int numberOfClusters) {
 
     //TODO: major rewriting needed
     Gui.GraphType graphType;
@@ -104,7 +104,7 @@ public class GraphCreator {
         break;
       case FLIGHTPATH:
         graphWindow.getGraphPanel().setLayout(new BorderLayout());
-        graphWindow.getGraphPanel().add(create3DGraph(dataset3d), BorderLayout.CENTER);
+        graphWindow.getGraphPanel().add(create3DGraph(dataset3d, numberOfClusters), BorderLayout.CENTER);
         graphWindow.getGraphPanel().validate();
         return new ChartPanel(chart);
       default:
@@ -155,7 +155,7 @@ public class GraphCreator {
    * @param dataset the dataset
    * @return A panel containing the 3D chart.
    */
-  public static JPanel create3DGraph(XYZDataset<String> dataset) {
+  public static JPanel create3DGraph(XYZDataset<String> dataset, int numberOfClusters) {
     Chart3D chart = Chart3DFactory.createXYZLineChart("Flight paths",
             "", dataset, "Latitude", "Altitude", "Longitude");
     chart.setChartBoxColor(new Color(255, 255, 255, 128));
@@ -181,7 +181,7 @@ public class GraphCreator {
 
     //Customise colours
     LineXYZRenderer renderer = new LineXYZRenderer();
-    renderer.setColors(Color.BLUE, Color.RED, Color.GREEN.darker(), Color.MAGENTA, Color.BLACK); //TODO change to method that returns a number of nice looking unique colours depending on how many clusters there are (could do this just m,y getting the size of the clusters dataset)
+    renderer.setColors(generateColours(numberOfClusters));
     plot.setRenderer(renderer);
 
     return new Chart3DPanel(chart);
@@ -340,5 +340,21 @@ public class GraphCreator {
     WorldCoordinate secondCoord =
             new WorldCoordinate(second.getLatitude(), second.getLongitude(), 0);
     return distance(firstCoord, secondCoord);
+  }
+
+  /**
+   * Creates a list of unique colours
+   *
+   * @param num the number of colours to generate
+   * @return list of unique Color objects
+   */
+  public static Color[] generateColours(int num){
+    //From https://stackoverflow.com/questions/223971/generating-spectrum-color-palettes
+    Color[] cols = new Color[num];
+    for(int i = 0; i < num; i++)
+    {
+      cols[i] = Color.getHSBColor((float) i / (float) num, 0.85f, 1.0f);
+    }
+    return cols;
   }
 }
