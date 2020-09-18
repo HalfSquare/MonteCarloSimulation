@@ -92,7 +92,7 @@ public class Gui extends JFrame {
         simulationWindow.doUiStuff();
         graphWindow.doUiStuff();
 
-        settingsWindow.setNumSim(0);
+        settingsWindow.setNumSim("0");
 
         setState(SETTINGS);
 
@@ -282,13 +282,21 @@ public class Gui extends JFrame {
         switch (name){
 			    case "numSimulations":
 			      settings.setNumSimulations(value);
-			      if (show){
-			        if (Integer.parseInt(value) > 0){
-                settingsWindow.setNumSim(Integer.parseInt(value));
-              }
-			        else{
-                JOptionPane.showMessageDialog(null, "Enter a simulation number larger than 0", "Following error found", JOptionPane.ERROR_MESSAGE);
 
+            if (Integer.parseInt(value) > 0){
+              if (show){
+                settingsWindow.setNumSim(value);
+              }
+            }
+            else{
+              if (show){
+                settingsMissionControl.setErrorsFound(true);
+                JOptionPane.showMessageDialog(null, "Enter a simulation number larger than 0", "Following error found", JOptionPane.ERROR_MESSAGE);
+              }
+              else{
+                settingsMissionControl.setErrorsFound(true);
+                System.out.print("ERROR: Invalid simulation number.");
+                settingsWindow.setNumSim("0");
               }
             }
 				    break;
@@ -332,6 +340,7 @@ public class Gui extends JFrame {
       }
       // Copy settings to the public bean
       settingsMissionControl = settings;
+      System.out.println("setting"+settingsMissionControl);
 
       if (show) {
         settingsWindow.setData(settings);
@@ -428,29 +437,18 @@ public class Gui extends JFrame {
             startSettings();
             settingsWindow.setVisible(true);
         } else if (SIMULATION.equals(state)) {
-          // og code
-//          settingsMissionControl = settingsWindow.getSettings();
-//          startSimulation();
-//          simulationWindow.setVisible(true);
-
-          System.out.println("error value: " + settingsWindow.getSettings().hasErrors());
-
           // has errors so dont allow
           if (settingsWindow.getSettings().hasErrors()){
-            System.out.println("has errors");
             // Get simulation settings from the GUI
             settingsWindow.setVisible(true);
             // creates a list of errors and outputs onto the screen
-
             JList errorsList = new JList(settingsWindow.getSettings().getErrors().toArray(new String[0]));
             JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
-            // TODO need to add feedback to the errors
           }
           else{
             settingsMissionControl = settingsWindow.getSettings();
             startSimulation();
             simulationWindow.setVisible(true);
-
           }
 
         } else if (GRAPH.equals(state)) {
@@ -522,46 +520,52 @@ public class Gui extends JFrame {
                 ClassLoader classLoader = this.getClass().getClassLoader();
                 InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
                 if (show){
-                  if (!settingsMissionControl.hasErrors()){
+                  if (settingsMissionControl.hasErrors()) {
+                    JList errorsList = new JList(settingsMissionControl.getErrors().toArray(new String[0]));
+                    JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
+                    return;
+                  } else {
                     System.out.println("running");
                     data = mcs.runSimulations(rocketFile, settingsMissionControl);
                   }
-                  else{
-                    JList errorsList = new JList(settingsMissionControl.getErrors().toArray(new String[0]));
-                    JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
-                    System.out.println("NOT RUNNING THERES ERRORS");
-                  }
                 }
                 else {
-                  System.out.println("Simulations started");
-                  if (!settingsMissionControl.hasErrors()){
+                  if (settingsMissionControl.hasErrors()) {
+                    System.out.println("Following errors found:");
+                    System.out.println(settingsMissionControl.getErrors());
+                    System.out.println("Simulation stopped");
+                    return;
+                  } else {
+                    System.out.println("running");
                     data = mcs.runSimulations(rocketFile, settingsMissionControl);
                     savePointsAsCSV(createList());
                     System.exit(0);
-                  }
-                  else{
-                    System.out.println("NOT RUNNING THERES ERRORS");
                   }
                 }
               }
               else {
                 InputStream rocketFile = new FileInputStream(rocketModelFile);
                 if (show){
-                  if (!settingsMissionControl.hasErrors()) {
+                  if (settingsMissionControl.hasErrors()) {
+                    JList errorsList = new JList(settingsMissionControl.getErrors().toArray(new String[0]));
+                    JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
+                    return;
+                  } else {
+                    System.out.println("running");
                     data = mcs.runSimulations(rocketFile, settingsMissionControl);
-                  }
-                  else{
-                    System.out.println("NOT RUNNIN");
                   }
                 }
                 else {
-                  if (!settingsMissionControl.hasErrors()) {
+                  if (settingsMissionControl.hasErrors()) {
+                    System.out.println("Following errors found:");
+                    System.out.println(settingsMissionControl.getErrors());
+                    System.out.println("Simulation stopped");
+                    return;
+                  } else {
+                    System.out.println("running");
                     data = mcs.runSimulations(rocketFile, settingsMissionControl);
                     savePointsAsCSV(createList());
                     System.exit(0);
-                  }
-                  else{
-                    System.out.println("NOT RUNNING");
                   }
                 }
               }

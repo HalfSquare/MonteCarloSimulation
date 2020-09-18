@@ -18,10 +18,10 @@ import java.util.HashMap;
  * <p>
  * Wind Turbulence: wind turbulence intensity of launch site, used to calculate wind speed deviation
  * (average * turbulence). Percentage value, 100% = 2.0 m/s standard deviation, 10% = 0.2 m/s
- * standard deviation - however should be handed to OpenRocket as a decimal.
+ * standard deviation - however should be handed to OpenRocket as a decimal. Min = 0, Max = 2.0
  * <p>
- * Wind Speed: average wind speed of launch site, measured in m/s. Min value = 0.0, Max value =
- * 135.
+ * Wind Speed: average wind speed of launch site, measured in m/s. Min value = 0.0, Max value = 8.8
+ * (this value is from NZ Rocketry Association)
  * <p>
  * Launch Temperature: temperature of the launch site. Read in as a Celcius value, should be
  * converted to kelvin before handing to OpenRocket.
@@ -84,26 +84,20 @@ public class MissionControlSettings {
   }
 
 
-  private void isValidCheck(Double min, Double max, String stringValue, String type) {
+  private boolean isValidCheck(String stringValue, String type) {
     double value = 0;
     if (!stringValue.equals("")) {
       try {
         value = Double.parseDouble(stringValue);
+        return true;
       } catch (NumberFormatException e) {
-        System.out.println("invalid");
         setErrorsFound(true);
         errorList
-          .add("Invalid " + type + " value. Must be a number");
-        return;
-      }
-//       value = Double.parseDouble(stringValue);
-      if (max <= value || value <= min) {
-        setErrorsFound(true);
-        errorList
-          .add("Invalid " + type + " value of " + value + ". Must be between " + min + " and " + max);
-
+          .add("Invalid " + type + " value: " + stringValue + ". Must be a valid number");
+        return false;
       }
     }
+    return true;
   }
 
   public String getMaxAngle() {
@@ -111,8 +105,11 @@ public class MissionControlSettings {
   }
 
   public void setMaxAngle(final String maxAngle) {
-    isValidCheck(0.017453292519943295, 0.3490658503988659, maxAngle, "Max Angle");
-    this.maxAngle = maxAngle;
+    if (isValidCheck(maxAngle, "Max Angle")) {
+      this.maxAngle = maxAngle;
+    } else {
+      this.maxAngle = "";
+    }
   }
 
   public String getWindDir() {
@@ -120,7 +117,11 @@ public class MissionControlSettings {
   }
 
   public void setWindDir(final String windDir) {
-    this.windDir = windDir;
+    if (isValidCheck(windDir, "Wind Dir")) {
+      this.windDir = windDir;
+    } else {
+      this.windDir = "";
+    }
   }
 
   public String getWindTurbulence() {
@@ -128,6 +129,7 @@ public class MissionControlSettings {
   }
 
   public void setWindTurbulence(final String windTurbulence) {
+    isValidCheck(windTurbulence, "Wind Turbulence");
     this.windTurbulence = windTurbulence;
   }
 
@@ -136,8 +138,11 @@ public class MissionControlSettings {
   }
 
   public void setWindSpeed(final String windSpeed) {
-    isValidCheck(0.0, 135.0, windSpeed, "Wind Speed");
-    this.windSpeed = windSpeed;
+    if (isValidCheck(windSpeed, "Wind Speed")) {
+      this.windSpeed = windSpeed;
+    } else {
+      this.windSpeed = "";
+    }
 
   }
 
@@ -146,7 +151,11 @@ public class MissionControlSettings {
   }
 
   public void setLaunchTemp(final String launchTemp) {
-    this.launchTemp = launchTemp;
+    if (isValidCheck(launchTemp, "Launch Temp")) {
+      this.launchTemp = launchTemp;
+    } else {
+      this.launchTemp = "";
+    }
   }
 
   public String getLaunchAirPressure() {
@@ -154,7 +163,10 @@ public class MissionControlSettings {
   }
 
   public void setLaunchAirPressure(final String launchAirPressure) {
-    this.launchAirPressure = launchAirPressure;
+    if (isValidCheck(launchAirPressure, "Launch Air Pressure")) {
+      this.launchAirPressure = launchAirPressure;
+    }
+    this.launchAirPressure = "";
   }
 
   public String getLaunchRodLength() {
@@ -162,9 +174,11 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodLength(final String launchRodLength) {
-    isValidCheck(0.0, 1.0471975511965976, launchRodLength, "Launch Rod Length");
-    this.launchRodLength = launchRodLength;
-
+    if (isValidCheck(launchRodLength, "Launch Rod Length")) {
+      this.launchRodLength = launchRodLength;
+    } else {
+      this.launchRodLength = "";
+    }
   }
 
   public String getLaunchRodDir() {
@@ -172,7 +186,11 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodDir(final String launchRodDir) {
-    this.launchRodDir = launchRodDir;
+    if (isValidCheck(launchRodDir, "Launch Rod Dir")) {
+      this.launchRodDir = launchRodDir;
+    } else {
+      this.launchRodDir = "";
+    }
   }
 
   public String getLaunchRodAngle() {
@@ -180,8 +198,11 @@ public class MissionControlSettings {
   }
 
   public void setLaunchRodAngle(final String launchRodAngle) {
-    isValidCheck(0.0, 1.0471975511965976, launchRodAngle, "Launch Rod Angle");
-    this.launchRodAngle = launchRodAngle;
+    if (isValidCheck(launchRodAngle, "Launch Rod Angle")) {
+      this.launchRodAngle = launchRodAngle;
+    } else {
+      this.launchRodAngle = "";
+    }
   }
 
   public String getLaunchAlt() {
@@ -189,7 +210,11 @@ public class MissionControlSettings {
   }
 
   public void setLaunchAlt(final String launchAlt) {
-    this.launchAlt = launchAlt;
+    if (isValidCheck(launchAlt, "Launch Alt")) {
+      this.launchAlt = launchAlt;
+    } else {
+      this.launchAlt = "";
+    }
   }
 
   public String getLaunchLong() {
@@ -197,7 +222,11 @@ public class MissionControlSettings {
   }
 
   public void setLaunchLong(final String launchLong) {
-    this.launchLong = launchLong;
+    if (isValidCheck(launchLong, "Launch Long")) {
+      this.launchLong = launchLong;
+    } else {
+      this.launchLong = "";
+    }
   }
 
   public String getLaunchLat() {
@@ -205,7 +234,11 @@ public class MissionControlSettings {
   }
 
   public void setLaunchLat(final String launchLat) {
-    this.launchLat = launchLat;
+    if (isValidCheck(launchLat, "Launch Lat")) {
+      this.launchLat = launchLat;
+    } else {
+      this.launchLat = "";
+    }
   }
 
   public String getNumSimulations() {
@@ -213,10 +246,15 @@ public class MissionControlSettings {
   }
 
   public void setNumSimulations(final String numSimulations) {
-    if (Integer.parseInt(numSimulations) < 0) {
+
+    int val = 0;
+    try {
+      val = Integer.parseInt(numSimulations);
+    } catch (NumberFormatException e) {
       setErrorsFound(true);
       errorList
-        .add("Invalid Number of Simulations value of " + numSimulations + ". Must be between 0 and 2000");
+        .add("Invalid number of simulation value: " + numSimulations + ". Must be a number");
+      return;
     }
     this.numSimulations = numSimulations;
   }
