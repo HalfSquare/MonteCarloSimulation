@@ -74,7 +74,7 @@ public class TestMissionControlData {
 	}
 
 	// Test write settings method is correct
-	@Test
+	/*@Test
 	public void Test5(){
 		try {
 			Gui gui = new Gui(false, new File("src/test/java/nz/ac/vuw/engr301/group15/gui/good.csv"));
@@ -107,6 +107,6 @@ public class TestMissionControlData {
 		} catch (Exception e){
 			fail();
 		}
-	}
+	}*/
 
 }
