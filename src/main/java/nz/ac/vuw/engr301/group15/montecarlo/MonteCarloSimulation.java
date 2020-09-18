@@ -6,7 +6,6 @@ import java.util.Random;
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
 import net.sf.openrocket.file.RocketLoadException;
-import net.sf.openrocket.rocketcomponent.Rocket;
 import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.startup.Startup2;
@@ -78,7 +77,7 @@ public class MonteCarloSimulation {
     OpenRocketHelper helper = new OpenRocketHelper();
 
     // Opens open rocket document
-    OpenRocketDocument document = helper.loadORDocument(file);
+    OpenRocketDocument document = helper.loadOrDocument(file);
 
     // Gets first simulation from the ork file
     Simulation simulation = document.getSimulation(0);
@@ -206,6 +205,7 @@ public class MonteCarloSimulation {
 
   /**
    * For testing purposes.
+   *
    * @param args args
    */
   public static void main(String[] args) {

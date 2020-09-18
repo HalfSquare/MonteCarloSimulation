@@ -7,37 +7,42 @@ import net.sf.openrocket.simulation.listeners.AbstractSimulationListener;
 import net.sf.openrocket.util.WorldCoordinate;
 
 public class MonteCarloSimulationExtensionListener extends AbstractSimulationListener {
-    private SimulationStatus simulationStatus;
-    private SimulationOptions simulationOptions;
+  private SimulationStatus simulationStatus;
+  private SimulationOptions simulationOptions;
 
-    public MonteCarloSimulationExtensionListener (SimulationOptions simulationOptions) {
-        super();
-        this.simulationOptions = simulationOptions;
+  public MonteCarloSimulationExtensionListener(SimulationOptions simulationOptions) {
+    super();
+    this.simulationOptions = simulationOptions;
+  }
+
+  @Override
+  public void endSimulation(SimulationStatus status, SimulationException exception) {
+
+    // Prints landing position and launch site position after simulation has run
+    //        WorldCoordinate landingPos = status.getRocketWorldPosition();
+    //        WorldCoordinate launchPos = status.getSimulationConditions().getLaunchSite();
+    //        System.out.println("Landing position: " + landingPos);
+    //        System.out.println("Launch position: " + launchPos);
+
+    // Latitude Difference
+    //        System.out.println(landingPos.getLatitudeDeg() - launchPos.getLatitudeDeg());
+    simulationStatus = status;
+  }
+
+  /**
+   * Gets a simulationDuple.
+   *
+   * @return simulationDuple containing SimulationOptions and simulationStatus of the endpoint.
+   */
+  public SimulationDuple getSimulation() {
+    if (simulationStatus == null) {
+      return null;
+    } else {
+      return new SimulationDuple(simulationOptions.clone(), simulationStatus);
     }
+  }
 
-    @Override
-    public void endSimulation(SimulationStatus status, SimulationException exception) {
-
-        // Prints landing position and launch site position after simulation has run
-//        WorldCoordinate landingPos = status.getRocketWorldPosition();
-//        WorldCoordinate launchPos = status.getSimulationConditions().getLaunchSite();
-//        System.out.println("Landing position: " + landingPos);
-//        System.out.println("Launch position: " + launchPos);
-
-        // Latitude Difference
-//        System.out.println(landingPos.getLatitudeDeg() - launchPos.getLatitudeDeg());
-        simulationStatus = status;
-    }
-
-    public SimulationDuple getSimulation() {
-        if (simulationStatus == null) {
-            return null;
-        } else {
-            return new SimulationDuple(simulationOptions.clone(), simulationStatus);
-        }
-    }
-
-    public void reset() {
-        simulationStatus = null;
-    }
+  public void reset() {
+    simulationStatus = null;
+  }
 }
