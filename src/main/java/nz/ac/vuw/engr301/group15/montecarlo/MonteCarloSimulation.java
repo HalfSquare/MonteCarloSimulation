@@ -1,6 +1,5 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
-import java.io.InputStream;
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
 import net.sf.openrocket.file.RocketLoadException;
@@ -11,6 +10,7 @@ import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.startup.Startup2;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
@@ -70,27 +70,27 @@ public class MonteCarloSimulation {
     simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
     // Set base mission control settings to simulation options
-		simulationOptions.setLaunchRodAngle(launchRodAngle);
-		simulationOptions.setLaunchRodLength(launchRodLength);
-		simulationOptions.setLaunchRodDirection(launchRodDir);
-		simulationOptions.setLaunchAltitude(launchAlt);
-		simulationOptions.setLaunchLatitude(launchLat);
-		simulationOptions.setLaunchLongitude(launchLong);
-		simulationOptions.setMaximumStepAngle(maxAngle);
-		simulationOptions.setWindSpeedAverage(windSpeed);
-		simulationOptions.setWindTurbulenceIntensity(windTurb);
+    simulationOptions.setLaunchRodAngle(launchRodAngle);
+    simulationOptions.setLaunchRodLength(launchRodLength);
+    simulationOptions.setLaunchRodDirection(launchRodDir);
+    simulationOptions.setLaunchAltitude(launchAlt);
+    simulationOptions.setLaunchLatitude(launchLat);
+    simulationOptions.setLaunchLongitude(launchLong);
+    simulationOptions.setMaximumStepAngle(maxAngle);
+    simulationOptions.setWindSpeedAverage(windSpeed);
+    simulationOptions.setWindTurbulenceIntensity(windTurb);
     simulationOptions.setLaunchTemperature(launchTemp);
     simulationOptions.setLaunchPressure(launchAirPres);
 
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
-    MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
+    MonteCarloSimulationExtensionListener simulationListener = new MonteCarloSimulationExtensionListener();
 
     char[] animationChars = new char[]{'|', '/', '-', '\\'};
     int loadingSpinIndex = 0;
 
     for (int simNum = 1; simNum <= numOfSimulations; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
-			//simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
+      //simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
       simulationOptions.setWindSpeedAverage((rand.nextGaussian() * WIND_SPEED_SIGMA) + windSpeed);
       simulationOptions.setWindTurbulenceIntensity((rand.nextGaussian() * WIND_TURB_SIGMA) + windTurb);
       simulationOptions.setLaunchTemperature((rand.nextGaussian() * LAUNCH_TEMP_SIGMA) + launchTemp);
@@ -102,7 +102,7 @@ public class MonteCarloSimulation {
       while (simulationListener.getSimulation() == null) {
         System.out.println("waiting");
       }
-      String progress = String.format("%.2f", (simNum/numOfSimulations)*100.0);
+      String progress = String.format("%.2f", (simNum / numOfSimulations) * 100.0);
       System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
       loadingSpinIndex = loadingSpinIndex == 3 ? 0 : loadingSpinIndex + 1;
       simulationData.add(simulationListener.getSimulation());
