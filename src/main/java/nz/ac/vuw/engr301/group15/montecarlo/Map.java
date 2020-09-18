@@ -1,11 +1,15 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-public class Map{
+public class Map extends JPanel{
   static String API_Key = "KrGZcmPxmu4tNuWChwMteQNlNADrcByh";
   static int zoom = 9;
   static double cenLeft = 13.567893;
@@ -50,15 +54,34 @@ public class Map{
     return new URL(urlString);
   }
 
-  public static void createMap() throws IOException {
+  public static Image createMap() throws IOException {
     URL url = createURL();
     HttpURLConnection con = (HttpURLConnection) url.openConnection();
     con.setRequestMethod("GET");
+
+    //save map to display locally later
+    Image map = (Image)con.getContent();
+    return map;
+  }
+
+  private BufferedImage image;
+
+  public Map(){
+    try {
+      image = (BufferedImage) createMap();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   public static void main(String[] args){
     try {
       createMap();
+      Map m = new Map();
+      JFrame f = new JFrame();
+//      f.add(m);
+      f.setSize(400,400);
+      f.setVisible(true);
     } catch (IOException e) {
       System.out.println("Didn't work");
       e.printStackTrace();
