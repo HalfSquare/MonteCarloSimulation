@@ -16,6 +16,7 @@ import java.util.Scanner;
 import java.util.Set;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -88,7 +89,7 @@ public class Gui extends JFrame {
       simulationWindow.doUiStuff();
       graphWindow.doUiStuff();
 
-      settingsWindow.setNumSim(1000);
+      settingsWindow.setNumSim("1000");
       settingsWindow.setNumClusters(numberOfClusters);
 
       setState(SETTINGS);
@@ -124,6 +125,9 @@ public class Gui extends JFrame {
     runner.start();
   }
 
+  /**
+   * Start map.
+   */
   public void startMap() {
     this.add(mapWindow.getRootPanel());
     mapWindow.setBackButton(e -> setState(GRAPH));
@@ -325,8 +329,23 @@ public class Gui extends JFrame {
         switch (name) {
           case "numSimulations":
             settings.setNumSimulations(value);
-            if (show) {
-              settingsWindow.setNumSim(Integer.parseInt(value));
+
+            if (Integer.parseInt(value) > 0) {
+              if (show) {
+                settingsWindow.setNumSim(value);
+              }
+            } else {
+              if (show) {
+                settingsMissionControl.setErrorsFound(true);
+                JOptionPane.showMessageDialog(null,
+                    "Enter a simulation number larger than 0",
+                    "Following error found",
+                    JOptionPane.ERROR_MESSAGE);
+              } else {
+                settingsMissionControl.setErrorsFound(true);
+                System.out.print("ERROR: Invalid simulation number.");
+                settingsWindow.setNumSim("0");
+              }
             }
             break;
           case "launchRodAngle":
@@ -372,7 +391,18 @@ public class Gui extends JFrame {
       // Copy settings to the public bean
       settingsMissionControl = settings;
 
-      settingsWindow.setData(settings);
+      if (settingsMissionControl.hasErrors()) {
+        JOptionPane.showMessageDialog(null,
+            settingsMissionControl.getErrors(),
+            "Following errors found",
+            JOptionPane.ERROR_MESSAGE);
+        return;
+      }
+      if (show) {
+        settingsWindow.setData(settings);
+      } else {
+        System.out.println("CSV file successfully imported");
+      }
       sc.close();
     } catch (Exception ex) {
       System.out.println("Uh oh! " + ex);
