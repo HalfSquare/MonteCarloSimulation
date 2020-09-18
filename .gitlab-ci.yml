@@ -73,7 +73,7 @@ pages:
   stage: Build
   script:
   - mkdir .public
-  - cp -r "~/deploy website" .public
+  - cp -r "deploy website" .public
   - cp -r "lab log website" .public
   - mv .public public
   artifacts:
