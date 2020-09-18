@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Map extends JPanel {
   static String API_Key = "KrGZcmPxmu4tNuWChwMteQNlNADrcByh";
@@ -56,9 +58,43 @@ public class Map extends JPanel {
   }
 
   /**
+   * This method is used to find the min and max points so that the centre of the location can be calculated
+   *
+   * @return
+   */
+  private ArrayList findMinAndMaxPoints(int[] arr, int n) {
+    ArrayList MinPoints = new ArrayList();
+
+    // Auxiliary array to hold modified array
+    int temp[] = new int[n];
+
+    // Indexes of smallest and largest elements
+    // from remaining array.
+    int small=0, large=n-1;
+
+    // To indicate whether we need to copy rmaining
+    // largest or remaining smallest at next position
+    boolean flag = true;
+
+    // Store result in temp[]
+    for (int i=0; i<n; i++)
+    {
+      if (flag)
+        temp[i] = arr[large--];
+      else
+        temp[i] = arr[small++];
+
+      flag = !flag;
+    }
+    arr = temp.clone();
+
+    return MinPoints;
+  }
+
+  /**
    * KEEP THIS IN. THIS IS NOT YET IMPLEMENTED, HOWEVER IT IS VERY IMPORTANT FOR THE NEXT STAGE.
    * This method calculates the angle in which the dots should be plotted on the graph and how far
-   * away they should be from the center of teh graph. 
+   * away they should be from the center of teh graph.
    * @param lat1
    * @param long1
    * @param lat2
