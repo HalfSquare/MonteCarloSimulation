@@ -79,15 +79,6 @@ public class Map extends JPanel{
       }
   }
 
-
-//  public Map(){
-//    try {
-//      image = (BufferedImage) createMap();
-//    } catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//  }
-
   public static void main(String[] args){
     try {
       createMap();
