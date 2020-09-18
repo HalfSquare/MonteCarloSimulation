@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+
 import org.jfree.chart.ChartPanel;
 
 
@@ -24,6 +25,7 @@ public class GraphWindow {
   private JPanel graphPanel;
   private JButton saveImageToFileButton;
   private JButton csvExportButton;
+  private JButton viewOnMapButton;
   private JButton savePointsAsCsvButton;
 
   private JTable simulationTable;
@@ -81,6 +83,10 @@ public class GraphWindow {
 
   public void setSavePointsAsCsvButton(ActionListener listener) {
     this.savePointsAsCsvButton.addActionListener(listener);
+  }
+
+  public void setViewOnMapButton(ActionListener listener) {
+    this.viewOnMapButton.addActionListener(listener);
   }
 
   public void doUiStuff() {
@@ -163,6 +169,12 @@ public class GraphWindow {
             GridConstraints.FILL_HORIZONTAL,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    viewOnMapButton = new JButton();
+    viewOnMapButton.setText("View on Map");
+    rootPanel.add(viewOnMapButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER,
+        GridConstraints.FILL_HORIZONTAL,
+        GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+        GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
   }
 
   /**
