@@ -1,7 +1,6 @@
 package nz.ac.vuw.engr301.group15.gui;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
