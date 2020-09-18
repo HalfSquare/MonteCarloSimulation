@@ -36,7 +36,7 @@ public class SettingsWindow {
 
   }
 
-  public void setNumSim(int num) {
+  public void setNumSim(String num) {
     numSimulations.setValue(num);
   }
 
