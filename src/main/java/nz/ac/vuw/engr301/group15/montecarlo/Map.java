@@ -1,5 +1,7 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,6 +10,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.Buffer;
 
 public class Map extends JPanel{
   static String API_Key = "KrGZcmPxmu4tNuWChwMteQNlNADrcByh";
@@ -54,17 +57,19 @@ public class Map extends JPanel{
     return new URL(urlString);
   }
 
-  public static Image createMap() throws IOException {
+  public static BufferedImage createMap() throws IOException {
     URL url = createURL();
     HttpURLConnection con = (HttpURLConnection) url.openConnection();
     con.setRequestMethod("GET");
 
-    //save map to display locally later
-    Image map = (Image)con.getContent();
-    return map;
+    BufferedImage image = ImageIO.read(url);
+    if(image != null) {
+      return image;
+    } else {
+      throw new RuntimeException("Image is null");
+    }
   }
 
-  private BufferedImage image;
 
 //  public Map(){
 //    try {
