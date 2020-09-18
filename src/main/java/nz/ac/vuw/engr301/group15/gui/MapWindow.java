@@ -1,12 +1,16 @@
 package nz.ac.vuw.engr301.group15.gui;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.nio.Buffer;
 
-public class MapWindow {
+public class MapWindow extends JPanel{
   private JPanel rootPanel;
   private JButton backButton;
   private JPanel MapPanel;
+  private BufferedImage mapImage;
 
   public JPanel getRootPanel() {
     return this.rootPanel;
@@ -20,4 +24,14 @@ public class MapWindow {
     rootPanel.setVisible(flag);
   }
 
+  public void setMapImage(BufferedImage map) {
+//    MapPanel.add(new JLabel(new ImageIcon(map)));
+    mapImage = map;
+  }
+
+  @Override
+  protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    g.drawImage(mapImage, 0, 0, this);
+  }
 }

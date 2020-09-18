@@ -4,9 +4,7 @@ import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CIRCLE;
 import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CROSS;
 import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.SQUARE;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Shape;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.io.*;
@@ -19,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
+import nz.ac.vuw.engr301.group15.montecarlo.Map;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -131,7 +130,11 @@ public class Gui extends JFrame {
   public void startMap() {
     this.add(mapWindow.getRootPanel());
     mapWindow.setBackButton(e -> setState(GRAPH));
-
+    try {
+      mapWindow.setMapImage(Map.createMap());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
