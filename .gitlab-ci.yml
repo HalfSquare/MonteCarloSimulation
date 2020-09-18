@@ -59,6 +59,8 @@ deploy:
   stage: Deploy
   tags:
     - shell
+  only:
+    - master
   script:
     - echo "deploy"
     - cd "deploy website"
