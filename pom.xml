@@ -53,7 +53,7 @@
             <artifactId>modified-openrocket</artifactId>
             <version>1.0</version>
         </dependency>
-        <!--log4j dependency-->
+        <!--log4j dependency -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>apache-log4j-extras</artifactId>
@@ -70,6 +70,12 @@
             <groupId>org.jfree</groupId>
             <artifactId>org.jfree.chart3d</artifactId>
             <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -88,7 +94,7 @@
                             <groupId>net.sf.openrocket</groupId>
                             <artifactId>modified-openrocket</artifactId>
                             <version>1.0</version>
-                            <file>${pom.basedir}/src/main/resources/modified-openrocket-1-1-9.jar</file>
+                            <file>src/main/resources/modified-openrocket-1-1-9-new.jar</file>
                             <packaging>jar</packaging>
                         </configuration>
                         <goals>
@@ -192,14 +198,16 @@
                         </goals>
                     </execution>
                 </executions>
-<!--                <dependencies>-->
-<!--                    <dependency>-->
-<!--                        <groupId>com.github.spotbugs</groupId>-->
-<!--                        <artifactId>spotbugs</artifactId>-->
-<!--                        <version>4.0.6</version>-->
-<!--                    </dependency>-->
-<!--                </dependencies>-->
             </plugin>
+
+<!--&lt;!&ndash;                <dependencies>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <groupId>com.github.spotbugs</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <artifactId>spotbugs</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <version>4.0.6</version>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;                </dependencies>&ndash;&gt;-->
+            <!--</plugin>-->
 
         </plugins>
     </build>

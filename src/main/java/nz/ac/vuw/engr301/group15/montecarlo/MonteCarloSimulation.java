@@ -1,6 +1,5 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
-import java.io.InputStream;
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
 import net.sf.openrocket.file.RocketLoadException;
@@ -11,8 +10,9 @@ import net.sf.openrocket.startup.Startup;
 import net.sf.openrocket.startup.Startup2;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class MonteCarloSimulation {
@@ -30,13 +30,12 @@ public class MonteCarloSimulation {
    * Runs a specified amount of Monte Carlo simulations
    * Currently takes about 10 seconds to run 1,000 simulations
    *
-   * @param num Number of simulations to run
    * @return the simulations ran
    */
-  public ArrayList<SimulationStatus> runSimulations(int num, InputStream file, MissionControlSettings settings) throws RocketLoadException {
+  public ArrayList<SimulationStatus> runSimulations(InputStream file, MissionControlSettings settings) throws RocketLoadException {
     MissionControlSettings defaultSettings = loadDefaultSettings();
-
     // Extract mission control setting data, setting defaults if values are empty
+    double numOfSimulations = settings.getNumSimulations().equals("") ? Double.parseDouble(defaultSettings.getNumSimulations()) : Double.parseDouble(settings.getNumSimulations());
     double launchRodAngle = settings.getLaunchRodAngle().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodAngle()) : Double.parseDouble(settings.getLaunchRodAngle());
     double launchRodLength = settings.getLaunchRodLength().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodLength()) : Double.parseDouble(settings.getLaunchRodLength());
     double launchRodDir = settings.getLaunchRodDir().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodDir()) : Double.parseDouble(settings.getLaunchRodDir());
@@ -71,23 +70,27 @@ public class MonteCarloSimulation {
     simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
 
     // Set base mission control settings to simulation options
-		simulationOptions.setLaunchRodAngle(launchRodAngle);
-		simulationOptions.setLaunchRodLength(launchRodLength);
-		simulationOptions.setLaunchRodDirection(launchRodDir);
-		simulationOptions.setLaunchAltitude(launchAlt);
-		simulationOptions.setLaunchLatitude(launchLat);
-		simulationOptions.setLaunchLongitude(launchLong);
-		simulationOptions.setMaximumStepAngle(maxAngle);
-		simulationOptions.setWindSpeedAverage(windSpeed);
-		simulationOptions.setWindTurbulenceIntensity(windTurb);
+    simulationOptions.setLaunchRodAngle(launchRodAngle);
+    simulationOptions.setLaunchRodLength(launchRodLength);
+    simulationOptions.setLaunchRodDirection(launchRodDir);
+    simulationOptions.setLaunchAltitude(launchAlt);
+    simulationOptions.setLaunchLatitude(launchLat);
+    simulationOptions.setLaunchLongitude(launchLong);
+    simulationOptions.setMaximumStepAngle(maxAngle);
+    simulationOptions.setWindSpeedAverage(windSpeed);
+    simulationOptions.setWindTurbulenceIntensity(windTurb);
     simulationOptions.setLaunchTemperature(launchTemp);
     simulationOptions.setLaunchPressure(launchAirPres);
 
     ArrayList<SimulationStatus> simulationData = new ArrayList<>();
-    MonteCarloSimulationExtensionListener simulationListener =  new MonteCarloSimulationExtensionListener();
-    for (int simNum = 1; simNum <= num; simNum++) {
+    MonteCarloSimulationExtensionListener simulationListener = new MonteCarloSimulationExtensionListener();
+
+    char[] animationChars = new char[]{'|', '/', '-', '\\'};
+    int loadingSpinIndex = 0;
+
+    for (int simNum = 1; simNum <= numOfSimulations; simNum++) {
       // Randomize some launch conditions with Gaussian distribution
-			//simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
+      //simulationOptions.setLaunchRodAngle((rand.nextGaussian() * ROD_ANGLE_SIGMA) + launchRodAngle);
       simulationOptions.setWindSpeedAverage((rand.nextGaussian() * WIND_SPEED_SIGMA) + windSpeed);
       simulationOptions.setWindTurbulenceIntensity((rand.nextGaussian() * WIND_TURB_SIGMA) + windTurb);
       simulationOptions.setLaunchTemperature((rand.nextGaussian() * LAUNCH_TEMP_SIGMA) + launchTemp);
@@ -99,16 +102,70 @@ public class MonteCarloSimulation {
       while (simulationListener.getSimulation() == null) {
         System.out.println("waiting");
       }
+      String progress = String.format("%.2f", (simNum / numOfSimulations) * 100.0);
+      System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
+      loadingSpinIndex = loadingSpinIndex == 3 ? 0 : loadingSpinIndex + 1;
       simulationData.add(simulationListener.getSimulation());
       if (listener != null) {
         listener.run();
       }
 
     }
+    System.out.println("Simulating: Done!          ");
+    System.out.println("Simulations finished");
     return simulationData;
   }
 
-  private MissionControlSettings loadDefaultSettings(){
+  public ArrayList<SimulationStatus> runPITuning(InputStream file, int numOfSimulations) throws RocketLoadException {
+    // Create helper object
+    OpenRocketHelper helper = new OpenRocketHelper();
+
+    // Opens open rocket document
+    OpenRocketDocument document = helper.loadORDocument(file);
+
+    // Gets first simulation from the ork file
+    Simulation simulation = document.getSimulation(0);
+
+    Rocket rocket = simulation.getRocket();
+
+    // Change simulation options
+    SimulationOptions simulationOptions = simulation.getOptions();
+
+    // Time between simulation steps (A smaller time step results in a more accurate but slower simulation)
+    simulationOptions.setTimeStep(0.05); // (0.05) = the 4th order simulation method
+
+    ArrayList<SimulationStatus> simulationData = new ArrayList<>();
+    PIExtensionListener simulationListener =  new PIExtensionListener();
+
+    char[] animationChars = new char[]{'|', '/', '-', '\\'};
+    int loadingSpinIndex = 0;
+
+    for (int simNum = 1; simNum <= numOfSimulations; simNum++) {
+      simulationListener.reset();
+      helper.runSimulation(simulation, simulationListener);
+
+      while (simulationListener.getSimulation() == null) {
+        System.out.println("waiting");
+      }
+      String progress = String.format("%.2f", (simNum/numOfSimulations)*100.0);
+      System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
+      loadingSpinIndex = loadingSpinIndex == 3 ? 0 : loadingSpinIndex + 1;
+      simulationData.add(simulationListener.getSimulation());
+      if (listener != null) {
+        listener.run();
+      }
+
+    }
+    System.out.println("Simulating: Done!          ");
+    System.out.println("Simulations finished");
+    HashMap<Double, Double> rocketAngles = simulationListener.getRocketAngles();
+    //for (double time : rocketAngles.keySet()){
+    //  System.out.println(time + "," + rocketAngles.get(time));
+    //}
+    return simulationData;
+  }
+
+  public static MissionControlSettings loadDefaultSettings() {
     // Load in default mission control settings
     MissionControlSettings defaultSettingsMissionControl = new MissionControlSettings();
     defaultSettingsMissionControl.setLaunchRodAngle("0.0");
@@ -130,6 +187,9 @@ public class MonteCarloSimulation {
 
   public MonteCarloSimulation() {
     this(null);
+    Startup.initializeLogging();
+    Startup.initializeL10n();
+    Startup2.loadMotor();
   }
 
   public MonteCarloSimulation(Runnable runnable) {
@@ -143,8 +203,14 @@ public class MonteCarloSimulation {
     try {
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
-      InputStream rocketFile = classLoader.getResourceAsStream("src/main/resources/rocket-1-1-9.ork");
-      mcs.runSimulations(5, rocketFile, new MissionControlSettings());
+      InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+      mcs.runSimulations(rocketFile, loadDefaultSettings());
+      /*
+      MonteCarloSimulation mcs = new MonteCarloSimulation();
+      ClassLoader classLoader = mcs.getClass().getClassLoader();
+      InputStream rocketFile = classLoader.getResourceAsStream("pid_rocket.ork");
+      mcs.runPITuning(rocketFile, 1);
+      */
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
