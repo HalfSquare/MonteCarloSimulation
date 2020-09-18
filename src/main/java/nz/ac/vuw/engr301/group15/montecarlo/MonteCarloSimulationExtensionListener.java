@@ -4,7 +4,6 @@ import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.simulation.listeners.AbstractSimulationListener;
-import net.sf.openrocket.util.WorldCoordinate;
 
 public class MonteCarloSimulationExtensionListener extends AbstractSimulationListener {
   private SimulationStatus simulationStatus;
