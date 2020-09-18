@@ -1,5 +1,27 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Scanner;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
@@ -15,18 +37,6 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.ShapeUtilities;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.*;
-
 
 public class Gui extends JFrame {
 
@@ -96,17 +106,17 @@ public class Gui extends JFrame {
   }
 
   /**
-   * This method setups the settings
+   * This method setups the settings.
    */
   private void startSettings() {
     settingsWindow.setImportCsvButton(e -> openFileManager());
-    settingsWindow.setImportOrkButton(e -> openFileManagerORK());
+    settingsWindow.setImportOrkButton(e -> openFileManagerOrk());
     settingsWindow.setStartButtonListener(e -> setState(SIMULATION));
     this.add(settingsWindow.getRootPanel());
   }
 
   /**
-   * This method setups the simulation window
+   * This method setups the simulation window.
    */
   private void startSimulation() {
     // Simulation Window
@@ -117,7 +127,6 @@ public class Gui extends JFrame {
     // Simulation runs
     SimulationRunner runner = new SimulationRunner();
     runner.start();
-
   }
 
 
@@ -134,7 +143,7 @@ public class Gui extends JFrame {
   }
 
   /**
-   * This method starts the graph
+   * This method starts the graph.
    */
   private void startGraph() {
     this.add(graphWindow.getRootPanel());
@@ -143,21 +152,21 @@ public class Gui extends JFrame {
     ChartPanel chartPanel = g.createGraph();
 
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
-    graphWindow.setGraphTypeComboBoxListener(
-            e -> setState(GRAPH)); // redraws the graph if combobox was selected
+    // redraws the graph if combobox was selected
+    graphWindow.setGraphTypeComboBoxListener(e -> setState(GRAPH));
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
-    graphWindow.setCsvButtonListener(e -> saveSettingsAsCSV());
-    graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCSV(createList()));
+    graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
+    graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCsv(createList()));
   }
 
   /**
-   * This creates a list of all the longitude and latitude points, separated by a comma
-   * After each set of points, a new line is created
+   * This creates a list of all the longitude and latitude points, separated by a comma.
+   * After each set of points, a new line is created.
    *
    * @return list of all the points
    */
-  private ArrayList createList() {
-    ArrayList pointList = new ArrayList();
+  private ArrayList<String> createList() {
+    ArrayList<String> pointList = new ArrayList<>();
 
     //Adding in the column names
     pointList.add("Longitude");
@@ -166,8 +175,7 @@ public class Gui extends JFrame {
     pointList.add("\n");
 
     //Reading the points into an ArrayList
-    for (int i = 0; i < data.size(); i++) {
-      SimulationStatus longAndLat = data.get(i);
+    for (SimulationStatus longAndLat : data) {
       WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
       double x = landingPos.getLongitudeDeg();
       double y = landingPos.getLatitudeDeg();
@@ -180,15 +188,15 @@ public class Gui extends JFrame {
   }
 
   /**
-   * This saves all the points to a CSV file
+   * This saves all the points to a CSV file.
    */
-  private void savePointsAsCSV(ArrayList list) {
+  private void savePointsAsCsv(ArrayList<String> list) {
     try {
       PrintWriter pw = new PrintWriter(new File("points.csv"));
       // Reading everything into a string
       StringBuilder sb = new StringBuilder();
-      for (int i = 0; i < list.size(); i++) {
-        sb.append(list.get(i));
+      for (String s : list) {
+        sb.append(s);
       }
 
       // Writing to the print writer
@@ -204,7 +212,7 @@ public class Gui extends JFrame {
   /**
    * This will open a filechooser to save the simulation settings as a CSV.
    */
-  private void saveSettingsAsCSV() {
+  private void saveSettingsAsCsv() {
     JFileChooser j = new JFileChooser();
     j.showSaveDialog(null);
     writeMissionControlSettings(j.getSelectedFile());
@@ -219,12 +227,14 @@ public class Gui extends JFrame {
     try {
       BufferedWriter writer = new BufferedWriter(new FileWriter(file));
       MissionControlSettings s = settingsMissionControl;
-      writer.write("launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat," +
-              "launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations\n");
-      writer.write(s.getLaunchRodAngle() + "," + s.getLaunchRodLength() + "," + s.getLaunchRodDir() + "," +
-              s.getLaunchAlt() + "," + s.getLaunchLat() + "," + s.getLaunchLong() + "," + s.getMaxAngle() + "," +
-              s.getWindSpeed() + "," + s.getWindDir() + "," + s.getWindTurbulence() + "," + s.getLaunchTemp() + "," +
-              s.getLaunchAirPressure() + "," + s.getNumSimulations());
+      writer.write("launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat,"
+          + "launchLong,maxAngle,windSpeed,windDir,windTurbulence,launchTemp,"
+          + "launchAirPressure,numSimulations\n");
+      writer.write(s.getLaunchRodAngle() + "," + s.getLaunchRodLength() + "," + s.getLaunchRodDir()
+          + "," + s.getLaunchAlt() + "," + s.getLaunchLat() + "," + s.getLaunchLong() + ","
+          + s.getMaxAngle() + "," + s.getWindSpeed() + "," + s.getWindDir() + ","
+          + s.getWindTurbulence() + "," + s.getLaunchTemp() + "," + s.getLaunchAirPressure()
+          + "," + s.getNumSimulations());
       writer.close();
     } catch (Exception ex) {
       System.out.println("Uh oh! " + ex);
@@ -233,7 +243,7 @@ public class Gui extends JFrame {
   }
 
   /**
-   * This opens up a fileChooser to open up a CSV file
+   * This opens up a fileChooser to open up a CSV file.
    */
   private void openFileManager() {
     JFileChooser j = new JFileChooser();
@@ -263,7 +273,8 @@ public class Gui extends JFrame {
     try {
       Scanner sc = new Scanner(file);
       String[][] data = new String[2][NUM_ATTR];
-      String name, value;
+      String name;
+      String value;
 
       // Read data into 2D array, splitting at the commas (0 is data names, 1 is data values)
       for (int i = 0; i < 2; i++) {
@@ -272,7 +283,8 @@ public class Gui extends JFrame {
         }
       }
 
-      // Read data from 2D array into the bean, using a switch so that attribute ordering does not matter
+      // Read data from 2D array into the bean, using a switch so that
+      // attribute ordering does not matter
       for (int i = 0; i < NUM_ATTR; i++) {
         name = data[0][i];
         value = data[1][i];
@@ -319,6 +331,8 @@ public class Gui extends JFrame {
           case "launchAirPressure":
             settings.setLaunchAirPressure(value);
             break;
+          default:
+            break;
         }
       }
       // Copy settings to the public bean
@@ -335,9 +349,9 @@ public class Gui extends JFrame {
   }
 
   /**
-   * This opens up a fileChooser to open up an ORK file (OpenRocket model rocket file)
+   * This opens up a fileChooser to open up an ORK file (OpenRocket model rocket file).
    */
-  private void openFileManagerORK() {
+  private void openFileManagerOrk() {
     JFileChooser j = new JFileChooser();
 
     //Filter for ORK files only
@@ -417,7 +431,8 @@ public class Gui extends JFrame {
           File f = new File(args[1]);
           new Gui(false, f);
         } else {
-          throw new RuntimeException("Invalid arguments: Correct format e.g. -nogui src/main/resources/testMCData.csv");
+          throw new RuntimeException("Invalid arguments: Correct format e.g. "
+              + "-nogui src/main/resources/testMCData.csv");
         }
       } else { // run with gui
         new Gui(true, null);
@@ -459,7 +474,7 @@ public class Gui extends JFrame {
           } else {
             System.out.println("Simulations started");
             data = mcs.runSimulations(rocketFile, settingsMissionControl);
-            savePointsAsCSV(createList());
+            savePointsAsCsv(createList());
             System.exit(0);
           }
         } else {
@@ -468,7 +483,7 @@ public class Gui extends JFrame {
             data = mcs.runSimulations(rocketFile, settingsMissionControl);
           } else {
             data = mcs.runSimulations(rocketFile, settingsMissionControl);
-            savePointsAsCSV(createList());
+            savePointsAsCsv(createList());
             System.exit(0);
           }
         }
@@ -501,7 +516,8 @@ public class Gui extends JFrame {
       GraphType graphType = GraphType.valueOf(graphWindow.getGraphTypeComboBox().toUpperCase());
 
       // Create chart
-      JFreeChart chart = ChartFactory.createScatterPlot(
+      JFreeChart chart;
+      chart = ChartFactory.createScatterPlot(
               "Longitude vs. Latitude Points",
               "Longitude",
               "Latitude",
@@ -513,13 +529,13 @@ public class Gui extends JFrame {
       Shape shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
 
       // Creates the plotting shape
-      if (CROSS.equals(graphType)) {
+      if (GraphType.CROSS.equals(graphType)) {
         shape = ShapeUtilities.createDiagonalCross(1, 1);
       }
-      if (SQUARE.equals(graphType)) {
+      if (GraphType.SQUARE.equals(graphType)) {
         shape = new Rectangle2D.Double(-3, -3, 3, 3);
       }
-      if (CIRCLE.equals(graphType)) {
+      if (GraphType.CIRCLE.equals(graphType)) {
         shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
       }
 
@@ -541,7 +557,8 @@ public class Gui extends JFrame {
     }
 
     /**
-     * This goes through all the simulation points and adds them to a list of longitude and latitude points
+     * This goes through all the simulation points.
+     * and adds them to a list of longitude and latitude points.
      *
      * @return the dataset
      */
