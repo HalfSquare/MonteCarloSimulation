@@ -537,6 +537,7 @@ public class Gui extends JFrame {
 
       } catch (RocketLoadException | FileNotFoundException e) {
         e.printStackTrace();
+        //TODO deal with FileNotFoundException (don't continue running code)
       }
       if (show) {
         if (onFinish != null) {
