@@ -160,6 +160,10 @@ public class MissionControlSettings {
     return numSimulations;
   }
 
+  public int getNumSimulationsAsInteger(){
+    return numSimulations.equals("") ? 0 : Integer.parseInt(numSimulations.replaceAll(",",""));
+  }
+
   public void setNumSimulations(final String numSimulations) {
     this.numSimulations = numSimulations;
   }
