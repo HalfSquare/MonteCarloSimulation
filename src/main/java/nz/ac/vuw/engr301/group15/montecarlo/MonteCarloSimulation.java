@@ -201,16 +201,16 @@ public class MonteCarloSimulation {
 
   public static void main(String[] args) {
     try {
-      /*
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
       InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
       mcs.runSimulations(rocketFile, loadDefaultSettings());
-       */
+      /*
       MonteCarloSimulation mcs = new MonteCarloSimulation();
       ClassLoader classLoader = mcs.getClass().getClassLoader();
       InputStream rocketFile = classLoader.getResourceAsStream("pid_rocket.ork");
       mcs.runPITuning(rocketFile, 1);
+      */
     } catch (RocketLoadException e) {
       e.printStackTrace();
     }
