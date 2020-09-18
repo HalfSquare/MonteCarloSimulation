@@ -233,7 +233,7 @@ public class GraphCreator {
       ArrayList<WorldCoordinate> coordPoints =
               (ArrayList<WorldCoordinate>) recordFlightpath(sampleSim, sampleOptions);
 
-      XYZSeries<String> series = new XYZSeries<>("Center " + n);
+      XYZSeries<String> series = new XYZSeries<>("Cluster " + n);
       n++;
 
 

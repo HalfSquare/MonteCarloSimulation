@@ -85,7 +85,8 @@ public class Gui extends JFrame {
       simulationWindow.doUiStuff();
       graphWindow.doUiStuff();
 
-      settingsWindow.setNumSim(0);
+      settingsWindow.setNumSim(1000);
+      settingsWindow.setNumClusters(numberOfClusters);
 
       setState(SETTINGS);
 
@@ -122,6 +123,7 @@ public class Gui extends JFrame {
 
   private void compute3dData() {
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
+    numberOfClusters = settingsWindow.getNumClusters();
 
     simulationWindow.setBar2Max(5);
     Set<LatLongBean> clusters = KMeansClustering.calculateClusters(
