@@ -35,6 +35,7 @@ public class MonteCarloSimulation {
   public ArrayList<SimulationStatus> runSimulations(InputStream file, MissionControlSettings settings) throws RocketLoadException {
     MissionControlSettings defaultSettings = loadDefaultSettings();
     // Extract mission control setting data, setting defaults if values are empty
+
     double numOfSimulations = settings.getNumSimulations().equals("") ? Double.parseDouble(defaultSettings.getNumSimulations()) : Double.parseDouble(settings.getNumSimulations());
     double launchRodAngle = settings.getLaunchRodAngle().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodAngle()) : Double.parseDouble(settings.getLaunchRodAngle());
     double launchRodLength = settings.getLaunchRodLength().equals("") ? Double.parseDouble(defaultSettings.getLaunchRodLength()) : Double.parseDouble(settings.getLaunchRodLength());
