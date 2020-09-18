@@ -9,7 +9,8 @@ import java.nio.Buffer;
 public class MapWindow extends JPanel{
   private JPanel rootPanel;
   private JButton backButton;
-  private JPanel MapPanel;
+  private JPanel mapPanel;
+  private JLabel label;
   private BufferedImage mapImage;
 
   public JPanel getRootPanel() {
@@ -26,7 +27,11 @@ public class MapWindow extends JPanel{
 
   public void setMapImage(BufferedImage map) {
 //    MapPanel.add(new JLabel(new ImageIcon(map)));
+
     mapImage = map;
+
+//    JLabel label = new JLabel(new ImageIcon(map));
+    label.setIcon(new ImageIcon(map));
   }
 
   @Override
