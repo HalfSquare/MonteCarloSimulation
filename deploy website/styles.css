@@ -83,6 +83,35 @@ nav img {
 
 }
 
+.welcome{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #ffd564;
+}
+.feedback{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: #cd574b;
+}
+
+.feedback a{
+  color: #ffd564;
+}
+
+.bio{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: white;
+  font-size: 14px;
+
+}
+
+p{
+  color: white;
+  font-family: 'Roboto', sans-serif;
+
+}
+
 /*.rocker img{*/
 /*    width: 50%;*/
 /*}*/
