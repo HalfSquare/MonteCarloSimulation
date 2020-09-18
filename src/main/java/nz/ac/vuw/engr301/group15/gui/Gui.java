@@ -340,8 +340,12 @@ public class Gui extends JFrame {
       }
       // Copy settings to the public bean
       settingsMissionControl = settings;
-      System.out.println("setting"+settingsMissionControl);
+//      System.out.println("setting"+settingsMissionControl);
 
+      if (settingsMissionControl.hasErrors()){
+        JOptionPane.showMessageDialog(null, settingsMissionControl.getErrors(), "Following errors found", JOptionPane.ERROR_MESSAGE);
+        return;
+      }
       if (show) {
         settingsWindow.setData(settings);
       }
@@ -520,6 +524,7 @@ public class Gui extends JFrame {
                 ClassLoader classLoader = this.getClass().getClassLoader();
                 InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
                 if (show){
+                  System.out.println("error size"+ settingsMissionControl.getErrors().size());
                   if (settingsMissionControl.hasErrors()) {
                     JList errorsList = new JList(settingsMissionControl.getErrors().toArray(new String[0]));
                     JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
@@ -531,7 +536,7 @@ public class Gui extends JFrame {
                 }
                 else {
                   if (settingsMissionControl.hasErrors()) {
-                    System.out.println("Following errors found:");
+                    System.out.println("ERRORS:");
                     System.out.println(settingsMissionControl.getErrors());
                     System.out.println("Simulation stopped");
                     return;
@@ -546,6 +551,8 @@ public class Gui extends JFrame {
               else {
                 InputStream rocketFile = new FileInputStream(rocketModelFile);
                 if (show){
+                  System.out.println("error size"+ settingsMissionControl.getErrors().size());
+
                   if (settingsMissionControl.hasErrors()) {
                     JList errorsList = new JList(settingsMissionControl.getErrors().toArray(new String[0]));
                     JOptionPane.showMessageDialog(null, errorsList, "Following errors found", JOptionPane.ERROR_MESSAGE);
@@ -557,7 +564,7 @@ public class Gui extends JFrame {
                 }
                 else {
                   if (settingsMissionControl.hasErrors()) {
-                    System.out.println("Following errors found:");
+                    System.out.println("ERRORS:");
                     System.out.println(settingsMissionControl.getErrors());
                     System.out.println("Simulation stopped");
                     return;

@@ -129,8 +129,12 @@ public class MissionControlSettings {
   }
 
   public void setWindTurbulence(final String windTurbulence) {
-    isValidCheck(windTurbulence, "Wind Turbulence");
-    this.windTurbulence = windTurbulence;
+    if (isValidCheck(windTurbulence, "Wind Turbulence")){
+      this.windTurbulence = windTurbulence;
+    }
+    else{
+      this.windTurbulence = "";
+    }
   }
 
   public String getWindSpeed() {
@@ -166,7 +170,9 @@ public class MissionControlSettings {
     if (isValidCheck(launchAirPressure, "Launch Air Pressure")) {
       this.launchAirPressure = launchAirPressure;
     }
-    this.launchAirPressure = "";
+    else{
+      this.launchAirPressure = "";
+    }
   }
 
   public String getLaunchRodLength() {
