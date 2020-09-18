@@ -3,14 +3,11 @@ package nz.ac.vuw.engr301.group15.gui;
 import com.orsoncharts.Chart3D;
 import com.orsoncharts.Chart3DFactory;
 import com.orsoncharts.Chart3DPanel;
-import com.orsoncharts.axis.IntegerTickSelector;
 import com.orsoncharts.axis.NumberAxis3D;
 import com.orsoncharts.axis.NumberTickSelector;
 import com.orsoncharts.data.xyz.XYZDataset;
 import com.orsoncharts.data.xyz.XYZSeries;
 import com.orsoncharts.data.xyz.XYZSeriesCollection;
-import com.orsoncharts.graphics3d.Dimension3D;
-import com.orsoncharts.graphics3d.ViewPoint3D;
 import com.orsoncharts.plot.XYZPlot;
 import com.orsoncharts.renderer.xyz.LineXYZRenderer;
 import java.awt.BorderLayout;
@@ -18,7 +15,6 @@ import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.text.Format;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +53,8 @@ public class GraphCreator {
    * @param graphWindow the graph JFrame
    * @param data        ArrayList of SimulationStatus
    */
-  public GraphCreator(GraphWindow graphWindow, ArrayList<SimulationDuple> data, XYZDataset<String> dataset3d) {
+  public GraphCreator(GraphWindow graphWindow, ArrayList<SimulationDuple> data,
+                      XYZDataset<String> dataset3d) {
     this.graphWindow = graphWindow;
     this.data = data;
     this.dataset3d = dataset3d;
@@ -104,7 +101,8 @@ public class GraphCreator {
         break;
       case FLIGHTPATH:
         graphWindow.getGraphPanel().setLayout(new BorderLayout());
-        graphWindow.getGraphPanel().add(create3DGraph(dataset3d, numberOfClusters), BorderLayout.CENTER);
+        graphWindow.getGraphPanel()
+                .add(create3dGraph(dataset3d, numberOfClusters), BorderLayout.CENTER);
         graphWindow.getGraphPanel().validate();
         return new ChartPanel(chart);
       default:
@@ -150,12 +148,12 @@ public class GraphCreator {
   }
 
   /**
-   * Creates a 3D graph and returns it as a JPanel
+   * Creates a 3D graph and returns it as a JPanel.
    *
    * @param dataset the dataset
    * @return A panel containing the 3D chart.
    */
-  public static JPanel create3DGraph(XYZDataset<String> dataset, int numberOfClusters) {
+  public static JPanel create3dGraph(XYZDataset<String> dataset, int numberOfClusters) {
     Chart3D chart = Chart3DFactory.createXYZLineChart("Flight paths",
             "", dataset, "Latitude", "Altitude", "Longitude");
     chart.setChartBoxColor(new Color(255, 255, 255, 128));
@@ -165,19 +163,19 @@ public class GraphCreator {
     NumberFormat format = NumberFormat.getNumberInstance();
     format.setMaximumFractionDigits(8);
 
-    NumberAxis3D plotXAxis = (NumberAxis3D) plot.getXAxis();
-    plotXAxis.setTickSelector(new NumberTickSelector());
-    plotXAxis.setTickLabelFormatter(format);
+    NumberAxis3D plotxAxis = (NumberAxis3D) plot.getXAxis();
+    plotxAxis.setTickSelector(new NumberTickSelector());
+    plotxAxis.setTickLabelFormatter(format);
 
-    NumberAxis3D plotYAxis = (NumberAxis3D) plot.getYAxis();
-    plotYAxis.setTickSelector(new NumberTickSelector());
+    NumberAxis3D plotyAxis = (NumberAxis3D) plot.getYAxis();
+    plotyAxis.setTickSelector(new NumberTickSelector());
     format.setMaximumFractionDigits(1);
-    plotXAxis.setTickLabelFormatter(format);
+    plotxAxis.setTickLabelFormatter(format);
 
-    NumberAxis3D plotZAxis = (NumberAxis3D) plot.getZAxis();
-    plotZAxis.setTickSelector(new NumberTickSelector());
+    NumberAxis3D plotzAxis = (NumberAxis3D) plot.getZAxis();
+    plotzAxis.setTickSelector(new NumberTickSelector());
     format.setMaximumFractionDigits(8);
-    plotXAxis.setTickLabelFormatter(format);
+    plotxAxis.setTickLabelFormatter(format);
 
     //Customise colours
     LineXYZRenderer renderer = new LineXYZRenderer();
@@ -194,21 +192,22 @@ public class GraphCreator {
    *
    * @return A sample dataset.
    */
-  public static XYZDataset<String> create3DDataset(ArrayList<SimulationDuple> data, Set<LatLongBean> clusters) {
+  public static XYZDataset<String> create3dDataset(ArrayList<SimulationDuple> data,
+                                                   Set<LatLongBean> clusters) {
     XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
-    double groundAlt = data.get(0).getSimulationStatus().getRocketWorldPosition().getAltitude();
+    //    double groundAlt = data.get(0).getSimulationStatus().getRocketWorldPosition().getAltitude();
 
     //Gets cluster points from the data
-    String filePath = Gui.savePointsAsCsv(Gui.createList(data));
-//    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
+    //    String filePath = Gui.savePointsAsCsv(Gui.createList(data));
+    //    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
     //XYZSeries<String> clusterSeries = new XYZSeries<>("Clusters");
 
     //TESTING: draw every endpoint
-//    XYZSeries<String> endpointSeries = new XYZSeries<>("Endpoints");
-//    for (SimulationStatus s : SimulationDuple.getStatuses(data)){
-//      WorldCoordinate wc = s.getRocketWorldPosition();
-//      endpointSeries.add(wc.getLatitudeDeg(), wc.getAltitude(), wc.getLongitudeDeg());
-//    }
+    //    XYZSeries<String> endpointSeries = new XYZSeries<>("Endpoints");
+    //    for (SimulationStatus s : SimulationDuple.getStatuses(data)){
+    //      WorldCoordinate wc = s.getRocketWorldPosition();
+    //      endpointSeries.add(wc.getLatitudeDeg(), wc.getAltitude(), wc.getLongitudeDeg());
+    //    }
 
     //Find closest SimulationDuple to each cluster center
     int n = 1;
@@ -343,16 +342,15 @@ public class GraphCreator {
   }
 
   /**
-   * Creates a list of unique colours
+   * Creates a list of unique colours.
    *
    * @param num the number of colours to generate
    * @return list of unique Color objects
    */
-  public static Color[] generateColours(int num){
+  public static Color[] generateColours(int num) {
     //From https://stackoverflow.com/questions/223971/generating-spectrum-color-palettes
     Color[] cols = new Color[num];
-    for(int i = 0; i < num; i++)
-    {
+    for (int i = 0; i < num; i++) {
       cols[i] = Color.getHSBColor((float) i / (float) num, 0.85f, 1.0f);
     }
     return cols;

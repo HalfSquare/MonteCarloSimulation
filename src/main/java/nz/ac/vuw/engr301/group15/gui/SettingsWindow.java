@@ -1,12 +1,12 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-
-import java.awt.*;
 import java.awt.event.ActionListener;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
+import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
 
 public class SettingsWindow {
   private JPanel rootPanel;
@@ -40,9 +40,13 @@ public class SettingsWindow {
     numSimulations.setValue(num);
   }
 
-  public void setNumClusters(int num) { numClusters.setValue(num); }
+  public void setNumClusters(int num) {
+    numClusters.setValue(num);
+  }
 
-  public int getNumClusters() { return (int)numClusters.getValue(); }
+  public int getNumClusters() {
+    return (int) numClusters.getValue();
+  }
 
   public void setStartButtonListener(ActionListener listener) {
     this.startButton.addActionListener(listener);
@@ -75,6 +79,11 @@ public class SettingsWindow {
     return rootPanel;
   }
 
+  /**
+   * Sets the mission control data.
+   *
+   * @param data the mission control data object
+   */
   public void setData(MissionControlSettings data) {
     numSimulations.setText(data.getNumSimulations());
     maxAngle.setText(data.getMaxAngle());
@@ -91,6 +100,12 @@ public class SettingsWindow {
     launchRodAngle.setText(data.getLaunchRodAngle());
   }
 
+  /**
+   * Gets the mission control data and sets it in the
+   * data object.
+   *
+   * @param data the mission control settings object to add the data to
+   */
   public void getData(MissionControlSettings data) {
     data.setNumSimulations(numSimulations.getText());
     data.setMaxAngle(maxAngle.getText());
@@ -107,6 +122,11 @@ public class SettingsWindow {
     data.setLaunchRodAngle(launchRodAngle.getText());
   }
 
+  /**
+   * Returns the mission control settings.
+   *
+   * @return MissionControlSettings
+   */
   public MissionControlSettings getSettings() {
     MissionControlSettings s = new MissionControlSettings();
     s.setNumSimulations(numSimulations.getText());
@@ -126,9 +146,15 @@ public class SettingsWindow {
     return s;
   }
 
+  /**
+   * Works out if the mission control settings have been modified.
+   *
+   * @param data MissionControlSettings to test
+   * @return true if the settings have been modified
+   */
   public boolean isModified(MissionControlSettings data) {
-    if (numSimulations.getText() != null ?
-        !numSimulations.getText().equals(data.getNumSimulations()) :
+    if (numSimulations.getText() != null
+            ? !numSimulations.getText().equals(data.getNumSimulations()) :
         data.getNumSimulations() != null) {
       return true;
     }
@@ -136,8 +162,8 @@ public class SettingsWindow {
         data.getMaxAngle() != null) {
       return true;
     }
-    if (windTurbulence.getText() != null ?
-        !windTurbulence.getText().equals(data.getWindTurbulence()) :
+    if (windTurbulence.getText() != null
+            ? !windTurbulence.getText().equals(data.getWindTurbulence()) :
         data.getWindTurbulence() != null) {
       return true;
     }
@@ -149,8 +175,8 @@ public class SettingsWindow {
         data.getLaunchTemp() != null) {
       return true;
     }
-    if (launchAirPressure.getText() != null ?
-        !launchAirPressure.getText().equals(data.getLaunchAirPressure()) :
+    if (launchAirPressure.getText() != null
+            ? !launchAirPressure.getText().equals(data.getLaunchAirPressure()) :
         data.getLaunchAirPressure() != null) {
       return true;
     }
@@ -174,13 +200,13 @@ public class SettingsWindow {
         data.getLaunchLat() != null) {
       return true;
     }
-    if (launchRodLength.getText() != null ?
-        !launchRodLength.getText().equals(data.getLaunchRodLength()) :
+    if (launchRodLength.getText() != null
+            ? !launchRodLength.getText().equals(data.getLaunchRodLength()) :
         data.getLaunchRodLength() != null) {
       return true;
     }
-    if (launchRodAngle.getText() != null ?
-        !launchRodAngle.getText().equals(data.getLaunchRodAngle()) :
+    if (launchRodAngle.getText() != null
+            ? !launchRodAngle.getText().equals(data.getLaunchRodAngle()) :
         data.getLaunchRodAngle() != null) {
       return true;
     }

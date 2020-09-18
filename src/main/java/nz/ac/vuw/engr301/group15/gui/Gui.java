@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Set;
 import javax.swing.JFileChooser;
@@ -126,10 +125,10 @@ public class Gui extends JFrame {
     numberOfClusters = settingsWindow.getNumClusters();
 
     simulationWindow.setBar2Max(5);
-    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(
+    Set<LatLongBean> clusters = KmeansClustering.calculateClusters(
             filePath, numberOfClusters, simulationWindow::uptickBar2);
 
-    this.dataset3d = GraphCreator.create3DDataset(data, clusters);
+    this.dataset3d = GraphCreator.create3dDataset(data, clusters);
   }
 
   public SettingsWindow getSettingsWindow() {
@@ -156,7 +155,7 @@ public class Gui extends JFrame {
             setState(GRAPH)); // redraws the graph if combobox was selected
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
-    graphWindow.setSavePointsAsCSVButton(e -> savePointsAsCsv(createList(data)));
+    graphWindow.setSavePointsAsCsvButton(e -> savePointsAsCsv(createList(data)));
     //createTable();
 
   }
@@ -394,6 +393,7 @@ public class Gui extends JFrame {
               chartPanel.getChart(),
               chartPanel.getWidth(),
               chartPanel.getHeight());
+      out.close();
 
     } catch (IOException ex) {
       throw new Error("IO Exception");
@@ -528,14 +528,16 @@ public class Gui extends JFrame {
           InputStream rocketFile = new FileInputStream(rocketModelFile);
           if (show) {
             data = mcs.runSimulations(rocketFile, settingsMissionControl);
+            rocketFile.close();
           } else {
             data = mcs.runSimulations(rocketFile, settingsMissionControl);
             savePointsAsCsv(createList(data));
+            rocketFile.close();
             System.exit(0);
           }
         }
 
-      } catch (RocketLoadException | FileNotFoundException e) {
+      } catch (RocketLoadException | IOException e) {
         e.printStackTrace();
         //TODO deal with FileNotFoundException (don't continue running code)
       }
