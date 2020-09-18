@@ -1,19 +1,20 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
 import org.jfree.chart.ChartPanel;
+
 
 public class GraphWindow {
   private JComboBox<String> graphTypeComboBox;
@@ -24,7 +25,8 @@ public class GraphWindow {
   private JPanel graphPanel;
   private JButton saveImageToFileButton;
   private JButton csvExportButton;
-  private JButton savePointsAsCSVButton;
+  private JButton viewOnMapButton;
+  private JButton savePointsAsCsvButton;
 
   private JTable simulationTable;
 
@@ -79,8 +81,12 @@ public class GraphWindow {
     this.csvExportButton.addActionListener(listener);
   }
 
-  public void setSavePointsAsCSVButton(ActionListener listener) {
-    this.savePointsAsCSVButton.addActionListener(listener);
+  public void setSavePointsAsCsvButton(ActionListener listener) {
+    this.savePointsAsCsvButton.addActionListener(listener);
+  }
+
+  public void setViewOnMapButton(ActionListener listener) {
+    this.viewOnMapButton.addActionListener(listener);
   }
 
   public void doUiStuff() {
@@ -109,6 +115,7 @@ public class GraphWindow {
     defaultComboBoxModel1.addElement("Circle");
     defaultComboBoxModel1.addElement("Square");
     defaultComboBoxModel1.addElement("Cross");
+    defaultComboBoxModel1.addElement("3D");
     graphTypeComboBox.setModel(defaultComboBoxModel1);
     rootPanel.add(graphTypeComboBox, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_WEST,
         GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW,
@@ -155,13 +162,19 @@ public class GraphWindow {
         GridConstraints.FILL_HORIZONTAL,
         GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
         GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-    savePointsAsCSVButton = new JButton();
-    savePointsAsCSVButton.setText("Save Points as CSV");
-    rootPanel.add(savePointsAsCSVButton,
+    savePointsAsCsvButton = new JButton();
+    savePointsAsCsvButton.setText("Save Points as CSV");
+    rootPanel.add(savePointsAsCsvButton,
         new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER,
             GridConstraints.FILL_HORIZONTAL,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    viewOnMapButton = new JButton();
+    viewOnMapButton.setText("View on Map");
+    rootPanel.add(viewOnMapButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER,
+        GridConstraints.FILL_HORIZONTAL,
+        GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+        GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
   }
 
   /**
@@ -170,4 +183,5 @@ public class GraphWindow {
   public JComponent $$$getRootComponent$$$() {
     return rootPanel;
   }
+
 }
