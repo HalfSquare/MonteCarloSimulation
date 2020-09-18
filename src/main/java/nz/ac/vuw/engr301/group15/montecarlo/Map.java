@@ -54,7 +54,17 @@ public class Map extends JPanel {
     System.out.println("URL IS: " + urlString);
     return new URL(urlString);
   }
-  
+
+  /**
+   * KEEP THIS IN. THIS IS NOT YET IMPLEMENTED, HOWEVER IT IS VERY IMPORTANT FOR THE NEXT STAGE.
+   * This method calculates the angle in which the dots should be plotted on the graph and how far
+   * away they should be from the center of teh graph. 
+   * @param lat1
+   * @param long1
+   * @param lat2
+   * @param long2
+   * @return
+   */
   private double angleFromCoordinate(double lat1, double long1, double lat2, double long2) {
 
     double dLon = (long2 - long1);
