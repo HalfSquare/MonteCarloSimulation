@@ -66,22 +66,22 @@ public class Map extends JPanel{
 
   private BufferedImage image;
 
-  public Map(){
-    try {
-      image = (BufferedImage) createMap();
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
+//  public Map(){
+//    try {
+//      image = (BufferedImage) createMap();
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//  }
 
   public static void main(String[] args){
     try {
       createMap();
-      Map m = new Map();
-      JFrame f = new JFrame();
-//      f.add(m);
-      f.setSize(400,400);
-      f.setVisible(true);
+//      Map m = new Map();
+//      JFrame f = new JFrame();
+////      f.add(m);
+//      f.setSize(400,400);
+//      f.setVisible(true);
     } catch (IOException e) {
       System.out.println("Didn't work");
       e.printStackTrace();
