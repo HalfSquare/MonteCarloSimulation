@@ -149,7 +149,7 @@ public class Gui extends JFrame {
     this.add(graphWindow.getRootPanel());
     graphWindow.resetGraphPanel(); // resets the graph panel and clears previous graph
     GraphCreator g = new GraphCreator(graphWindow, data, dataset3d);
-    ChartPanel chartPanel = g.createGraph();
+    ChartPanel chartPanel = g.createGraph(numberOfClusters);
 
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
     graphWindow.setGraphTypeComboBoxListener(e ->
