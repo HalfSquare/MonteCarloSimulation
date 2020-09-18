@@ -1,19 +1,5 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CIRCLE;
-import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.CROSS;
-import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.SQUARE;
-
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Scanner;
-import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
-
 import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
@@ -30,6 +16,18 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.util.ShapeUtilities;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import static nz.ac.vuw.engr301.group15.gui.Gui.GraphType.*;
 
 
 public class Gui extends JFrame {
