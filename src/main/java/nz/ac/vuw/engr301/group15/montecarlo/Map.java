@@ -1,5 +1,8 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class Map{
   String API_Key = "KrGZcmPxmu4tNuWChwMteQNlNADrcByh";
   int zoom = 9;
@@ -17,7 +20,7 @@ public class Map{
    * Method which formulates the URL to be sent to the REST API
    * http://api.tomtom.com/map/1/staticimage?
    * key=Your_API_Key&
-   * zoom=9&
+   * zoom=17&
    * center=13.567893,46.112341&
    * format=jpg&
    * layer=basic&
@@ -28,8 +31,8 @@ public class Map{
    * language=en-GB
    * @return
    */
-  public String createURL(){
-    String URL = "http://api.tomtom.com/map/1/staticimage?" +
+  public URL createURL() throws MalformedURLException {
+    String urlString = "http://api.tomtom.com/map/1/staticimage?" +
             "key=" + API_Key + "&" +
             "zoom=" + zoom + "&" +
             "center=" + cenLeft + "," + cenRight +
@@ -40,7 +43,12 @@ public class Map{
             "height=" + height + "&" +
             "view=" + view + "&" +
             "language=" + language;
-    return URL;
+
+    return new URL(urlString);
+  }
+
+  public void createMap(){
+
   }
 }
 
