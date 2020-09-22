@@ -42,6 +42,7 @@ build:
     - shell
   script:
     - echo "static analysis"
+    - mvn install -B
     - exit 0
   allow_failure: true
 
