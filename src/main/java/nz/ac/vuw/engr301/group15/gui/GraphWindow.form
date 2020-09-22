@@ -3,24 +3,11 @@
   <grid id="27dc6" binding="rootPanel" layout-manager="GridLayoutManager" row-count="3" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="571" height="400"/>
+      <xy x="20" y="20" width="672" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="682e6" class="javax.swing.JComboBox" binding="graphTypeComboBox">
-        <constraints>
-          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <model>
-            <item value="Circle"/>
-            <item value="Square"/>
-            <item value="Cross"/>
-            <item value="3D"/>
-          </model>
-        </properties>
-      </component>
       <grid id="ad4da" binding="graphPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
@@ -43,14 +30,6 @@
           <text value="Exit"/>
         </properties>
       </component>
-      <component id="d1f80" class="javax.swing.JButton" binding="saveToFileButton" default-binding="true">
-        <constraints>
-          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Save to file"/>
-        </properties>
-      </component>
       <component id="127b8" class="javax.swing.JButton" binding="reRunButton" default-binding="true">
         <constraints>
           <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
@@ -67,28 +46,41 @@
           <text value="Save as image"/>
         </properties>
       </component>
-      <component id="3038c" class="javax.swing.JButton" binding="csvExportButton">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Export Settings"/>
-        </properties>
-      </component>
       <component id="f2" class="javax.swing.JButton" binding="savePointsAsCsvButton">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="Save Points as CSV"/>
+          <text value="Save 2D points as CSV"/>
+        </properties>
+      </component>
+      <component id="3038c" class="javax.swing.JButton" binding="csvExportButton">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Export settings"/>
         </properties>
       </component>
       <component id="fd423" class="javax.swing.JButton" binding="viewOnMapButton" default-binding="true">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="View on Map"/>
+          <text value="View on map"/>
+        </properties>
+      </component>
+      <component id="682e6" class="javax.swing.JComboBox" binding="graphTypeComboBox">
+        <constraints>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Circle"/>
+            <item value="Square"/>
+            <item value="Cross"/>
+            <item value="3D"/>
+          </model>
         </properties>
       </component>
     </children>
