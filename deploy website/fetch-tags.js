@@ -109,15 +109,23 @@ const req = https.request(options, (resp) => {
                             description: [""]
                         };
                     }
-                    let link = downloads[item.name] ?? ""
+                    let version = downloads[item.name]
+                    let link = version
+                    if (version && version.hasOwnProperty('jar')) {
+                        link = version["jar"] ?? ""
+                    }
+                    let guide = ""
+                    if (version && version.hasOwnProperty('guide')) {
+                        guide = version["guide"] ?? ""
+                    }
                     let tag = {
                         "Tag": item.name,
                         "Notes": release.description,
-                        "Link": link
+                        "Link": link,
+                        "Guide": guide
                     };
                     tags.push(tag);
                 })
-
                 let tagName = tags[0].Tag
                 uploadJar(tagName)
             });
@@ -167,7 +175,7 @@ function uploadJar(tagName) {
 
                 let index = tags.findIndex(findTag)
                 tags[index].Link = url[0]
-                downloads[tagName]= url[0]
+                downloads[tagName] = { jar : url[0], guide: "https://firebasestorage.googleapis.com/v0/b/rocketboydeploy.appspot.com/o/platypus.pv20908.1z.pdf?alt=media&token=f150797b-40d7-45c4-938a-5f9afc8b2bc5" }
                 uploadDownloads()
 
                 fs.writeFile(FILE_NAME, JSON.stringify(tags), (err) => {

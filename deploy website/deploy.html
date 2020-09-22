@@ -92,7 +92,14 @@
                   cell.innerHTML = smallTable;
                 }
                 else if (property === "Link") {
-                    cell.innerHTML = "<a href='" + version[property] + "'><i>Download</i></a>"
+                    if (version[property].length > 0) {
+                      cell.innerHTML = "<a href='" + version[property] + "'><i>Download</i></a>"
+                    }
+                }
+                else if (property === "Guide") {
+                  if (version[property].length > 0) {
+                    cell.innerHTML = "<a href='" + version[property] + "'><i>User Guide</i></a>"
+                  }
                 }
                 else {
                     cell.innerHTML = version[property];
