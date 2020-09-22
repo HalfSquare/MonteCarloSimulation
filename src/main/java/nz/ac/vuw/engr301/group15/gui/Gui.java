@@ -113,7 +113,7 @@ public class Gui extends JFrame {
   private void startSimulation() {
     // Simulation Window
     this.add(simulationWindow.getRootPanel());
-    simulationWindow.resetBar();
+    simulationWindow.resetBars();
     simulationWindow.setBar1Max(settingsMissionControl.getNumSimulationsAsInteger());
 
     // Simulation stuff
