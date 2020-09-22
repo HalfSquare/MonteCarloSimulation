@@ -16,6 +16,8 @@ public class SimulationWindow {
   private JProgressBar progressBar2;
   private JButton abortTodoButton;
   private JButton cancelButton;
+  private JProgressBar batchTwoBar;
+  private JPanel secondThreadBar;
 
   public SimulationWindow() {
 
@@ -37,6 +39,10 @@ public class SimulationWindow {
     progressBar2.setValue(progressBar2.getValue() + 1);
   }
 
+  public void uptickBatch2() {
+    batchTwoBar.setValue(batchTwoBar.getValue() + 1);
+  }
+
   public void setBar1Max(int max) {
     this.progressBar1.setMaximum(max);
   }
@@ -45,8 +51,14 @@ public class SimulationWindow {
     this.progressBar2.setMaximum(max);
   }
 
-  public void resetBar() {
+  public void setBatch2Max(int max) {
+    this.batchTwoBar.setMaximum(max);
+  }
+
+  public void resetBars() {
     this.progressBar1.setValue(0);
+    this.progressBar2.setValue(0);
+    this.batchTwoBar.setValue(0);
   }
 
   /**
@@ -56,7 +68,7 @@ public class SimulationWindow {
     this.cancelButton.addActionListener(new ExitAction());
     this.progressBar1.setMaximum(100);
     this.progressBar1.setMinimum(0);
-    resetBar();
+    resetBars();
   }
 
   {
