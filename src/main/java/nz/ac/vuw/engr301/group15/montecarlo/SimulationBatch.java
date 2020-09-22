@@ -1,6 +1,16 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import net.sf.openrocket.file.RocketLoadException;
+import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class SimulationBatch implements Runnable {
+  private final InputStream rocketFile;
+  private final MissionControlSettings settings;
   private Thread t;
   private final String name;
   private final int simsInBatch;
@@ -8,22 +18,35 @@ public class SimulationBatch implements Runnable {
   private final Runnable onStep;
   private final Runnable onFinish;
 
-  public SimulationBatch(String name, int simsInBatch, Runnable onStep, Runnable onFinish) {
+  private ArrayList<SimulationDuple> data;
+
+  public SimulationBatch(String name, int simsInBatch, InputStream rocketFile, MissionControlSettings settings, Runnable onStep, Runnable onFinish) {
     this.name = name;
     this.simsInBatch = simsInBatch;
     this.onStep = onStep;
     this.onFinish = onFinish;
+    this.rocketFile = rocketFile;
+    this.settings = settings.clone();
+
+    this.settings.setNumSimulations(String.valueOf(simsInBatch));
+
+    data = new ArrayList<>();
   }
 
   @Override
   public void run() {
-    for (simsRun = 1; simsRun <= simsInBatch; simsRun++) {
-      System.out.println(name + ": " + simsRun);
-      if (onStep != null) {
-        onStep.run();
-      }
+    MonteCarloSimulation mcs = new MonteCarloSimulation(onStep);
+
+    try {
+      data = mcs.runSimulations(rocketFile, settings);
+//      rocketFile.close();
+    } catch (RocketLoadException e) {
+      e.printStackTrace();
     }
 
+//    System.out.println(name + " done");
+
+    // Run the onFinish Runnable
     if (onFinish != null) {
       onFinish.run();
     }
@@ -41,11 +64,7 @@ public class SimulationBatch implements Runnable {
     }
   }
 
-  public static void main(String[] args) {
-    SimulationBatch batch1 = new SimulationBatch("Batch 1", 500, null, () -> System.out.println("Done 1"));
-    SimulationBatch batch2 = new SimulationBatch("Batch 2", 700, null, () -> System.out.println("Done 2"));
-
-    batch1.start();
-    batch2.start();
+  public Collection<? extends SimulationDuple> getData() {
+    return data;
   }
 }

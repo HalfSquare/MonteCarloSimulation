@@ -14,6 +14,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -25,6 +28,7 @@ import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.Map;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
+import nz.ac.vuw.engr301.group15.montecarlo.SimulationBatch;
 import nz.ac.vuw.engr301.group15.montecarlo.SimulationDuple;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
@@ -51,7 +55,7 @@ public class Gui extends JFrame {
   private ArrayList<SimulationDuple> data;
   public int numberOfClusters = 3;
   private XYZDataset<String> dataset3d;
-
+  private static final int THREAD_COUNT = 100;
 
   public enum GraphType {
     CIRCLE, SQUARE, CROSS, FLIGHTPATH
@@ -560,17 +564,58 @@ public class Gui extends JFrame {
         mcs = new MonteCarloSimulation();
       }
       try {
-        InputStream rocketFile;
-        if (rocketModelFile == null) {
-          ClassLoader classLoader = this.getClass().getClassLoader();
-          rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-        } else {
-          rocketFile = new FileInputStream(rocketModelFile);
+
+
+        data = new ArrayList<>();
+
+        ArrayList<SimulationBatch> batches = new ArrayList<>();
+        ExecutorService es = Executors.newCachedThreadPool();
+
+        int perBatch = settingsMissionControl.getNumSimulationsAsInteger() / THREAD_COUNT;
+
+        simulationWindow.setBar1Max(THREAD_COUNT);
+        simulationWindow.setBatch2Max(settingsMissionControl.getNumSimulationsAsInteger());
+
+        ArrayList<Runnable> barUpdates = new ArrayList<>();
+        barUpdates.add(simulationWindow::uptickBar);
+        barUpdates.add(simulationWindow::uptickBatch2);
+
+        for (int thread = 1; thread <= THREAD_COUNT; thread++) {
+          InputStream rocketFile;
+          if (rocketModelFile == null) {
+            ClassLoader classLoader = this.getClass().getClassLoader();
+            rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+          } else {
+            rocketFile = new FileInputStream(rocketModelFile);
+          }
+
+          assert rocketFile != null;
+
+          SimulationBatch curThread = new SimulationBatch(
+                  "Simulation Batch " + thread,
+                  perBatch,
+                  rocketFile,
+                  settingsMissionControl,
+                  simulationWindow::uptickBatch2,
+                  simulationWindow::uptickBar
+//                  barUpdates.get(thread-1),
+//                  () -> System.out.println("")
+                );
+          batches.add(curThread);
+          es.execute(curThread);
+//          curThread.start();
+        }
+        es.shutdown();
+        es.awaitTermination(3, TimeUnit.HOURS);
+
+        for (SimulationBatch thread : batches) {
+          data.addAll(thread.getData());
         }
 
-        assert rocketFile != null;
-        data = mcs.runSimulations(rocketFile, settingsMissionControl);
-        rocketFile.close();
+        // data = mcs.runSimulations(rocketFile, settingsMissionControl);
+
+
+//        rocketFile.close();
 
         if (!show) {
           savePointsAsCsv(createList(data));
@@ -578,7 +623,7 @@ public class Gui extends JFrame {
         }
 
 
-      } catch (RocketLoadException | IOException e) {
+      } catch (IOException | InterruptedException e) {
         e.printStackTrace();
         //TODO deal with FileNotFoundException (don't continue running code)
       }
