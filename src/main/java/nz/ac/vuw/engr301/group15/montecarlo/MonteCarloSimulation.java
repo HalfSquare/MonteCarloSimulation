@@ -1,5 +1,6 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import ch.qos.logback.classic.Logger;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
@@ -19,6 +20,7 @@ import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.startup.Application;
 import net.sf.openrocket.startup.GuiModule;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
+import org.slf4j.LoggerFactory;
 
 public class MonteCarloSimulation {
 
@@ -198,6 +200,8 @@ public class MonteCarloSimulation {
    */
   public MonteCarloSimulation() {
     this(null);
+    Logger logger = (Logger) LoggerFactory.getLogger("ROOT");
+    logger.detachAndStopAllAppenders();
     Splash.init();
     SwingExceptionHandler exceptionHandler = new SwingExceptionHandler();
     Application.setExceptionHandler(exceptionHandler);
@@ -215,6 +219,8 @@ public class MonteCarloSimulation {
   public MonteCarloSimulation(Runnable runnable) {
     this.doRandom = true;
     this.listener = runnable;
+    Logger logger = (Logger) LoggerFactory.getLogger("ROOT");
+    logger.detachAndStopAllAppenders();
     Splash.init();
     SwingExceptionHandler exceptionHandler = new SwingExceptionHandler();
     Application.setExceptionHandler(exceptionHandler);
