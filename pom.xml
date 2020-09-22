@@ -52,8 +52,8 @@
             <groupId>net.sf.openrocket</groupId>
             <artifactId>modified-openrocket</artifactId>
             <version>1.0</version>
-<!--            <systemPath>${pom.basedir}/src/main/resources/OpenRocket-15.03.jar</systemPath>-->
-<!--            <scope>system</scope>-->
+            <systemPath>${pom.basedir}/src/main/resources/OpenRocket-15.03.jar</systemPath>
+            <scope>system</scope>
         </dependency>
 
         <!--log4j dependency-->
