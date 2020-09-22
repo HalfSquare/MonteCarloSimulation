@@ -148,16 +148,18 @@ public class MonteCarloSimulation {
         System.out.println("waiting");
       }
       String progress = String.format("%.2f", (simNum / (double) numOfSimulations) * 100.0);
-      System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
+//      System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
       loadingSpinIndex = loadingSpinIndex == 3 ? 0 : loadingSpinIndex + 1;
       simulationData.add(simulationListener.getSimulation());
+
       if (listener != null) {
         listener.run();
+//        System.out.printf(" ran a sim. %s%%\n", progress);
       }
 
     }
-    System.out.println("Simulating: Done!          ");
-    System.out.println("Simulations finished");
+//    System.out.println("Simulating: Done!          ");
+//    System.out.println("Simulations finished");
     return simulationData;
   }
 

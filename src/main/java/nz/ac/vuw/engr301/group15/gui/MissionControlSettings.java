@@ -269,4 +269,23 @@ public class MissionControlSettings {
     }
     this.numSimulations = numSimulations;
   }
+
+  public MissionControlSettings clone() {
+    MissionControlSettings clone = new MissionControlSettings();
+    clone.setMaxAngle(getMaxAngle());
+    clone.setWindDir(getWindDir());
+    clone.setWindTurbulence(getWindTurbulence());
+    clone.setWindSpeed(getWindSpeed());
+    clone.setLaunchTemp(getLaunchTemp());
+    clone.setLaunchAirPressure(getLaunchAirPressure());
+    clone.setLaunchRodLength(getLaunchRodLength());
+    clone.setLaunchRodDir(getLaunchRodDir());
+    clone.setLaunchRodAngle(getLaunchRodAngle());
+    clone.setLaunchAlt(getLaunchAlt());
+    clone.setLaunchLong(getLaunchLong());
+    clone.setLaunchLat(getLaunchLat());
+    clone.setNumSimulations(getNumSimulations());
+
+    return clone;
+  }
 }
