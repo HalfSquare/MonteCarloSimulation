@@ -57,16 +57,18 @@ public class Gui extends JFrame {
     CIRCLE, SQUARE, CROSS, FLIGHTPATH
   }
 
+  public static class UserState {
+    public static boolean showGui = true;
+    public static String csvImportPath = "";
+    public static String orkImportPath = "";
+  }
 
   /**
    * Creates a window that runs monte carlo simulations.
-   *
-   * @param show boolean to determine if should be run with GUI or not.
-   * @param file CSV file to import weather data.
    */
-  public Gui(boolean show, File file) {
+  public Gui() {
 
-    if (show) {
+    if (UserState.showGui) {
       this.data = new ArrayList<>();
 
       this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -96,9 +98,9 @@ public class Gui extends JFrame {
 
       this.setVisible(true);
     } else {
-      loadMissionControlData(file, false);
+      File csvFile = new File(UserState.csvImportPath);
+      loadMissionControlData(csvFile, false);
       SimulationRunner simulationRunner = new SimulationRunner();
-      simulationRunner.show = false;
       simulationRunner.start();
     }
   }
@@ -508,29 +510,36 @@ public class Gui extends JFrame {
         | UnsupportedLookAndFeelException e) {
       e.printStackTrace();
     }
-    if (args.length >= 1) {
-      String guiArg = args[0];
-      if (guiArg.equals("-nogui")) {
-        if (args.length > 1) {
-          File f = new File(args[1]);
-          new Gui(false, f);
-        } else {
-          throw new RuntimeException("Invalid arguments: "
-              + "Correct format e.g. -nogui src/main/resources/testMCData.csv");
-        }
-      } else { // run with gui
-        new Gui(true, null);
-      }
-    } else {
-      new Gui(true, null);
-    }
+    argumentParser(args);
   }
 
+  private static void argumentParser(String[] args) {
+    for (String argument : args) {
+      String[] arg = argument.split("=");
+      switch (arg[0]) {
+        case "-noGui":
+          UserState.showGui = false;
+          break;
+        case "-importCSV":
+          if (arg.length == 2) {
+            UserState.csvImportPath = arg[1];
+          }
+          break;
+        case "-importORK":
+          if (arg.length == 2) {
+            UserState.orkImportPath = arg[1];
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    new Gui();
+  }
 
   class SimulationRunner implements Runnable {
     private Thread thread;
     private final Runnable onFinish;
-    private boolean show = true;
 
     SimulationRunner() {
       this(null);
@@ -554,7 +563,7 @@ public class Gui extends JFrame {
     @Override
     public void run() {
       MonteCarloSimulation mcs;
-      if (show) {
+      if (UserState.showGui) {
         mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
       } else {
         mcs = new MonteCarloSimulation();
@@ -572,7 +581,7 @@ public class Gui extends JFrame {
         data = mcs.runSimulations(rocketFile, settingsMissionControl);
         rocketFile.close();
 
-        if (!show) {
+        if (!UserState.showGui) {
           savePointsAsCsv(createList(data));
           System.exit(0);
         }
@@ -582,7 +591,7 @@ public class Gui extends JFrame {
         e.printStackTrace();
         //TODO deal with FileNotFoundException (don't continue running code)
       }
-      if (show) {
+      if (UserState.showGui) {
         if (onFinish != null) {
           onFinish.run();
         }
