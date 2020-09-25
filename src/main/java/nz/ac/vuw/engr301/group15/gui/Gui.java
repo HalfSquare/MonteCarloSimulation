@@ -54,7 +54,7 @@ public class Gui extends JFrame {
 
 
   public enum GraphType {
-    CIRCLE, SQUARE, CROSS, FLIGHTPATH
+    TWOD, FLIGHTPATH
   }
 
 
@@ -70,7 +70,7 @@ public class Gui extends JFrame {
       this.data = new ArrayList<>();
 
       this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-      this.setSize(600, 400);
+      this.setSize(800, 500);
       this.setLocationRelativeTo(null);
 
       settingsWindow = new SettingsWindow();
