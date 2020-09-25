@@ -61,12 +61,22 @@ public class Gui extends JFrame {
     public static boolean showGui = true;
     public static String csvImportPath = "";
     public static String orkImportPath = "";
+    public static String exportPath = "";
   }
 
   /**
    * Creates a window that runs monte carlo simulations.
    */
   public Gui() {
+
+    // If null, the user has chose not to import custom files and defaults should be used
+    rocketModelFile = null;
+    missionControlFile = null;
+    settingsMissionControl = null;
+
+    if (UserState.orkImportPath.length() > 0) {
+      rocketModelFile = new File(UserState.orkImportPath);
+    }
 
     if (UserState.showGui) {
       this.data = new ArrayList<>();
@@ -79,11 +89,6 @@ public class Gui extends JFrame {
       simulationWindow = new SimulationWindow();
       graphWindow = new GraphWindow();
       mapWindow = new MapWindow();
-
-      // If null, the user has chose not to import custom files and defaults should be used
-      rocketModelFile = null;
-      missionControlFile = null;
-      settingsMissionControl = null;
 
       fileChooser = new JFileChooser();
 
@@ -215,8 +220,14 @@ public class Gui extends JFrame {
    * @return filepath
    */
   public static String savePointsAsCsv(ArrayList<String> list) {
+    File file = null;
     try {
-      File file = new File("points.csv");
+      if (UserState.exportPath.length() > 0) {
+        String filePath = System.getProperty("user.home") + UserState.exportPath;
+        file = new File(filePath, "points.csv");
+      } else {
+        file = new File("points.csv");
+      }
       PrintWriter pw = new PrintWriter(file);
       // Reading everything into a string
       StringBuilder sb = new StringBuilder();
@@ -227,10 +238,10 @@ public class Gui extends JFrame {
       // Writing to the print writer
       pw.write(sb.toString());
       pw.close();
+      System.out.println("Exported csv to: " + file.getAbsolutePath());
       return file.getAbsolutePath();
-
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      System.out.println("Invalid file export path: " + file.getAbsolutePath());
       return null;
     }
   }
@@ -516,18 +527,23 @@ public class Gui extends JFrame {
   private static void argumentParser(String[] args) {
     for (String argument : args) {
       String[] arg = argument.split("=");
-      switch (arg[0]) {
-        case "-noGui":
+      switch (arg[0].toLowerCase()) {
+        case "-nogui":
           UserState.showGui = false;
           break;
-        case "-importCSV":
+        case "-importcsv":
           if (arg.length == 2) {
             UserState.csvImportPath = arg[1];
           }
           break;
-        case "-importORK":
+        case "-importork":
           if (arg.length == 2) {
             UserState.orkImportPath = arg[1];
+          }
+          break;
+        case "-export":
+          if (arg.length == 2) {
+            UserState.exportPath = arg[1];
           }
           break;
         default:
@@ -574,6 +590,7 @@ public class Gui extends JFrame {
           ClassLoader classLoader = this.getClass().getClassLoader();
           rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
         } else {
+          System.out.println(rocketModelFile);
           rocketFile = new FileInputStream(rocketModelFile);
         }
 
