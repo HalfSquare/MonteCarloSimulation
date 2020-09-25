@@ -41,6 +41,7 @@ public class OpenRocketHelper {
       simulation.simulate(listener);
     } catch (SimulationException exception) {
       exception.printStackTrace();
+      throw new RuntimeException(exception);
     }
   }
 

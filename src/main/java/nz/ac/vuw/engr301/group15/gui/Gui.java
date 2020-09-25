@@ -404,7 +404,7 @@ public class Gui extends JFrame {
         System.out.println("CSV file successfully imported");
       }
       sc.close();
-    } catch (Exception ex) {
+    } catch (IOException ex) {
       System.out.println("Uh oh! " + ex);
     }
   }
@@ -456,11 +456,15 @@ public class Gui extends JFrame {
 
       //Save chart as image to selected file at original size
       OutputStream out = new FileOutputStream(file);
-      ChartUtilities.writeChartAsPNG(out,
-          chartPanel.getChart(),
-          chartPanel.getWidth(),
-          chartPanel.getHeight());
-      out.close();
+      try {
+        ChartUtilities.writeChartAsPNG(out,
+                chartPanel.getChart(),
+                chartPanel.getWidth(),
+                chartPanel.getHeight());
+      }
+      finally {
+        out.close();
+      }
 
     } catch (IOException ex) {
       throw new Error("IO Exception");

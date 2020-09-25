@@ -62,7 +62,7 @@ public class PiListener extends AbstractSimulationListener {
         double i = this.KI * this.intState;
         double value = p + i;
         if (Math.abs(value) > 0.2617993877991494D) {
-          System.err.printf("Attempting to set angle %.1f at t=%.3f, clamping.\n",
+          System.err.printf("Attempting to set angle %.1f at t=%.3f, clamping.%n",
               value * 180.0D / 3.141592653589793D, status.getSimulationTime());
           rocketAngle.put(status.getSimulationTime(), value * 180.0D / 3.141592653589793D);
           value = MathUtil.clamp(value, -0.2617993877991494D, 0.2617993877991494D);

@@ -1,5 +1,7 @@
 package nz.ac.vuw.engr301.group15.gui;
 
+import org.apache.commons.lang.math.NumberUtils;
+
 import java.util.ArrayList;
 
 /**
@@ -86,14 +88,19 @@ public class MissionControlSettings {
     this.errorsFound = errorsFound;
   }
 
-
+  /**
+   * Checks whether a number is valid.
+   *
+   * Invalid numbers are added to the error list.
+   *
+   * @param stringValue the string to be checked as a number
+   * @param type the data field number belongs to
+   *
+   * @return true if valid, false if invalid
+   */
   private boolean isValidCheck(String stringValue, String type) {
-    double value = 0;
     if (!stringValue.equals("")) {
-      try {
-        value = Double.parseDouble(stringValue);
-        return true;
-      } catch (NumberFormatException e) {
+      if (!NumberUtils.isNumber(stringValue)){
         setErrorsFound(true);
         errorList
           .add("Invalid " + type + " value: " + stringValue + ". Must be a valid number");
@@ -256,14 +263,16 @@ public class MissionControlSettings {
     return numSimulations.equals("") ? 0 : Integer.parseInt(numSimulations.replaceAll(",", ""));
   }
 
+  /**
+   * Sets the number of simulations and records errors to the error list.
+   *
+   * @param numSimulations the number of simulations
+   */
   public void setNumSimulations(final String numSimulations) {
-    int val = 0;
-    try {
-      val = Integer.parseInt(numSimulations);
-    } catch (NumberFormatException e) {
+    if (!NumberUtils.isNumber(numSimulations)) {
       setErrorsFound(true);
       errorList
-        .add("Invalid number of simulation value: " + numSimulations + ". Must be a number");
+              .add("Invalid number of simulation value: " + numSimulations + ". Must be a number");
       this.numSimulations = "0";
       return;
     }
