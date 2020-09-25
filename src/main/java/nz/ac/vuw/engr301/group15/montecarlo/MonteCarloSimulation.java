@@ -154,7 +154,7 @@ public class MonteCarloSimulation {
 
       if (listener != null) {
         listener.run();
-//        System.out.printf(" ran a sim. %s%%\n", progress);
+        System.out.printf(" ran a sim. %s%%\n", progress);
       }
 
     }

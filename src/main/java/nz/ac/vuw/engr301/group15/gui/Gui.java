@@ -55,7 +55,7 @@ public class Gui extends JFrame {
   private ArrayList<SimulationDuple> data;
   public int numberOfClusters = 3;
   private XYZDataset<String> dataset3d;
-  private static final int THREAD_COUNT = 100;
+  private static final int THREAD_COUNT = 5;
 
   public enum GraphType {
     CIRCLE, SQUARE, CROSS, FLIGHTPATH
@@ -580,6 +580,8 @@ public class Gui extends JFrame {
         barUpdates.add(simulationWindow::uptickBar);
         barUpdates.add(simulationWindow::uptickBatch2);
 
+        long startTime = System.nanoTime();
+
         for (int thread = 1; thread <= THREAD_COUNT; thread++) {
           InputStream rocketFile;
           if (rocketModelFile == null) {
@@ -608,6 +610,10 @@ public class Gui extends JFrame {
         es.shutdown();
         es.awaitTermination(3, TimeUnit.HOURS);
 
+        long endTime = System.nanoTime();
+
+        System.out.println("*****************************************\nTime took: " + (endTime - startTime));
+
         for (SimulationBatch thread : batches) {
           data.addAll(thread.getData());
         }
@@ -629,7 +635,8 @@ public class Gui extends JFrame {
       }
       if (show) {
         if (onFinish != null) {
-          onFinish.run();
+          //TODO: give back
+//          onFinish.run();
         }
       }
     }
