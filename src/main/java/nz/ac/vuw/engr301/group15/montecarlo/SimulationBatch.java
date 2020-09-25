@@ -35,7 +35,10 @@ public class SimulationBatch implements Runnable {
 
   @Override
   public void run() {
-    MonteCarloSimulation mcs = new MonteCarloSimulation(onStep);
+    MonteCarloSimulation mcs = new MonteCarloSimulation(() -> {
+      onStep.run();
+      System.out.println(name + " ran a sim");
+    });
 
     try {
       data = mcs.runSimulations(rocketFile, settings);
