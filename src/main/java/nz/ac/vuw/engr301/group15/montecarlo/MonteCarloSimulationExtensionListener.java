@@ -6,8 +6,9 @@ import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.simulation.listeners.AbstractSimulationListener;
 
 public class MonteCarloSimulationExtensionListener extends AbstractSimulationListener {
-  private SimulationStatus simulationStatus;
-  private SimulationOptions simulationOptions;
+
+  private static SimulationStatus simulationStatus;
+  private final SimulationOptions simulationOptions;
 
   public MonteCarloSimulationExtensionListener(SimulationOptions simulationOptions) {
     super();
