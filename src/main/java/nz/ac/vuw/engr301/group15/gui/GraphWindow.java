@@ -1,20 +1,11 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.Objects;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-
-import org.jfree.chart.ChartPanel;
-
 
 public class GraphWindow {
   private JComboBox<String> graphTypeComboBox;
@@ -24,25 +15,7 @@ public class GraphWindow {
   private JPanel graphPanel;
   private JButton saveImageToFileButton;
   private JButton csvExportButton;
-  private JButton viewOnMapButton;
   private JButton savePointsAsCsvButton;
-
-  private JTable simulationTable;
-
-  /**
-   * Constructor.
-   */
-  public GraphWindow() {
-
-  }
-
-  public JTable getSimulationTable() {
-    return simulationTable;
-  }
-
-  public void addToGraph(ChartPanel chartPanel) {
-    graphPanel.add(chartPanel);
-  }
 
   public JPanel getRootPanel() {
     return this.rootPanel;
@@ -82,10 +55,6 @@ public class GraphWindow {
 
   public void setSavePointsAsCsvButton(ActionListener listener) {
     this.savePointsAsCsvButton.addActionListener(listener);
-  }
-
-  public void setViewOnMapButton(ActionListener listener) {
-    this.viewOnMapButton.addActionListener(listener);
   }
 
   public void doUiStuff() {

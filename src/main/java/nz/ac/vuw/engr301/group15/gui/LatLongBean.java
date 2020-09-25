@@ -38,11 +38,11 @@ public class LatLongBean {
   }
 
   public double[] getValue() {
-    return value;
+    return value.clone();
   }
 
   public void setValue(double[] value) {
-    this.value = value;
+    this.value = value.clone();
   }
 
   public static LatLongBean fromSimulationStatus(SimulationStatus status) {
