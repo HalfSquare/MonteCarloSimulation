@@ -590,7 +590,6 @@ public class Gui extends JFrame {
           ClassLoader classLoader = this.getClass().getClassLoader();
           rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
         } else {
-          System.out.println(rocketModelFile);
           rocketFile = new FileInputStream(rocketModelFile);
         }
 
