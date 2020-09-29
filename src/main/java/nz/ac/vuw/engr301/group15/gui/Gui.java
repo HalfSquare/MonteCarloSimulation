@@ -76,6 +76,11 @@ public class Gui extends JFrame {
 
     if (UserState.orkImportPath.length() > 0) {
       rocketModelFile = new File(UserState.orkImportPath);
+      if (!rocketModelFile.exists()) {
+        System.out.println("Could not find ork import path of "
+            + rocketModelFile.getAbsolutePath());
+        System.exit(1);
+      }
     }
 
     if (UserState.showGui) {
@@ -99,14 +104,27 @@ public class Gui extends JFrame {
       settingsWindow.setNumSim("1000");
       settingsWindow.setNumClusters(numberOfClusters);
 
+      loadCsvFile();
+
       setState(SETTINGS);
 
       this.setVisible(true);
     } else {
-      File csvFile = new File(UserState.csvImportPath);
-      loadMissionControlData(csvFile, false);
+      loadCsvFile();
       SimulationRunner simulationRunner = new SimulationRunner();
       simulationRunner.start();
+    }
+  }
+
+  private void loadCsvFile() {
+    if (UserState.csvImportPath.length() > 0) {
+      File csvFile = new File(UserState.csvImportPath);
+      if (csvFile.exists()) {
+        loadMissionControlData(csvFile);
+      } else {
+        System.out.println("Could not find csv import path of " + csvFile.getAbsolutePath());
+        System.exit(1);
+      }
     }
   }
 
@@ -144,7 +162,6 @@ public class Gui extends JFrame {
       e.printStackTrace();
     }
   }
-
 
   private void compute3dData() {
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
@@ -293,7 +310,7 @@ public class Gui extends JFrame {
     missionControlFile = j.getSelectedFile();
     // If a valid file has been given, parse & load data from the file
     if (j.getSelectedFile() != null) {
-      loadMissionControlData(j.getSelectedFile(), true);
+      loadMissionControlData(j.getSelectedFile());
     }
   }
 
@@ -315,9 +332,8 @@ public class Gui extends JFrame {
    * Method to read and load the mission control data from a CSV into a bean.
    *
    * @param file CSV file with mission control data, should follow the given template.
-   * @param show boolean to determine if program should run with GUI or not.
    */
-  public void loadMissionControlData(File file, boolean show) {
+  public void loadMissionControlData(File file) {
     MissionControlSettings settings = new MissionControlSettings();
 
     // Attempt to read data
@@ -344,11 +360,11 @@ public class Gui extends JFrame {
             settings.setNumSimulations(value);
 
             if (Integer.parseInt(value) > 0) {
-              if (show) {
+              if (UserState.showGui) {
                 settingsWindow.setNumSim(value);
               }
             } else {
-              if (show) {
+              if (UserState.showGui) {
                 settingsMissionControl.setErrorsFound(true);
                 JOptionPane.showMessageDialog(null,
                     "Enter a simulation number larger than 0",
@@ -411,11 +427,12 @@ public class Gui extends JFrame {
             JOptionPane.ERROR_MESSAGE);
         return;
       }
-      if (show) {
+      if (UserState.showGui) {
         settingsWindow.setData(settings);
-      } else {
-        System.out.println("CSV file successfully imported");
       }
+
+      System.out.println("CSV file successfully imported");
+
       sc.close();
     } catch (Exception ex) {
       System.out.println("Uh oh! " + ex);
@@ -527,21 +544,21 @@ public class Gui extends JFrame {
   private static void argumentParser(String[] args) {
     for (String argument : args) {
       String[] arg = argument.split("=");
-      switch (arg[0].toLowerCase()) {
-        case "-nogui":
+      switch (arg[0].toUpperCase()) {
+        case "-NOGUI":
           UserState.showGui = false;
           break;
-        case "-importcsv":
+        case "-IMPORTCSV":
           if (arg.length == 2) {
             UserState.csvImportPath = arg[1];
           }
           break;
-        case "-importork":
+        case "-IMPORTORK":
           if (arg.length == 2) {
             UserState.orkImportPath = arg[1];
           }
           break;
-        case "-export":
+        case "-EXPORT":
           if (arg.length == 2) {
             UserState.exportPath = arg[1];
           }
@@ -594,11 +611,15 @@ public class Gui extends JFrame {
         }
 
         assert rocketFile != null;
+        System.out.println("ORK file successfully imported");
         data = mcs.runSimulations(rocketFile, settingsMissionControl);
         rocketFile.close();
 
-        if (!UserState.showGui) {
+        if (UserState.exportPath.length() > 0) {
           savePointsAsCsv(createList(data));
+        }
+
+        if (!UserState.showGui) {
           System.exit(0);
         }
 
