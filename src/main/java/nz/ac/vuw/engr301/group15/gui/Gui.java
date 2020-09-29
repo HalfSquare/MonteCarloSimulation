@@ -23,11 +23,11 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.Map;
-import nz.ac.vuw.engr301.group15.montecarlo.SimulationBatch;
+import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import nz.ac.vuw.engr301.group15.montecarlo.SimulationDuple;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
@@ -61,16 +61,33 @@ public class Gui extends JFrame {
     TWOD, FLIGHTPATH
   }
 
+  public static class UserState {
+    public static boolean showGui = true;
+    public static String csvImportPath = "";
+    public static String orkImportPath = "";
+    public static String exportPath = "";
+  }
 
   /**
    * Creates a window that runs monte carlo simulations.
-   *
-   * @param show boolean to determine if should be run with GUI or not.
-   * @param file CSV file to import weather data.
    */
-  public Gui(boolean show, File file) {
+  public Gui() {
 
-    if (show) {
+    // If null, the user has chose not to import custom files and defaults should be used
+    rocketModelFile = null;
+    missionControlFile = null;
+    settingsMissionControl = null;
+
+    if (UserState.orkImportPath.length() > 0) {
+      rocketModelFile = new File(UserState.orkImportPath);
+      if (!rocketModelFile.exists()) {
+        System.out.println("Could not find ork import path of "
+            + rocketModelFile.getAbsolutePath());
+        System.exit(1);
+      }
+    }
+
+    if (UserState.showGui) {
       this.data = new ArrayList<>();
 
       this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -82,11 +99,6 @@ public class Gui extends JFrame {
       graphWindow = new GraphWindow();
       mapWindow = new MapWindow();
 
-      // If null, the user has chose not to import custom files and defaults should be used
-      rocketModelFile = null;
-      missionControlFile = null;
-      settingsMissionControl = null;
-
       fileChooser = new JFileChooser();
 
       settingsWindow.doUiStuff();
@@ -96,14 +108,27 @@ public class Gui extends JFrame {
       settingsWindow.setNumSim("1000");
       settingsWindow.setNumClusters(numberOfClusters);
 
+      loadCsvFile();
+
       setState(SETTINGS);
 
       this.setVisible(true);
     } else {
-      loadMissionControlData(file, false);
+      loadCsvFile();
       SimulationRunner simulationRunner = new SimulationRunner();
-      simulationRunner.show = false;
       simulationRunner.start();
+    }
+  }
+
+  private void loadCsvFile() {
+    if (UserState.csvImportPath.length() > 0) {
+      File csvFile = new File(UserState.csvImportPath);
+      if (csvFile.exists()) {
+        loadMissionControlData(csvFile);
+      } else {
+        System.out.println("Could not find csv import path of " + csvFile.getAbsolutePath());
+        System.exit(1);
+      }
     }
   }
 
@@ -141,7 +166,6 @@ public class Gui extends JFrame {
       e.printStackTrace();
     }
   }
-
 
   private void compute3dData() {
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
@@ -217,8 +241,14 @@ public class Gui extends JFrame {
    * @return filepath
    */
   public static String savePointsAsCsv(ArrayList<String> list) {
+    File file = null;
     try {
-      File file = new File("points.csv");
+      if (UserState.exportPath.length() > 0) {
+        String filePath = System.getProperty("user.home") + UserState.exportPath;
+        file = new File(filePath, "points.csv");
+      } else {
+        file = new File("points.csv");
+      }
       PrintWriter pw = new PrintWriter(file);
       // Reading everything into a string
       StringBuilder sb = new StringBuilder();
@@ -229,10 +259,10 @@ public class Gui extends JFrame {
       // Writing to the print writer
       pw.write(sb.toString());
       pw.close();
+      System.out.println("Exported csv to: " + file.getAbsolutePath());
       return file.getAbsolutePath();
-
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      System.out.println("Invalid file export path: " + file.getAbsolutePath());
       return null;
     }
   }
@@ -284,7 +314,7 @@ public class Gui extends JFrame {
     missionControlFile = j.getSelectedFile();
     // If a valid file has been given, parse & load data from the file
     if (j.getSelectedFile() != null) {
-      loadMissionControlData(j.getSelectedFile(), true);
+      loadMissionControlData(j.getSelectedFile());
     }
   }
 
@@ -306,9 +336,8 @@ public class Gui extends JFrame {
    * Method to read and load the mission control data from a CSV into a bean.
    *
    * @param file CSV file with mission control data, should follow the given template.
-   * @param show boolean to determine if program should run with GUI or not.
    */
-  public void loadMissionControlData(File file, boolean show) {
+  public void loadMissionControlData(File file) {
     MissionControlSettings settings = new MissionControlSettings();
 
     // Attempt to read data
@@ -335,11 +364,11 @@ public class Gui extends JFrame {
             settings.setNumSimulations(value);
 
             if (Integer.parseInt(value) > 0) {
-              if (show) {
+              if (UserState.showGui) {
                 settingsWindow.setNumSim(value);
               }
             } else {
-              if (show) {
+              if (UserState.showGui) {
                 settingsMissionControl.setErrorsFound(true);
                 JOptionPane.showMessageDialog(null,
                     "Enter a simulation number larger than 0",
@@ -402,11 +431,12 @@ public class Gui extends JFrame {
             JOptionPane.ERROR_MESSAGE);
         return;
       }
-      if (show) {
+      if (UserState.showGui) {
         settingsWindow.setData(settings);
-      } else {
-        System.out.println("CSV file successfully imported");
       }
+
+      System.out.println("CSV file successfully imported");
+
       sc.close();
     } catch (IOException ex) {
       System.out.println("Uh oh! " + ex);
@@ -516,29 +546,41 @@ public class Gui extends JFrame {
         | UnsupportedLookAndFeelException e) {
       e.printStackTrace();
     }
-    if (args.length >= 1) {
-      String guiArg = args[0];
-      if (guiArg.equals("-nogui")) {
-        if (args.length > 1) {
-          File f = new File(args[1]);
-          new Gui(false, f);
-        } else {
-          throw new RuntimeException("Invalid arguments: "
-              + "Correct format e.g. -nogui src/main/resources/testMCData.csv");
-        }
-      } else { // run with gui
-        new Gui(true, null);
-      }
-    } else {
-      new Gui(true, null);
-    }
+    argumentParser(args);
   }
 
+  private static void argumentParser(String[] args) {
+    for (String argument : args) {
+      String[] arg = argument.split("=");
+      switch (arg[0].toUpperCase()) {
+        case "-NOGUI":
+          UserState.showGui = false;
+          break;
+        case "-IMPORTCSV":
+          if (arg.length == 2) {
+            UserState.csvImportPath = arg[1];
+          }
+          break;
+        case "-IMPORTORK":
+          if (arg.length == 2) {
+            UserState.orkImportPath = arg[1];
+          }
+          break;
+        case "-EXPORT":
+          if (arg.length == 2) {
+            UserState.exportPath = arg[1];
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    new Gui();
+  }
 
   class SimulationRunner implements Runnable {
     private Thread thread;
     private final Runnable onFinish;
-    private boolean show = true;
     private int currentSimsRemaining;
     private int numThreads;
 
@@ -563,6 +605,12 @@ public class Gui extends JFrame {
      */
     @Override
     public void run() {
+      MonteCarloSimulation mcs;
+      if (UserState.showGui) {
+        mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
+      } else {
+        mcs = new MonteCarloSimulation();
+      }
       try {
         data = new ArrayList<>();
 
@@ -663,11 +711,15 @@ public class Gui extends JFrame {
 
         // data = mcs.runSimulations(rocketFile, settingsMissionControl);
 
+        assert rocketFile != null;
+        data = mcs.runSimulations(rocketFile, settingsMissionControl);
+        rocketFile.close();
 
-//        rocketFile.close();
-
-        if (!show) {
+        if (UserState.exportPath.length() > 0) {
           savePointsAsCsv(createList(data));
+        }
+
+        if (!UserState.showGui) {
           System.exit(0);
         }
 
@@ -676,7 +728,7 @@ public class Gui extends JFrame {
         e.printStackTrace();
         //TODO deal with FileNotFoundException (don't continue running code)
       }
-      if (show) {
+      if (UserState.showGui) {
         if (onFinish != null) {
           //TODO: give back
 //          onFinish.run();
