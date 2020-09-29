@@ -74,7 +74,7 @@ public class GraphCreator {
     if (graphWindow.getGraphTypeComboBox().equals("3D")) {
       graphType = Gui.GraphType.FLIGHTPATH;
     } else {
-      graphType = Gui.GraphType.valueOf(graphWindow.getGraphTypeComboBox().toUpperCase());
+      graphType = Gui.GraphType.TWOD;
     }
 
     // Create chart
@@ -90,13 +90,7 @@ public class GraphCreator {
 
     // Creates the plotting shape
     switch (graphType) {
-      case CROSS:
-        shape = ShapeUtilities.createDiagonalCross(1, 1);
-        break;
-      case SQUARE:
-        shape = new Rectangle2D.Double(-3, -3, 3, 3);
-        break;
-      case CIRCLE:
+      case TWOD:
         shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
         break;
       case FLIGHTPATH:

@@ -59,7 +59,7 @@ public class Gui extends JFrame {
   private static final int THREAD_COUNT = 10;
 
   public enum GraphType {
-    CIRCLE, SQUARE, CROSS, FLIGHTPATH
+    TWOD, FLIGHTPATH
   }
 
 
@@ -75,7 +75,7 @@ public class Gui extends JFrame {
       this.data = new ArrayList<>();
 
       this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-      this.setSize(600, 400);
+      this.setSize(800, 500);
       this.setLocationRelativeTo(null);
 
       settingsWindow = new SettingsWindow();
@@ -409,7 +409,7 @@ public class Gui extends JFrame {
         System.out.println("CSV file successfully imported");
       }
       sc.close();
-    } catch (Exception ex) {
+    } catch (IOException ex) {
       System.out.println("Uh oh! " + ex);
     }
   }
@@ -461,11 +461,15 @@ public class Gui extends JFrame {
 
       //Save chart as image to selected file at original size
       OutputStream out = new FileOutputStream(file);
-      ChartUtilities.writeChartAsPNG(out,
-          chartPanel.getChart(),
-          chartPanel.getWidth(),
-          chartPanel.getHeight());
-      out.close();
+      try {
+        ChartUtilities.writeChartAsPNG(out,
+                chartPanel.getChart(),
+                chartPanel.getWidth(),
+                chartPanel.getHeight());
+      }
+      finally {
+        out.close();
+      }
 
     } catch (IOException ex) {
       throw new Error("IO Exception");
