@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.function.Consumer;
 
 public class SimulationBatch implements Runnable {
   private final InputStream rocketFile;
@@ -16,11 +17,11 @@ public class SimulationBatch implements Runnable {
   private final int simsInBatch;
   private int simsRun;
   private final Runnable onStep;
-  private final Runnable onFinish;
+  private final Consumer<Integer> onFinish;
 
   private ArrayList<SimulationDuple> data;
 
-  public SimulationBatch(String name, int simsInBatch, InputStream rocketFile, MissionControlSettings settings, Runnable onStep, Runnable onFinish) {
+  public SimulationBatch(String name, int simsInBatch, InputStream rocketFile, MissionControlSettings settings, Runnable onStep, Consumer<Integer> onFinish) {
     this.name = name;
     this.simsInBatch = simsInBatch;
     this.onStep = onStep;
@@ -51,7 +52,7 @@ public class SimulationBatch implements Runnable {
 
     // Run the onFinish Runnable
     if (onFinish != null) {
-      onFinish.run();
+      onFinish.accept(simsInBatch);
     }
   }
 

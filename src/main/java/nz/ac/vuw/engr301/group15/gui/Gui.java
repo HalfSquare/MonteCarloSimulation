@@ -14,7 +14,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -24,11 +23,10 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import net.sf.openrocket.file.RocketLoadException;
+
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.Map;
-import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import nz.ac.vuw.engr301.group15.montecarlo.SimulationBatch;
 import nz.ac.vuw.engr301.group15.montecarlo.SimulationDuple;
 import org.jfree.chart.ChartPanel;
@@ -56,7 +54,8 @@ public class Gui extends JFrame {
   private ArrayList<SimulationDuple> data;
   public int numberOfClusters = 3;
   private XYZDataset<String> dataset3d;
-  private static final int THREAD_COUNT = 10;
+  private static final int THREAD_COUNT = 1;
+  private static final int MAX_SIMULTANEOUS_SIMS = 5800;
 
   public enum GraphType {
     TWOD, FLIGHTPATH
@@ -540,6 +539,8 @@ public class Gui extends JFrame {
     private Thread thread;
     private final Runnable onFinish;
     private boolean show = true;
+    private int currentSimsRemaining;
+    private int numThreads;
 
     SimulationRunner() {
       this(null);
@@ -580,29 +581,49 @@ public class Gui extends JFrame {
         long startTime = System.nanoTime();
 
         InputStream rocketFile;
-          if (rocketModelFile == null) {
+
+
+        this.currentSimsRemaining = settingsMissionControl.getNumSimulationsAsInteger();
+        while (currentSimsRemaining > 0) {
+          if (numThreads < THREAD_COUNT) {
+            if (rocketModelFile == null) {
             ClassLoader classLoader = this.getClass().getClassLoader();
             rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-          } else {
+          }
+          else {
             rocketFile = new FileInputStream(rocketModelFile);
           }
+            SimulationBatch simBatch;
+          if (MAX_SIMULTANEOUS_SIMS / THREAD_COUNT > currentSimsRemaining) {
+            System.out.println("no");
+            simBatch = new SimulationBatch(
+                    "Simulation Batch " + thread,
+                    MAX_SIMULTANEOUS_SIMS / THREAD_COUNT,
+                    rocketFile,
+                    settingsMissionControl,
+                    simulationWindow::uptickBatch2,
+                    this::doneBatch
+            );
+          } else {
+            System.out.println("yes");
+            simBatch = new SimulationBatch(
+                    "Simulation Batch " + thread,
+                    currentSimsRemaining,
+                    rocketFile,
+                    settingsMissionControl,
+                    simulationWindow::uptickBatch2,
+                    this::doneBatch
+            );
+          }
 
-        int simsRemaining = settingsMissionControl.getNumSimulationsAsInteger();
-        while (simsRemaining > 0) {
-
+            numThreads++;
+            batches.add(simBatch); //TODO might need to delete later
+            es.execute(simBatch);
+          }
         }
-        SimulationBatch curThread = new SimulationBatch(
-                  "Simulation Batch " + thread,
-                  3,
-                  rocketFile,
-                  settingsMissionControl,
-                  simulationWindow::uptickBatch2,
-                  simulationWindow::uptickBar
-//                  barUpdates.get(thread-1),
-//                  () -> System.out.println("")
-                );
 
-        es.execute(curThread);
+        es.shutdown();
+        es.awaitTermination(3, TimeUnit.HOURS);
 
 //        for (int thread = 1; thread <= THREAD_COUNT; thread++) {
 //          InputStream rocketFile;
@@ -651,7 +672,7 @@ public class Gui extends JFrame {
         }
 
 
-      } catch (IOException e) {
+      } catch (IOException | InterruptedException e) {
         e.printStackTrace();
         //TODO deal with FileNotFoundException (don't continue running code)
       }
@@ -661,6 +682,13 @@ public class Gui extends JFrame {
 //          onFinish.run();
         }
       }
+    }
+
+    private void doneBatch(int simsDone) {
+      currentSimsRemaining -= simsDone;
+      numThreads--;
+      currentSimsRemaining -= MAX_SIMULTANEOUS_SIMS / THREAD_COUNT;
+      System.out.println("############################# yay done ##########################");
     }
 
     public void start() {
