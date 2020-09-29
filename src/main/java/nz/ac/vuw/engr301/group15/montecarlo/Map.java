@@ -70,9 +70,9 @@ public class Map extends JPanel {
 
     // Indexes of smallest and largest elements
     // from remaining array.
-    int small=0, large=n-1;
+    int small = 0, large = n-1;
 
-    // To indicate whether we need to copy rmaining
+    // To indicate whether we need to copy remaining
     // largest or remaining smallest at next position
     boolean flag = true;
 
