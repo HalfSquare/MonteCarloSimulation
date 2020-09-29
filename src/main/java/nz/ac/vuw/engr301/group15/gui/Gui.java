@@ -55,7 +55,7 @@ public class Gui extends JFrame {
   private ArrayList<SimulationDuple> data;
   public int numberOfClusters = 3;
   private XYZDataset<String> dataset3d;
-  private static final int THREAD_COUNT = 1;
+  private static final int THREAD_COUNT = 10;
   private static final int MAX_SIMULTANEOUS_SIMS = 5800;
 
   public enum GraphType {
@@ -606,12 +606,6 @@ public class Gui extends JFrame {
      */
     @Override
     public void run() {
-      MonteCarloSimulation mcs;
-      if (UserState.showGui) {
-        mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
-      } else {
-        mcs = new MonteCarloSimulation();
-      }
       try {
         data = new ArrayList<>();
 
@@ -632,7 +626,10 @@ public class Gui extends JFrame {
         InputStream rocketFile;
 
 
+
+        numThreads = 0;
         this.currentSimsRemaining = settingsMissionControl.getNumSimulationsAsInteger();
+        System.out.println(currentSimsRemaining);
         while (currentSimsRemaining > 0) {
           if (numThreads < THREAD_COUNT) {
             if (rocketModelFile == null) {
@@ -643,7 +640,7 @@ public class Gui extends JFrame {
             rocketFile = new FileInputStream(rocketModelFile);
           }
             SimulationBatch simBatch;
-          if (MAX_SIMULTANEOUS_SIMS / THREAD_COUNT > currentSimsRemaining) {
+          if (MAX_SIMULTANEOUS_SIMS / THREAD_COUNT < currentSimsRemaining) {
             System.out.println("no");
             simBatch = new SimulationBatch(
                     "Simulation Batch " + thread,
@@ -664,7 +661,6 @@ public class Gui extends JFrame {
                     this::doneBatch
             );
           }
-
             numThreads++;
             batches.add(simBatch); //TODO might need to delete later
             es.execute(simBatch);
