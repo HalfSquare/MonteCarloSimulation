@@ -208,11 +208,15 @@ public class Gui extends JFrame {
   }
 
 
-  public void getOneTypeOfPoint(boolean lat, ArrayList<SimulationDuple> data){
-    ArrayList<Double> onePoint = new ArrayList<Double>();
+  /**
+   * This method gets all of the points for latitude or longitude
+   * @param lat
+   * @param data
+   */
+  public ArrayList getOneTypeOfPoint(boolean lat, ArrayList<SimulationDuple> data){
+    ArrayList<Double> onePoint = new ArrayList<>();
 
     //looping through and getting all the values in the array list that are either longitude values or latitude values
-
     for (SimulationStatus longAndLat : SimulationDuple.getStatuses(data)) {
       WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
       double x = landingPos.getLongitudeDeg();
@@ -225,6 +229,7 @@ public class Gui extends JFrame {
         onePoint.add(x);
       }
     }
+    return onePoint;
   }
 
   /**
