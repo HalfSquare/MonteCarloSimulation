@@ -427,6 +427,8 @@ public class Gui extends JFrame {
       startGraph();
       graphWindow.setVisible(true);
     } else if (MAP.equals(state)) {
+      //For loading in the array of points
+
       startMap();
       mapWindow.setVisible(true);
     } else {

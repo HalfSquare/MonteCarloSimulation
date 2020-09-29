@@ -9,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Map extends JPanel {
   static String API_Key = "KrGZcmPxmu4tNuWChwMteQNlNADrcByh";
@@ -23,6 +22,9 @@ public class Map extends JPanel {
   static long height = 250;
   static String view = "Unified";
   static String language = "en-GB";
+
+  //Other things
+
 
   /**
    * Method which formulates the URL to be sent to the REST API
@@ -58,21 +60,21 @@ public class Map extends JPanel {
   }
 
   /**
-   * This method is used to find the min and max points so that the centre of the location can be calculated
-   *
+   * This method is used to find the longitude and the latitude of all the points.
+   * @param arr Array of points
+   * @param n length of the array?
    * @return
    */
   private ArrayList findMinAndMaxPoints(int[] arr, int n) {
-    ArrayList MinPoints = new ArrayList();
 
     // Auxiliary array to hold modified array
     int temp[] = new int[n];
 
     // Indexes of smallest and largest elements
     // from remaining array.
-    int small = 0, large = n-1;
+    int small=0, large=n-1;
 
-    // To indicate whether we need to copy remaining
+    // To indicate whether we need to copy rmaining
     // largest or remaining smallest at next position
     boolean flag = true;
 
@@ -86,9 +88,43 @@ public class Map extends JPanel {
 
       flag = !flag;
     }
+
+    // Copy temp[] to arr[]
     arr = temp.clone();
 
-    return MinPoints;
+
+    // Prints max at first position, min at second position
+    // second max at third position, second min at fourth
+    // position and so on.
+//    ArrayList MinPoints = new ArrayList();
+//
+//    // Auxiliary array to hold modified array
+//    int temp[] = new int[n];
+//
+//    // Indexes of smallest and largest elements
+//    // from remaining array.
+//    int small = 0, large = n-1;
+//
+//    // To indicate whether we need to copy remaining
+//    // largest or remaining smallest at next position
+//    boolean flag = true;
+//
+//    // Store result in temp[]
+//    for (int i=0; i<n; i++)
+//    {
+//      if (flag)
+//        temp[i] = arr[large--];
+//      else
+//        temp[i] = arr[small++];
+//
+//      flag = !flag;
+//    }
+//    arr = temp.clone();
+//
+//    //Setting the min and max points so we can get the right area on the map
+//
+//
+//    return MinPoints;
   }
 
   /**
