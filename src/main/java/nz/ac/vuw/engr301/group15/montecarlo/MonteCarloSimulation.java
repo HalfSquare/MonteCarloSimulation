@@ -117,8 +117,8 @@ public class MonteCarloSimulation {
     simulationOptions.setLaunchPressure(launchAirPres);
 
     ArrayList<SimulationDuple> simulationData = new ArrayList<>();
-    MonteCarloSimulationExtensionListener simulationListener =
-            new MonteCarloSimulationExtensionListener(simulationOptions);
+    MonteCarloSimulationExtensionListener simulationListener;// =
+//            new MonteCarloSimulationExtensionListener(simulationOptions);
 
     char[] animationChars = new char[]{'|', '/', '-', '\\'};
     int loadingSpinIndex = 0;
@@ -131,6 +131,9 @@ public class MonteCarloSimulation {
       // Randomize some launch conditions with Gaussian distribution
       // simulationOptions.setLaunchRodAngle((rand.nextGaussian()
       // * ROD_ANGLE_SIGMA) + launchRodAngle);
+      simulationListener =
+              new MonteCarloSimulationExtensionListener(simulationOptions);
+      simulationListener.reset();
       if (doRandom) {
         //TODO: change wind direction randomly???
         simulationOptions.setWindSpeedAverage(
@@ -149,11 +152,12 @@ public class MonteCarloSimulation {
       }
 
 
-      simulationListener.reset();
+
       helper.runSimulation(simulation, simulationListener);
       while (simulationListener.getSimulation() == null) {
         System.out.println("waiting");
       }
+
       String progress = String.format("%.2f", (simNum / (double) numOfSimulations) * 100.0);
       System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
       loadingSpinIndex = loadingSpinIndex == 3 ? 0 : loadingSpinIndex + 1;

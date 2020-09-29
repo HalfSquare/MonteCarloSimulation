@@ -13,6 +13,7 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
   public MonteCarloSimulationExtensionListener(SimulationOptions simulationOptions) {
     super();
     this.simulationOptions = simulationOptions;
+    simulationOptions = null;
   }
 
   @Override
