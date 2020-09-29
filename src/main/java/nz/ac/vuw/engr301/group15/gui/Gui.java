@@ -207,6 +207,26 @@ public class Gui extends JFrame {
     return pointList;
   }
 
+
+  public void getOneTypeOfPoint(boolean lat, ArrayList<SimulationDuple> data){
+    ArrayList<Double> onePoint = new ArrayList<Double>();
+
+    //looping through and getting all the values in the array list that are either longitude values or latitude values
+
+    for (SimulationStatus longAndLat : SimulationDuple.getStatuses(data)) {
+      WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+      double x = landingPos.getLongitudeDeg();
+      double y = landingPos.getLatitudeDeg();
+
+      if (lat){
+        onePoint.add(y);
+      }
+      else {
+        onePoint.add(x);
+      }
+    }
+  }
+
   /**
    * This saves all the points to a CSV file.
    *

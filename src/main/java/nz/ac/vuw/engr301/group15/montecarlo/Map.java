@@ -18,8 +18,8 @@ public class Map extends JPanel {
   static String format = "jpg";
   static String layer = "basic";
   static String style = "main";
-  static long width = 500;
-  static long height = 250;
+  static long lat = 500;
+  static long longit = 250;
   static String view = "Unified";
   static String language = "en-GB";
 
@@ -50,8 +50,8 @@ public class Map extends JPanel {
             "format=" + format + "&" +
             "layer=" + layer + "&" +
             "style=" + style + "&" +
-            "width=" + width + "&" +
-            "height=" + height + "&" +
+            "width=" + lat + "&" +
+            "height=" + longit + "&" +
             "view=" + view + "&" +
             "language=" + language;
 
@@ -61,20 +61,19 @@ public class Map extends JPanel {
 
   /**
    * This rearranges the array so that the highest value and the lowest value are in index 0 and index 1.
+   * This should be done twice, once for the x value, and once for the y value. 
    * @param arr The array to be rearranged
    * @param n the lenght of the array?
    */
-  static void rearrange(int[] arr, int n)
+  static void rearrange(int[] arr, int n, boolean longitudeValue)
   {
     // Auxiliary array to hold modified array
     int temp[] = new int[n];
 
-    // Indexes of smallest and largest elements
-    // from remaining array.
+    // Indexes of smallest and largest elements from remaining array.
     int small=0, large=n-1;
 
-    // To indicate whether we need to copy rmaining
-    // largest or remaining smallest at next position
+    // To indicate whether we need to copy remaining largest or remaining smallest at next position
     boolean flag = true;
 
     // Store result in temp[]
@@ -88,8 +87,20 @@ public class Map extends JPanel {
       flag = !flag;
     }
 
+    //Calculating the centre point
+    int centrePoint = temp[0] - temp[1];
+
+    //Setting the longitude or latitude point
+    if (longitudeValue){
+      longit = centrePoint;
+    }
+    else {
+      lat = centrePoint;
+    }
+
     // Copy temp[] to arr[]
-    arr = temp.clone();
+//    arr = temp.clone();
+    //Temp is the final array
   }
 
 
