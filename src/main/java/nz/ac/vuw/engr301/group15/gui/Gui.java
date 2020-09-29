@@ -28,6 +28,7 @@ import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.Map;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
+import nz.ac.vuw.engr301.group15.montecarlo.SimulationBatch;
 import nz.ac.vuw.engr301.group15.montecarlo.SimulationDuple;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
@@ -711,9 +712,9 @@ public class Gui extends JFrame {
 
         // data = mcs.runSimulations(rocketFile, settingsMissionControl);
 
-        assert rocketFile != null;
-        data = mcs.runSimulations(rocketFile, settingsMissionControl);
-        rocketFile.close();
+//        assert rocketFile != null;
+//        data = mcs.runSimulations(rocketFile, settingsMissionControl);
+//        rocketFile.close();
 
         if (UserState.exportPath.length() > 0) {
           savePointsAsCsv(createList(data));
