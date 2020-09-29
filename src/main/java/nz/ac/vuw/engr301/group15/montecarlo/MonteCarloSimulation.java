@@ -5,7 +5,6 @@ import com.google.inject.Injector;
 import com.google.inject.Module;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
@@ -13,16 +12,14 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.gui.main.Splash;
 import net.sf.openrocket.gui.main.SwingExceptionHandler;
 import net.sf.openrocket.plugin.PluginModule;
-import net.sf.openrocket.rocketcomponent.Rocket;
 import net.sf.openrocket.simulation.SimulationOptions;
-import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.startup.Application;
 import net.sf.openrocket.startup.GuiModule;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
 
 public class MonteCarloSimulation {
 
-  //private static final double ROD_ANGLE_SIGMA = 5.0;
+  private static final double ROD_ANGLE_SIGMA = 5.0;
   private static final double WIND_SPEED_SIGMA = 0.5;
   private static final double WIND_DIR_SIGMA = 5.0;
   private static final double WIND_TURB_SIGMA = 0.2;
@@ -117,8 +114,7 @@ public class MonteCarloSimulation {
     simulationOptions.setLaunchPressure(launchAirPres);
 
     ArrayList<SimulationDuple> simulationData = new ArrayList<>();
-    MonteCarloSimulationExtensionListener simulationListener;// =
-//            new MonteCarloSimulationExtensionListener(simulationOptions);
+    MonteCarloSimulationExtensionListener simulationListener;
 
     char[] animationChars = new char[]{'|', '/', '-', '\\'};
     int loadingSpinIndex = 0;

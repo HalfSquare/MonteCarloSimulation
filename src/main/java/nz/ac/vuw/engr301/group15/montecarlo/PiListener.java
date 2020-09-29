@@ -19,8 +19,8 @@ public class PiListener extends AbstractSimulationListener {
   private static final double SETPOINT = 0.0D;
   private static final double TURNRATE = 0.17453292519943295D;
   private static final double MAX_ANGLE = 0.2617993877991494D;
-  public double KP = 0.007D;
-  public double KI = 0.2D;
+  public double kp = 0.007D;
+  public double ki = 0.2D;
   private double rollrate;
   private double prevTime = 0.0D;
   private double intState = 0.0D;
@@ -41,10 +41,8 @@ public class PiListener extends AbstractSimulationListener {
       this.prevTime = status.getSimulationTime();
     } else {
       FinSet finset = null;
-      Iterator var3 = status.getConfiguration().iterator();
 
-      while (var3.hasNext()) {
-        RocketComponent c = (RocketComponent) var3.next();
+      for (RocketComponent c : status.getConfiguration()) {
         if (c instanceof FinSet && c.getName().equals("CONTROL")) {
           finset = (FinSet) c;
           break;
@@ -57,9 +55,9 @@ public class PiListener extends AbstractSimulationListener {
         double deltaT = status.getSimulationTime() - this.prevTime;
         this.prevTime = status.getSimulationTime();
         double error = 0.0D - this.rollrate;
-        double p = this.KP * error;
+        double p = this.kp * error;
         this.intState += error * deltaT;
-        double i = this.KI * this.intState;
+        double i = this.ki * this.intState;
         double value = p + i;
         if (Math.abs(value) > 0.2617993877991494D) {
           System.err.printf("Attempting to set angle %.1f at t=%.3f, clamping.%n",

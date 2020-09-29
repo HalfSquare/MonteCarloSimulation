@@ -175,8 +175,6 @@ public class Gui extends JFrame {
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
     graphWindow.setSavePointsAsCsvButton(e -> savePointsAsCsv(createList(data)));
-    //createTable();
-
   }
 
   /**
@@ -455,50 +453,17 @@ public class Gui extends JFrame {
       }
 
       //Save chart as image to selected file at original size
-      OutputStream out = new FileOutputStream(file);
-      try {
+      try (OutputStream out = new FileOutputStream(file)) {
         ChartUtilities.writeChartAsPNG(out,
-                chartPanel.getChart(),
-                chartPanel.getWidth(),
-                chartPanel.getHeight());
-      }
-      finally {
-        out.close();
+            chartPanel.getChart(),
+            chartPanel.getWidth(),
+            chartPanel.getHeight());
       }
 
     } catch (IOException ex) {
       throw new Error("IO Exception");
     }
   }
-
-  //  /**
-  //   * Table containing all longitude and latitude data points
-  //   * Uncomment if you wish to view it. Additionally, you should go to GraphWindow.form
-  //   * and create a new JTable called simulationTable after double clicking on the centre of the
-  //   * page
-  //   */
-  //  private void createTable() {
-  //    String[][] pointArray = new String[data.size()][2];
-  //    String[] columnNames = {"Longitude", "Latitude"};
-  //
-  //    //reading the points into the List
-  //    for (int i = 0; i < data.size(); i++) {
-  //      SimulationStatus longAndLat = SimulationDuple.getStatuses(data).get(i);
-  //      WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-  //      double x = landingPos.getLongitudeDeg();
-  //      double y = landingPos.getLatitudeDeg();
-  //      pointArray[i][0] = String.valueOf(x);
-  //      pointArray[i][1] = String.valueOf(y);
-  //    }
-  //
-  //    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames) {
-  //      @Override
-  //      public boolean isCellEditable(int row, int column) {
-  //        return false;
-  //      }
-  //    };
-  //    graphWindow.getSimulationTable().setModel(tableModel);
-  //  }
 
   /**
    * A simple runnable for the gui.
@@ -601,6 +566,3 @@ public class Gui extends JFrame {
     }
   }
 }
-
-
-
