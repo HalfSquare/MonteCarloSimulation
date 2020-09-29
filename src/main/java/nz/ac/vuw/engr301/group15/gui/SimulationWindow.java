@@ -14,7 +14,7 @@ public class SimulationWindow {
   private JProgressBar progressBar1;
   private JPanel rootPanel;
   private JProgressBar progressBar2;
-  private JButton abortTodoButton;
+  private JButton abortButton;
   private JButton cancelButton;
   private JProgressBar batchTwoBar;
   private JPanel secondThreadBar;
@@ -138,9 +138,9 @@ public class SimulationWindow {
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null,
             null, 0, false));
-    abortTodoButton = new JButton();
-    abortTodoButton.setText("Abort (Todo)");
-    panel2.add(abortTodoButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER,
+    abortButton = new JButton();
+    abortButton.setText("Abort (Todo)");
+    panel2.add(abortButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER,
         GridConstraints.FILL_HORIZONTAL,
         GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
         GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
