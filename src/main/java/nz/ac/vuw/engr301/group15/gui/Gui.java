@@ -175,7 +175,7 @@ public class Gui extends JFrame {
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
     graphWindow.setSavePointsAsCsvButton(e -> savePointsAsCsv(createList(data)));
-    graphWindow.setSaveSimulationStatsToCsvButton(e -> System.out.print("button pressed"));
+    graphWindow.setSaveSimulationStatsToCsvButton(e -> saveStatsToCsv());
     //createTable();
 
   }
@@ -206,6 +206,33 @@ public class Gui extends JFrame {
       pointList.add("\n");
     }
     return pointList;
+  }
+
+  /**
+   * This saves all the simulation stats to a CSV file.
+   *
+   * @return filepath
+   */
+  public static String saveStatsToCsv() {
+    try {
+      File file = new File("simulationStats.csv");
+      PrintWriter pw = new PrintWriter(file);
+      // Reading everything into a string
+      StringBuilder sb = new StringBuilder();
+      sb.append("hello");
+//      for (String s : list) {
+//        sb.append(s);
+//      }
+
+      // Writing to the print writer
+      pw.write(sb.toString());
+      pw.close();
+      return file.getAbsolutePath();
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
