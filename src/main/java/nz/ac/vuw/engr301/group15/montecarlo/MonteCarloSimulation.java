@@ -230,6 +230,7 @@ public class MonteCarloSimulation {
     Injector injector = Guice.createInjector(guiModule, pluginModule);
     Application.setInjector(injector);
     guiModule.startLoader();
+    System.out.println("Initialised OpenRocket");
   }
 
   /**
