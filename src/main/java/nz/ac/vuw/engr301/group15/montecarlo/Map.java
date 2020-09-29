@@ -60,13 +60,12 @@ public class Map extends JPanel {
   }
 
   /**
-   * This method is used to find the longitude and the latitude of all the points.
-   * @param arr Array of points
-   * @param n length of the array?
-   * @return
+   * This rearranges the array so that the highest value and the lowest value are in index 0 and index 1.
+   * @param arr The array to be rearranged
+   * @param n the lenght of the array?
    */
-  private ArrayList findMinAndMaxPoints(int[] arr, int n) {
-
+  static void rearrange(int[] arr, int n)
+  {
     // Auxiliary array to hold modified array
     int temp[] = new int[n];
 
@@ -91,11 +90,20 @@ public class Map extends JPanel {
 
     // Copy temp[] to arr[]
     arr = temp.clone();
+  }
 
 
-    // Prints max at first position, min at second position
-    // second max at third position, second min at fourth
-    // position and so on.
+
+  /**
+   * This method is used to find the longitude and the latitude of all the points.
+   * @param arr Array of points
+   * @param n length of the array?
+   * @return
+   */
+//  private ArrayList findMinAndMaxPoints(int[] arr, int n) {
+//    // Prints max at first position, min at second position
+//    // second max at third position, second min at fourth
+//    // position and so on.
 //    ArrayList MinPoints = new ArrayList();
 //
 //    // Auxiliary array to hold modified array
@@ -125,7 +133,7 @@ public class Map extends JPanel {
 //
 //
 //    return MinPoints;
-  }
+//  }
 
   /**
    * KEEP THIS IN. THIS IS NOT YET IMPLEMENTED, HOWEVER IT IS VERY IMPORTANT FOR THE NEXT STAGE.
