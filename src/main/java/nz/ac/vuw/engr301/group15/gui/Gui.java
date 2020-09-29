@@ -210,8 +210,8 @@ public class Gui extends JFrame {
 
   /**
    * This method gets all of the points for latitude or longitude
-   * @param lat
-   * @param data
+   * @param lat whether we want to get the latitude or longitude data
+   * @param data the data to be sorted
    */
   public ArrayList getOneTypeOfPoint(boolean lat, ArrayList<SimulationDuple> data){
     ArrayList<Double> onePoint = new ArrayList<>();
@@ -452,9 +452,16 @@ public class Gui extends JFrame {
       startGraph();
       graphWindow.setVisible(true);
     } else if (MAP.equals(state)) {
+      createList(data);
       //For loading in the array of points
+//      startMap();
+      ArrayList arrLat = getOneTypeOfPoint(true, data);
+      ArrayList arrLong = getOneTypeOfPoint(false, data);
 
-      startMap();
+      //setting the variables
+      Map.rearrange(arrLat, arrLat.size(),false);
+      Map.rearrange(arrLong, arrLat.size(), true);
+
       mapWindow.setVisible(true);
     } else {
       throw new RuntimeException("Unexpected state switch");

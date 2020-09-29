@@ -62,13 +62,15 @@ public class Map extends JPanel {
   /**
    * This rearranges the array so that the highest value and the lowest value are in index 0 and index 1.
    * This should be done twice, once for the x value, and once for the y value. 
-   * @param arr The array to be rearranged
+   * @param array The array to be rearranged
    * @param n the lenght of the array?
    */
-  static void rearrange(int[] arr, int n, boolean longitudeValue)
+  public static void rearrange(ArrayList<Long> array, int n, boolean longitudeValue)
   {
+    Long[] arr = array.toArray(new Long[0]);
+
     // Auxiliary array to hold modified array
-    int temp[] = new int[n];
+    long temp[] = new long[n];
 
     // Indexes of smallest and largest elements from remaining array.
     int small=0, large=n-1;
@@ -88,7 +90,7 @@ public class Map extends JPanel {
     }
 
     //Calculating the centre point
-    int centrePoint = temp[0] - temp[1];
+    long centrePoint = temp[0] - temp[1];
 
     //Setting the longitude or latitude point
     if (longitudeValue){
