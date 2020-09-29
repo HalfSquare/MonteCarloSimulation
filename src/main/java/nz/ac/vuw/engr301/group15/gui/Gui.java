@@ -16,6 +16,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -55,7 +56,7 @@ public class Gui extends JFrame {
   private ArrayList<SimulationDuple> data;
   public int numberOfClusters = 3;
   private XYZDataset<String> dataset3d;
-  private static final int THREAD_COUNT = 5;
+  private static final int THREAD_COUNT = 10;
 
   public enum GraphType {
     CIRCLE, SQUARE, CROSS, FLIGHTPATH
@@ -557,19 +558,11 @@ public class Gui extends JFrame {
      */
     @Override
     public void run() {
-      MonteCarloSimulation mcs;
-      if (show) {
-        mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
-      } else {
-        mcs = new MonteCarloSimulation();
-      }
       try {
-
-
         data = new ArrayList<>();
 
         ArrayList<SimulationBatch> batches = new ArrayList<>();
-        ExecutorService es = Executors.newCachedThreadPool();
+        ThreadPoolExecutor es = (ThreadPoolExecutor) Executors.newCachedThreadPool();
 
         int perBatch = settingsMissionControl.getNumSimulationsAsInteger() / THREAD_COUNT;
 
@@ -582,8 +575,7 @@ public class Gui extends JFrame {
 
         long startTime = System.nanoTime();
 
-        for (int thread = 1; thread <= THREAD_COUNT; thread++) {
-          InputStream rocketFile;
+        InputStream rocketFile;
           if (rocketModelFile == null) {
             ClassLoader classLoader = this.getClass().getClassLoader();
             rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
@@ -591,11 +583,13 @@ public class Gui extends JFrame {
             rocketFile = new FileInputStream(rocketModelFile);
           }
 
-          assert rocketFile != null;
+        int simsRemaining = settingsMissionControl.getNumSimulationsAsInteger();
+        while (simsRemaining > 0) {
 
-          SimulationBatch curThread = new SimulationBatch(
+        }
+        SimulationBatch curThread = new SimulationBatch(
                   "Simulation Batch " + thread,
-                  perBatch,
+                  3,
                   rocketFile,
                   settingsMissionControl,
                   simulationWindow::uptickBatch2,
@@ -603,12 +597,36 @@ public class Gui extends JFrame {
 //                  barUpdates.get(thread-1),
 //                  () -> System.out.println("")
                 );
-          batches.add(curThread);
-          es.execute(curThread);
-//          curThread.start();
-        }
-        es.shutdown();
-        es.awaitTermination(3, TimeUnit.HOURS);
+
+        es.execute(curThread);
+
+//        for (int thread = 1; thread <= THREAD_COUNT; thread++) {
+//          InputStream rocketFile;
+//          if (rocketModelFile == null) {
+//            ClassLoader classLoader = this.getClass().getClassLoader();
+//            rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
+//          } else {
+//            rocketFile = new FileInputStream(rocketModelFile);
+//          }
+//
+//          assert rocketFile != null;
+//
+//          SimulationBatch curThread = new SimulationBatch(
+//                  "Simulation Batch " + thread,
+//                  perBatch,
+//                  rocketFile,
+//                  settingsMissionControl,
+//                  simulationWindow::uptickBatch2,
+//                  simulationWindow::uptickBar
+////                  barUpdates.get(thread-1),
+////                  () -> System.out.println("")
+//                );
+//          batches.add(curThread);
+//          es.execute(curThread);
+////          curThread.start();
+//        }
+//        es.shutdown();
+//        es.awaitTermination(3, TimeUnit.HOURS);
 
         long endTime = System.nanoTime();
 
@@ -629,7 +647,7 @@ public class Gui extends JFrame {
         }
 
 
-      } catch (IOException | InterruptedException e) {
+      } catch (IOException e) {
         e.printStackTrace();
         //TODO deal with FileNotFoundException (don't continue running code)
       }
