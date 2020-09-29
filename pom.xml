@@ -52,8 +52,11 @@
             <groupId>net.sf.openrocket</groupId>
             <artifactId>modified-openrocket</artifactId>
             <version>1.0</version>
+<!--            <systemPath>${pom.basedir}/src/main/resources/OpenRocket-15.03.jar</systemPath>-->
+<!--            <scope>system</scope>-->
         </dependency>
-        <!--log4j dependency -->
+
+        <!--log4j dependency-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>apache-log4j-extras</artifactId>
@@ -136,7 +139,7 @@
                             <groupId>net.sf.openrocket</groupId>
                             <artifactId>modified-openrocket</artifactId>
                             <version>1.0</version>
-                            <file>src/main/resources/modified-openrocket-1-1-9-new.jar</file>
+                            <file>${pom.basedir}/src/main/resources/OpenRocket-15.03.jar</file>
                             <packaging>jar</packaging>
                         </configuration>
                         <goals>
@@ -241,14 +244,13 @@
                     </execution>
                 </executions>
             </plugin>
-
-<!--&lt;!&ndash;                <dependencies>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <dependency>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <groupId>com.github.spotbugs</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <artifactId>spotbugs</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <version>4.0.6</version>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </dependency>&ndash;&gt;-->
-<!--&lt;!&ndash;                </dependencies>&ndash;&gt;-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>com.github.spotbugs</groupId>-->
+<!--                        <artifactId>spotbugs</artifactId>-->
+<!--                        <version>4.0.6</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
             <!--</plugin>-->
 
         </plugins>
@@ -270,5 +272,5 @@
         </plugin>
       </plugins>
     </reporting>
-    
+
 </project>

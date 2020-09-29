@@ -54,7 +54,7 @@ public class Gui extends JFrame {
 
 
   public enum GraphType {
-    CIRCLE, SQUARE, CROSS, FLIGHTPATH
+    TWOD, FLIGHTPATH
   }
 
 
@@ -70,7 +70,7 @@ public class Gui extends JFrame {
       this.data = new ArrayList<>();
 
       this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-      this.setSize(600, 400);
+      this.setSize(800, 500);
       this.setLocationRelativeTo(null);
 
       settingsWindow = new SettingsWindow();
@@ -560,29 +560,23 @@ public class Gui extends JFrame {
         mcs = new MonteCarloSimulation();
       }
       try {
+        InputStream rocketFile;
         if (rocketModelFile == null) {
           ClassLoader classLoader = this.getClass().getClassLoader();
-          InputStream rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
-          if (show) {
-            data = mcs.runSimulations(rocketFile, settingsMissionControl);
-          } else {
-            System.out.println("Simulations started");
-            data = mcs.runSimulations(rocketFile, settingsMissionControl);
-            savePointsAsCsv(createList(data));
-            System.exit(0);
-          }
+          rocketFile = classLoader.getResourceAsStream("rocket-1-1-9.ork");
         } else {
-          InputStream rocketFile = new FileInputStream(rocketModelFile);
-          if (show) {
-            data = mcs.runSimulations(rocketFile, settingsMissionControl);
-            rocketFile.close();
-          } else {
-            data = mcs.runSimulations(rocketFile, settingsMissionControl);
-            savePointsAsCsv(createList(data));
-            rocketFile.close();
-            System.exit(0);
-          }
+          rocketFile = new FileInputStream(rocketModelFile);
         }
+
+        assert rocketFile != null;
+        data = mcs.runSimulations(rocketFile, settingsMissionControl);
+        rocketFile.close();
+
+        if (!show) {
+          savePointsAsCsv(createList(data));
+          System.exit(0);
+        }
+
 
       } catch (RocketLoadException | IOException e) {
         e.printStackTrace();
