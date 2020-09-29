@@ -175,6 +175,7 @@ public class Gui extends JFrame {
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
     graphWindow.setSavePointsAsCsvButton(e -> savePointsAsCsv(createList(data)));
+    graphWindow.setSaveSimulationStatsToCsvButton(e -> System.out.print("button pressed"));
     //createTable();
 
   }
