@@ -5,7 +5,7 @@
 **Date:** TBC
 
 ## Project Objectives
-The initial goal of this project...
+The initial goal of this project was to create an extension to OpenRocket, an open-source rocket simulation software. This extension would allow the customer to run Monte Carlo simulations through OpenRocket. These simulations would take in mission control data (weather and rocket data) and a model rocket, and would run a number of simulations specified by the user. These simulations would be outputted graphically to the user, with options to save the output in various forms. This software would need to communicate with the Mission Control project software. The end goal was to also implement PID controller simulation for motor gimballing, and upwind rocket vectoring. 
 
 ## Summary of Project Results
 Over the course of this project...
