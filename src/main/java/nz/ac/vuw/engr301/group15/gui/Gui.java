@@ -175,7 +175,7 @@ public class Gui extends JFrame {
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
     graphWindow.setSavePointsAsCsvButton(e -> savePointsAsCsv(createList(data)));
-    graphWindow.setSaveSimulationStatsToCsvButton(e -> saveStatsToCsv());
+    graphWindow.setSaveSimulationStatsToCsvButton(e -> saveStatsToCsv(createStatsList(data)));
     //createTable();
 
   }
@@ -209,20 +209,51 @@ public class Gui extends JFrame {
   }
 
   /**
+   * This creates a list of all the longitude and latitude points, separated by a comma.
+   * After each set of points, a new line is created
+   *
+   * @return list of all the points
+   */
+  public static ArrayList<String> createStatsList(ArrayList<SimulationDuple> data) {
+    ArrayList<String> statsList = new ArrayList<>();
+
+    //Adding in the column names
+    statsList.add("Longitude");
+    statsList.add(",");
+    statsList.add("Latitude");
+    statsList.add(",");
+    statsList.add("Altitude");
+    statsList.add("\n");
+
+    //Reading the points into an ArrayList
+    for (SimulationStatus c : SimulationDuple.getStatuses(data)) {
+      WorldCoordinate landingPos = c.getRocketWorldPosition();
+      statsList.add(String.valueOf(landingPos.getLongitudeDeg())); // longitude value
+      statsList.add(",");
+      statsList.add(String.valueOf(landingPos.getLatitudeDeg())); // latitude value
+      statsList.add(",");
+      statsList.add(String.valueOf(landingPos.getAltitude())); // alt value
+
+      statsList.add("\n");
+    }
+    return statsList;
+  }
+
+  /**
    * This saves all the simulation stats to a CSV file.
    *
    * @return filepath
+   * @param statsList
    */
-  public static String saveStatsToCsv() {
+  public static String saveStatsToCsv(ArrayList<String> statsList) {
     try {
       File file = new File("simulationStats.csv");
       PrintWriter pw = new PrintWriter(file);
       // Reading everything into a string
       StringBuilder sb = new StringBuilder();
-      sb.append("hello");
-//      for (String s : list) {
-//        sb.append(s);
-//      }
+      for (String s : statsList) {
+        sb.append(s);
+      }
 
       // Writing to the print writer
       pw.write(sb.toString());
