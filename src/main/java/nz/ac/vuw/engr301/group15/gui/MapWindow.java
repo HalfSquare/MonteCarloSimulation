@@ -3,9 +3,13 @@ package nz.ac.vuw.engr301.group15.gui;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import java.awt.Insets;
-import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class MapWindow extends JPanel {
   private JPanel rootPanel;
