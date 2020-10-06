@@ -1,11 +1,11 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
+import ch.qos.logback.classic.Logger;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 import net.sf.openrocket.document.OpenRocketDocument;
 import net.sf.openrocket.document.Simulation;
@@ -13,16 +13,15 @@ import net.sf.openrocket.file.RocketLoadException;
 import net.sf.openrocket.gui.main.Splash;
 import net.sf.openrocket.gui.main.SwingExceptionHandler;
 import net.sf.openrocket.plugin.PluginModule;
-import net.sf.openrocket.rocketcomponent.Rocket;
 import net.sf.openrocket.simulation.SimulationOptions;
-import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.startup.Application;
 import net.sf.openrocket.startup.GuiModule;
 import nz.ac.vuw.engr301.group15.gui.MissionControlSettings;
+import org.slf4j.LoggerFactory;
 
 public class MonteCarloSimulation {
 
-  //private static final double ROD_ANGLE_SIGMA = 5.0;
+  private static final double ROD_ANGLE_SIGMA = 5.0;
   private static final double WIND_SPEED_SIGMA = 0.5;
   private static final double WIND_DIR_SIGMA = 5.0;
   private static final double WIND_TURB_SIGMA = 0.2;
@@ -117,8 +116,7 @@ public class MonteCarloSimulation {
     simulationOptions.setLaunchPressure(launchAirPres);
 
     ArrayList<SimulationDuple> simulationData = new ArrayList<>();
-    MonteCarloSimulationExtensionListener simulationListener =
-            new MonteCarloSimulationExtensionListener(simulationOptions);
+    MonteCarloSimulationExtensionListener simulationListener;
 
     char[] animationChars = new char[]{'|', '/', '-', '\\'};
     int loadingSpinIndex = 0;
@@ -131,6 +129,9 @@ public class MonteCarloSimulation {
       // Randomize some launch conditions with Gaussian distribution
       // simulationOptions.setLaunchRodAngle((rand.nextGaussian()
       // * ROD_ANGLE_SIGMA) + launchRodAngle);
+      simulationListener =
+              new MonteCarloSimulationExtensionListener(simulationOptions);
+      simulationListener.reset();
       if (doRandom) {
         //TODO: change wind direction randomly???
         simulationOptions.setWindSpeedAverage(
@@ -149,11 +150,12 @@ public class MonteCarloSimulation {
       }
 
 
-      simulationListener.reset();
+
       helper.runSimulation(simulation, simulationListener);
       while (simulationListener.getSimulation() == null) {
         System.out.println("waiting");
       }
+
       String progress = String.format("%.2f", (simNum / (double) numOfSimulations) * 100.0);
       System.out.print("Simulating: " + progress + "% " + animationChars[loadingSpinIndex] + "\r");
       loadingSpinIndex = loadingSpinIndex == 3 ? 0 : loadingSpinIndex + 1;
@@ -198,6 +200,8 @@ public class MonteCarloSimulation {
    */
   public MonteCarloSimulation() {
     this(null);
+    Logger logger = (Logger) LoggerFactory.getLogger("ROOT");
+    logger.detachAndStopAllAppenders();
     Splash.init();
     SwingExceptionHandler exceptionHandler = new SwingExceptionHandler();
     Application.setExceptionHandler(exceptionHandler);
@@ -215,6 +219,8 @@ public class MonteCarloSimulation {
   public MonteCarloSimulation(Runnable runnable) {
     this.doRandom = true;
     this.listener = runnable;
+    Logger logger = (Logger) LoggerFactory.getLogger("ROOT");
+    logger.detachAndStopAllAppenders();
     Splash.init();
     SwingExceptionHandler exceptionHandler = new SwingExceptionHandler();
     Application.setExceptionHandler(exceptionHandler);
@@ -224,6 +230,7 @@ public class MonteCarloSimulation {
     Injector injector = Guice.createInjector(guiModule, pluginModule);
     Application.setInjector(injector);
     guiModule.startLoader();
+    System.out.println("Initialised OpenRocket");
   }
 
   /**

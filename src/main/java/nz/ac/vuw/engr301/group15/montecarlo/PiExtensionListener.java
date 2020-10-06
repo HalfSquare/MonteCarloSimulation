@@ -1,30 +1,26 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import net.sf.openrocket.rocketcomponent.FinSet;
-import net.sf.openrocket.rocketcomponent.RocketComponent;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
-import net.sf.openrocket.util.MathUtil;
 
 public class PiExtensionListener extends PiListener {
   private SimulationStatus simulationStatus;
 
-  public void setProportionalValue(double pVal) {
-    this.KP = pVal;
+  public void setProportionalValue(double pval) {
+    this.kp = pval;
   }
 
   public double getProportionalValue() {
-    return this.KP;
+    return this.kp;
   }
 
-  public void setIntegralValue(double iVal) {
-    this.KI = iVal;
+  public void setIntegralValue(double ival) {
+    this.ki = ival;
   }
 
   public double getIntegralValue() {
-    return this.KI;
+    return this.ki;
   }
 
   public HashMap<Double, Double> getRocketAngles() {
@@ -35,6 +31,11 @@ public class PiExtensionListener extends PiListener {
     simulationStatus = status;
   }
 
+  /**
+   * Gets simulation status of the simulation assigned to the listener.
+   *
+   * @return null if simulation is still running.
+   */
   public SimulationStatus getSimulation() {
     if (simulationStatus == null) {
       return null;

@@ -10,6 +10,11 @@ public class MonteCarloSimulationExtensionListener extends AbstractSimulationLis
   private static SimulationStatus simulationStatus;
   private final SimulationOptions simulationOptions;
 
+  /**
+   * Listener for each simulation that takes the simulation options.
+   *
+   * @param simulationOptions The options for the simulation.
+   */
   public MonteCarloSimulationExtensionListener(SimulationOptions simulationOptions) {
     super();
     this.simulationOptions = simulationOptions;

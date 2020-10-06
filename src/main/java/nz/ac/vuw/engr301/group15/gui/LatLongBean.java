@@ -1,6 +1,5 @@
 package nz.ac.vuw.engr301.group15.gui;
 
-import com.orsoncharts.graphics3d.World;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 
@@ -38,11 +37,11 @@ public class LatLongBean {
   }
 
   public double[] getValue() {
-    return value;
+    return value.clone();
   }
 
   public void setValue(double[] value) {
-    this.value = value;
+    this.value = value.clone();
   }
 
   public static LatLongBean fromSimulationStatus(SimulationStatus status) {

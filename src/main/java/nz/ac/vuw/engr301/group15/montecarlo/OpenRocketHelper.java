@@ -25,8 +25,8 @@ public class OpenRocketHelper {
    * @param rocketFile  Name of file to load
    */
   public OpenRocketDocument loadOrDocument(InputStream rocketFile) throws RocketLoadException {
-      GeneralRocketLoader gen = new GeneralRocketLoader(new File("rocket-1-1-9.ork"));
-      return gen.load(rocketFile);
+    GeneralRocketLoader gen = new GeneralRocketLoader(new File("rocket-1-1-9.ork"));
+    return gen.load(rocketFile);
   }
 
   /**
@@ -41,6 +41,7 @@ public class OpenRocketHelper {
       simulation.simulate(listener);
     } catch (SimulationException exception) {
       exception.printStackTrace();
+      throw new RuntimeException(exception);
     }
   }
 

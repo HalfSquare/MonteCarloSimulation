@@ -60,16 +60,33 @@ public class Gui extends JFrame {
     TWOD, FLIGHTPATH
   }
 
+  public static class UserState {
+    public static boolean showGui = true;
+    public static String csvImportPath = "";
+    public static String orkImportPath = "";
+    public static String exportPath = "";
+  }
 
   /**
    * Creates a window that runs monte carlo simulations.
-   *
-   * @param show boolean to determine if should be run with GUI or not.
-   * @param file CSV file to import weather data.
    */
-  public Gui(boolean show, File file) {
+  public Gui() {
 
-    if (show) {
+    // If null, the user has chose not to import custom files and defaults should be used
+    rocketModelFile = null;
+    missionControlFile = null;
+    settingsMissionControl = null;
+
+    if (UserState.orkImportPath.length() > 0) {
+      rocketModelFile = new File(UserState.orkImportPath);
+      if (!rocketModelFile.exists()) {
+        System.out.println("Could not find ork import path of "
+            + rocketModelFile.getAbsolutePath());
+        System.exit(1);
+      }
+    }
+
+    if (UserState.showGui) {
       this.data = new ArrayList<>();
 
       this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -81,11 +98,6 @@ public class Gui extends JFrame {
       graphWindow = new GraphWindow();
       mapWindow = new MapWindow();
 
-      // If null, the user has chose not to import custom files and defaults should be used
-      rocketModelFile = null;
-      missionControlFile = null;
-      settingsMissionControl = null;
-
       fileChooser = new JFileChooser();
 
       settingsWindow.doUiStuff();
@@ -95,14 +107,27 @@ public class Gui extends JFrame {
       settingsWindow.setNumSim("1000");
       settingsWindow.setNumClusters(numberOfClusters);
 
+      loadCsvFile();
+
       setState(SETTINGS);
 
       this.setVisible(true);
     } else {
-      loadMissionControlData(file, false);
+      loadCsvFile();
       SimulationRunner simulationRunner = new SimulationRunner();
-      simulationRunner.show = false;
       simulationRunner.start();
+    }
+  }
+
+  private void loadCsvFile() {
+    if (UserState.csvImportPath.length() > 0) {
+      File csvFile = new File(UserState.csvImportPath);
+      if (csvFile.exists()) {
+        loadMissionControlData(csvFile);
+      } else {
+        System.out.println("Could not find csv import path of " + csvFile.getAbsolutePath());
+        System.exit(1);
+      }
     }
   }
 
@@ -141,14 +166,13 @@ public class Gui extends JFrame {
     }
   }
 
-
   private void compute3dData() {
     String filePath = Gui.savePointsAsCsv(Gui.createList(data));
     numberOfClusters = settingsWindow.getNumClusters();
 
     simulationWindow.setBar2Max(5);
     Set<LatLongBean> clusters = KmeansClustering.calculateClusters(
-      filePath, numberOfClusters, simulationWindow::uptickBar2);
+        filePath, numberOfClusters, simulationWindow::uptickBar2);
 
     this.dataset3d = GraphCreator.create3dDataset(data, clusters);
   }
@@ -174,7 +198,7 @@ public class Gui extends JFrame {
 
     graphWindow.setReRunButtonListener(e -> setState(SETTINGS));
     graphWindow.setGraphTypeComboBoxListener(e ->
-      setState(GRAPH)); // redraws the graph if combobox was selected
+        setState(GRAPH)); // redraws the graph if combobox was selected
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
     graphWindow.setSavePointsAsCsvButton(e -> savePointsAsCsv(createList(data)));
@@ -282,8 +306,14 @@ public class Gui extends JFrame {
    * @return filepath
    */
   public static String savePointsAsCsv(ArrayList<String> list) {
+    File file = null;
     try {
-      File file = new File("points.csv");
+      if (UserState.exportPath.length() > 0) {
+        String filePath = System.getProperty("user.home") + UserState.exportPath;
+        file = new File(filePath, "points.csv");
+      } else {
+        file = new File("points.csv");
+      }
       PrintWriter pw = new PrintWriter(file);
       // Reading everything into a string
       StringBuilder sb = new StringBuilder();
@@ -294,10 +324,10 @@ public class Gui extends JFrame {
       // Writing to the print writer
       pw.write(sb.toString());
       pw.close();
+      System.out.println("Exported csv to: " + file.getAbsolutePath());
       return file.getAbsolutePath();
-
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      System.out.println("Invalid file export path: " + file.getAbsolutePath());
       return null;
     }
   }
@@ -321,15 +351,15 @@ public class Gui extends JFrame {
       BufferedWriter writer = new BufferedWriter(new FileWriter(file));
       MissionControlSettings s = settingsMissionControl;
       writer.write("launchRodAngle,launchRodLength,launchRodDir,launchAlt,launchLat,"
-        + "launchLong,maxAngle,windSpeed"
-        + ",windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations\n");
+          + "launchLong,maxAngle,windSpeed"
+          + ",windDir,windTurbulence,launchTemp,launchAirPressure,numSimulations\n");
       writer.write(s.getLaunchRodAngle() + ","
-        + s.getLaunchRodLength() + "," + s.getLaunchRodDir() + ","
-        + s.getLaunchAlt() + "," + s.getLaunchLat() + ","
-        + s.getLaunchLong() + "," + s.getMaxAngle() + ","
-        + s.getWindSpeed() + "," + s.getWindDir() + ","
-        + s.getWindTurbulence() + "," + s.getLaunchTemp() + ","
-        + s.getLaunchAirPressure() + "," + s.getNumSimulations());
+          + s.getLaunchRodLength() + "," + s.getLaunchRodDir() + ","
+          + s.getLaunchAlt() + "," + s.getLaunchLat() + ","
+          + s.getLaunchLong() + "," + s.getMaxAngle() + ","
+          + s.getWindSpeed() + "," + s.getWindDir() + ","
+          + s.getWindTurbulence() + "," + s.getLaunchTemp() + ","
+          + s.getLaunchAirPressure() + "," + s.getNumSimulations());
       writer.close();
     } catch (Exception ex) {
       System.out.println("Uh oh! " + ex);
@@ -349,7 +379,7 @@ public class Gui extends JFrame {
     missionControlFile = j.getSelectedFile();
     // If a valid file has been given, parse & load data from the file
     if (j.getSelectedFile() != null) {
-      loadMissionControlData(j.getSelectedFile(), true);
+      loadMissionControlData(j.getSelectedFile());
     }
   }
 
@@ -370,9 +400,8 @@ public class Gui extends JFrame {
    * Method to read and load the mission control data from a CSV into a bean.
    *
    * @param file CSV file with mission control data, should follow the given template.
-   * @param show boolean to determine if program should run with GUI or not.
    */
-  public void loadMissionControlData(File file, boolean show) {
+  public void loadMissionControlData(File file) {
     MissionControlSettings settings = new MissionControlSettings();
 
     // Attempt to read data
@@ -399,16 +428,16 @@ public class Gui extends JFrame {
             settings.setNumSimulations(value);
 
             if (Integer.parseInt(value) > 0) {
-              if (show) {
+              if (UserState.showGui) {
                 settingsWindow.setNumSim(value);
               }
             } else {
-              if (show) {
+              if (UserState.showGui) {
                 settingsMissionControl.setErrorsFound(true);
                 JOptionPane.showMessageDialog(null,
-                  "Enter a simulation number larger than 0",
-                  "Following error found",
-                  JOptionPane.ERROR_MESSAGE);
+                    "Enter a simulation number larger than 0",
+                    "Following error found",
+                    JOptionPane.ERROR_MESSAGE);
               } else {
                 settingsMissionControl.setErrorsFound(true);
                 System.out.print("ERROR: Invalid simulation number.");
@@ -461,18 +490,19 @@ public class Gui extends JFrame {
 
       if (settingsMissionControl.hasErrors()) {
         JOptionPane.showMessageDialog(null,
-          settingsMissionControl.getErrors(),
-          "Following errors found",
-          JOptionPane.ERROR_MESSAGE);
+            settingsMissionControl.getErrors(),
+            "Following errors found",
+            JOptionPane.ERROR_MESSAGE);
         return;
       }
-      if (show) {
+      if (UserState.showGui) {
         settingsWindow.setData(settings);
-      } else {
-        System.out.println("CSV file successfully imported");
       }
+
+      System.out.println("CSV file successfully imported");
+
       sc.close();
-    } catch (Exception ex) {
+    } catch (IOException ex) {
       System.out.println("Uh oh! " + ex);
     }
   }
@@ -523,46 +553,17 @@ public class Gui extends JFrame {
       }
 
       //Save chart as image to selected file at original size
-      OutputStream out = new FileOutputStream(file);
-      ChartUtilities.writeChartAsPNG(out,
-        chartPanel.getChart(),
-        chartPanel.getWidth(),
-        chartPanel.getHeight());
-      out.close();
+      try (OutputStream out = new FileOutputStream(file)) {
+        ChartUtilities.writeChartAsPNG(out,
+            chartPanel.getChart(),
+            chartPanel.getWidth(),
+            chartPanel.getHeight());
+      }
 
     } catch (IOException ex) {
       throw new Error("IO Exception");
     }
   }
-
-  //  /**
-  //   * Table containing all longitude and latitude data points
-  //   * Uncomment if you wish to view it. Additionally, you should go to GraphWindow.form
-  //   * and create a new JTable called simulationTable after double clicking on the centre of the
-  //   * page
-  //   */
-  //  private void createTable() {
-  //    String[][] pointArray = new String[data.size()][2];
-  //    String[] columnNames = {"Longitude", "Latitude"};
-  //
-  //    //reading the points into the List
-  //    for (int i = 0; i < data.size(); i++) {
-  //      SimulationStatus longAndLat = SimulationDuple.getStatuses(data).get(i);
-  //      WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-  //      double x = landingPos.getLongitudeDeg();
-  //      double y = landingPos.getLatitudeDeg();
-  //      pointArray[i][0] = String.valueOf(x);
-  //      pointArray[i][1] = String.valueOf(y);
-  //    }
-  //
-  //    DefaultTableModel tableModel = new DefaultTableModel(pointArray, columnNames) {
-  //      @Override
-  //      public boolean isCellEditable(int row, int column) {
-  //        return false;
-  //      }
-  //    };
-  //    graphWindow.getSimulationTable().setModel(tableModel);
-  //  }
 
   /**
    * A simple runnable for the gui.
@@ -573,33 +574,44 @@ public class Gui extends JFrame {
     try {
       UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
-      | UnsupportedLookAndFeelException e) {
+        | UnsupportedLookAndFeelException e) {
       e.printStackTrace();
     }
-    if (args.length >= 1) {
-      String guiArg = args[0];
-      if (guiArg.equals("-nogui")) {
-        if (args.length > 1) {
-          File f = new File(args[1]);
-          new Gui(false, f);
-        } else {
-          throw new RuntimeException("Invalid arguments: "
-            + "Correct format e.g. -nogui src/main/resources/testMCData.csv");
-        }
-      } else { // run with gui
-        new Gui(true, null);
-      }
-    } else {
-      new Gui(true, null);
-    }
+    argumentParser(args);
   }
 
+  private static void argumentParser(String[] args) {
+    for (String argument : args) {
+      String[] arg = argument.split("=");
+      switch (arg[0].toUpperCase()) {
+        case "-NOGUI":
+          UserState.showGui = false;
+          break;
+        case "-IMPORTCSV":
+          if (arg.length == 2) {
+            UserState.csvImportPath = arg[1];
+          }
+          break;
+        case "-IMPORTORK":
+          if (arg.length == 2) {
+            UserState.orkImportPath = arg[1];
+          }
+          break;
+        case "-EXPORT":
+          if (arg.length == 2) {
+            UserState.exportPath = arg[1];
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    new Gui();
+  }
 
   class SimulationRunner implements Runnable {
-
     private Thread thread;
     private final Runnable onFinish;
-    private boolean show = true;
 
     SimulationRunner() {
       this(null);
@@ -610,8 +622,8 @@ public class Gui extends JFrame {
     }
 
     /**
-     * When an object implementing interface <code>Runnable</code> is used to create a thread,
-     * starting the thread causes the object's
+     * When an object implementing interface <code>Runnable</code> is used
+     * to create a thread, starting the thread causes the object's
      * <code>run</code> method to be called in that separately executing
      * thread.
      *
@@ -623,7 +635,7 @@ public class Gui extends JFrame {
     @Override
     public void run() {
       MonteCarloSimulation mcs;
-      if (show) {
+      if (UserState.showGui) {
         mcs = new MonteCarloSimulation(simulationWindow::uptickBar);
       } else {
         mcs = new MonteCarloSimulation();
@@ -638,11 +650,15 @@ public class Gui extends JFrame {
         }
 
         assert rocketFile != null;
+        System.out.println("ORK file successfully imported");
         data = mcs.runSimulations(rocketFile, settingsMissionControl);
         rocketFile.close();
 
-        if (!show) {
+        if (UserState.exportPath.length() > 0) {
           savePointsAsCsv(createList(data));
+        }
+
+        if (!UserState.showGui) {
           System.exit(0);
         }
 
@@ -651,7 +667,7 @@ public class Gui extends JFrame {
         e.printStackTrace();
         //TODO deal with FileNotFoundException (don't continue running code)
       }
-      if (show) {
+      if (UserState.showGui) {
         if (onFinish != null) {
           onFinish.run();
         }
@@ -666,6 +682,3 @@ public class Gui extends JFrame {
     }
   }
 }
-
-
-
