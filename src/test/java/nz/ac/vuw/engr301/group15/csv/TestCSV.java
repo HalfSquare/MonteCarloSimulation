@@ -44,7 +44,9 @@ public class TestCSV {
 	 */
 	@Test
 	public void TestCSVConsoleImport() {
-		Gui gui = new Gui(false, new File("src/main/resources/testMCData.csv"));
+		Gui.UserState.showGui = false;
+		Gui.UserState.csvImportPath = "src/main/resources/testMCData.csv";
+		Gui gui = new Gui();
 		String numSims = gui.settingsMissionControl.getNumSimulations();
 		String rodAngle = gui.settingsMissionControl.getLaunchRodAngle();
 		String rodLength = gui.settingsMissionControl.getLaunchRodLength();
@@ -78,7 +80,9 @@ public class TestCSV {
 	 */
 	@Test
 	public void TestApplicationRunsGUI() {
-		Gui gui = new Gui(true, new File("src/main/resources/testMCData.csv"));
+		Gui.UserState.showGui = false;
+		Gui.UserState.csvImportPath = "src/main/resources/testMCData.csv";
+		Gui gui = new Gui();
 
 		assertNotNull(gui.getGraphWindow());
 		assertNotNull(gui.getSettingsWindow());
@@ -91,7 +95,9 @@ public class TestCSV {
 
 	@Test
 	public void TestApplicationRunsNoGUI() {
-		Gui gui = new Gui(false, new File("src/main/resources/testMCData.csv"));
+		Gui.UserState.showGui = false;
+		Gui.UserState.csvImportPath = "src/main/resources/testMCData.csv";
+		Gui gui = new Gui();
 
 		assertNull(gui.getGraphWindow());
 		assertNull(gui.getSettingsWindow());

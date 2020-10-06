@@ -3,18 +3,18 @@ package nz.ac.vuw.engr301.group15.gui;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
-import java.awt.Insets;
 
 public class SimulationWindow {
   private JProgressBar progressBar1;
   private JPanel rootPanel;
   private JProgressBar progressBar2;
-  private JButton abortTodoButton;
+  private JButton abortButton;
   private JButton cancelButton;
 
   public SimulationWindow() {
@@ -75,11 +75,11 @@ public class SimulationWindow {
    */
   private void $$$setupUI$$$() {
     rootPanel = new JPanel();
-    rootPanel.setLayout(new GridLayoutManager(7, 3, new Insets(0, 0, 0, 0), -1, -1));
+    rootPanel.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
     final JPanel panel1 = new JPanel();
     panel1.setLayout(new GridLayoutManager(6, 3, new Insets(0, 0, 0, 0), -1, -1));
     rootPanel.add(panel1,
-        new GridConstraints(0, 0, 6, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH,
+        new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null,
             null, 0, false));
@@ -122,13 +122,13 @@ public class SimulationWindow {
     final JPanel panel2 = new JPanel();
     panel2.setLayout(new GridLayoutManager(1, 5, new Insets(0, 0, 0, 0), -1, -1));
     rootPanel.add(panel2,
-        new GridConstraints(6, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH,
+        new GridConstraints(1, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null,
             null, 0, false));
-    abortTodoButton = new JButton();
-    abortTodoButton.setText("Abort (Todo)");
-    panel2.add(abortTodoButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER,
+    abortButton = new JButton();
+    abortButton.setText("Abort");
+    panel2.add(abortButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER,
         GridConstraints.FILL_HORIZONTAL,
         GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
         GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

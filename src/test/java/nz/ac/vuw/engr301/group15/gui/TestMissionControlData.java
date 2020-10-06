@@ -47,7 +47,9 @@ public class TestMissionControlData {
 	@Test
 	public void Test2(){
 		try {
-			new Gui(false, new File("src/test/java/nz/ac/vuw/engr301/group15/gui/bad.csv"));
+			Gui.UserState.showGui = false;
+			Gui.UserState.csvImportPath = "src/test/java/nz/ac/vuw/engr301/group15/gui/bad.csv";
+			new Gui();
 		} catch (Exception e){
 			fail();
 		}
@@ -57,7 +59,9 @@ public class TestMissionControlData {
 	@Test
 	public void Test3(){
 		try {
-			new Gui(false, new File("thisisaninvalidpath"));
+			Gui.UserState.showGui = false;
+			Gui.UserState.csvImportPath = "thisisaninvalidpath";
+			new Gui();
 		} catch (Exception e){
 			fail();
 		}
@@ -67,7 +71,9 @@ public class TestMissionControlData {
 	@Test
 	public void Test4(){
 		try {
-			new Gui(false, new File("src/test/java/nz/ac/vuw/engr301/group15/gui/bad.csv"));
+			Gui.UserState.showGui = false;
+			Gui.UserState.csvImportPath = "src/test/java/nz/ac/vuw/engr301/group15/gui/bad.csv";
+			new Gui();
 		} catch (Exception e){
 			fail();
 		}
