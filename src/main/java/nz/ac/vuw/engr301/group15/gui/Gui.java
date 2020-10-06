@@ -246,7 +246,7 @@ public class Gui extends JFrame {
 
     //Adding in the column names
     statsList.add(
-      "Landing Position Longitude,Landing Position Latitude,Landing Position Altitude,"
+        "Landing Position Longitude,Landing Position Latitude,Landing Position Altitude,"
         + "Simulation Time,Motor Ignited,Lift Off,Launch Rod Cleared,Tumbling,Launch Rod Angle,"
         + "Launch Rod Direction,Warning Set,Max Alt Time,Effective Launch Rod Length");
     statsList.add("\n");
@@ -264,10 +264,12 @@ public class Gui extends JFrame {
       statsList.add(String.valueOf(c.isLaunchRodCleared()) + ','); // launch rod cleared
       statsList.add(String.valueOf(c.isTumbling()) + ','); // launch rod cleared
       statsList.add(String.valueOf(conditions.getLaunchRodAngle()) + ','); // launch rod angle
-      statsList.add(String.valueOf(conditions.getLaunchRodDirection()) + ','); // launch rod direction
+      statsList.add(String.valueOf(
+              conditions.getLaunchRodDirection()) + ','); // launch rod direction
       statsList.add(String.valueOf(warningSet.toString()) + ','); // warning set
       statsList.add(String.valueOf(c.getMaxAlt()) + ','); // max alt time
-      statsList.add(String.valueOf(c.getEffectiveLaunchRodLength()) + ','); // effective launch rod length
+      statsList.add(String.valueOf(
+              c.getEffectiveLaunchRodLength()) + ','); // effective launch rod length
       statsList.add("\n");
     }
     return statsList;
@@ -276,7 +278,7 @@ public class Gui extends JFrame {
   /**
    * This saves all the simulation stats to a CSV file.
    *
-   * @param statsList
+   * @param statsList the list of stats
    * @return filepath
    */
   public static String saveStatsToCsv(ArrayList<String> statsList) {
