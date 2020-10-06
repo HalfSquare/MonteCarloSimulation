@@ -20,7 +20,10 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import net.sf.openrocket.aerodynamics.WarningSet;
 import net.sf.openrocket.file.RocketLoadException;
+import net.sf.openrocket.models.wind.WindModel;
+import net.sf.openrocket.simulation.SimulationConditions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.util.WorldCoordinate;
 import nz.ac.vuw.engr301.group15.montecarlo.Map;
@@ -199,11 +202,14 @@ public class Gui extends JFrame {
     graphWindow.setSaveImageToFileButton(e -> saveGraphAsImage(chartPanel));
     graphWindow.setCsvButtonListener(e -> saveSettingsAsCsv());
     graphWindow.setSavePointsAsCsvButton(e -> savePointsAsCsv(createList(data)));
+    graphWindow.setSaveSimulationStatsToCsvButton(e -> saveStatsToCsv(createStatsList(data)));
+    //createTable();
+
   }
 
   /**
-   * This creates a list of all the longitude and latitude points, separated by a comma.
-   * After each set of points, a new line is created
+   * This creates a list of all the longitude and latitude points, separated by a comma. After each
+   * set of points, a new line is created
    *
    * @return list of all the points
    */
@@ -227,6 +233,73 @@ public class Gui extends JFrame {
       pointList.add("\n");
     }
     return pointList;
+  }
+
+  /**
+   * This creates a list of all the longitude and latitude points, separated by a comma. After each
+   * set of points, a new line is created
+   *
+   * @return list of all the points
+   */
+  public static ArrayList<String> createStatsList(ArrayList<SimulationDuple> data) {
+    ArrayList<String> statsList = new ArrayList<>();
+
+    //Adding in the column names
+    statsList.add(
+        "Landing Position Longitude,Landing Position Latitude,Landing Position Altitude,"
+        + "Simulation Time,Motor Ignited,Lift Off,Launch Rod Cleared,Tumbling,Launch Rod Angle,"
+        + "Launch Rod Direction,Warning Set,Max Alt Time,Effective Launch Rod Length");
+    statsList.add("\n");
+    //Reading the points into an ArrayList
+    for (SimulationStatus c : SimulationDuple.getStatuses(data)) {
+      WorldCoordinate landingPos = c.getRocketWorldPosition();
+      SimulationConditions conditions = c.getSimulationConditions();
+      WarningSet warningSet = c.getWarnings();
+      statsList.add(String.valueOf(landingPos.getLongitudeDeg()) + ','); // longitude
+      statsList.add(String.valueOf(landingPos.getLatitudeDeg()) + ','); // latitude
+      statsList.add(String.valueOf(landingPos.getAltitude()) + ','); // altitude
+      statsList.add(String.valueOf(c.getSimulationTime()) + ','); // simulation time
+      statsList.add(String.valueOf(c.isMotorIgnited()) + ','); // lift off
+      statsList.add(String.valueOf(c.isLiftoff()) + ','); // lift off
+      statsList.add(String.valueOf(c.isLaunchRodCleared()) + ','); // launch rod cleared
+      statsList.add(String.valueOf(c.isTumbling()) + ','); // launch rod cleared
+      statsList.add(String.valueOf(conditions.getLaunchRodAngle()) + ','); // launch rod angle
+      statsList.add(String.valueOf(
+              conditions.getLaunchRodDirection()) + ','); // launch rod direction
+      statsList.add(String.valueOf(warningSet.toString()) + ','); // warning set
+      statsList.add(String.valueOf(c.getMaxAlt()) + ','); // max alt time
+      statsList.add(String.valueOf(
+              c.getEffectiveLaunchRodLength()) + ','); // effective launch rod length
+      statsList.add("\n");
+    }
+    return statsList;
+  }
+
+  /**
+   * This saves all the simulation stats to a CSV file.
+   *
+   * @param statsList the list of stats
+   * @return filepath
+   */
+  public static String saveStatsToCsv(ArrayList<String> statsList) {
+    try {
+      File file = new File("simulationStats.csv");
+      PrintWriter pw = new PrintWriter(file);
+      // Reading everything into a string
+      StringBuilder sb = new StringBuilder();
+      for (String s : statsList) {
+        sb.append(s);
+      }
+
+      // Writing to the print writer
+      pw.write(sb.toString());
+      pw.close();
+      return file.getAbsolutePath();
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+      return null;
+    }
   }
 
   /**
@@ -323,7 +396,6 @@ public class Gui extends JFrame {
     j.showSaveDialog(null);
     rocketModelFile = j.getSelectedFile();
   }
-
 
 
   /**

@@ -22,6 +22,7 @@ public class GraphWindow {
   private JButton saveImageToFileButton;
   private JButton csvExportButton;
   private JButton savePointsAsCsvButton;
+  private JButton saveSimulationStatsToCsvButton;
 
   public JPanel getRootPanel() {
     return this.rootPanel;
@@ -33,6 +34,10 @@ public class GraphWindow {
 
   public void setReRunButtonListener(ActionListener listener) {
     this.reRunButton.addActionListener(listener);
+  }
+
+  public void setSaveSimulationStatsToCsvButton(ActionListener listener) {
+    this.saveSimulationStatsToCsvButton.addActionListener(listener);
   }
 
   public void setSaveImageToFileButton(ActionListener listener) {
