@@ -15,11 +15,10 @@ The original scope was to implement Monte Carlo Simulations as an extension of O
 
 We have delivered all of the above, excluding PID control for motor gimballing (we do have PI for finn roll control however). We've also included a 3D graph of the output, a full API for mission control integration, and a street view map of the landing points. 
 
-## Original Schedule and Delivered Schedule
-The original schedule...
-
 ## Original Expenditure and Actual Expenditure
-The original budget...
+The original budget was $0, as we were planning to use open-source software and development tools.
+
+Our actual expenditure was also $0, as we have only used open-source software and development tools.
 
 ## Project Self-Assessment
 The project...
