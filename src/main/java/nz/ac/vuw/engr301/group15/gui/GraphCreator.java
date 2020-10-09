@@ -14,6 +14,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.util.WorldCoordinate;
+import nz.ac.vuw.engr301.group15.montecarlo.Map;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulationExtensionListenerRecordPath;
 import nz.ac.vuw.engr301.group15.montecarlo.SimulationDuple;
@@ -70,7 +72,10 @@ public class GraphCreator {
 
     if (graphWindow.getGraphTypeComboBox().equals("3D")) {
       graphType = Gui.GraphType.FLIGHTPATH;
-    } else {
+    } else if (graphWindow.getGraphTypeComboBox().equals("Map")) {
+      graphType = Gui.GraphType.MAP;
+    }
+    else {
       graphType = Gui.GraphType.TWOD;
     }
 
@@ -86,6 +91,7 @@ public class GraphCreator {
     Shape shape;
 
     // Creates the plotting shape
+    System.out.println(graphType);
     switch (graphType) {
       case TWOD:
         shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
@@ -96,6 +102,17 @@ public class GraphCreator {
                 .add(create3dGraph(dataset3d, numberOfClusters), BorderLayout.CENTER);
         graphWindow.getGraphPanel().validate();
         return new ChartPanel(chart);
+      case MAP:
+        try {
+          ImagePanel imgPanel = new ImagePanel(Map.createMap());
+          System.out.println("hi xxx*****************************************************************");
+          graphWindow.getGraphPanel().setLayout(new BorderLayout());
+          graphWindow.getGraphPanel().add(imgPanel);
+          graphWindow.getGraphPanel().validate();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        return new ChartPanel(chart);           
       default:
         throw new RuntimeException("Help");
     }

@@ -57,7 +57,7 @@ public class Gui extends JFrame {
 
 
   public enum GraphType {
-    TWOD, FLIGHTPATH
+    TWOD, FLIGHTPATH, MAP 
   }
 
   public static class UserState {

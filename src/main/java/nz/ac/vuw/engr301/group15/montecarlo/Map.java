@@ -60,7 +60,6 @@ public class Map extends JPanel {
   }
 
   /**
-<<<<<<< HEAD
    * This rearranges the array so that the highest value and the lowest value are in index 0 and index 1.
    * This should be done twice, once for the x value, and once for the y value. 
    * @param array The array to be rearranged
@@ -161,7 +160,7 @@ public class Map extends JPanel {
    * @param long2 double
    * @return double
    */
-  private double angleFromCoordinate(double lat1, double long1, double lat2, double long2) {
+  private static double angleFromCoordinate(double lat1, double long1, double lat2, double long2) {
 
     double dLon = (long2 - long1);
 
