@@ -21,10 +21,10 @@ The original budget was $0, as we were planning to use open-source software and 
 Our actual expenditure was also $0, as we have only used open-source software and development tools.
 
 ## Project Self-Assessment
-The project...
+The software we have delivered meets most of the initial project scope, excluding PID control simulation, and has some additional quality of life features that make the software much more user-friendly and polished. The software is flexible, with a GUI for stand-alone use, and an API for integration. We have also spent large amounts of time testing the software to ensure it is reasonably reliable and bug-free. 
 
 ## Lessons Learned
-During the project...
+During the project, we've learnt the importance of planning and writing documentation. The initial documentation provided us guidance throughout the project, and helped us to plan and manage scope, features, and time. We've learnt how to work using the Agile methodology, such as working in sprints and holding regular meetings and retrospectives. We've learnt how to use Gitlab's planning features and DevOps features, along with functions such as the pipeline. Finally, we've learnt how to work in a team effectively and how to communicate and plan effectively. 
 
 ## Project Handover Plan
 We will be...
