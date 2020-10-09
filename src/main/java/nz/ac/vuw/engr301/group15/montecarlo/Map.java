@@ -7,19 +7,23 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import net.sf.openrocket.simulation.SimulationStatus;
+import net.sf.openrocket.util.WorldCoordinate;
+import nz.ac.vuw.engr301.group15.gui.LatLongBean;
 
 public class Map extends JPanel {
   static String API_Key = "KrGZcmPxmu4tNuWChwMteQNlNADrcByh";
-  static int zoom = 9;
-  static double cenLeft = 13.567893;
-  static double cenRight = 46.112341;
+  static int zoom = 16;
+  static double cenLat = 13.567893;
+  static double cenLong = 46.112341;
   static String format = "jpg";
   static String layer = "basic";
   static String style = "main";
-  static long lat = 500;
-  static long longit = 250;
+  static int width = 750;
+  static int height = 500;
   static String view = "Unified";
   static String language = "en-GB";
 
@@ -47,12 +51,12 @@ public class Map extends JPanel {
     String urlString = "http://api.tomtom.com/map/1/staticimage?"
         + "key=" + API_Key + "&"
         + "zoom=" + zoom + "&"
-        + "center=" + cenLeft + "," + cenRight + "&"
+        + "center=" + cenLong + "," + cenLat + "&"
         + "format=" + format + "&"
         + "layer=" + layer + "&"
         + "style=" + style + "&"
-        + "width=" + lat + "&"
-        + "height=" + longit + "&"
+        + "width=" + width + "&"
+        + "height=" + height + "&"
         + "view=" + view + "&"
         + "language=" + language;
     System.out.println("URL IS: " + urlString);
@@ -63,18 +67,19 @@ public class Map extends JPanel {
    * This rearranges the array so that the highest value and the lowest value are in index 0 and index 1.
    * This should be done twice, once for the x value, and once for the y value. 
    * @param array The array to be rearranged
-   * @param n the lenght of the array?
+   * @param n the length of the array?
    */
-  public static void rearrange(ArrayList<Long> array, int n, boolean longitudeValue)
-  {
-    Long[] arr = array.toArray(new Long[0]);
+  public static void rearrange(ArrayList<Double> array, int n, boolean longitudeValue) {
+    Double[] arr = array.toArray(new Double[0]);
+    System.out.println("OK");
 
     // Auxiliary array to hold modified array
-    long temp[] = new long[n];
+    Double[] temp = new Double[n];
 
     // Indexes of smallest and largest elements
     // from remaining array.
-    int small = 0, large = n - 1;
+    int small = 0;
+    int large = n - 1;
 
     // To indicate whether we need to copy remaining
     // largest or remaining smallest at next position
@@ -92,14 +97,13 @@ public class Map extends JPanel {
     }
 
     //Calculating the centre point
-    long centrePoint = temp[0] - temp[1];
+    double centrePoint = temp[0] - temp[1];
 
     //Setting the longitude or latitude point
-    if (longitudeValue){
-      longit = centrePoint;
-    }
-    else {
-      lat = centrePoint;
+    if (longitudeValue) {
+      cenLat = centrePoint;
+    } else {
+      cenLong = centrePoint;
     }
 
     // Copy temp[] to arr[]
@@ -199,6 +203,34 @@ public class Map extends JPanel {
     } else {
       throw new RuntimeException("Image is null");
     }
+  }
+
+  /**
+   * This method gets all of the points for latitude or longitude
+   * @param lat whether we want to get the latitude or longitude data
+   * @param data the data to be sorted
+   */
+  public static ArrayList<Double> getOneTypeOfPoint(boolean lat, ArrayList<SimulationDuple> data) {
+    ArrayList<Double> onePoint = new ArrayList<>();
+
+    //looping through and getting all the values in the array list that are either longitude values or latitude values
+    for (SimulationStatus longAndLat : SimulationDuple.getStatuses(data)) {
+      WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
+      double x = landingPos.getLongitudeDeg();
+      double y = landingPos.getLatitudeDeg();
+
+      if (lat) {
+        onePoint.add(y);
+      } else {
+        onePoint.add(x);
+      }
+    }
+    return onePoint;
+  }
+
+  public static void setCenters(LatLongBean center) {
+    cenLat = center.getLatitude();
+    cenLong = center.getLongitude();
   }
 
   public static void main(String[] args) {

@@ -43,7 +43,6 @@ import org.jfree.data.xy.XYSeriesCollection;
 public class GraphCreator {
   private final GraphWindow graphWindow;
   private final ArrayList<SimulationDuple> data;
-
   private final XYZDataset<String> dataset3d;
 
   /**
@@ -74,8 +73,7 @@ public class GraphCreator {
       graphType = Gui.GraphType.FLIGHTPATH;
     } else if (graphWindow.getGraphTypeComboBox().equals("Map")) {
       graphType = Gui.GraphType.MAP;
-    }
-    else {
+    } else {
       graphType = Gui.GraphType.TWOD;
     }
 
@@ -91,7 +89,6 @@ public class GraphCreator {
     Shape shape;
 
     // Creates the plotting shape
-    System.out.println(graphType);
     switch (graphType) {
       case TWOD:
         shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
@@ -104,8 +101,13 @@ public class GraphCreator {
         return new ChartPanel(chart);
       case MAP:
         try {
+//          ArrayList<Double> arrLat = Map.getOneTypeOfPoint(true, data);
+//          ArrayList<Double> arrLong = Map.getOneTypeOfPoint(false, data);
+//
+//          //setting the variables
+//          Map.rearrange(arrLat, arrLat.size(), false);
+//          Map.rearrange(arrLong, arrLat.size(), true);
           ImagePanel imgPanel = new ImagePanel(Map.createMap());
-          System.out.println("hi xxx*****************************************************************");
           graphWindow.getGraphPanel().setLayout(new BorderLayout());
           graphWindow.getGraphPanel().add(imgPanel);
           graphWindow.getGraphPanel().validate();

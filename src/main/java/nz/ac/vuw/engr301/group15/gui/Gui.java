@@ -54,6 +54,7 @@ public class Gui extends JFrame {
   private ArrayList<SimulationDuple> data;
   public int numberOfClusters = 3;
   private XYZDataset<String> dataset3d;
+  private Set<LatLongBean> clusterCenters;
 
 
   public enum GraphType {
@@ -147,6 +148,7 @@ public class Gui extends JFrame {
     // Simulation stuff
     SimulationRunner runner = new SimulationRunner(() -> {
       compute3dData();
+      Map.setCenters((LatLongBean) clusterCenters.toArray()[0]);
       setState(GRAPH);
     });
 
@@ -171,10 +173,10 @@ public class Gui extends JFrame {
     numberOfClusters = settingsWindow.getNumClusters();
 
     simulationWindow.setBar2Max(5);
-    Set<LatLongBean> clusters = KmeansClustering.calculateClusters(
+    clusterCenters = KmeansClustering.calculateClusters(
         filePath, numberOfClusters, simulationWindow::uptickBar2);
 
-    this.dataset3d = GraphCreator.create3dDataset(data, clusters);
+    this.dataset3d = GraphCreator.create3dDataset(data, clusterCenters);
   }
 
   public SettingsWindow getSettingsWindow() {
@@ -236,29 +238,7 @@ public class Gui extends JFrame {
   }
 
 
-  /**
-   * This method gets all of the points for latitude or longitude
-   * @param lat whether we want to get the latitude or longitude data
-   * @param data the data to be sorted
-   */
-  public ArrayList getOneTypeOfPoint(boolean lat, ArrayList<SimulationDuple> data){
-    ArrayList<Double> onePoint = new ArrayList<>();
 
-    //looping through and getting all the values in the array list that are either longitude values or latitude values
-    for (SimulationStatus longAndLat : SimulationDuple.getStatuses(data)) {
-      WorldCoordinate landingPos = longAndLat.getRocketWorldPosition();
-      double x = landingPos.getLongitudeDeg();
-      double y = landingPos.getLatitudeDeg();
-
-      if (lat){
-        onePoint.add(y);
-      }
-      else {
-        onePoint.add(x);
-      }
-    }
-    return onePoint;
-  }
 
   /**
    * This creates a list of all the longitude and latitude points, separated by a comma. After each
@@ -552,15 +532,10 @@ public class Gui extends JFrame {
       startGraph();
       graphWindow.setVisible(true);
     } else if (MAP.equals(state)) {
-      createList(data);
+//      createList(data);
       //For loading in the array of points
-//      startMap();
-      ArrayList arrLat = getOneTypeOfPoint(true, data);
-      ArrayList arrLong = getOneTypeOfPoint(false, data);
+      //      startMap();
 
-      //setting the variables
-      Map.rearrange(arrLat, arrLat.size(),false);
-      Map.rearrange(arrLong, arrLat.size(), true);
 
       mapWindow.setVisible(true);
     } else {
