@@ -658,6 +658,7 @@ public class Gui extends JFrame {
 
         if (UserState.exportPath.length() > 0) {
           savePointsAsCsv(createList(data));
+          saveStatsToCsv(createStatsList(data));
         }
 
         if (!UserState.showGui) {
