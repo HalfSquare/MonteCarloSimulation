@@ -29,8 +29,6 @@
             <version>0.14.0</version>
         </dependency>
 
-
-
         <!-- junit 5, unit test -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -52,8 +50,11 @@
             <groupId>net.sf.openrocket</groupId>
             <artifactId>modified-openrocket</artifactId>
             <version>1.0</version>
+<!--            <systemPath>${pom.basedir}/src/main/resources/OpenRocket-15.03.jar</systemPath>-->
+<!--            <scope>system</scope>-->
         </dependency>
-        <!--log4j dependency -->
+
+        <!--log4j dependency-->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>apache-log4j-extras</artifactId>
@@ -91,14 +92,15 @@
             <version>1.7.5</version>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.6.4</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.12</artifactId>
             <version>3.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -117,10 +119,8 @@
             <artifactId>commons-io</artifactId>
             <version>2.7</version>
         </dependency>
-
-
-
     </dependencies>
+
     <build>
         <finalName>maven-unit-test</finalName>
         <plugins>
@@ -136,7 +136,7 @@
                             <groupId>net.sf.openrocket</groupId>
                             <artifactId>modified-openrocket</artifactId>
                             <version>1.0</version>
-                            <file>src/main/resources/modified-openrocket-1-1-9-new.jar</file>
+                            <file>${pom.basedir}/src/main/resources/OpenRocket-15.03.jar</file>
                             <packaging>jar</packaging>
                         </configuration>
                         <goals>
@@ -241,14 +241,13 @@
                     </execution>
                 </executions>
             </plugin>
-
-<!--&lt;!&ndash;                <dependencies>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <dependency>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <groupId>com.github.spotbugs</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <artifactId>spotbugs</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <version>4.0.6</version>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </dependency>&ndash;&gt;-->
-<!--&lt;!&ndash;                </dependencies>&ndash;&gt;-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>com.github.spotbugs</groupId>-->
+<!--                        <artifactId>spotbugs</artifactId>-->
+<!--                        <version>4.0.6</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
             <!--</plugin>-->
 
         </plugins>
@@ -270,5 +269,5 @@
         </plugin>
       </plugins>
     </reporting>
-    
+
 </project>

@@ -14,7 +14,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +37,6 @@ import org.jfree.chart.renderer.AbstractRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
-import org.jfree.util.ShapeUtilities;
-
 
 public class GraphCreator {
   private final GraphWindow graphWindow;
@@ -74,7 +71,7 @@ public class GraphCreator {
     if (graphWindow.getGraphTypeComboBox().equals("3D")) {
       graphType = Gui.GraphType.FLIGHTPATH;
     } else {
-      graphType = Gui.GraphType.valueOf(graphWindow.getGraphTypeComboBox().toUpperCase());
+      graphType = Gui.GraphType.TWOD;
     }
 
     // Create chart
@@ -90,13 +87,7 @@ public class GraphCreator {
 
     // Creates the plotting shape
     switch (graphType) {
-      case CROSS:
-        shape = ShapeUtilities.createDiagonalCross(1, 1);
-        break;
-      case SQUARE:
-        shape = new Rectangle2D.Double(-3, -3, 3, 3);
-        break;
-      case CIRCLE:
+      case TWOD:
         shape = new Ellipse2D.Double(-3.0, -3.0, 3.0, 3.0);
         break;
       case FLIGHTPATH:
@@ -195,25 +186,9 @@ public class GraphCreator {
   public static XYZDataset<String> create3dDataset(ArrayList<SimulationDuple> data,
                                                    Set<LatLongBean> clusters) {
     XYZSeriesCollection<String> dataset = new XYZSeriesCollection<>();
-    //    double groundAlt = data.get(0).getSimulationStatus().getRocketWorldPosition().getAltitude();
 
-    //Gets cluster points from the data
-    //    String filePath = Gui.savePointsAsCsv(Gui.createList(data));
-    //    Set<LatLongBean> clusters = KMeansClustering.calculateClusters(filePath, 3);
-    //XYZSeries<String> clusterSeries = new XYZSeries<>("Clusters");
-
-    //TESTING: draw every endpoint
-    //    XYZSeries<String> endpointSeries = new XYZSeries<>("Endpoints");
-    //    for (SimulationStatus s : SimulationDuple.getStatuses(data)){
-    //      WorldCoordinate wc = s.getRocketWorldPosition();
-    //      endpointSeries.add(wc.getLatitudeDeg(), wc.getAltitude(), wc.getLongitudeDeg());
-    //    }
-
-    //Find closest SimulationDuple to each cluster center
     int n = 1;
     for (LatLongBean coord : clusters) {
-      //clusterSeries.add(coord.getLatitude(), groundAlt, coord.getLongitude());
-
       double smallestDistance = Double.MAX_VALUE;
       SimulationDuple closestPoint = data.get(0);
       //Find closest endpoint to the coord
@@ -239,14 +214,10 @@ public class GraphCreator {
       //Add each series to the dataset
       for (WorldCoordinate c : coordPoints) {
         series.add(c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
-        //System.out.printf("Lat: %.10f, Alt: %.10f, Long: %.10f\n"
-        // , c.getLatitudeDeg(), c.getAltitude(), c.getLongitudeDeg());
       }
       dataset.add(series);
     }
 
-    //dataset.add(clusterSeries);
-    //dataset.add(endpointSeries);
     return dataset;
   }
 

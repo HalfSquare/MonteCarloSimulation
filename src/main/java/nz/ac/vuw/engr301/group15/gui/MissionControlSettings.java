@@ -1,6 +1,7 @@
 package nz.ac.vuw.engr301.group15.gui;
 
 import java.util.ArrayList;
+import org.apache.commons.lang.math.NumberUtils;
 
 /**
  Mission Control Settings contains the values that can be inputted into the simulation to
@@ -86,14 +87,18 @@ public class MissionControlSettings {
     this.errorsFound = errorsFound;
   }
 
-
+  /**
+   * Checks whether a number is valid.
+   * Invalid numbers are added to the error list.
+   *
+   * @param stringValue the string to be checked as a number
+   * @param type the data field number belongs to
+   *
+   * @return true if valid, false if invalid
+   */
   private boolean isValidCheck(String stringValue, String type) {
-    double value = 0;
     if (!stringValue.equals("")) {
-      try {
-        value = Double.parseDouble(stringValue);
-        return true;
-      } catch (NumberFormatException e) {
+      if (!NumberUtils.isNumber(stringValue)) {
         setErrorsFound(true);
         errorList
           .add("Invalid " + type + " value: " + stringValue + ". Must be a valid number");
@@ -107,6 +112,11 @@ public class MissionControlSettings {
     return maxAngle;
   }
 
+  /**
+   * Sets maximum angle when it is valid.
+   *
+   * @param maxAngle The value to check if it is valid.
+   */
   public void setMaxAngle(final String maxAngle) {
     if (isValidCheck(maxAngle, "Max Angle")) {
       this.maxAngle = maxAngle;
@@ -119,6 +129,11 @@ public class MissionControlSettings {
     return windDir;
   }
 
+  /**
+   * Sets wind direction when it is valid.
+   *
+   * @param windDir The value to check if it is valid.
+   */
   public void setWindDir(final String windDir) {
     if (isValidCheck(windDir, "Wind Dir")) {
       this.windDir = windDir;
@@ -131,6 +146,11 @@ public class MissionControlSettings {
     return windTurbulence;
   }
 
+  /**
+   * Sets wind turbulence when it is valid.
+   *
+   * @param windTurbulence The value to check if it is valid.
+   */
   public void setWindTurbulence(final String windTurbulence) {
     if (isValidCheck(windTurbulence, "Wind Turbulence")) {
       this.windTurbulence = windTurbulence;
@@ -143,6 +163,11 @@ public class MissionControlSettings {
     return windSpeed;
   }
 
+  /**
+   * Sets wind speed when it is valid.
+   *
+   * @param windSpeed The value to check if it is valid.
+   */
   public void setWindSpeed(final String windSpeed) {
     if (isValidCheck(windSpeed, "Wind Speed")) {
       this.windSpeed = windSpeed;
@@ -156,6 +181,11 @@ public class MissionControlSettings {
     return launchTemp;
   }
 
+  /**
+   * Sets launch temperature when it is valid.
+   *
+   * @param launchTemp The value to check if it is valid.
+   */
   public void setLaunchTemp(final String launchTemp) {
     if (isValidCheck(launchTemp, "Launch Temp")) {
       this.launchTemp = launchTemp;
@@ -168,6 +198,11 @@ public class MissionControlSettings {
     return launchAirPressure;
   }
 
+  /**
+   * Sets launch air pressure when it is valid.
+   *
+   * @param launchAirPressure The value to check if it is valid.
+   */
   public void setLaunchAirPressure(final String launchAirPressure) {
     if (isValidCheck(launchAirPressure, "Launch Air Pressure")) {
       this.launchAirPressure = launchAirPressure;
@@ -180,6 +215,11 @@ public class MissionControlSettings {
     return launchRodLength;
   }
 
+  /**
+   * Sets launch rod length when it is valid.
+   *
+   * @param launchRodLength The value to check if it is valid.
+   */
   public void setLaunchRodLength(final String launchRodLength) {
     if (isValidCheck(launchRodLength, "Launch Rod Length")) {
       this.launchRodLength = launchRodLength;
@@ -192,6 +232,11 @@ public class MissionControlSettings {
     return launchRodDir;
   }
 
+  /**
+   * Sets launch rod direction when it is valid.
+   *
+   * @param launchRodDir The value to check if it is valid.
+   */
   public void setLaunchRodDir(final String launchRodDir) {
     if (isValidCheck(launchRodDir, "Launch Rod Dir")) {
       this.launchRodDir = launchRodDir;
@@ -204,6 +249,11 @@ public class MissionControlSettings {
     return launchRodAngle;
   }
 
+  /**
+   * Sets launch rod angle when it is valid.
+   *
+   * @param launchRodAngle The value to check if it is valid.
+   */
   public void setLaunchRodAngle(final String launchRodAngle) {
     if (isValidCheck(launchRodAngle, "Launch Rod Angle")) {
       this.launchRodAngle = launchRodAngle;
@@ -216,6 +266,11 @@ public class MissionControlSettings {
     return launchAlt;
   }
 
+  /**
+   * Sets launch altitude when it is valid.
+   *
+   * @param launchAlt The value to check if it is valid.
+   */
   public void setLaunchAlt(final String launchAlt) {
     if (isValidCheck(launchAlt, "Launch Alt")) {
       this.launchAlt = launchAlt;
@@ -228,6 +283,11 @@ public class MissionControlSettings {
     return launchLong;
   }
 
+  /**
+   * Sets launch starting longitude when it is valid.
+   *
+   * @param launchLong The value to check if it is valid.
+   */
   public void setLaunchLong(final String launchLong) {
     if (isValidCheck(launchLong, "Launch Long")) {
       this.launchLong = launchLong;
@@ -240,6 +300,11 @@ public class MissionControlSettings {
     return launchLat;
   }
 
+  /**
+   * Sets launch starting latitude when it is valid.
+   *
+   * @param launchLat The value to check if it is valid.
+   */
   public void setLaunchLat(final String launchLat) {
     if (isValidCheck(launchLat, "Launch Lat")) {
       this.launchLat = launchLat;
@@ -256,14 +321,16 @@ public class MissionControlSettings {
     return numSimulations.equals("") ? 0 : Integer.parseInt(numSimulations.replaceAll(",", ""));
   }
 
+  /**
+   * Sets the number of simulations and records errors to the error list.
+   *
+   * @param numSimulations the number of simulations
+   */
   public void setNumSimulations(final String numSimulations) {
-    int val = 0;
-    try {
-      val = Integer.parseInt(numSimulations);
-    } catch (NumberFormatException e) {
+    if (!NumberUtils.isNumber(numSimulations)) {
       setErrorsFound(true);
       errorList
-        .add("Invalid number of simulation value: " + numSimulations + ". Must be a number");
+              .add("Invalid number of simulation value: " + numSimulations + ". Must be a number");
       this.numSimulations = "0";
       return;
     }

@@ -6,9 +6,15 @@ import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.simulation.listeners.AbstractSimulationListener;
 
 public class MonteCarloSimulationExtensionListener extends AbstractSimulationListener {
-  private SimulationStatus simulationStatus;
-  private SimulationOptions simulationOptions;
 
+  private static SimulationStatus simulationStatus;
+  private final SimulationOptions simulationOptions;
+
+  /**
+   * Listener for each simulation that takes the simulation options.
+   *
+   * @param simulationOptions The options for the simulation.
+   */
   public MonteCarloSimulationExtensionListener(SimulationOptions simulationOptions) {
     super();
     this.simulationOptions = simulationOptions;

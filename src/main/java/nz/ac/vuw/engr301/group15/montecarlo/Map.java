@@ -1,14 +1,14 @@
 package nz.ac.vuw.engr301.group15.montecarlo;
 
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 public class Map extends JPanel {
   static String API_Key = "KrGZcmPxmu4tNuWChwMteQNlNADrcByh";
@@ -40,26 +40,27 @@ public class Map extends JPanel {
    * view=Unified&
    * language=en-GB
    *
-   * @return
+   * @return URL
    */
-  public static URL createURL() throws MalformedURLException {
-    String urlString = "http://api.tomtom.com/map/1/staticimage?" +
-            "key=" + API_Key + "&" +
-            "zoom=" + zoom + "&" +
-            "center=" + cenLeft + "," + cenRight + "&" +
-            "format=" + format + "&" +
-            "layer=" + layer + "&" +
-            "style=" + style + "&" +
-            "width=" + lat + "&" +
-            "height=" + longit + "&" +
-            "view=" + view + "&" +
-            "language=" + language;
 
+  public static URL createUrl() throws MalformedURLException {
+    String urlString = "http://api.tomtom.com/map/1/staticimage?"
+        + "key=" + API_Key + "&"
+        + "zoom=" + zoom + "&"
+        + "center=" + cenLeft + "," + cenRight + "&"
+        + "format=" + format + "&"
+        + "layer=" + layer + "&"
+        + "style=" + style + "&"
+        + "width=" + lat + "&"
+        + "height=" + longit + "&"
+        + "view=" + view + "&"
+        + "language=" + language;
     System.out.println("URL IS: " + urlString);
     return new URL(urlString);
   }
 
   /**
+<<<<<<< HEAD
    * This rearranges the array so that the highest value and the lowest value are in index 0 and index 1.
    * This should be done twice, once for the x value, and once for the y value. 
    * @param array The array to be rearranged
@@ -72,19 +73,21 @@ public class Map extends JPanel {
     // Auxiliary array to hold modified array
     long temp[] = new long[n];
 
-    // Indexes of smallest and largest elements from remaining array.
-    int small=0, large=n-1;
+    // Indexes of smallest and largest elements
+    // from remaining array.
+    int small = 0, large = n - 1;
 
-    // To indicate whether we need to copy remaining largest or remaining smallest at next position
+    // To indicate whether we need to copy remaining
+    // largest or remaining smallest at next position
     boolean flag = true;
 
     // Store result in temp[]
-    for (int i=0; i<n; i++)
-    {
-      if (flag)
+    for (int i = 0; i < n; i++) {
+      if (flag) {
         temp[i] = arr[large--];
-      else
+      } else {
         temp[i] = arr[small++];
+      }
 
       flag = !flag;
     }
@@ -152,11 +155,11 @@ public class Map extends JPanel {
    * KEEP THIS IN. THIS IS NOT YET IMPLEMENTED, HOWEVER IT IS VERY IMPORTANT FOR THE NEXT STAGE.
    * This method calculates the angle in which the dots should be plotted on the graph and how far
    * away they should be from the center of teh graph.
-   * @param lat1
-   * @param long1
-   * @param lat2
-   * @param long2
-   * @return
+   * @param lat1 double
+   * @param long1 double
+   * @param lat2 double
+   * @param long2 double
+   * @return double
    */
   private double angleFromCoordinate(double lat1, double long1, double lat2, double long2) {
 
@@ -175,8 +178,14 @@ public class Map extends JPanel {
     return brng;
   }
 
+  /**
+   * Creates a map.
+   *
+   * @return A buffered image of the map.
+   * @throws IOException Throws
+   */
   public static BufferedImage createMap() throws IOException {
-    URL url = createURL();
+    URL url = createUrl();
     HttpURLConnection con = (HttpURLConnection) url.openConnection();
     con.setRequestMethod("GET");
     con.setDoOutput(true);
