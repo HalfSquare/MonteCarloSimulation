@@ -27,5 +27,9 @@ The software we have delivered meets most of the initial project scope, excludin
 During the project, we've learnt the importance of planning and writing documentation. The initial documentation provided us guidance throughout the project, and helped us to plan and manage scope, features, and time. We've learnt how to work using the Agile methodology, such as working in sprints and holding regular meetings and retrospectives. We've learnt how to use Gitlab's planning features and DevOps features, along with functions such as the pipeline. Finally, we've learnt how to work in a team effectively and how to communicate and plan effectively. 
 
 ## Project Handover Plan
-We will be...
+We will be presenting an overview of our project (and our individual contributions) in a 15 minute slot to the customer on the 21st of October, with a 5 minute Q&A. This will cover how to use the software, so the client can take on the project in its current state. 
+
+Future development could possibly cover PID controller simulations, especially for the motor gimballing. 
+
+All relevant documentation can be found on the GitLab, and should be packaged with the software so that it is available to anyone wanting to continue development. 
 
