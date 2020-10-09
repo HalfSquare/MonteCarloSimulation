@@ -11,7 +11,9 @@ The initial goal of this project was to create an extension to OpenRocket, an op
 Over the course of this project, our group designed a program to extend OpenRocket, to run Monte Carlo rocket simulations. The software uses OpenRocket as a library, and can take in weather and rocket data, and can output the simulation data as a 3D graph, as 3D rocket flight paths, as points on a map, or as latitudes and longitudes in a CSV. The software also has a built-in API to communicate with Mission Control project. 
 
 ## Original Scope and Delivered Scope
-The original scope...
+The original scope was to implement Monte Carlo Simulations as an extension of OpenRocket. These simulations should include mission control data and should integrate with the mission control teams' software. These simulations should also include PID controller simulation for motor gimballing and upwind rocket vectoring. 
+
+We have delivered all of the above, excluding PID control for motor gimballing (we do have PI for finn roll control however). We've also included a 3D graph of the output, a full API for mission control integration, and a street view map of the landing points. 
 
 ## Original Schedule and Delivered Schedule
 The original schedule...
