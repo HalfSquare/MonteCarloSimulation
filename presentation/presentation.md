@@ -20,6 +20,13 @@ Overview diagram of the program.
 
 # Jacqui - Mission Control integration
 
+Video of the terminal window showing input params and loading simulation progress bar
+
+- The Mission Control integration with our Monte Carlo Simulation software allows Mission Control Teams to easily interact and use our software.
+- We created an API which uses a command to run our Monte Carlo Simulation software without running the Graphical Interface.
+- The command takes in parameters such as the CSV file path to import and value which determines if the Graphical Interface should be present.
+
+
 # Justina - 2D graph and map
 
 # Georgia - Monte Carlo implementation
