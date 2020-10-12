@@ -64,4 +64,11 @@ Video of the terminal window showing input params and loading simulation progres
 
 # Georgia - Monte Carlo implementation
 
+Word cloud of mission control parameters, maybe a picture of the gui input, maybe a picture of the output as a scatter plot
+
+- We use OpenRocket as a backend to perform Monte Carlo sims
+- The benefits of this data is to make sims more accurate to real life conditions
+- The benefits of running large numbers of sims (Monte Carlo) is getting a good idea of what will happen
+- Random distribution to add a layer of variety to parameters
+
 # Conclusion
