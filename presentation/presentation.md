@@ -2,6 +2,39 @@
 Overview diagram of the program. 
 
 # Michael - DevOps
+Features:
+
+ - Rocketboy deploy
+ - Lab log website
+ - User guide
+ - Service desk
+
+Advantages:
+
+ - Rocketboy deploy: Users and download the program quickly and see the latest release notes. They can test out the program.
+
+ - Lab log website: Easily log time entered and left times with a single click to avoid any overriding of information.
+
+ - User guide: Tells the user how to interact with the program
+
+
+Benefits: 
+
+ - Rocketboy deploy: The benefit of the user being able to download the program is so they can give feedback and discover bugs before the product is ready for launch. The program will result in a better quality project by resolving the bugs found so the rocket simulation is reliable and the rocket can launch safely.
+
+ - Lab log website: 
+
+ - User guide: Avoids service desk questions that can be easily answered. Resulting in more time to spend developing the program.
+
+
+Questions that might be asked:
+
+ - Why not make repo public instead of hosting a specific website?
+
+
+Link log website to rocketboy deploy: 
+
+From developing the lab log website, we were inspired to make more tools to increase the productivity and quality of the program. Rocketboy deploy does precisely this; it allows any user to download the program quickly to use the product and send us feedback. This website has been in released to the public for the past five weeks. 
 
 # Max - UX/UI
 
