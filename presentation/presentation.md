@@ -61,6 +61,19 @@ Video of the terminal window showing input params and loading simulation progres
 - We created an API which uses a command to run our Monte Carlo Simulation software without running the Graphical Interface.
 - The command takes in parameters such as the CSV file path to import and value which determines if the Graphical Interface should be present.
 
+- The API will output two CSV files
+- The first CSV File outputted called 'points.csv' contains the results of the Monte Carlo simulations, expressed as Longitude and Latitude points.
+- The second CSV File outputted called 'SimulationStats.csv' contains additional information about the Monte Carlo Simulations.
+    - The values in the SimulationStatscsv aims to provde an indepth report into the Monte Carlo Simulation, covering factors such as Landing Position Longitude,Landing Position Latitude,Landing Position Altitude,Simulation Time,Motor Ignited,Lift Off,Launch Rod Cleared,Tumbling,Launch Rod Angle,Launch Rod Direction,Warning Set,Max Alt Time,Effective Launch Rod Length (Cut down to the most appropriate ones lol)
+
+Advantages
+
+- Allows Mission Control Teams to easily interact and use our software.
+- Outputs all of the vital information in a CSV format
+
+Benefits
+- Streamlined API which can be used anywhere in any environment
+- 
 
 # Justina - 2D graph and map
 
