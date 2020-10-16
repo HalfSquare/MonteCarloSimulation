@@ -175,9 +175,9 @@ function uploadJar(tagName) {
 
                 let index = tags.findIndex(findTag)
                 tags[index].Link = url[0]
-                downloads[tagName] = { jar : url[0], guide: "https://firebasestorage.googleapis.com/v0/b/rocketboydeploy.appspot.com/o/platypus.pv20908.1z.pdf?alt=media&token=f150797b-40d7-45c4-938a-5f9afc8b2bc5" }
+                downloads[tagName] = { jar : url[0], guide: "https://firebasestorage.googleapis.com/v0/b/rocketboydeploy.appspot.com/o/lemur.pv20102.1z.pdf?alt=media&token=3db6be1f-eeed-44ad-a3aa-ce2140c349fb" }
                 uploadDownloads()
-
+                
                 fs.writeFile(FILE_NAME, JSON.stringify(tags), (err) => {
                     if (err) console.log("Error: " + err.message);
                     uploadTags()
