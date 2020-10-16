@@ -88,24 +88,24 @@ public class GraphWindow {
    */
   private void $$$setupUI$$$() {
     rootPanel = new JPanel();
-    rootPanel.setLayout(new GridLayoutManager(3, 7, new Insets(0, 0, 0, 0), -1, -1));
+    rootPanel.setLayout(new GridLayoutManager(3, 8, new Insets(0, 0, 0, 0), -1, -1));
     graphPanel = new JPanel();
     graphPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
     rootPanel.add(graphPanel,
-        new GridConstraints(1, 0, 1, 7, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH,
+        new GridConstraints(1, 0, 1, 8, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null,
             null, 0, false));
     reRunButton = new JButton();
     reRunButton.setText("Re-run");
-    rootPanel.add(reRunButton, new GridConstraints(2, 4, 1, 1, GridConstraints.ANCHOR_CENTER,
+    rootPanel.add(reRunButton, new GridConstraints(2, 5, 1, 1, GridConstraints.ANCHOR_CENTER,
         GridConstraints.FILL_HORIZONTAL,
         GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
         GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     saveImageToFileButton = new JButton();
     saveImageToFileButton.setText("Save as image");
     rootPanel.add(saveImageToFileButton,
-        new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER,
+        new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER,
             GridConstraints.FILL_HORIZONTAL,
             GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
             GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -118,18 +118,18 @@ public class GraphWindow {
             GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     csvExportButton = new JButton();
     csvExportButton.setText("Export settings");
-    rootPanel.add(csvExportButton, new GridConstraints(2, 3, 1, 1, GridConstraints.ANCHOR_CENTER,
+    rootPanel.add(csvExportButton, new GridConstraints(2, 4, 1, 1, GridConstraints.ANCHOR_CENTER,
         GridConstraints.FILL_HORIZONTAL,
         GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
         GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     exitButton = new JButton();
     exitButton.setText("Exit");
-    rootPanel.add(exitButton, new GridConstraints(2, 6, 1, 1, GridConstraints.ANCHOR_CENTER,
+    rootPanel.add(exitButton, new GridConstraints(2, 7, 1, 1, GridConstraints.ANCHOR_CENTER,
         GridConstraints.FILL_HORIZONTAL,
         GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
         GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     final Spacer spacer1 = new Spacer();
-    rootPanel.add(spacer1, new GridConstraints(2, 5, 1, 1, GridConstraints.ANCHOR_CENTER,
+    rootPanel.add(spacer1, new GridConstraints(2, 6, 1, 1, GridConstraints.ANCHOR_CENTER,
         GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null,
         new Dimension(65, 11), null, 0, false));
     graphTypeComboBox = new JComboBox();
@@ -138,9 +138,16 @@ public class GraphWindow {
     defaultComboBoxModel1.addElement("3D");
     defaultComboBoxModel1.addElement("Map");
     graphTypeComboBox.setModel(defaultComboBoxModel1);
-    rootPanel.add(graphTypeComboBox, new GridConstraints(0, 6, 1, 1, GridConstraints.ANCHOR_WEST,
+    rootPanel.add(graphTypeComboBox, new GridConstraints(0, 7, 1, 1, GridConstraints.ANCHOR_WEST,
         GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW,
         GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+    saveSimulationStatsToCsvButton = new JButton();
+    saveSimulationStatsToCsvButton.setText("Save simulation stats to CSV");
+    rootPanel.add(saveSimulationStatsToCsvButton,
+        new GridConstraints(2, 2, 1, 1, GridConstraints.ANCHOR_CENTER,
+            GridConstraints.FILL_HORIZONTAL,
+            GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW,
+            GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
   }
 
   /**
@@ -149,4 +156,5 @@ public class GraphWindow {
   public JComponent $$$getRootComponent$$$() {
     return rootPanel;
   }
+
 }

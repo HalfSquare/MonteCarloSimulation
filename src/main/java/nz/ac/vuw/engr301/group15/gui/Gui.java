@@ -54,10 +54,11 @@ public class Gui extends JFrame {
   private ArrayList<SimulationDuple> data;
   public int numberOfClusters = 3;
   private XYZDataset<String> dataset3d;
+  private Set<LatLongBean> clusterCenters;
 
 
   public enum GraphType {
-    TWOD, FLIGHTPATH
+    TWOD, FLIGHTPATH, MAP 
   }
 
   public static class UserState {
@@ -147,6 +148,7 @@ public class Gui extends JFrame {
     // Simulation stuff
     SimulationRunner runner = new SimulationRunner(() -> {
       compute3dData();
+      Map.setCenters((LatLongBean) clusterCenters.toArray()[0]);
       setState(GRAPH);
     });
 
@@ -171,10 +173,10 @@ public class Gui extends JFrame {
     numberOfClusters = settingsWindow.getNumClusters();
 
     simulationWindow.setBar2Max(5);
-    Set<LatLongBean> clusters = KmeansClustering.calculateClusters(
+    clusterCenters = KmeansClustering.calculateClusters(
         filePath, numberOfClusters, simulationWindow::uptickBar2);
 
-    this.dataset3d = GraphCreator.create3dDataset(data, clusters);
+    this.dataset3d = GraphCreator.create3dDataset(data, clusterCenters);
   }
 
   public SettingsWindow getSettingsWindow() {
@@ -234,6 +236,9 @@ public class Gui extends JFrame {
     }
     return pointList;
   }
+
+
+
 
   /**
    * This creates a list of all the longitude and latitude points, separated by a comma. After each
@@ -527,7 +532,11 @@ public class Gui extends JFrame {
       startGraph();
       graphWindow.setVisible(true);
     } else if (MAP.equals(state)) {
-      startMap();
+//      createList(data);
+      //For loading in the array of points
+      //      startMap();
+
+
       mapWindow.setVisible(true);
     } else {
       throw new RuntimeException("Unexpected state switch");

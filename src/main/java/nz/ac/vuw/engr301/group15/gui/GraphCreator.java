@@ -14,6 +14,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ import net.sf.openrocket.simulation.SimulationOptions;
 import net.sf.openrocket.simulation.SimulationStatus;
 import net.sf.openrocket.simulation.exception.SimulationException;
 import net.sf.openrocket.util.WorldCoordinate;
+import nz.ac.vuw.engr301.group15.montecarlo.Map;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulation;
 import nz.ac.vuw.engr301.group15.montecarlo.MonteCarloSimulationExtensionListenerRecordPath;
 import nz.ac.vuw.engr301.group15.montecarlo.SimulationDuple;
@@ -41,7 +43,6 @@ import org.jfree.data.xy.XYSeriesCollection;
 public class GraphCreator {
   private final GraphWindow graphWindow;
   private final ArrayList<SimulationDuple> data;
-
   private final XYZDataset<String> dataset3d;
 
   /**
@@ -70,6 +71,8 @@ public class GraphCreator {
 
     if (graphWindow.getGraphTypeComboBox().equals("3D")) {
       graphType = Gui.GraphType.FLIGHTPATH;
+    } else if (graphWindow.getGraphTypeComboBox().equals("Map")) {
+      graphType = Gui.GraphType.MAP;
     } else {
       graphType = Gui.GraphType.TWOD;
     }
@@ -96,6 +99,22 @@ public class GraphCreator {
                 .add(create3dGraph(dataset3d, numberOfClusters), BorderLayout.CENTER);
         graphWindow.getGraphPanel().validate();
         return new ChartPanel(chart);
+      case MAP:
+        try {
+//          ArrayList<Double> arrLat = Map.getOneTypeOfPoint(true, data);
+//          ArrayList<Double> arrLong = Map.getOneTypeOfPoint(false, data);
+//
+//          //setting the variables
+//          Map.rearrange(arrLat, arrLat.size(), false);
+//          Map.rearrange(arrLong, arrLat.size(), true);
+          ImagePanel imgPanel = new ImagePanel(Map.createMap());
+          graphWindow.getGraphPanel().setLayout(new BorderLayout());
+          graphWindow.getGraphPanel().add(imgPanel);
+          graphWindow.getGraphPanel().validate();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        return new ChartPanel(chart);           
       default:
         throw new RuntimeException("Help");
     }
