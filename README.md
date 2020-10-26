@@ -1,7 +1,7 @@
 # Monte Carlo Simulations project - Group 15
 
 ## Description
-This program is an extension to OpenRocket, the application uses OpenRocket 15.03 as the backend to run simulations. Our program can run multiple simulations and display the results in graphical formats and export the data. 
+This program is an extension to OpenRocket, the application uses [OpenRocket](https://github.com/openrocket/openrocket) 15.03 as the backend to run simulations. Our program can run multiple simulations and display the results in graphical formats and export the data. 
 
 ## Project requirement
 Our group project predominantly focuses on the use of Monte Carlo simulations to help design the rocket. These simulations are used to model the probability of different outcomes based on a range of variables that could affect the rocket launch such as the wind-speed, wind-direction, and weather conditions.
